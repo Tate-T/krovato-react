@@ -1,0 +1,200 @@
+.reviews {
+    &__form {
+      padding-top: 60px;
+
+      @media screen and (min-width: 1200px) {
+        padding-top: 88px;
+      }
+    }
+
+    &__formTopBox {
+      display: flex;
+      gap: 30px;
+    }
+
+    &__formIconBox {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__formIcon {
+      width: 57px;
+      height: 32px;
+      fill: #ffbc57;
+    }
+
+    &__formTitle {
+      color: black;
+      font-family: "Proxima Nova";
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 28px;
+      max-width: 300px;
+      text-align: left;
+    }
+
+    &__formTopStarBox {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      align-items: center;
+    }
+
+    &__formTopStarText {
+      color: #ff9900;
+
+      font-family: "Proxima Nova";
+      font-size: 19px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 24px;
+    }
+
+    &__formTopStarList {
+      display: flex;
+      gap: 4px;
+    }
+
+    &__formTopStarIcon {
+      width: 24px;
+      height: 24px;
+      fill: #ff9900;
+    }
+
+    &__formText {
+      color: grey;
+      font-family: "Proxima Nova";
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 22px;
+      padding-bottom: 30px;
+      text-align: left;
+    }
+
+    &__formForm {
+      max-width: 410px;
+      background-color: white;
+      border-radius: 8px;
+      padding-bottom: 30px;
+    }
+
+    &__formFormTitle {
+      color: black;
+      text-align: center;
+      font-family: "Proxima Nova";
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 40px;
+      max-width: 350px;
+      padding-top: 30px;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    &__formFormList {
+      display: flex;
+      gap: 20px;
+      flex-direction: column;
+      margin-top: 30px;
+
+      @media screen and (min-width: 480px) {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+    }
+
+    &__formInput {
+      color: grey;
+      font-family: "Proxima Nova";
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 30px;
+      border-radius: 8px;
+      border: 1px solid gray;
+      background: #fff;
+      padding: 10px 20px;
+      display: flex;
+      max-width: 278px;
+      width: 100%;
+      transition-property: border;
+      transition-duration: 250ms;
+      margin-right: auto;
+      margin-left: auto;
+
+      @media screen and (min-width: 480px) {
+        max-width: 310px;
+      }
+    }
+
+    &__formInput:hover {
+      border: 1px solid #ffbc57;
+    }
+
+    &__thirdInput {
+      padding-bottom: 110px;
+    }
+
+    &__formFormRating {
+      color: grey;
+      text-align: center;
+      font-family: "Proxima Nova";
+      font-size: 19px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 24px;
+      margin-top: 30px;
+    }
+
+    &__formList {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      gap: 4px;
+    }
+
+    &__formStarIcon {
+      width: 40px;
+      height: 40px;
+      fill: grey-light;
+    }
+
+    &__formFormButton {
+      color: white;
+
+      text-align: center;
+      font-family: "Proxima Nova";
+      font-size: 19px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 24px;
+      margin-top: 30px;
+      padding: 8px 20px;
+      width: 320px;
+      height: 50px;
+      border-radius: 8px;
+      background: #ffbc57;
+      margin-right: auto;
+      margin-left: auto;
+      display: block;
+      transform: scale(0.9);
+      transition-property: transform;
+      transition-duration: 250ms;
+
+      @media screen and (min-width: 480px) {
+        width: 390px;
+      }
+    }
+
+    &__formFormButton:hover {
+      transform: scale(1);
+    }
+  }

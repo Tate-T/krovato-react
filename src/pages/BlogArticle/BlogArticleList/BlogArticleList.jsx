@@ -1,3 +1,5 @@
+import style from './BlogArticleList.module.scss'
+
 export const BlogArticleList = () => {
   return (
     <>
@@ -79,19 +81,19 @@ export const BlogArticleList = () => {
         мешканців вашого будинку.
       </p>
 
-      <ul className={style.article__list - button}>
-        <li className={style.article__item - button} data-aos="fade-left">
+      <ul className={style.article__listButton}>
+        <li className={style.article__itemButton} data-aos="fade-left">
           <button className={style.article__button}>
             Попередня стаття
-            <svg className={style.article__button - svg - left}>
+            <svg className={style.article__buttonSvgLeft}>
               <use href="/images/symbol-defs.svg#icon-arrow-to-left"></use>
             </svg>
           </button>
         </li>
-        <li className={style.article__item - button} data-aos="fade-right">
+        <li className={style.article__itemButton} data-aos="fade-right">
           <button className={style.article__button} id="reloadButton">
             Наступна стаття
-            <svg className={style.article__button - svg - right}>
+            <svg className={style.article__buttonSvgRight}>
               <use href="/images/symbol-defs.svg#icon-arrow-to-right"></use>
             </svg>
           </button>

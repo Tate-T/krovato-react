@@ -1,3 +1,5 @@
+import style from './BlogArticleMain.module.scss'
+
 export const BlogArticleMain = () => {
   return (
     <>
@@ -5,8 +7,8 @@ export const BlogArticleMain = () => {
         Оформлення вітальні. Які м'які меблі краще вибрати?
       </h1>
       <img className={style.article__box} href="" />
-      <ul className={style.article__list__text}>
-        <li className={style.article__item__text}>
+      <ul className={style.article__listText}>
+        <li className={style.article__itemText}>
           <p className={style.article__text}>
             Вітальня – це основна кімната у кожному будинку. Саме вона служить
             для прийому гостей, проведення часу всією сім'єю та просто для
@@ -15,7 +17,7 @@ export const BlogArticleMain = () => {
             комфортною та красивою. Основним та центральним елементом оформлення
             вітальні, як і будь-якої іншої кімнати, є м'які меблі.
           </p>
-          <p classNameName={style.article__second-text}>
+          <p classNameName={style.article__secondText}>
             Будь-які меблі для вітальні повинні бути не тільки стильними і
             красивими, але і функціональними. На таких меблів має бути зручно та
             приємно відпочивати та приймати гостей. Однак сьогодні існує

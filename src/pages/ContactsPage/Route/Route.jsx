@@ -1,3 +1,5 @@
+import style from "./Route.module.scss";
+
 export const Route = () => {
     const routes = [
         {
@@ -31,33 +33,33 @@ export const Route = () => {
     ];
 
     return (
-        <section className="route">
-            <div className="container">
-                <h1 className="route__title">
+        <section className={style.route}>
+            <div className={style.container}>
+                <h1 className={style.route__title}>
                     Як дістатися до нашої виставки «Кровато» від метро:
                 </h1>
-                <ul className="route__list">
+                <ul className={style.route__list}>
                     {routes.map((route, index) => (
                         <li
                             key={route.id}
-                            className="route__item"
+                            className={style.route__item}
                             data-aos={index < 3 ? "fade-right" : "fade-left"}
                             data-aos-duration="3000"
                         >
-                            <svg className="route__svg">
+                            <svg className={style.route__svg}>
                                 <use xlinkHref="./images/symbol-defs.svg#icon-pointer"></use>
                             </svg>
-                            <p className="route__text">{route.text}</p>
+                            <p className={style.route__text}>{route.text}</p>
                         </li>
                     ))}
                 </ul>
 
-                <ul className="route__list-button">
-                    <li className="route__item-button">
+                <ul className={style.route__listButton}>
+                    <li className={style.route__itemButton}>
                         <a href="https://www.google.com/maps/dir//Кровато,+Изяславский+переулок,+52,+Київ,+03169/@50.3962324,30.4230726,18z/data=!4m8!4m7!1m0!1m5!1m1!1s0x40d4c985b50a7e6d:0x3d3fa41b01332a2a!2m2!1d30.424114!2d50.3963197">
-                            <button data-aos="zoom-in" data-aos-duration="2950" className="route__button">
+                            <button data-aos="zoom-in" data-aos-duration="2950" className={style.route__button}>
                                 Прокласти маршрут
-                                <svg className="route__button-svg">
+                                <svg className={style.route__buttonSvg}>
                                     <use xlinkHref="./images/symbol-defs.svg#icon-map"></use>
                                 </svg>
                             </button>

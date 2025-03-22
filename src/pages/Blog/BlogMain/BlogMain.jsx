@@ -1,3 +1,5 @@
+import style from './BlogMain.module.scss'
+
 const data = [
   {
     id: 1,

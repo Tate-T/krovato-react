@@ -1,31 +1,34 @@
+import style from './Show-room.module.scss'
+
 export const ShowRoom = () => {
   return (
-    <section className="show-room">
-      <div className="container show-room__container">
+    <section className={style.showRoom}>
+      
+        <div className={style.showRoom__container}></div>
         <div
-          className="show-room__box"
+          className={style.showRoom__box}
           data-aos="zoom-out-right"
           data-aos-duration="1000"
         >
-          <h2 className="show-room__title">Запрошуємо Вас відвідати наш Шоу-рум</h2>
-          <h3 className="show-room__subtitle">
+          <h2 className={style.showRoom__title}>Запрошуємо Вас відвідати наш Шоу-рум</h2>
+          <h3 className={style.showRoom__subtitle}>
             Наші фахівці допоможуть Вам підібрати матеріали і комплектуючі з
             урахуванням Ваших побажань.
           </h3>
-          <p className="show-room__text">
+          <p className={style.showRoom__text}>
             У нас є виставка, на якій Ви можете побачити найпопулярніші моделі
             ліжок та тумбочок, а також полежати на різних моделях матраців та
             підібрати собі оптимальний матрац для комфортного сну. Адреса
             виставки, а також карту проїзду можна побачити в розділі "Контакти".
           </p>
-          <button className="show-room__btn">
-            <span className="show-room__span">Відкрити контакти</span>
-            <svg className="show-room__icon">
+          <button className={style.showRoom__btn}>
+            <span className={style.showRoom__span}>Відкрити контакти</span>
+            <svg className={style.showRoom__icon}>
               <use href="./images/symbol-defs.svg#icon-upper-arrow"></use>
             </svg>
           </button>
         </div>
-        <picture>
+        {/* <picture>
           <source
             srcset="
           ./images/mobile/show-room@1x.webp 1x,
@@ -43,10 +46,10 @@ export const ShowRoom = () => {
           <img
             src="./images/desktop/show-room@1x.webp"
             alt="Меблі"
-            className="show-room__img"
+            className={style.showRoom__img}
           />
-        </picture>
-      </div>
+        </picture> */}
+      
     </section>
   );
 };

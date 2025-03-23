@@ -8,9 +8,9 @@ export const LastReviews = () => {
       <div>
     <h3 className={style.reviews__title}>Останні відгуки</h3>
     <div className={style.reviews__logoSofa}>
-      <svg className={style.reviews__iconSvg}>
+      {/* <svg className={style.reviews__iconSvg}>
         <use href="./images/symbol-defs.svg#icon-logo-sofa"></use>
-      </svg>
+      </svg> */}
     </div>
     <div className={style.reviews__info}>
       <h3 className={style.reviews__shop}>Магазин меблів для дому\n«KROVATO»</h3>
@@ -19,29 +19,29 @@ export const LastReviews = () => {
       <ul className={style.reviews__stars}>
         <p className={style.reviews__rate}>5.0</p>
         <li className={style.reviews__star}>
-          <svg className={style.reviews__starSvg}>
+          {/* <svg className={style.reviews__starSvg}>
             <use href="./images/symbol-defs.svg#icon-star"></use>
-          </svg>
+          </svg> */}
         </li>
         <li className={style.reviews__star}>
-          <svg className={style.reviews__starSvg}>
+          {/* <svg className={style.reviews__starSvg}>
             <use href="./images/symbol-defs.svg#icon-star"></use>
-          </svg>
+          </svg> */}
         </li>
         <li className={style.reviews__star}>
-          <svg className={style.reviews__starSvg}>
+          {/* <svg className={style.reviews__starSvg}>
             <use href="./images/symbol-defs.svg#icon-star"></use>
-          </svg>
+          </svg> */}
         </li>
         <li className={style.reviews__star}>
-          <svg className={style.reviews__starSvg}>
+          {/* <svg className={style.reviews__starSvg}>
             <use href="./images/symbol-defs.svg#icon-star"></use>
-          </svg>
+          </svg> */}
         </li>
         <li className={style.reviews__star}>
-          <svg className={style.reviews__starSvg}>
+          {/* <svg className={style.reviews__starSvg}>
             <use href="./images/symbol-defs.svg#icon-star"></use>
-          </svg>
+          </svg> */}
         </li>
       </ul>
     </div>
@@ -49,11 +49,13 @@ export const LastReviews = () => {
     </div>
       <div className={style.reviews__buttonContainer}>
       <button className={style.reviews__write}>
-        <svg className={style.reviews__writeSvg}>
-          <use href="./images/symbol-defs.svg#icon-write-review"></use></svg>Написати відгук</button>
+        {/* <svg className={style.reviews__writeSvg}>
+          <use href="./images/symbol-defs.svg#icon-write-review"></use></svg> */}
+          Написати відгук</button>
       <a className={style.reviews__allLink} href="#">
-        <svg className={style.reviews__starSvg}>
-          <use href="./images/symbol-defs.svg#icon-chat"></use></svg>Всі відгуки</a>
+        {/* <svg className={style.reviews__starSvg}>
+          <use href="./images/symbol-defs.svg#icon-chat"></use></svg> */}
+          Всі відгуки</a>
         </div>
       </div>
     
@@ -62,42 +64,42 @@ export const LastReviews = () => {
       <li className={style.reviews__item}>
         <div>
           <div>
-          <svg className={style.reviews__avatar}>
+          {/* <svg className={style.reviews__avatar}>
             <use href="./images/symbol-defs.svg#icon-avatar"></use>
-          </svg>
+          </svg> */}
         </div>
         <div>
         <p className={style.reviews__name}>Іван Стедниця</p>
         <ul className={style.reviews__starsList}>
           <li className={style.reviews__starList}>
-            <svg className={style.reviews__starSvg}>
+            {/* <svg className={style.reviews__starSvg}>
               <use href="./images/symbol-defs.svg#icon-star"></use>
-            </svg>
+            </svg> */}
           </li>
           <li className={style.reviews__star}>
-            <svg className={style.reviews__starSvg}>
+            {/* <svg className={style.reviews__starSvg}>
               <use href="./images/symbol-defs.svg#icon-star"></use>
-            </svg>
+            </svg> */}
           </li>
           <li className={style.reviews__star}>
-            <svg className={style.reviews__starSvg}>
+            {/* <svg className={style.reviews__starSvg}>
               <use href="./images/symbol-defs.svg#icon-star"></use>
-            </svg>
+            </svg> */}
           </li>
           <li className={style.reviews__star}>
-            <svg className={style.reviews__starSvg}>
+            {/* <svg className={style.reviews__starSvg}>
               <use href="./images/symbol-defs.svg#icon-star"></use>
-            </svg>
+            </svg> */}
           </li>
           <li className={style.reviews__star}>
-            <svg className={style.reviews__starSvg}>
+            {/* <svg className={style.reviews__starSvg}>
               <use href="./images/symbol-defs.svg#icon-star"></use>
-            </svg>
+            </svg> */}
           </li>
           <li className={style.reviews__star}>
-            <svg className={style.reviews__starSvg}>
+            {/* <svg className={style.reviews__starSvg}>
               <use href="./images/symbol-defs.svg#icon-star"></use>
-            </svg>
+            </svg> */}
           </li>
         </ul>
       </div>
@@ -114,7 +116,7 @@ export const LastReviews = () => {
           продажам Ульяна ...
         </p>
         <div className={style.reviews__imgContainer}>
-        <picture>
+        {/* <picture>
           <source
             srcset="
               ./images/main-page/bed-mk5@1x.webp 1x,
@@ -134,49 +136,49 @@ export const LastReviews = () => {
             src="./images/main-page/bed-mk5@1x.webp"
             alt="bed"
           />
-        </picture>
+        </picture> */}
         <p className={style.reviews__bedName}>Диван Orange-Line Родео SF ...</p>
         </div>
       </li>
       <li className={style.reviews__item}>
         <div>
           <div>
-          <svg className={style.reviews__avatar}>
+          {/* <svg className={style.reviews__avatar}>
             <use href="./images/symbol-defs.svg#icon-avatar"></use>
-          </svg>
+          </svg> */}
         </div>
         <div>
         <p className={style.reviews__name}>Іван Стедниця</p>
         <ul className={style.reviews__starsList}>
           <li className={style.reviews__starList}>
-            <svg className={style.reviews__starSvg}>
+            {/* <svg className={style.reviews__starSvg}>
               <use href="./images/symbol-defs.svg#icon-star"></use>
-            </svg>
+            </svg> */}
           </li>
           <li className={style.reviews__star}>
-            <svg className={style.reviews__starSvg}>
+            {/* <svg className={style.reviews__starSvg}>
               <use href="./images/symbol-defs.svg#icon-star"></use>
-            </svg>
+            </svg> */}
           </li>
           <li className={style.reviews__star}>
-            <svg className={style.reviews__starSvg}>
+            {/* <svg className={style.reviews__starSvg}>
               <use href="./images/symbol-defs.svg#icon-star"></use>
-            </svg>
+            </svg> */}
           </li>
           <li className={style.reviews__star}>
-            <svg className={style.reviews__starSvg}>
+            {/* <svg className={style.reviews__starSvg}>
               <use href="./images/symbol-defs.svg#icon-star"></use>
-            </svg>
+            </svg> */}
           </li>
           <li className={style.reviews__star}>
-            <svg className={style.reviews__starSvg}>
+            {/* <svg className={style.reviews__starSvg}>
               <use href="./images/symbol-defs.svg#icon-star"></use>
-            </svg>
+            </svg> */}
           </li>
           <li className={style.reviews__star}>
-            <svg className={style.reviews__starSvg}>
+            {/* <svg className={style.reviews__starSvg}>
               <use href="./images/symbol-defs.svg#icon-star"></use>
-            </svg>
+            </svg> */}
           </li>
         </ul>
       </div>
@@ -193,7 +195,7 @@ export const LastReviews = () => {
           продажам Ульяна ...
         </p>
         <div className={style.reviews__imgContainer}>
-          <picture>
+          {/* <picture>
             <source
               srcset="
                 ./images/main-page/bed-mk5@1x.webp 1x,
@@ -213,49 +215,49 @@ export const LastReviews = () => {
               src="./images/main-page/bed-mk5@1x.webp"
               alt="bed"
             />
-          </picture>
+          </picture> */}
         <p className={style.reviews__bedName}>Диван Orange-Line Родео SF ...</p>
         </div>
       </li>
       <li className={style.reviews__item}>
         <div>
           <div>
-          <svg className={style.reviews__avatar}>
+          {/* <svg className={style.reviews__avatar}>
             <use href="./images/symbol-defs.svg#icon-avatar"></use>
-          </svg>
+          </svg> */}
         </div>
         <div>
         <p className={style.reviews__name}>Іван Стедниця</p>
         <ul className={style.reviews__starsList}>
           <li className={style.reviews__starList}>
-            <svg className={style.reviews__starSvg}>
+            {/* <svg className={style.reviews__starSvg}>
               <use href="./images/symbol-defs.svg#icon-star"></use>
-            </svg>
+            </svg> */}
           </li>
           <li className={style.reviews__star}>
-            <svg className={style.reviews__starSvg}>
+            {/* <svg className={style.reviews__starSvg}>
               <use href="./images/symbol-defs.svg#icon-star"></use>
-            </svg>
+            </svg> */}
           </li>
           <li className={style.reviews__star}>
-            <svg className={style.reviews__starSvg}>
+            {/* <svg className={style.reviews__starSvg}>
               <use href="./images/symbol-defs.svg#icon-star"></use>
-            </svg>
+            </svg> */}
           </li>
           <li className={style.reviews__star}>
-            <svg className={style.reviews__starSvg}>
+            {/* <svg className={style.reviews__starSvg}>
               <use href="./images/symbol-defs.svg#icon-star"></use>
-            </svg>
+            </svg> */}
           </li>
           <li className={style.reviews__star}>
-            <svg className={style.reviews__starSvg}>
+            {/* <svg className={style.reviews__starSvg}>
               <use href="./images/symbol-defs.svg#icon-star"></use>
-            </svg>
+            </svg> */}
           </li>
           <li className={style.reviews__star}>
-            <svg className={style.reviews__starSvg}>
+            {/* <svg className={style.reviews__starSvg}>
               <use href="./images/symbol-defs.svg#icon-star"></use>
-            </svg>
+            </svg> */}
           </li>
         </ul>
       </div>
@@ -272,7 +274,7 @@ export const LastReviews = () => {
           продажам Ульяна ...
         </p>
         <div className={style.reviews__imgContainer}>
-          <picture>
+          {/* <picture>
             <source
               srcset="
                 ./images/main-page/bed-mk5@1x.webp 1x,
@@ -292,7 +294,7 @@ export const LastReviews = () => {
               src="./images/main-page/bed-mk5@1x.webp"
               alt="bed"
             />
-          </picture>
+          </picture> */}
         <p className={style.reviews__bedName}>Диван Orange-Line Родео SF ...</p>
         </div>
       </li>
@@ -300,29 +302,29 @@ export const LastReviews = () => {
     <ul className={style.reviews__list2}>
       <li className={style.reviews__item2}>
         <a href="#" className={style.reviews__empty}>
-          <svg className={style.reviews__emptySvg}>
+          {/* <svg className={style.reviews__emptySvg}>
             <use href="./images/symbol-defs.svg#icon-cycle"></use>
-          </svg>
+          </svg> */}
         </a>
         <a href="#" className={style.reviews__empty}>
-          <svg className={style.reviews__emptySvg}>
+          {/* <svg className={style.reviews__emptySvg}>
             <use href="./images/symbol-defs.svg#icon-cycle"></use>
-          </svg>
+          </svg> */}
         </a>
         <a href="#" className={style.reviews__empty}>
-          <svg className={style.reviews__fullSvg}>
+          {/* <svg className={style.reviews__fullSvg}>
             <use href="./images/symbol-defs.svg#icon-cycle-orange"></use>
-          </svg>
+          </svg> */}
         </a>
         <a href="#" className={style.reviews__empty}>
-          <svg className={style.reviews__emptySvg}>
+          {/* <svg className={style.reviews__emptySvg}>
             <use href="./images/symbol-defs.svg#icon-cycle"></use>
-          </svg>
+          </svg> */}
         </a>
         <a href="#" className={style.reviews__empty}>
-          <svg className={style.reviews__emptySvg}>
+          {/* <svg className={style.reviews__emptySvg}>
             <use href="./images/symbol-defs.svg#icon-cycle"></use>
-          </svg>
+          </svg> */}
         </a>
       </li>
     </ul>

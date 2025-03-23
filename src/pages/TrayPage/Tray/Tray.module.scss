@@ -1442,6 +1442,7 @@
   @media screen and (min-width: 1290px) {
     .tray {
       &__container {
+        display: flex;
         flex-direction: row;
       }
   

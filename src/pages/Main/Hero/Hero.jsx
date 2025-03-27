@@ -1,30 +1,31 @@
-import style from "../../../components/Container/Container.module.scss";
+import containerStyle from "../../../components/Container/Container.module.scss";
+import style from "./Hero.module.scss";
 
 export const Hero = () => {
   return (
     <section className="hero">
-      <div className={style.container}> {/* hero__container потрібно додати */}
+      <div className={`${containerStyle.container} ${style.hero__container}`}>
         <div id="page">
-          <div className="js-slider" auto="false" arrow="true" dots="true">
-            <ul className="hero__slide-list">
-              <li className="hero__slide"></li>
-              <li className="hero__slide"></li>
-              <li className="hero__slide"></li>
-              <li className="hero__slide"></li>
-              <li className="hero__slide"></li>
+          <div className={style.js__slider} auto="false" arrow="true" dots="true">
+            <ul className={style.hero__slideList}>
+              <li className={style.hero__slide}></li>
+              <li className={style.hero__slide}></li>
+              <li className={style.hero__slide}></li>
+              <li className={style.hero__slide}></li>
+              <li className={style.hero__slide}></li>
             </ul>
-            <button className="prev hero__button1">
-              <svg className="hero__icon1">
+            <button className={`${style.prev} ${style.hero__button1}`}>
+              <svg className={style.hero__icon1}>
                 <use href="../images/symbol-defs.svg#icon-main-hero-left"></use>
               </svg>
             </button>
-            <button className="next hero__button2">
-              <svg className="hero__icon2">
+            <button className={`${style.next} ${style.hero__button2}`}>
+              <svg className={style.hero__icon2}>
                 <use href="../images/symbol-defs.svg#icon-main-hero-right"></use>
               </svg>
             </button>
           </div>
-          <div className="dots-container"></div>
+          <div className={style.dots__container}></div>
         </div>
       </div>
     </section>

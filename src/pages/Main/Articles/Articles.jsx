@@ -1,12 +1,12 @@
 import { ArticlesList } from "./List/List";
 
-import style from "../../../pages/Main/Articles/Articles.module.scss";
 import containerStyle from "../../../components/Container/Container.module.scss";
+import style from "./Articles.module.scss";
 
 export const Articles = () => {
   return (
     <section className={style.articles}>
-      <div className={`${style.articlesContainer} ${containerStyle.container}`}>
+      <div className={`${containerStyle.container} ${style.articles__container}`}>
         <div className={style.articles__titleBox}>
           <h2
             data-aos="zoom-out-right"

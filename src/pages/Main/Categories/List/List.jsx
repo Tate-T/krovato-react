@@ -1,5 +1,7 @@
 import { CategoriesItem } from "./Item/Item";
 
+import style from "../Categories.module.scss";
+
 export const CategoriesList = () => {
   const items = [
     {
@@ -54,7 +56,7 @@ export const CategoriesList = () => {
   ];
 
   return (
-    <ul className="categories__list">
+    <ul className={style.categories__list}>
       {items.map((item) => (
         <CategoriesItem title={item.title} number={item.number} />
       ))}

@@ -1,5 +1,7 @@
 import { PromotionsItem } from "./Item/Item";
 
+import style from "../Promotions.module.scss";
+
 export const PromotionsList = () => {
   const items = [
     {
@@ -41,7 +43,7 @@ export const PromotionsList = () => {
   ];
 
   return (
-    <ul className="promotions__list">
+    <ul className={style.promotions__list}>
       {items.map((item) => (
         <PromotionsItem
           src={item.image.src}

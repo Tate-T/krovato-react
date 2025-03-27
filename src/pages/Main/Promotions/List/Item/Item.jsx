@@ -1,9 +1,11 @@
+import style from "../../Promotions.module.scss";
+
 export const PromotionsItem = ({ src, alt, mobileImage, desktopImage }) => {
   return (
     <li
       data-aos="flip-down"
       data-aos-duration="2500"
-      className="promotions__item"
+      className={style.promotions__item}
     >
       <picture>
         <source srcSet={desktopImage} media="min-width: 1200px" />
@@ -11,7 +13,7 @@ export const PromotionsItem = ({ src, alt, mobileImage, desktopImage }) => {
         <img
           src={src}
           alt={alt}
-          className="promotions__photo promotions__photo1"
+          className={`${style.promotions__photo} ${style.promotions__photo1}`}
         />
       </picture>
     </li>

@@ -1,15 +1,16 @@
 import { CategoriesList } from "./List/List";
 
-import style from "../../../components/Container/Container.module.scss";
+import containerStyle from "../../../components/Container/Container.module.scss";
+import style from "./Categories.module.scss";
 
 export const Categories = () => {
   return (
-    <section className="categories">
-      <div className={style.container}> {/* categories__container потрібно додати */}
+    <section className={style.categories}>
+      <div className={`${containerStyle.container} ${style.categories__container}`}>
         <h2
           data-aos="zoom-out-right"
           data-aos-duration="1500"
-          className="categories__title"
+          className={style.categories__title}
         >
           Популярні категорії
         </h2>

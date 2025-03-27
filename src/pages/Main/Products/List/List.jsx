@@ -1,5 +1,7 @@
 import { ProductsItem } from "./Item/Item";
 
+import style from "../Products.module.scss";
+
 export const ProductsList = () => {
   const items = [
     {
@@ -181,7 +183,7 @@ export const ProductsList = () => {
   ];
 
   return (
-    <ul className="products__list">
+    <ul className={style.products__list}>
       {items.map((item) => (
         <ProductsItem
           src={item.image.src}

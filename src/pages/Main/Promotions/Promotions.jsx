@@ -1,16 +1,17 @@
 import { PromotionsList } from "./List/List";
 
-import style from "../../../components/Container/Container.module.scss";
+import containerStyle from "../../../components/Container/Container.module.scss";
+import style from "./Promotions.module.scss";
 
 export const Promotions = () => {
   return (
-    <section className="promotions">
-      <div className={style.container}> {/* promotions__container потрібно додати */}
-        <div className="promotions__title-box">
+    <section className={style.promotions}>
+      <div className={`${containerStyle.container} ${style.promotions__container}`}>
+        <div className={style.promotions__titleBox}>
           <h2
             data-aos="zoom-out-right"
             data-aos-duration="1500"
-            className="promotions__title"
+            className={style.promotions__title}
           >
             Акції
           </h2>
@@ -18,22 +19,22 @@ export const Promotions = () => {
             data-aos="zoom-in-left"
             data-aos-duration="1500"
             type="link"
-            className="promotions__link"
-            href="./catalog.html"
+            className={style.promotions__link}
+            href="..."
           >
             Дивитись всі
-            <svg className="promotions__title-arrow">
+            <svg className={style.promotions__titleArrow}>
               <use href="./images/symbol-defs.svg#icon-upper-arrow"></use>
             </svg>
           </a>
-          <ul className="promotions__couple">
+          <ul className={style.promotions__couple}>
             <li
               data-aos="zoom-in-right"
               data-aos-duration="1500"
-              className="promotions__couple-part"
+              className={style.promotions__couplePart}
             >
-              <button type="button" className="promotions__button">
-                <svg className="promotions__arrow promotions__arrow1">
+              <button type="button" className={style.promotions__button}>
+                <svg className={`${style.promotions__arrow} ${style.promotions__arrow1}`}>
                   <use href="./images/symbol-defs.svg#icon-main-hero-left"></use>
                 </svg>
               </button>
@@ -41,10 +42,10 @@ export const Promotions = () => {
             <li
               data-aos="zoom-in-left"
               data-aos-duration="1500"
-              className="promotions__couple-part"
+              className={style.promotions__couplePart}
             >
-              <button type="button" className="promotions__button">
-                <svg className="promotions__arrow promotions__arrow2">
+              <button type="button" className={style.promotions__button}>
+                <svg className={`${style.promotions__arrow} ${style.promotions__arrow2}`}>
                   <use href="./images/symbol-defs.svg#icon-main-hero-right"></use>
                 </svg>
               </button>
@@ -52,40 +53,40 @@ export const Promotions = () => {
           </ul>
         </div>
         <PromotionsList />
-        <ul className="promotions__circles">
-          <li className="promotions__circle">
+        <ul className={style.promotions__circles}>
+          <li className={style.promotions__circle}>
             <div
               data-aos="zoom-in"
               data-aos-duration="3000"
-              className="promotions__round"
+              className={style.promotions__round}
             ></div>
           </li>
-          <li className="promotions__circle">
+          <li className={style.promotions__circle}>
             <div
               data-aos="zoom-in"
               data-aos-duration="2000"
-              className="promotions__round"
+              className={style.promotions__round}
             ></div>
           </li>
-          <li className="promotions__circle">
+          <li className={style.promotions__circle}>
             <div
               data-aos="zoom-in"
               data-aos-duration="1000"
-              className="promotions__round"
+              className={style.promotions__round}
             ></div>
           </li>
-          <li className="promotions__circle">
+          <li className={style.promotions__circle}>
             <div
               data-aos="zoom-in"
               data-aos-duration="2000"
-              className="promotions__round"
+              className={style.promotions__round}
             ></div>
           </li>
-          <li className="promotions__circle">
+          <li className={style.promotions__circle}>
             <div
               data-aos="zoom-in"
               data-aos-duration="3000"
-              className="promotions__round"
+              className={style.promotions__round}
             ></div>
           </li>
         </ul>

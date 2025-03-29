@@ -5,6 +5,7 @@ import style from "../Promotions.module.scss";
 export const PromotionsList = () => {
   const items = [
     {
+      id: "promotion-1",
       image: {
         src: "./images/desktop/sale1@2x.webp",
         srcSet: {
@@ -17,6 +18,7 @@ export const PromotionsList = () => {
       },
     },
     {
+      id: "promotion-2",
       image: {
         src: "./images/desktop/sale2@2x.webp",
         srcSet: {
@@ -29,6 +31,7 @@ export const PromotionsList = () => {
       },
     },
     {
+      id: "promotion-3",
       image: {
         src: "./images/desktop/sale3@2x.webp",
         srcSet: {
@@ -46,6 +49,7 @@ export const PromotionsList = () => {
     <ul className={style.promotions__list}>
       {items.map((item) => (
         <PromotionsItem
+          key={item.id}
           src={item.image.src}
           alt={item.image.alt}
           mobileImage={item.image.srcSet.mobile}

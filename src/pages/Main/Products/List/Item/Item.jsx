@@ -1,8 +1,8 @@
 import style from "../../Products.module.scss";
 
-export const ProductsItem = ({ src, mobileImage, desktopImage, alt, size, mobileTitle, desktopTitle, inStock, oldPrice, currentPrice }) => {
+export const ProductsItem = ({ id, src, mobileImage, desktopImage, alt, size, mobileTitle, desktopTitle, inStock, oldPrice, currentPrice }) => {
     return (
-        <li data-aos="zoom-in-right" data-aos-duration="1500" className={style.products__item}>
+        <li key={id} data-aos="zoom-in-right" data-aos-duration="1500" className={style.products__item}>
                 <picture>
                     <source srcSet={desktopImage} media="(min-width: 1200px)"/>
                     <source srcSet={mobileImage} media="(min-width: 320px)"/>

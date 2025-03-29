@@ -1,8 +1,9 @@
 import style from "../../Promotions.module.scss";
 
-export const PromotionsItem = ({ src, alt, mobileImage, desktopImage }) => {
+export const PromotionsItem = ({ id, src, alt, mobileImage, desktopImage }) => {
   return (
     <li
+      key={id}
       data-aos="flip-down"
       data-aos-duration="2500"
       className={style.promotions__item}

@@ -5,6 +5,7 @@ import style from "../Products.module.scss";
 export const ProductsList = () => {
   const items = [
     {
+      id: "product-1",
       image: {
         src: "./images/mobile/sparta-bed@1x.webp",
         srcSet: {
@@ -27,6 +28,7 @@ export const ProductsList = () => {
       },
     },
     {
+      id: "product-2",
       image: {
         src: "./images/mobile/sparta-bed@1x.webp",
         srcSet: {
@@ -49,6 +51,7 @@ export const ProductsList = () => {
       },
     },
     {
+      id: "product-3",
       image: {
         src: "./images/mobile/prestige-bed@2x.webp",
         srcSet: {
@@ -71,6 +74,7 @@ export const ProductsList = () => {
       },
     },
     {
+      id: "product-4",
       image: {
         src: "./images/mobile/tokio-sofa@2x.webp",
         srcSet: {
@@ -93,6 +97,7 @@ export const ProductsList = () => {
       },
     },
     {
+      id: "product-5",
       image: {
         src: "./images/mobile/largo-matress@2x.webp",
         srcSet: {
@@ -115,6 +120,7 @@ export const ProductsList = () => {
       },
     },
     {
+      id: "product-6",
       image: {
         src: "./images/mobile/argentum-matress@1x.webp",
         srcSet: {
@@ -137,6 +143,7 @@ export const ProductsList = () => {
       },
     },
     {
+      id: "product-7",
       image: {
         src: "./images/mobile/bravo-sofa@1x.webp",
         srcSet: {
@@ -159,6 +166,7 @@ export const ProductsList = () => {
       },
     },
     {
+      id: "product-8",
       image: {
         src: "./images/mobile/mk5-bed@1x.webp",
         srcSet: {
@@ -186,6 +194,7 @@ export const ProductsList = () => {
     <ul className={style.products__list}>
       {items.map((item) => (
         <ProductsItem
+          key={item.id}
           src={item.image.src}
           mobileImage={item.image.srcSet.mobile}
           desktopImage={item.image.srcSet.desktop}

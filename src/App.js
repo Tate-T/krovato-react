@@ -1,14 +1,14 @@
 import './App.css';
-// import { Main } from './pages/Main/Main';
-import { PaymentPage } from './pages/PaymentPage/PaymentPage';
-import { About } from './components/About/About';
-import { AboutUsPage } from './pages/AboutUs/About-us-page';
+
+
+import { Main } from './pages/Main/Main';
+// import { PaymentPage } from './pages/PaymentPage/PaymentPage';
+
 
 function App() {
   return (
     <div className="App">
-      {/* <Main /> */}
-      <AboutUsPage />
+      <Main />
       {/* <PaymentPage /> */}
     </div>
   );

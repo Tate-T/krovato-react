@@ -68,16 +68,14 @@ export const BlogMain = () => {
       <ul className={style.blog__list}>
         {data.map((element) => (
           <li className={style.blog__item} data-aos="fade-right">
-            <img className={style.blog__img} src={element.imgUrl} alt="1" />
-            <div className={style.blog__box}>
-              <h2 className={style.blog__info}>{element.title}</h2>
-              <a className={style.blog__text} href="./blog-article.html">
+            <img className={style.blog__photo} src={element.imgUrl} alt="1" />
+              <h3 className={style.blog__subtitle}>{element.title}</h3>
+              <a className={style.blog__listLink}>
                 Детальніше
-                <svg className={style.blog__svg}>
-                  <use href="/images/symbol-defs.svg#icon-upper-right"></use>
+                <svg className={style.blog__titleArrow}>
+                  <use href="./images/symbol-defs.svg#icon-upper-arrow"></use>
                 </svg>
               </a>
-            </div>
           </li>
         ))}
       </ul>

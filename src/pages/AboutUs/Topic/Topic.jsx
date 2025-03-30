@@ -1,9 +1,10 @@
 import style from "./Topic.module.scss";
+import containerStyle from "../../../components/Container/Container.module.scss";
 
 export const Topic = () => {
   return (
     <section className={style.topic}>
-      
+      <div className={containerStyle.container}>
         <div className={style.topic__container}>
           <h1 className={style.topic__title}>Про нас</h1>
           <h2 className={style.topic__subtitle}>
@@ -15,7 +16,7 @@ export const Topic = () => {
             такими як ЕММ, Estella, Метакам, Legko, HighFoam, ArborDrev.
           </p>
         </div>
-      
+      </div>
     </section>
   );
 };

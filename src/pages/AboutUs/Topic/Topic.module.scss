@@ -1,7 +1,5 @@
 .topic {
-  padding: 40px 0 248px;
-  // background: url(../images/mobile/about-bg@1x.webp) bottom / contain no-repeat
-  // #F8F8F8;
+  
 
   // @media (min-display-pixe-ratio: 2),
   //   (min-resolution: 192dpi),
@@ -11,8 +9,9 @@
   // }
 
   @media screen and (min-width: 1290px) {
-    padding: 0;
-    background: transparent;
+    padding: 40px 0 248px;
+    background: url(../../../images/about-us/topic-img.png) center / contain no-repeat
+  #F8F8F8;
   }
 
   &__container {

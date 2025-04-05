@@ -1,4 +1,5 @@
 @import "normalize.css";
+@import "./styles/reset.scss";
 
 @import "./styles/mixins.scss";
 @import "./styles/placeholders.scss";

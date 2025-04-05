@@ -1,9 +1,10 @@
 import style from './Сharacteristic.module.scss'
+import containerStyle from '../../../components/Container/Container.module.scss'
 
 export const Сharacteristic = () => {
     return (
         <section className={style.characteristic}>
-            <div className={style.container}>
+            <div className={containerStyle.container}>
                 <h2 className={style.characteristic__title}>Характеристики</h2>
                 <ul className={style.characteristic__list}>
                     <li className={style.characteristic__item} data-aos="fade-right" data-aos-duration="800">

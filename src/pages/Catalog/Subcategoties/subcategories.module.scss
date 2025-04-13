@@ -1,0 +1,268 @@
+@import "../../../styles/vars.scss";
+@import "../../../styles/mixins.scss";
+@import "../../../styles/placeholders.scss";
+
+.subcategories {
+  padding-top: 65px;
+  padding-bottom: 70px;
+
+  &__title {
+    @include font($dark-color, 133%, 30px, 600);
+    @media screen and (min-width: 768px) {
+      font-size: 40px;
+      line-height: 120%;
+    }
+  }
+  &__subtitle {
+    line-height: 24px;
+    @include font($grey-light-color, 126%, 19px, 600);
+  }
+  &__main {
+    @extend %flex-center2;
+    gap: 10px;
+  }
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+  &__hide {
+    text-align: center;
+    @include font($yellow-color, 126%, 19px, 600);
+    transition: font-size 0.5s ease-in;
+
+    &:hover,
+    &:focus {
+      font-size: 22px;
+    }
+  }
+  &__item {
+    @include size(200px, 180px);
+    flex-basis: calc((100% - 10px) / 2);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: bottom;
+    padding: 20px 20px 112px;
+    position: relative;
+    border-radius: 8px;
+
+    @media screen and (max-width: 350px) {
+      flex-basis: calc((100% - 1px) / 2);
+    }
+    @media screen and (min-width: 768px) {
+      flex-basis: calc((100% - 20px) / 3);
+    }
+    @media screen and (min-width: 1200px) {
+      flex-basis: calc((100% - 40px) / 5);
+    }
+  }
+  &__item::after {
+    content: "";
+    display: block;
+    @include size(20px, 5px);
+    background-color: $yellow-color;
+    border-radius: 8px;
+    position: absolute;
+    top: 0;
+    left: 47%;
+  }
+  &__item:nth-child(1) {
+    background-image: url("../../../images/catalog/subcategories-product1.png");
+
+    @media (min-display-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url("../../../images/catalog/subcategories-product1.png");
+    }
+    @media screen and (min-width: 768px) {
+      background-image: url("../../../images/catalog/subcategories-product1.png");
+
+      @media (min-display-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: url("../../../images/catalog/subcategories-product1.png");
+      }
+    }
+  }
+
+  &__item:nth-child(2) {
+    background-image: url("../../../images/catalog/subcategories-product2.png");
+
+    @media (min-display-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url("../../../images/catalog/subcategories-product2.png");
+    }
+    @media screen and (min-width: 768px) {
+      background-image: url("../../../images/catalog/subcategories-product2.png");
+      @media (min-display-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: url("../../../images/catalog/subcategories-product2.png");
+      }
+    }
+  }
+
+  &__item:nth-child(3) {
+    background-image: url("../../../images/catalog/subcategories-product3.png");
+
+    @media (min-display-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url("../../../images/catalog/subcategories-product3.png");
+    }
+    @media screen and (min-width: 768px) {
+      background-image: url("../../../images/catalog/subcategories-product3.png");
+      @media (min-display-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: url("../../../images/catalog/subcategories-product3.png");
+      }
+    }
+  }
+
+  &__item:nth-child(4) {
+    background-image: url("../../../images/catalog/subcategories-product4.png");
+
+    @media (min-display-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url("../../../images/catalog/subcategories-product4.png");
+    }
+    @media screen and (min-width: 768px) {
+      background-image: url("../../../images/catalog/subcategories-product4.png");
+      @media (min-display-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: url("../../../images/catalog/subcategories-product4.png");
+      }
+    }
+  }
+
+  &__item:nth-child(5) {
+    background-image: url("../../../images/catalog/subcategories-product5.png");
+
+    @media (min-display-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url("../../../images/catalog/subcategories-product5.png");
+    }
+    @media screen and (min-width: 768px) {
+      background-image: url("../../../images/catalog/subcategories-product5.png");
+      @media (min-display-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: url("../../../images/catalog/subcategories-product5.png");
+      }
+    }
+  }
+
+  &__item:nth-child(6) {
+    background-image: url("../../../images/catalog/subcategories-product6.png");
+
+    @media (min-display-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url("../../../images/catalog/subcategories-product6.png");
+    }
+    @media screen and (min-width: 768px) {
+      background-image: url("../../../images/catalog/subcategories-product6.png");
+      @media (min-display-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: url("../../../images/catalog/subcategories-product6.png");
+      }
+    }
+  }
+
+  &__item:nth-child(7) {
+    background-image: url("../../../images/catalog/subcategories-product7.png");
+
+    @media (min-display-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url("../../../images/catalog/subcategories-product7.png");
+    }
+    @media screen and (min-width: 768px) {
+      background-image: url("../../../images/catalog/subcategories-product7.png");
+      @media (min-display-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: url("../../../images/catalog/subcategories-product7.png");
+      }
+    }
+  }
+
+  &__item:nth-child(8) {
+    background-image: url("../../../images/catalog/subcategories-product8.png");
+
+    @media (min-display-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url("../../../images/catalog/subcategories-product8.png");
+    }
+    @media screen and (min-width: 768px) {
+      background-image: url("../../../images/catalog/subcategories-product8.png");
+      @media (min-display-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: url("../../../images/catalog/subcategories-product8.png");
+      }
+    }
+  }
+
+  &__item:nth-child(9) {
+    background-image: url("../../../images/catalog/subcategories-product9.png");
+
+    @media (min-display-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url("../../../images/catalog/subcategories-product9.png");
+    }
+    @media screen and (min-width: 768px) {
+      background-image: url("../../../images/catalog/subcategories-product9.png");
+      @media (min-display-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: url("../../../images/catalog/subcategories-product9.png");
+      }
+    }
+  }
+
+  &__item:nth-child(10) {
+    background-image: url("../../../images/catalog/subcategories-product10.png");
+
+    @media (min-display-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url("../../../images/catalog/subcategories-product10.png");
+    }
+    @media screen and (min-width: 768px) {
+      background-image: url("../../../images/catalog/subcategories-product10.png");
+      @media (min-display-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: url("../../../images/catalog/subcategories-product10.png");
+      }
+    }
+  }
+  &__text {
+    text-align: center;
+    @include font($dark-color, 141%, 17px, 400);
+
+    @media screen and (min-width: 768px) {
+      font-weight: 600;
+      line-height: 126%;
+    }
+  }
+  &__box {
+    @extend %flex-center;
+    margin-top: 30px;
+    gap: 10px;
+  }
+  &__icon {
+    @include size(24px, 24px);
+    // transform: rotate(180deg);
+    fill: $yellow-color;
+  }
+}

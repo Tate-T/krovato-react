@@ -1,8 +1,11 @@
+import "./shop.scss";
+import containerStyles from "../../../components/Container/Container.module.scss";
+
 export const Shop = () => {
   return (
     <>
       <section className="shop">
-        <div className="container shop__container">
+        <div className={[containerStyles.container, "shop__container"].join(" ")}>
           <aside className="aside">
             <div className="aside__box">
               <svg className="aside__icon">

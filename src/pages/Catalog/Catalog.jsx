@@ -8,7 +8,7 @@ export const Catalog = () => {
       <header></header>
       <main>
         <Subcategories />
-        {/* <Shop /> */}
+        <Shop />
         <Choice />
       </main>
       <footer></footer>

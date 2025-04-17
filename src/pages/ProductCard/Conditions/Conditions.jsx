@@ -1,9 +1,10 @@
 import style from './Conditions.module.scss'
+import containerStyle from '../../../components/Container/Container.module.scss'
 
 export const Conditions = () => {
     return (
         <section className={style.conditions}>
-            <div className={style.container}>
+            <div className={containerStyle.container}>
                 <ul className={style.conditions__list}>
                     <li className={style.conditions__item} data-aos="fade-right" data-aos-duration="2000">
                         <div className={style.conditions__iconBc}>

@@ -2,17 +2,29 @@ import { PromotionsItem } from "./Item/Item";
 
 import style from "../Promotions.module.scss";
 
+import Mobile1xSale from "../../../../images/main/mobile/1x/sale@1x.webp";
+import Mobile2xSale from "../../../../images/main/mobile/2x/sale@2x.webp";
+
+import Desktop1xSale1 from "../../../../images/main/desktop/1x/sale1@1x.webp";
+import Desktop2xSale1 from "../../../../images/main/desktop/2x/sale1@2x.webp";
+
+import Desktop1xSale2 from "../../../../images/main/desktop/1x/sale2@1x.webp";
+import Desktop2xSale2 from "../../../../images/main/desktop/2x/sale2@2x.webp";
+
+import Desktop1xSale3 from "../../../../images/main/desktop/1x/sale3@1x.webp";
+import Desktop2xSale3 from "../../../../images/main/desktop/2x/sale3@2x.webp";
+
 export const PromotionsList = () => {
   const items = [
     {
       id: "promotion-1",
       image: {
-        src: "./images/desktop/sale1@2x.webp",
+        src: `${Desktop1xSale1}`,
         srcSet: {
           mobile:
-            "./images/mobile/sale1@1x.webp 1x, ./images/mobile/sale1@2x.webp 2x",
+            `${Mobile1xSale}, ${Mobile2xSale}`,
           desktop:
-            "./images/desktop/sale1@1x.webp 1x, ./images/desktop/sale1@2x.webp 2x",
+            `${Desktop1xSale1}, ${Desktop2xSale1}`,
         },
         alt: "Літній розпродаж",
       },
@@ -20,12 +32,12 @@ export const PromotionsList = () => {
     {
       id: "promotion-2",
       image: {
-        src: "./images/desktop/sale2@2x.webp",
+        src: `${Desktop1xSale2}`,
         srcSet: {
           mobile:
-            "./images/mobile/sale1@1x.webp 1x, ./images/mobile/sale1@2x.webp 2x",
+            `${Mobile1xSale}, ${Mobile2xSale}`,
           desktop:
-            "./images/desktop/sale2@1x.webp 1x, ./images/desktop/sale2@2x.webp 2x",
+            `${Desktop1xSale2}, ${Desktop2xSale2}`,
         },
         alt: "Диванний цінопад",
       },
@@ -33,12 +45,12 @@ export const PromotionsList = () => {
     {
       id: "promotion-3",
       image: {
-        src: "./images/desktop/sale3@2x.webp",
+        src: `${Desktop1xSale3}`,
         srcSet: {
           mobile:
-            "./images/mobile/sale1@1x.webp 1x, ./images/mobile/sale1@2x.webp 2x",
+            `${Mobile1xSale}, ${Mobile2xSale}`,
           desktop:
-            "./images/desktop/sale3@1x.webp 1x, ./images/desktop/sale3@2x.webp 2x",
+            `${Desktop1xSale3}, ${Desktop2xSale3}`,
         },
         alt: "Королівські скидки на м'які меблі",
       },

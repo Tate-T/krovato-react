@@ -27,10 +27,12 @@ li {
     font-size: 40px;
     line-height: 200px;
     color: white;
+    padding: 0;
 }
 
 .js__slider li {
     float: left;
+    border-radius: 10px;
 }
 
 .js__slider>.next,
@@ -76,11 +78,7 @@ li {
     @include size(15px, 15px);
     background-color: #fff;
     border-radius: 50%;
-    margin: 0 5px;
     cursor: pointer;
-    position: relative;
-    top: -50px;
-    left: 100px;
 
     @media screen and (min-width: 440px) {
         top: -30px;
@@ -98,19 +96,24 @@ li {
     }
 }
 
-.dot.active {
+.dotActive {
     background-color: $yellow-color;
+    @include size(11.5px, 11.5px);
     border: 3.5px solid #fff;
 }
 
 .dots__container {
-    margin-left: auto;
-    margin-right: auto;
-    gap: 5px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%); 
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .hero {
-    @include block-model(20px 0 30px 0, none, 0, 0);
+    @include block-model(0 0 30px 0, none, 0, 0);
     background-color: $light-color;
     height: 550px;
 
@@ -130,13 +133,23 @@ li {
     }
 
     &__icon1 {
-        @include size(30px, 20px);
+        position: absolute;
+        bottom: 50%;
+        left: 20px;
+        transform: translateY(80%);
+        @include size(60px, 60px);
         fill: $yellow-color;
+        cursor: pointer;
     }
 
     &__icon2 {
-        @include size(40px, 20px);
+        position: absolute;
+        bottom: 50%;
+        right: 20px;
+        transform: translateY(80%);
+        @include size(60px, 60px);
         fill: $yellow-color;
+        cursor: pointer;
     }
 
     &__button1 {
@@ -162,25 +175,30 @@ li {
     }
 
     &__slide {
+        display: none;
         @include size(290px, 100px);
-        // background: url(../images/mobile/slide-1@1x.webp) center / contain no-repeat;
+        background: url(../../../images/main/mobile/1x/slide@1x.webp) center / contain no-repeat;
 
         @media screen and (min-width: 440px) {
             @include size(410px, 120px);
         }
 
         @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
-            // background: url(../images/mobile/slide-1@2x.webp) center / contain no-repeat;
+            background: url(../../../images/main/mobile/2x/slide@2x.webp) center / contain no-repeat;
         }
 
         @media screen and (min-width: 1290px) {
-            @include size(1290px, 80px);
-            // background: url(../images/desktop/slide-1@1x.webp) center / contain no-repeat;
+            @include size(1290px, 420px);
+            background: url(../../../images/main/desktop/1x/slide@1x.webp) center / contain no-repeat;
 
             @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
-                // background: url(../images/desktop/slide-1@2x.webp) center / contain no-repeat;
+                background: url(../../../images/main/desktop/2x/slide@2x.webp) center / contain no-repeat;
             }
         }
+    }
+
+    &__slideActive {
+        display: block;
     }
 
     &__list {

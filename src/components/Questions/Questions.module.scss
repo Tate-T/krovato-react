@@ -36,11 +36,16 @@
         display: flex;
     }
 
+    & ul {
+        list-style: none;
+    }
+
     &__item {
         position: relative;
         @include block-model(15px, none, 8px, 0 0 15px 0);
         @include size(290px, auto);
         gap: 10px;
+        margin: 0 auto 15px auto;
 
         background: #FFF;
         box-shadow: -3px 4px 15px 0px rgba(0, 0, 0, 0.06);
@@ -62,6 +67,21 @@
     &__item:nth-child(1):focus,
     &__item:nth-child(1):active {
         @include block-model(13px, 2px solid $yellow-color, 8px, 0 0 15px 0);
+        margin: 0 auto 15px auto; 
+    }
+
+    &__item:nth-child(2):hover,
+    &__item:nth-child(2):focus,
+    &__item:nth-child(2):active {
+        @include block-model(13px, 2px solid $yellow-color, 8px, 0 0 15px 0);
+        margin: 13px auto 13px auto; 
+    }
+
+    &__item:nth-child(3):hover,
+    &__item:nth-child(3):focus,
+    &__item:nth-child(3):active {
+        @include block-model(13px, 2px solid $yellow-color, 8px, 0 0 15px 0);
+        margin: 13px auto 13px auto; 
     }
 
     &__item:hover,
@@ -73,10 +93,12 @@
 
     &__item:last-child {
         @include block-model(14px, none, 8px, 0);
+        margin: 0 auto 15px auto;
     }
 
     &__item:last-child:hover {
         @include block-model(14px, 2px solid $yellow-color, 8px, 0);
+        margin: 11px auto 0 auto;
     }
 
     &__item>input:checked~.questions__paragraph {
@@ -118,6 +140,7 @@
         @include block-model(0, none, 0, 0 0 0 15px);
         @include size(290px, auto);
         @include font($dark-color, 1.26, 15px, 600);
+        text-align: left;
 
         @media screen and (min-width: 440px) {
             @include font($dark-color, 1.26, 19px, 600);
@@ -137,7 +160,7 @@
         text-align: center;
         @include block-model(0, none, 0, auto auto auto 15px);
         @include size(20px, 20px);
-        transform: rotate(90deg);
+        // transform: rotate(90deg);
 
         transition: all 0.35s;
 
@@ -184,6 +207,7 @@
 
     &__text {
         @include font($dark-color, 1.87, 16px, 400);
+        text-align: left
     }
 
     &__textBox {

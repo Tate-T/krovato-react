@@ -2,17 +2,44 @@ import { ProductsItem } from "./Item/Item";
 
 import style from "../Products.module.scss";
 
+import MobileSpartaBed1x from "../../../../images/main/mobile/1x/sparta-bed@1x.webp";
+import MobileSpartaBed2x from "../../../../images/main/mobile/2x/sparta-bed@2x.webp";
+
+import DesktopSpartaBed1x from "../../../../images/main/desktop/1x/sparta-bed@1x.webp";
+import DesktopSpartaBed2x from "../../../../images/main/desktop/2x/sparta-bed@2x.webp";
+
+import DesktopArgonBed1x from "../../../../images/main/desktop/1x/argon-bed@1x.webp";
+import DesktopArgonBed2x from "../../../../images/main/desktop/2x/argon-bed@2x.webp";
+
+import DesktopPrestigeBed1x from "../../../../images/main/desktop/1x/prestige-bed@1x.webp";
+import DesktopPrestigeBed2x from "../../../../images/main/desktop/2x/prestige-bed@2x.webp";
+
+import DesktopTokioSofa1x from "../../../../images/main/desktop/1x/tokio-sofa@1x.webp";
+import DesktopTokioSofa2x from "../../../../images/main/desktop/2x/tokio-sofa@2x.webp";
+
+import DesktopLargoMatress1x from "../../../../images/main/desktop/1x/largo-matress@1x.webp";
+import DesktopLargoMatress2x from "../../../../images/main/desktop/2x/largo-matress@2x.webp";
+
+import DesktopArgentumMatress1x from "../../../../images/main/desktop/1x/argentum-matress@1x.webp";
+import DesktopArgentumMatress2x from "../../../../images/main/desktop/2x/argentum-matress@2x.webp";
+
+import DesktopBravoSofa1x from "../../../../images/main/desktop/1x/bravo-sofa@1x.webp";
+import DesktopBravoSofa2x from "../../../../images/main/desktop/2x/bravo-sofa@2x.webp";
+
+import DesktopMK5Bed1x from "../../../../images/main/desktop/1x/mk5-bed@1x.webp";
+import DesktopMK5Bed2x from "../../../../images/main/desktop/2x/mk5-bed@2x.webp";
+
 export const ProductsList = () => {
   const items = [
     {
       id: "product-1",
       image: {
-        src: "./images/mobile/sparta-bed@1x.webp",
+        src: `${MobileSpartaBed1x}`,
         srcSet: {
           mobile:
-            "./images/mobile/sparta-bed@1x.webp 1x, ./images/mobile/sparta-bed@2x.webp 2x",
+            `${MobileSpartaBed1x}, ${MobileSpartaBed2x}`,
           desktop:
-            "./images/desktop/sparta-bed@1x.webp 1x, ./images/desktop/sparta-bed@2x.webp 2x",
+            `${DesktopSpartaBed1x}, ${DesktopSpartaBed2x}`,
         },
         alt: "Ліжко Спарта",
       },
@@ -30,12 +57,12 @@ export const ProductsList = () => {
     {
       id: "product-2",
       image: {
-        src: "./images/mobile/sparta-bed@1x.webp",
+        src: `${MobileSpartaBed1x}`,
         srcSet: {
           mobile:
-            "./images/mobile/sparta-bed@1x.webp 1x, ./images/mobile/sparta-bed@2x.webp 2x",
+            `${MobileSpartaBed1x}, ${MobileSpartaBed2x}`,
           desktop:
-            "./images/desktop/argon-bed@1x.webp 1x, ./images/desktop/argon-bed@2x.webp 2x",
+            `${DesktopArgonBed1x}, ${DesktopArgonBed2x}`,
         },
         alt: "Ліжко Аргон",
       },
@@ -53,12 +80,12 @@ export const ProductsList = () => {
     {
       id: "product-3",
       image: {
-        src: "./images/mobile/prestige-bed@2x.webp",
+        src: `${MobileSpartaBed1x}`,
         srcSet: {
           mobile:
-            "./images/mobile/sparta-bed@1x.webp 1x, ./images/mobile/sparta-bed@2x.webp 2x",
+            `${MobileSpartaBed1x}, ${MobileSpartaBed2x}`,
           desktop:
-            "./images/desktop/prestige-bed@1x.webp 1x, ./images/desktop/prestige-bed@2x.webp 2x",
+            `${DesktopPrestigeBed1x}, ${DesktopPrestigeBed2x}`,
         },
         alt: "Ліжко Престиж",
       },
@@ -76,12 +103,12 @@ export const ProductsList = () => {
     {
       id: "product-4",
       image: {
-        src: "./images/mobile/tokio-sofa@2x.webp",
+        src: `${MobileSpartaBed1x}`,
         srcSet: {
           mobile:
-            "./images/mobile/sparta-bed@1x.webp 1x, ./images/mobile/sparta-bed@2x.webp 2x",
+            `${MobileSpartaBed1x}, ${MobileSpartaBed2x}`,
           desktop:
-            "./images/desktop/tokio-sofa@1x.webp 1x, ./images/desktop/tokio-sofa@2x.webp 2x",
+            `${DesktopTokioSofa1x}, ${DesktopTokioSofa2x}`,
         },
         alt: "Диван Токіо-2",
       },
@@ -99,12 +126,12 @@ export const ProductsList = () => {
     {
       id: "product-5",
       image: {
-        src: "./images/mobile/largo-matress@2x.webp",
+        src: `${MobileSpartaBed1x}`,
         srcSet: {
           mobile:
-            "./images/mobile/sparta-bed@1x.webp 1x, ./images/mobile/sparta-bed@2x.webp 2x",
+            `${MobileSpartaBed1x}, ${MobileSpartaBed2x}`,
           desktop:
-            "./images/desktop/largo-matress@1x.webp 1x, ./images/desktop/largo-matress@2x.webp 2x",
+            `${DesktopLargoMatress1x}, ${DesktopLargoMatress2x}`,
         },
         alt: "Матрац",
       },
@@ -122,12 +149,12 @@ export const ProductsList = () => {
     {
       id: "product-6",
       image: {
-        src: "./images/mobile/argentum-matress@1x.webp",
+        src: `${MobileSpartaBed1x}`,
         srcSet: {
           mobile:
-            "./images/mobile/sparta-bed@1x.webp 1x, ./images/mobile/sparta-bed@2x.webp 2x",
+            `${MobileSpartaBed1x}, ${MobileSpartaBed2x}`,
           desktop:
-            "./images/desktop/argentum-matress@1x.webp 1x, ./images/desktop/argentum-matress@2x.webp 2x",
+            `${DesktopArgentumMatress1x}, ${DesktopArgentumMatress2x}`,
         },
         alt: "Матрац ARGENTUM AMALTEA",
       },
@@ -145,12 +172,12 @@ export const ProductsList = () => {
     {
       id: "product-7",
       image: {
-        src: "./images/mobile/bravo-sofa@1x.webp",
+        src: `${MobileSpartaBed1x}`,
         srcSet: {
           mobile:
-            "./images/mobile/sparta-bed@1x.webp 1x, ./images/mobile/sparta-bed@2x.webp 2x",
+            `${MobileSpartaBed1x}, ${MobileSpartaBed2x}`,
           desktop:
-            "./images/desktop/bravo-sofa@1x.webp 1x, ./images/desktop/bravo-sofa@2x.webp 2x",
+            `${DesktopBravoSofa1x}, ${DesktopBravoSofa2x}`,
         },
         alt: "Диван Браво",
       },
@@ -168,12 +195,12 @@ export const ProductsList = () => {
     {
       id: "product-8",
       image: {
-        src: "./images/mobile/mk5-bed@1x.webp",
+        src: `${MobileSpartaBed1x}`,
         srcSet: {
           mobile:
-            "./images/mobile/sparta-bed@1x.webp 1x, ./images/mobile/sparta-bed@2x.webp 2x",
+            `${MobileSpartaBed1x}, ${MobileSpartaBed2x}`,
           desktop:
-            "./images/desktop/mk5-bed@1x.webp 1x, ./images/desktop/mk5-bed@2x.webp 2x",
+            `${DesktopMK5Bed1x}, ${DesktopMK5Bed2x}`,
         },
         alt: "Ліжко МК-5",
       },

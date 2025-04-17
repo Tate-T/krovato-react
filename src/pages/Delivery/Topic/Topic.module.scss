@@ -4,28 +4,35 @@
 
 .topic {
   padding-top: 40px;
-  //   background-image: url(../images/mobile/delivery@1x.webp);
-  margin-left: auto;
-  margin-right: auto;
-  height: 524px;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-color: #f8f8f8;
 
-  @media (min-display-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    // background-image: url(../images/mobile/delivery@2x.webp);
-  }
-
-  @media screen and (min-width: 1200px) {
-    // background-image: url(../images/desktop/delivery@1x.webp);
-    padding-left: 50px;
-    padding-top: 88px;
+  &__container {
+    background-image: url(../../../images/delivery/mobile/1x/delivery@1x.webp);
+    margin-left: auto;
+    margin-right: auto;
+    width: 1290px;
+    height: 454px;
+    border-radius: 8px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #FFF;
 
     @media (min-display-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      //   background-image: url(../images/desktop/delivery@2x.webp);
+      background-image: url(../../../images/delivery/mobile/2x/delivery@2x.webp);
+    }
+
+    @media screen and (min-width: 1200px) {
+      background-image: url(../../../images/delivery/desktop/1x/delivery@1x.webp);
+      padding-left: 50px;
+      padding-top: 88px;
+
+      @media (min-display-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: url(../../../images/delivery/desktop/2x/delivery@2x.webp);
+      }
     }
   }
 
@@ -60,7 +67,7 @@
       text-align: left;
     }
   }
-  
+
   &__text {
     color: $dark-color;
     text-align: center;
@@ -70,7 +77,7 @@
 
     @media screen and (min-width: 1290px) {
       font-size: 26px;
-      line-height: 140%;
+      line-height: 28px;
       text-align: left;
     }
   }

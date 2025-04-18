@@ -1,14 +1,14 @@
 import './App.css';
-import { Main } from './pages/Main/Main';
+// import { Main } from './pages/Main/Main';
 // import { PaymentPage } from './pages/PaymentPage/PaymentPage';
-// import { Delivery } from './pages/Delivery/Delivery';
+import { Delivery } from './pages/Delivery/Delivery';
 
 function App() {
   return (
     <div className="App">
-      <Main />
+      {/* <Main /> */}
       {/* <PaymentPage /> */}
-      {/* <Delivery /> */}
+      <Delivery />
     </div>
   );
 }

@@ -7,7 +7,7 @@
     background-color: $light-color;
 
     @media screen and (min-width: 1290px) {
-        @include block-model(0 0 70px 0, none, 0, 0);
+        @include block-model(70px 0 70px 0, none, 0, 0);
     }
 
     &__container {
@@ -29,6 +29,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
+        padding: 0;
 
         @media screen and (min-width: 1290px) {
             row-gap: 24px;
@@ -39,8 +40,8 @@
 
     &__item {
         position: relative;
-        flex-basis: calc((100% - 10px) / 2);
-        @include size(200px, 240px);
+        // flex-basis: calc((100% - 10px) / 2);
+        @include size(196px, 236px);
         background: no-repeat #fff;
         @include block-model(0, 2px solid $light-color, 8px, 0);
 
@@ -52,8 +53,8 @@
         }
 
         @media screen and (min-width: 1290px) {
-            flex-basis: calc((100% - 40px) / 5);
-            @include size(250px, 300px);
+            // flex-basis: calc((100% - 40px) / 5);
+            @include size(246px, 296px);
         }
     }
 
@@ -93,7 +94,7 @@
         opacity: 0;
         @include size(40px, 40px);
         background-color: transparent;
-        @include block-model(13px, solid 2px $yellow-color, 50%, 0);
+        @include block-model(0, none, 50%, 0);
 
         transition-property: opacity;
         transition-duration: 500ms;
@@ -120,201 +121,201 @@
     }
 
     &__item:nth-child(1) {
-        // background: url(../images/mobile/bed@1x.webp) center no-repeat #fff;
+        background: url(../../../images/main/mobile/1x/bed@1x.webp) center no-repeat #fff;
 
         @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
-            // background: url(../images/mobile/bed@2x.webp) contain / center no-repeat #fff;
+            background: url(../../../images/main/mobile/2x/bed@2x.webp) contain / center no-repeat #fff;
         }
 
         @media screen and (min-width: 1290px) {
-            // background: url(../images/desktop/bed@1x.webp) center no-repeat #fff;
+            background: url(../../../images/main/desktop/1x/bed@1x.webp) center no-repeat #fff;
 
             @media (min-device-pixel-ratio: 2),
             (min-resolution: 192dpi),
             (min-resolution: 2dppx) {
-                // background: url(../images/desktop/bed@2x.webp) contain / center no-repeat #fff;
+                background: url(../../../images/main/desktop/2x/bed@2x.webp) contain / center no-repeat #fff;
             }
         }
     }
 
     &__item:nth-child(2) {
-        // background: url(../images/mobile/matress@1x.webp) center no-repeat #fff;
+        background: url(../../../images/main/mobile/1x/matress@1x.webp) center no-repeat #fff;
 
         @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
-            // background: url(../images/mobile/matress@2x.webp) contain / center no-repeat #fff;
+            background: url(../../../images/main/mobile/2x/matress@2x.webp) contain / center no-repeat #fff;
         }
 
         @media screen and (min-width: 1290px) {
-            // background: url(../images/desktop/matress@1x.webp) center no-repeat #fff;
+            background: url(../../../images/main/desktop/1x/matress@1x.webp) center no-repeat #fff;
 
             @media (min-device-pixel-ratio: 2),
             (min-resolution: 192dpi),
             (min-resolution: 2dppx) {
-                // background: url(../images/desktop/matress@2x.webp) contain / center no-repeat #fff;
+                background: url(../../../images/main/desktop/2x/matress@2x.webp) contain / center no-repeat #fff;
             }
         }
     }
 
     &__item:nth-child(3) {
-        // background: url(../images/mobile/furniture@1x.webp) center no-repeat #fff;
+        background: url(../../../images/main/mobile/1x/furniture@1x.webp) center no-repeat #fff;
 
         @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
-            // background: url(../images/mobile/furniture@2x.webp) contain / center no-repeat #fff;
+            background: url(../../../images/main/mobile/2x/furniture@2x.webp) contain / center no-repeat #fff;
         }
 
         @media screen  and (min-width: 1290px) {
-            // background: url(../images/desktop/furniture@1x.webp) center no-repeat #fff;
+            background: url(../../../images/main/desktop/1x/furniture@1x.webp) center no-repeat #fff;
 
             @media (min-device-pixel-ratio: 2),
             (min-resolution: 192dpi),
             (min-resolution: 2dppx) {
-                // background: url(../images/desktop/furniture@2x.webp) contain / center no-repeat #fff;
+                background: url(../../../images/main/desktop/2x/furniture@2x.webp) contain / center no-repeat #fff;
             }
         }
     }
 
     &__item:nth-child(4) {
-        // background: url(../images/mobile/shafa@1x.webp) center no-repeat #fff;
+        background: url(../../../images/main/mobile/1x/shafa@1x.webp) center no-repeat #fff;
 
         @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
-            // background: url(../images/mobile/shafa@2x.webp) contain / center no-repeat #fff;
+            background: url(../../../images/main/mobile/2x/shafa@2x.webp) contain / center no-repeat #fff;
         }
 
         @media screen and (min-width: 1290px) {
-            // background: url(../images/desktop/shafa@1x.webp) center no-repeat #fff;
+            background: url(../../../images/main/desktop/1x/shafa@1x.webp) center no-repeat #fff;
 
             @media (min-device-pixel-ratio: 2),
             (min-resolution: 192dpi),
             (min-resolution: 2dppx) {
-                // background: url(../images/desktop/shafa@2x.webp) contain / center no-repeat #fff;
+                background: url(../../../images/main/desktop/2x/shafa@2x.webp) contain / center no-repeat #fff;
             }
         }
     }
 
     &__item:nth-child(5) {
-        // background: url(../images/mobile/komod@1x.webp) center no-repeat #fff;
+        background: url(../../../images/main/mobile/1x/komod@1x.webp) center no-repeat #fff;
 
         @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
-            // background: url(../images/mobile/komod@2x.webp) contain / center no-repeat #fff;
+            background: url(../../../images/main/mobile/2x/komod@2x.webp) contain / center no-repeat #fff;
         }
 
         @media screen and (min-width: 1290px) {
-            // background: url(../images/desktop/komod@1x.webp) center no-repeat #fff;
+            background: url(../../../images/main/desktop/1x/komod@1x.webp) center no-repeat #fff;
 
             @media (min-device-pixel-ratio: 2),
             (min-resolution: 192dpi),
             (min-resolution: 2dppx) {
-                // background: url(../images/desktop/komod@2x.webp) contain / center no-repeat #fff;
+                background: url(../../../images/main/desktop/2x/komod@2x.webp) contain / center no-repeat #fff;
             }
         }
     }
 
     &__item:nth-child(6) {
-        // background: url(../images/mobile/shelf@1x.webp) center no-repeat #fff;
+        background: url(../../../images/main/mobile/1x/shelf@1x.webp) center no-repeat #fff;
 
         @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
-            // background: url(../images/mobile/shelf@2x.webp) contain / center no-repeat #fff;
+            background: url(../../../images/main/mobile/2x/shelf@2x.webp) contain / center no-repeat #fff;
         }
 
         @media screen and (min-width: 1290px) {
-            // background: url(../images/desktop/shelf@1x.webp) center no-repeat #fff;
+            background: url(../../../images/main/desktop/1x/shelf@1x.webp) center no-repeat #fff;
 
             @media (min-device-pixel-ratio: 2),
             (min-resolution: 192dpi),
             (min-resolution: 2dppx) {
-                // background: url(../images/desktop/shelf@2x.webp) contain / center no-repeat #fff;
+                background: url(../../../images/main/desktop/2x/shelf@2x.webp) contain / center no-repeat #fff;
             }
         }
     }
 
     &__item:nth-child(7) {
-        // background: url(../images/mobile/table@1x.webp) center no-repeat #fff;
+        background: url(../../../images/main/mobile/1x/table@1x.webp) center no-repeat #fff;
 
         @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
-            // background: url(../images/mobile/table@2x.webp) contain / center no-repeat #fff;
+            background: url(../../../images/main/mobile/2x/table@2x.webp) contain / center no-repeat #fff;
         }
 
         @media screen and (min-width: 1290px) {
-            // background: url(../images/desktop/table@1x.webp) center no-repeat #fff;
+            background: url(../../../images/main/desktop/1x/table@1x.webp) center no-repeat #fff;
 
             @media (min-device-pixel-ratio: 2),
             (min-resolution: 192dpi),
             (min-resolution: 2dppx) {
-                // background: url(../images/desktop/table@2x.webp) contain / center no-repeat #fff;
+                background: url(../../../images/main/desktop/2x/table@2x.webp) contain / center no-repeat #fff;
             }
         }
     }
 
     &__item:nth-child(8) {
-        // background: url(../images/mobile/chair@1x.webp) center no-repeat #fff;
+        background: url(../../../images/main/mobile/1x/chair@1x.webp) center no-repeat #fff;
 
         @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
-            // background: url(../images/mobile/chair@2x.webp) contain / center no-repeat #fff;
+            background: url(../../../images/main/mobile/2x/chair@2x.webp) contain / center no-repeat #fff;
         }
 
         @media screen and (min-width: 1290px) {
-            // background: url(../images/desktop/cheirs@1x.webp) center no-repeat #fff;
+            background: url(../../../images/main/desktop/1x/chair@1x.webp) center no-repeat #fff;
 
             @media (min-device-pixel-ratio: 2),
             (min-resolution: 192dpi),
             (min-resolution: 2dppx) {
-                // background: url(../images/desktop/cheirs@2x.webp) contain / center no-repeat #fff;
+                background: url(../../../images/main/desktop/2x/chair@2x.webp) contain / center no-repeat #fff;
             }
         }
     }
 
     &__item:nth-child(9) {
-        // background: url(../images/mobile/furniture-walls@1x.webp) center no-repeat #fff;
+        background: url(../../../images/main/mobile/1x/furniture-walls@1x.webp) center no-repeat #fff;
 
         @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
-            // background: url(../images/mobile/furniture-walls@2x.webp) contain / center no-repeat #fff;
+            background: url(../../../images/main/mobile/2x/furniture-walls@2x.webp) contain / center no-repeat #fff;
         }
 
         @media screen and (min-width: 1290px) {
-            // background: url(../images/desktop/furniture-walls@1x.webp) center no-repeat #fff;
+            background: url(../../../images/main/desktop/1x/furniture-walls@1x.webp) center no-repeat #fff;
 
             @media (min-device-pixel-ratio: 2),
             (min-resolution: 192dpi),
             (min-resolution: 2dppx) {
-                // background: url(../images/desktop/furniture-walls@2x.webp) contain / center no-repeat #fff;
+                background: url(../../../images/main/desktop/2x/furniture-walls@2x.webp) contain / center no-repeat #fff;
             }
         }
     }
 
     &__item:nth-child(10) {
-        // background: url(../images/mobile/kitchen@1x.webp) center no-repeat #fff;
+        background: url(../../../images/main/mobile/1x/kitchen@1x.webp) center no-repeat #fff;
 
         @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
-            // background: url(../images/mobile/kitchen@2x.webp) contain / center no-repeat #fff;
+            background: url(../../../images/main/mobile/2x/kitchen@2x.webp) contain / center no-repeat #fff;
         }
 
         @media screen and (min-width: 1290px) {
-            // background: url(../images/desktop/kitchens@1x.webp) center no-repeat #fff;
+            background: url(../../../images/main/desktop/1x/kitchen@1x.webp) center no-repeat #fff;
 
             @media (min-device-pixel-ratio: 2),
             (min-resolution: 192dpi),
             (min-resolution: 2dppx) {
-                // background: url(../images/desktop/kitchens@2x.webp) contain / center no-repeat #fff;
+                background: url(../../../images/main/desktop/2x/kitchen@2x.webp) contain / center no-repeat #fff;
             }
         }
     }

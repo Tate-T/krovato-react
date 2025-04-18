@@ -4,6 +4,8 @@
 
 .kyiv {
   padding-top: 50px;
+  padding-bottom: 70px;
+  background-color: #f8f8f8;
 
   &__title {
     color: $dark-color;
@@ -27,6 +29,7 @@
     flex-direction: column;
     gap: 30px;
     margin-bottom: 40px;
+    padding: 0;
   }
 
   &__icon {
@@ -43,6 +46,8 @@
     font-weight: 600;
     line-height: 140%;
     max-width: 520px;
+    text-align: left;
+    margin: 0;
   }
 
   &__item {
@@ -75,18 +80,16 @@
     position: absolute;
     top: 80%;
     right: 40%;
-    width: 250px;
-    height: 250px;
+    width: 420px;
+    height: 420px;
     border-radius: 420px;
     background-color: $yellow-color;
     overflow: hidden;
-    padding: 57px 25px;
     border: 3px solid $light-color;
 
     @media screen and (max-width: 420px) {
       width: 200px;
       height: 200px;
-      padding: 27px 20px;
       top: 84%;
     }
 
@@ -94,13 +97,26 @@
       top: 72%;
       left: 0;
       width: 420px;
-      height: 420px;
-      padding: 107px 40px;
     }
 
     @media screen and (min-width: 1290px) {
       top: 33%;
       left: 40%;
+    }
+  }
+
+  &__squareBox {
+    padding: 57px 25px;
+
+    @media screen and (max-width: 420px) {
+      padding: 27px 20px;
+    }
+
+    @media screen and (min-width: 768px) {
+      padding: 107px 40px;
+    }
+
+    @media screen and (min-width: 1290px) {
       padding: 107px 40px;
     }
   }
@@ -113,6 +129,7 @@
     line-height: 113%;
     margin-bottom: 10px;
     max-width: 200px;
+    margin: 0 0 20px 0;
 
     @media screen and (max-width: 420px) {
       font-size: 15px;
@@ -133,6 +150,7 @@
     font-weight: 600;
     line-height: 129%;
     max-width: 200px;
+    margin: 0;
 
     @media screen and (max-width: 420px) {
       font-size: 10px;

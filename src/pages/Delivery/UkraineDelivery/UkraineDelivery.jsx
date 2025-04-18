@@ -4,6 +4,12 @@ import { Disclaimers } from "./Disclaimers/Disclaimers";
 import containerStyle from "../../../components/Container/Container.module.scss";
 import style from "./UkraineDelivery.module.scss";
 
+import MobileUkraine1x from "../../../images/delivery/mobile/1x/ukraine@1x.webp";
+import MobileUkraine2x from "../../../images/delivery/mobile/2x/ukraine@2x.webp";
+
+import DesktopUkraine1x from "../../../images/delivery/desktop/1x/ukraine@1x.webp";
+import DesktopUkraine2x from "../../../images/delivery/desktop/2x/ukraine@2x.webp";
+
 export const UkraineDelivery = () => {
   return (
     <section className={style.ukraine}>
@@ -30,21 +36,15 @@ export const UkraineDelivery = () => {
 
         <picture>
           <source
-            srcset="
-          ./images/desktop/ukraine@1x.webp     1x,
-          ./images/desktop/ukraine-bed@2x.webp 2x
-        "
+            srcSet={`${DesktopUkraine1x}, ${DesktopUkraine2x}`}
             media="(min-width: 768px)"
           />
           <source
-            srcset="
-          ./images/mobile/ukraine@1x.webp 1x,
-          ./images/mobile/ukraine@2x.webp 2x
-        "
+            srcSet={`${MobileUkraine1x}, ${MobileUkraine2x}`}
             media="(min-width: 320px)"
           />
           <img
-            src="./images/desktop/ukraine@1x.webp"
+            src={DesktopUkraine1x}
             alt="map of ukraine"
             className={style.ukraine__image}
           />

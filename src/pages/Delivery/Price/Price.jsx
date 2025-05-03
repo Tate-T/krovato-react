@@ -9,6 +9,7 @@ export const Price = () => {
   const priceData = [
     {
       category: "Складання",
+      hasTableHeaders: false,
       items: [
         { id: "drafting-1", name: "Складання звичайного ліжка", price: "300 грн" },
         { id: "drafting-2", name: "Складання ліжка з вбудованим матрацом", price: "350 грн" },
@@ -21,58 +22,59 @@ export const Price = () => {
       ],
     },
     {
-      category: "Занесення (Є ліфт)",
+      category: "Занесення",
+      hasTableHeaders: true,
       items: [
         {
-          id: "entry-lift-1",
+          id: "entry-1",
           name: "Занесення однієї підйомної одиниці* ліжка (1 коробка)",
           withElevator: "Безкоштовно",
-          withoutElevator: "30 грн/поверх",
+          withoutElevator: "30 приймають",
         },
         {
-          id: "entry-lift-2",
+          id: "entry-2",
           name: "Занесення матраца",
           withElevator: "Безкоштовно",
-          withoutElevator: "30 грн/поверх",
+          withoutElevator: "30 приймають",
         },
         {
-          id: "entry-lift-3",
+          id: "entry-3",
           name: "Занесення каркаса ліжка (у зібраному вигляді)",
           withElevator: "Безкоштовно",
-          withoutElevator: "30 грн/поверх",
+          withoutElevator: "30 приймають",
         },
         {
-          id: "entry-lift-4",
+          id: "entry-4",
           name: "Занесення прямого дивана**",
           withElevator: "150 грн",
-          withoutElevator: "30 грн/поверх (за 1 підйомну одиницю)",
+          withoutElevator: "30 приймають (за підйомну організацію)",
         },
         {
-          id: "entry-lift-5",
+          id: "entry-5",
           name: "Занесення кутового дивана",
           withElevator: "200 грн",
-          withoutElevator: "30 грн/поверх (за 1 підйомну одиницю)",
+          withoutElevator: "30 приймають (за підйомну організацію)",
         },
         {
-          id: "entry-lift-6",
+          id: "entry-6",
           name: "Занесення комода",
           withElevator: "Безкоштовно",
           withoutElevator: "50 грн",
         },
         {
-          id: "entry-lift-7",
+          id: "entry-7",
           name: "Занесення тумби",
           withElevator: "Безкоштовно",
           withoutElevator: "10 грн",
         },
         {
-          id: "entry-lift-8",
+          id: "entry-8",
           name: "Занесення стільця",
           withElevator: "Безкоштовно",
           withoutElevator: "15 грн",
         },
         {
-          id: "entry-lift-9",
+          id: "entry-9",
           name: "Занесення столу",
           withElevator: "Безкоштовно",
           withoutElevator: "50 грн",
@@ -80,58 +82,7 @@ export const Price = () => {
       ],
     },
     {
-      category: "Занесення (Ліфта немає/не працює/ щось не міститься)",
-      items: [
-        {
-          id: "entry-1",
-          name: "Занесення однієї підйомної одиниці* ліжка (1 коробка)",
-          price: "30 грн/поверх",
-        },
-        {
-          id: "entry-2",
-          name: "Занесення матраца",
-          price: "30 грн/поверх",
-        },
-        {
-          id: "entry-3",
-          name: "Занесення каркаса ліжка (у зібраному вигляді)",
-          price: "30 грн/поверх",
-        },
-        {
-          id: "entry-4",
-          name: "Занесення прямого дивана**",
-          price: "30 грн/поверх (за 1 підйомну одиницю)",
-        },
-        {
-          id: "entry-5",
-          name: "Занесення кутового дивана",
-          price: "30 грн/поверх (за 1 підйомну одиницю)",
-        },
-        {
-          id: "entry-6",
-          name: "Занесення комода",
-          price: "50 грн",
-        },
-        {
-          id: "entry-7",
-          name: "Занесення тумби",
-          price: "10 грн",
-        },
-        {
-          id: "entry-8",
-          name: "Занесення стільця",
-          price: "15 грн",
-        },
-        {
-          id: "entry-9",
-          name: "Занесення столу",
-          price: "50 грн",
-        },
-      ],
-    },
-    {
-      disclaimer:
-        "* Занесення великогабаритних деталей, довжина яких перевищує 160*90см або вага перевищує 20кг коштує 30грн/поверх. **Занесення дивана, що складається з 1 підйомної одиниці 70 грн/поверх без ліфта. ***За відсутності вільного під'їзду до парадного, служба доставки самостійно розраховує вартість занесення до дверей.",
+      disclaimer: "*Занесення магометоборотних деталей, дизелями яких перевищує 100%сильово для перевищує 20м³ і мають 50 приймають. **Занесення дивана, що складається в 1 підйомної організації 70 приймають без ліфта. ***Під заслоненням кількістю таблиць до переваги, служба доставки самостійно розвивають вартість занесення до дивана.",
     },
   ];
 
@@ -141,7 +92,7 @@ export const Price = () => {
         {priceData.map((section, index) => (
           <Fragment key={index}>
             {section.category && <h3 className={style.price__title}>{section.category}</h3>}
-            {section.items && <PriceList items={section.items} />}
+            {section.items && <PriceList items={section.items} hasTableHandlers={section.hasTableHeaders} />}
             {section.disclaimer && <p className={style.price__disclaimer}>{section.disclaimer}</p>}
           </Fragment>
         ))}

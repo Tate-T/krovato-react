@@ -1,0 +1,13 @@
+Дмитро Вахмянін - AboutUs (навести порядок з About & AboutUS)
+Артем Дмитренко - LastReviews, ContactsPage
+Нікіта Мельник - Гармошка (секція), Delivery (сторінка)
+Артур Панковець - Questions
+Софія Питлюк - Pagination, Basket
+Максим Рябошапка - Header, Catalog (Зробити фільтрацію товарів - список з головної сторінки від Дані)
+Даня Нестеренко - Main
+
+Юрій Цапій - ProductCard, PaymentPage
+Вячеслав Цибульський - Blog, BlogArticle, Advantages
+Вікторія Чельняк - Footer
+Влад Сидоров
+

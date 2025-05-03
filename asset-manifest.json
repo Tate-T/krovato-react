@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/krovato-react/static/css/main.110406a1.css",
+    "main.css": "/krovato-react/static/css/main.81a40232.css",
     "main.js": "/krovato-react/static/js/main.6dbc6074.js",
     "static/media/slide@2x.webp": "/krovato-react/static/media/slide@2x.de388713a42162fc3d95.webp",
     "static/media/hole-chairs@2x.webp": "/krovato-react/static/media/hole-chairs@2x.b05619fe2afd2d1956d5.webp",
@@ -55,11 +55,11 @@
     "static/media/argentum-matress@1x.webp": "/krovato-react/static/media/argentum-matress@1x.243c4283ce5eca67175c.webp",
     "static/media/largo-matress@1x.webp": "/krovato-react/static/media/largo-matress@1x.dbf4d8bd4f5c25278635.webp",
     "index.html": "/krovato-react/index.html",
-    "main.110406a1.css.map": "/krovato-react/static/css/main.110406a1.css.map",
+    "main.81a40232.css.map": "/krovato-react/static/css/main.81a40232.css.map",
     "main.6dbc6074.js.map": "/krovato-react/static/js/main.6dbc6074.js.map"
   },
   "entrypoints": [
-    "static/css/main.110406a1.css",
+    "static/css/main.81a40232.css",
     "static/js/main.6dbc6074.js"
   ]
 }

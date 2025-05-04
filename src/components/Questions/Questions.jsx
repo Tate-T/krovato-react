@@ -1,3 +1,5 @@
+import { Component } from "react";
+
 import { QuestionItem } from "./QuestionItem";
 
 import containerStyle from "../Container/Container.module.scss";
@@ -5,8 +7,8 @@ import style from "./Questions.module.scss";
 
 // Щоб підключити цю секцію пишіть так: <Questions sectionId="..." />, id секції записаний в масиві нижче.
 
-export const Questions = ({ sectionId }) => {
-  const sectionsData = [
+export class Questions extends Component {
+  sectionsData = [
     {
       id: "bed-questions",
       title: "Питання, які часто задають про Ліжка",
@@ -110,31 +112,35 @@ export const Questions = ({ sectionId }) => {
     },
   ];
 
-  const currentSection = sectionsData.find(
-    (section) => section.id === sectionId
-  );
+  render() {
+    const { sectionId } = this.props;
 
-  return (
-    <section className={style.questions}>
-      <div className={`${containerStyle.container} ${style.questions__container}`}>
-        <h2
-          data-aos="zoom-out-right"
-          data-aos-duration="1500"
-          className={style.questions__title}
-        >
-          {currentSection.title}
-        </h2>
-      </div>
-      <ul className={style.questions__list}>
-        {currentSection.questions.map((item) => (
-          <QuestionItem
-            key={item.id}
-            id={item.id}
-            question={item.question}
-            answer={item.answer}
-          />
-        ))}
-      </ul>
-    </section>
-  );
+    const currentSection = this.sectionsData.find(
+      (section) => section.id === sectionId
+    );
+    
+    return (
+      <section className={style.questions}>
+        <div className={`${containerStyle.container} ${style.questions__container}`}>
+          <h2
+            data-aos="zoom-out-right"
+            data-aos-duration="1500"
+            className={style.questions__title}
+          >
+            {currentSection.title}
+          </h2>
+        </div>
+        <ul className={style.questions__list}>
+          {currentSection.questions.map((item) => (
+            <QuestionItem
+              key={item.id}
+              id={item.id}
+              question={item.question}
+              answer={item.answer}
+            />
+          ))}
+        </ul>
+      </section>
+    );
+  }
 };

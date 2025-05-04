@@ -1,0 +1,158 @@
+.containerOrder {
+    background-color: #FFF;
+    width: 410px;
+    height: 100%;
+    border: 2px solid green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-top: 20px;
+  }
+  
+  .textOrder {
+    font-family: 'Proxima Nova';
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 48px;
+    text-align: left;
+  }
+  
+  .formInfo {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 350px;
+    height: 400px;
+    align-items: center;
+    justify-content: center;
+  
+    label:last-of-type {
+      display: flex;
+      gap: 20px;
+    }
+  }
+  
+  .containerTitle {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .inputForm {
+    width: 335px;
+    height: 50px;
+    border-radius: 8px;
+    border: 1px solid #D1D5D5;
+    padding-left: 15px;
+  }
+  
+  .inputForm:hover {
+    border: 1px solid #e6ec29;
+  }
+  
+  .textForm {
+    color: #2B2929;
+    font-family: 'Proxima Nova';
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0%;
+  }
+  
+  .textPerson {
+    color: #535353;
+    font-family: 'Proxima Nova';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+  }
+  
+  .textareaForm {
+    width: 350px;
+    height: 150px;
+    border-radius: 8px;
+    padding-left: 10px;
+  }
+  
+  .textareaForm::placeholder {
+    font-family: 'Proxima Nova';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    color: #535353;
+  }
+  
+  .containerComment {
+    width: 350px;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .containerDelivery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .freeDelivery {
+    width: 350px;
+    height: 142px;
+    border-radius: 8px;
+    border: 3px solid #FFBC57;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:10px;
+    justify-content: center;
+
+  }
+  
+  .containerMap {
+    width: 350px;
+    height: 266px;
+    background: #F8F8F8;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:20px;
+    justify-content: center;
+  }
+  
+  .containerPostoffice {
+    width: 350px;
+    height: 142px;
+    border: 3px solid #F8F8F8;
+  }
+  
+  .containerPostoffice p {
+    font-family: 'Proxima Nova';
+    font-weight: 400;
+    font-size: 16px;
+    color: #535353;
+  }
+  
+  .containerTitle img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .containerMap button {
+    width: 150px;
+    height: 40px;
+    background-color: #FFBC57;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .containerMap button:hover {
+    background-color: #e6a736;
+  }
+  

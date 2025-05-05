@@ -1,4 +1,3 @@
-// import { Header } from "../../components/Header/Header";
 import { Hero } from "./Hero/Hero";
 import { Categories } from "./Categories/Categories";
 import { Products } from "./Products/Products";
@@ -8,12 +7,14 @@ import { Articles } from "./Articles/Articles";
 import { About } from "../../components/About/About";
 import { Advantages } from "../../components/Advantages/Advantages";
 import { Footer } from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
 
 export const Main = () => {
   return (
     <>
-      {/* Header */}
-      <main>
+      <Header />
+      
+      {/* <main>
         <Hero />
         <Categories />
         <Products />
@@ -23,7 +24,7 @@ export const Main = () => {
         <About />
         <Advantages />
       </main>
-      <Footer />
+      <Footer /> */}
     </>
   );
 };

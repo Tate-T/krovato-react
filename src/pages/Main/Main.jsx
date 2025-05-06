@@ -9,10 +9,15 @@ import { Advantages } from "../../components/Advantages/Advantages";
 import { Footer } from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 
+// удалено
+import ProductCardPage from "../ProductCard/ProductCardPage";
+
+
 export const Main = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
+      <ProductCardPage />
       
       {/* <main>
         <Hero />

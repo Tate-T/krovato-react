@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import style from "./h.module.scss";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
@@ -46,10 +46,38 @@ class Header extends Component {
 
         // Обновление AOS при изменении размера окна для корректной работы на разных устройствах
         window.addEventListener('resize', this.handleResize);
+        
+        // Закрытие дропдаунов при клике вне их области
+        document.addEventListener('mousedown', this.handleClickOutside);
     }
 
     componentWillUnmount() {
         window.removeEventListener('resize', this.handleResize);
+        document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+
+    // Создаем рефы для дропдаунов
+    languageRef = React.createRef();
+    mobileMenuRef = React.createRef();
+    additionalNumbersRef = React.createRef();
+    searchRef = React.createRef();
+
+    handleClickOutside = (event) => {
+        // Проверяем, был ли клик вне области дропдауна
+        if (this.state.languageDropdownVisible && 
+            this.languageRef.current && 
+            !this.languageRef.current.contains(event.target)) {
+            this.setState({ languageDropdownVisible: false });
+        }
+        
+        if (this.state.additionalNumbersVisible && 
+            this.additionalNumbersRef.current && 
+            !this.additionalNumbersRef.current.contains(event.target)) {
+            this.setState({ additionalNumbersVisible: false });
+        }
+        
+        // Для мобильного меню и поиска оставляем существующую обработку 
+        // через overlay, так как они занимают весь экран
     }
 
     handleResize = () => {
@@ -58,7 +86,8 @@ class Header extends Component {
         }, 200);
     };
 
-    toggleLanguage = () => {
+    toggleLanguage = (e) => {
+        e.stopPropagation();
         this.setState(prevState => ({ 
             languageDropdownVisible: !prevState.languageDropdownVisible,
             mobileMenuVisible: false,
@@ -67,7 +96,8 @@ class Header extends Component {
         }));
     };
 
-    toggleMenu = () => {
+    toggleMenu = (e) => {
+        e.stopPropagation();
         this.setState(prevState => ({ 
             mobileMenuVisible: !prevState.mobileMenuVisible,
             languageDropdownVisible: false,
@@ -76,7 +106,8 @@ class Header extends Component {
         }));
     };
 
-    toggleAdditionalNumbers = () => {
+    toggleAdditionalNumbers = (e) => {
+        e.stopPropagation();
         this.setState(prevState => ({ 
             additionalNumbersVisible: !prevState.additionalNumbersVisible,
             languageDropdownVisible: false,
@@ -85,7 +116,8 @@ class Header extends Component {
         }));
     };
 
-    toggleSearchDropdown = () => {
+    toggleSearchDropdown = (e) => {
+        e.stopPropagation();
         this.setState(prevState => ({ 
             searchDropdownVisible: !prevState.searchDropdownVisible,
             languageDropdownVisible: false,
@@ -117,7 +149,11 @@ class Header extends Component {
                     <a href="./contacts.html"><FiMail size={16} /> Контакти</a>
                 </li>
                 <li className={style["header__list-svg"]} data-aos="fade-left" data-aos-duration="800" data-aos-delay="450" data-aos-easing="ease-out-back" data-aos-anchor=".header__section1">
-                    <div className={style.header__lang_container} onClick={this.toggleLanguage}>
+                    <div 
+                        ref={this.languageRef}
+                        className={style.header__lang_container} 
+                        onClick={this.toggleLanguage}
+                    >
                         <p className={style.header__lang_text}>UA</p>
                         <FiChevronDown size={16} />
                         {this.state.languageDropdownVisible && (
@@ -137,6 +173,7 @@ class Header extends Component {
             {/* Первая строка мобильного хедера */}
             <div className={style.header__mobile_row}>
                 <div 
+                    ref={this.mobileMenuRef}
                     className={`${style.header__burger_menu} ${this.state.mobileMenuVisible ? style.active : ''}`} 
                     onClick={this.toggleMenu}
                     data-aos="zoom-in" 
@@ -152,6 +189,7 @@ class Header extends Component {
                     </a>
                 </div>
                 <div 
+                    ref={this.additionalNumbersRef}
                     className={style.header__phone_icon} 
                     onClick={this.toggleAdditionalNumbers}
                     data-aos="zoom-in" 
@@ -179,6 +217,7 @@ class Header extends Component {
                 </div>
                 <div className={style.header__mobile_icons}>
                     <div 
+                        ref={this.searchRef}
                         className={style.header__icon_btn} 
                         onClick={this.toggleSearchDropdown}
                         data-aos="zoom-in" 
@@ -232,6 +271,7 @@ class Header extends Component {
             
             {/* 3. Блок с номерами телефонов */}
             <div 
+                ref={this.additionalNumbersRef}
                 className={style.header__item} 
                 style={{ display: 'flex', alignItems: 'center' }}
                 data-aos="fade-up" 

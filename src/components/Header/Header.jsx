@@ -22,15 +22,41 @@ class Header extends Component {
 
     componentDidMount() {
         AOS.init({
-            duration: 1000,
+            duration: 1200,
             once: false,
             mirror: true,
-            offset: 50,
-            easing: 'ease-out-cubic',
-            delay: 100,
-            anchorPlacement: 'top-bottom'
+            offset: 120,
+            easing: 'ease-out-sine',
+            delay: 50,
+            anchorPlacement: 'top-center',
+            disable: 'mobile',
+            startEvent: 'DOMContentLoaded',
+            disableMutationObserver: false,
+            throttleDelay: 99,
+            debounceDelay: 50,
+            useClassNames: true,
+            initClassName: 'aos-init',
+            animatedClassName: 'aos-animate'
         });
+
+        // Обновление AOS после полной загрузки страницы для повышения производительности
+        window.addEventListener('load', () => {
+            AOS.refresh();
+        });
+
+        // Обновление AOS при изменении размера окна для корректной работы на разных устройствах
+        window.addEventListener('resize', this.handleResize);
     }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleResize);
+    }
+
+    handleResize = () => {
+        setTimeout(() => {
+            AOS.refresh();
+        }, 200);
+    };
 
     toggleLanguage = () => {
         this.setState(prevState => ({ 
@@ -70,27 +96,27 @@ class Header extends Component {
 
     // Методы рендеринга отдельных секций для лучшей читаемости
     renderDesktopTopSection = () => (
-        <div className={style.header__section1} data-aos="fade-down" data-aos-duration="800" data-aos-delay="100">
+        <div className={style.header__section1} data-aos="fade-down" data-aos-duration="800" data-aos-easing="ease-out-back" data-aos-delay="100">
             <ul className={style.header__list}>
-                <li className={style.header__item} data-aos="fade-right" data-aos-delay="200" data-aos-anchor=".header__section1">
+                <li className={style.header__item} data-aos="fade-right" data-aos-duration="600" data-aos-delay="150" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
                     <a href="./about-us.html"><FiHome size={16} /> Про нас</a>
                 </li>
-                <li className={style.header__item} data-aos="fade-right" data-aos-delay="250" data-aos-anchor=".header__section1">
+                <li className={style.header__item} data-aos="fade-right" data-aos-duration="700" data-aos-delay="200" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
                     <a href="./pay.html"><FiShoppingCart size={16} /> Оплата</a>
                 </li>
-                <li className={style.header__item} data-aos="fade-right" data-aos-delay="300" data-aos-anchor=".header__section1">
+                <li className={style.header__item} data-aos="fade-right" data-aos-duration="800" data-aos-delay="250" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
                     <a href="./delivery.html"><FiTruck size={16} /> Доставка та збірка</a>
                 </li>
-                <li className={style.header__item} data-aos="fade-right" data-aos-delay="350" data-aos-anchor=".header__section1">
+                <li className={style.header__item} data-aos="fade-right" data-aos-duration="900" data-aos-delay="300" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
                     <a href="./reviews.html"><FiMessageSquare size={16} /> Відгуки</a>
                 </li>
-                <li className={style.header__item} data-aos="fade-right" data-aos-delay="400" data-aos-anchor=".header__section1">
+                <li className={style.header__item} data-aos="fade-right" data-aos-duration="1000" data-aos-delay="350" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
                     <a href="./blog-page.html"><FiBook size={16} /> Блог</a>
                 </li>
-                <li className={style.header__item} data-aos="fade-right" data-aos-delay="450" data-aos-anchor=".header__section1">
+                <li className={style.header__item} data-aos="fade-right" data-aos-duration="1100" data-aos-delay="400" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
                     <a href="./contacts.html"><FiMail size={16} /> Контакти</a>
                 </li>
-                <li className={style["header__list-svg"]} data-aos="fade-left" data-aos-delay="500" data-aos-anchor=".header__section1">
+                <li className={style["header__list-svg"]} data-aos="fade-left" data-aos-duration="800" data-aos-delay="450" data-aos-easing="ease-out-back" data-aos-anchor=".header__section1">
                     <div className={style.header__lang_container} onClick={this.toggleLanguage}>
                         <p className={style.header__lang_text}>UA</p>
                         <FiChevronDown size={16} />
@@ -107,18 +133,20 @@ class Header extends Component {
     );
 
     renderMobileTopSection = () => (
-        <div className={style.header__mobile} data-aos="fade-down" data-aos-duration="600">
+        <div className={style.header__mobile} data-aos="fade-down" data-aos-duration="800" data-aos-easing="ease-out-cubic">
             {/* Первая строка мобильного хедера */}
             <div className={style.header__mobile_row}>
                 <div 
                     className={`${style.header__burger_menu} ${this.state.mobileMenuVisible ? style.active : ''}`} 
                     onClick={this.toggleMenu}
                     data-aos="zoom-in" 
-                    data-aos-delay="200"
+                    data-aos-duration="600"
+                    data-aos-delay="150"
+                    data-aos-easing="ease-out-back"
                 >
                     <FiMenu size={28} />
                 </div>
-                <div className={style.header__logo} data-aos="zoom-in" data-aos-delay="150">
+                <div className={style.header__logo} data-aos="zoom-in" data-aos-duration="700" data-aos-delay="100" data-aos-easing="ease-out-cubic">
                     <a href="./index.html">
                         <img src="https://tate-t.github.io/krovato-market/assets/logo-header@2x-f83feaba.webp" alt="Krovato" />
                     </a>
@@ -127,7 +155,9 @@ class Header extends Component {
                     className={style.header__phone_icon} 
                     onClick={this.toggleAdditionalNumbers}
                     data-aos="zoom-in" 
-                    data-aos-delay="250"
+                    data-aos-duration="600"
+                    data-aos-delay="200"
+                    data-aos-easing="ease-out-back"
                 >
                     <FiPhone size={28} />
                     {this.state.additionalNumbersVisible && (
@@ -144,7 +174,7 @@ class Header extends Component {
             
             {/* Вторая строка мобильного хедера */}
             <div className={style.header__mobile_row}>
-                <div className={style.header__catalog_btn} data-aos="flip-up" data-aos-delay="300">
+                <div className={style.header__catalog_btn} data-aos="flip-up" data-aos-duration="900" data-aos-delay="250" data-aos-easing="ease-out-back">
                     <a href="#" className={style.catalog_orange_btn}>Каталог</a>
                 </div>
                 <div className={style.header__mobile_icons}>
@@ -152,11 +182,13 @@ class Header extends Component {
                         className={style.header__icon_btn} 
                         onClick={this.toggleSearchDropdown}
                         data-aos="zoom-in" 
-                        data-aos-delay="350"
+                        data-aos-duration="700"
+                        data-aos-delay="300"
+                        data-aos-easing="ease-out-back"
                     >
                         <FiSearch size={24} />
                     </div>
-                    <div className={style.header__icon_btn} data-aos="zoom-in" data-aos-delay="400">
+                    <div className={style.header__icon_btn} data-aos="zoom-in" data-aos-duration="700" data-aos-delay="350" data-aos-easing="ease-out-back">
                         <div className={style.icon_with_badge}>
                             <FaRegHeart size={24} />
                             {this.state.favoritesCount > 0 && (
@@ -164,7 +196,7 @@ class Header extends Component {
                             )}
                         </div>
                     </div>
-                    <div className={style.header__icon_btn} data-aos="zoom-in" data-aos-delay="450">
+                    <div className={style.header__icon_btn} data-aos="zoom-in" data-aos-duration="700" data-aos-delay="400" data-aos-easing="ease-out-back">
                         <div className={style.icon_with_badge}>
                             <HiOutlineShoppingBag size={24} />
                             {this.state.basketCount > 0 && (
@@ -178,9 +210,9 @@ class Header extends Component {
     );
 
     renderMiddleSection = () => (
-        <div className={style.header__list2} data-aos="fade" data-aos-duration="800">
+        <div className={style.header__list2} data-aos="fade" data-aos-duration="1000" data-aos-easing="ease-out-cubic">
             {/* 1. Логотип */}
-            <div className={style.header__item} data-aos="zoom-in" data-aos-delay="100" data-aos-anchor=".header__list2">
+            <div className={style.header__item} data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100" data-aos-easing="ease-out-cubic" data-aos-anchor=".header__list2">
                 <a className={style.header__logo_link} href="./index.html">
                     <div className={style.header__logo}>
                         <img src="https://tate-t.github.io/krovato-market/assets/logo-header@2x-f83feaba.webp" alt="Krovato" />
@@ -189,7 +221,7 @@ class Header extends Component {
             </div>
             
             {/* 2. Поле поиска */}
-            <div className={style.header__form_box} data-aos="fade-up" data-aos-delay="200" data-aos-anchor=".header__list2">
+            <div className={style.header__form_box} data-aos="fade-up" data-aos-duration="900" data-aos-delay="200" data-aos-easing="ease-out-quart" data-aos-anchor=".header__list2">
                 <form className={style.header__form}>
                     <input className={style.header__find} type="text" placeholder="Я шукаю..." />
                     <button type="submit" className={style.search_button}>
@@ -203,7 +235,9 @@ class Header extends Component {
                 className={style.header__item} 
                 style={{ display: 'flex', alignItems: 'center' }}
                 data-aos="fade-up" 
-                data-aos-delay="300" 
+                data-aos-duration="900" 
+                data-aos-delay="300"
+                data-aos-easing="ease-out-quart" 
                 data-aos-anchor=".header__list2"
             >
                 <FiPhone className={style.phone_icon} size={24} />
@@ -230,7 +264,7 @@ class Header extends Component {
             </div>
 
             {/* 4. Иконка избранного */}
-            <div className={style.header__icon_container} data-aos="flip-up" data-aos-delay="400" data-aos-anchor=".header__list2">
+            <div className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="400" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2">
                 <div className={style.icon_with_badge}>
                     <FaHeart className={style.heart_icon} size={24} />
                     {this.state.favoritesCount > 0 && (
@@ -240,7 +274,7 @@ class Header extends Component {
             </div>
             
             {/* 5. Иконка корзины */}
-            <a href="#" className={style.header__icon_container} data-aos="flip-up" data-aos-delay="500" data-aos-anchor=".header__list2">
+            <a href="#" className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="500" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2">
                 <div className={style.icon_with_badge}>
                     <HiOutlineShoppingBag className={style.cart_icon} size={24} />
                     {this.state.basketCount > 0 && (
@@ -252,31 +286,31 @@ class Header extends Component {
     );
 
     renderBottomSection = () => (
-        <div className={style.header__list3} data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
-            <div className={style.header__item} data-aos="zoom-in-right" data-aos-delay="100" data-aos-anchor=".header__list3">
+        <div className={style.header__list3} data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" data-aos-easing="ease-in-out">
+            <div className={style.header__item} data-aos="zoom-in-right" data-aos-duration="900" data-aos-delay="100" data-aos-easing="ease-out-back" data-aos-anchor=".header__list3">
                 <a className={`${style.header__link} ${style.catalog_orange_btn}`} href="#">
                     Каталог
                 </a>
             </div>
-            <div className={style.header__item} data-aos="zoom-in-up" data-aos-delay="200" data-aos-anchor=".header__list3">
+            <div className={style.header__item} data-aos="zoom-in-up" data-aos-duration="800" data-aos-delay="200" data-aos-easing="ease-out-back" data-aos-anchor=".header__list3">
                 <a className={style.header__link} href="#">
                     <AiOutlineStar className={style.icon_promo} size={20} />
                     <span>Акції</span>
                 </a>
             </div>
-            <div className={style.header__item} data-aos="zoom-in-up" data-aos-delay="300" data-aos-anchor=".header__list3">
+            <div className={style.header__item} data-aos="zoom-in-up" data-aos-duration="800" data-aos-delay="300" data-aos-easing="ease-out-back" data-aos-anchor=".header__list3">
                 <a className={style.header__link} href="#">
                     <FaPercent className={style.icon_sale} size={18} />
                     <span>Розпродаж</span>
                 </a>
             </div>
-            <div className={style.header__item} data-aos="zoom-in-up" data-aos-delay="400" data-aos-anchor=".header__list3">
+            <div className={style.header__item} data-aos="zoom-in-up" data-aos-duration="800" data-aos-delay="400" data-aos-easing="ease-out-back" data-aos-anchor=".header__list3">
                 <a className={style.header__link} href="#">
                     <BsCreditCard2Front className={style.icon_credit} size={20} />
                     <span>Купити в кредит</span>
                 </a>
             </div>
-            <div className={style.header__button} data-aos="zoom-in-left" data-aos-delay="500" data-aos-anchor=".header__list3">
+            <div className={style.header__button} data-aos="zoom-in-left" data-aos-duration="900" data-aos-delay="500" data-aos-easing="ease-out-back" data-aos-anchor=".header__list3">
                 Передзвоніть мені
             </div>
         </div>
@@ -284,58 +318,58 @@ class Header extends Component {
 
     renderMobileMenu = () => (
         <>
-            <div className={style.mobile_menu_list} data-aos="fade-right" data-aos-duration="500">
-                <a href="./about-us.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-delay="100" data-aos-anchor=".mobile_menu_list">
+            <div className={style.mobile_menu_list} data-aos="fade-right" data-aos-duration="800" data-aos-easing="ease-out-cubic">
+                <a href="./about-us.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="600" data-aos-delay="50" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
                     <FiHome size={24} /> Про нас
                 </a>
-                <a href="./pay.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-delay="150" data-aos-anchor=".mobile_menu_list">
+                <a href="./pay.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="700" data-aos-delay="100" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
                     <FiShoppingCart size={24} /> Оплата
                 </a>
-                <a href="./delivery.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-delay="200" data-aos-anchor=".mobile_menu_list">
+                <a href="./delivery.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="800" data-aos-delay="150" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
                     <FiTruck size={24} /> Доставка та збірка
                 </a>
-                <a href="./reviews.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-delay="250" data-aos-anchor=".mobile_menu_list">
+                <a href="./reviews.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="900" data-aos-delay="200" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
                     <FiMessageSquare size={24} /> Відгуки
                 </a>
-                <a href="./blog-page.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-delay="300" data-aos-anchor=".mobile_menu_list">
+                <a href="./blog-page.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="1000" data-aos-delay="250" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
                     <FiBook size={24} /> Блог
                 </a>
-                <a href="./contacts.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-delay="350" data-aos-anchor=".mobile_menu_list">
+                <a href="./contacts.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="1100" data-aos-delay="300" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
                     <FiMail size={24} /> Контакти
                 </a>
-                <a href="#" className={style.mobile_menu_link} data-aos="fade-right" data-aos-delay="400" data-aos-anchor=".mobile_menu_list">
+                <a href="#" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="1200" data-aos-delay="350" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
                     <AiOutlineStar size={24} /> Акції
                 </a>
-                <a href="#" className={style.mobile_menu_link} data-aos="fade-right" data-aos-delay="450" data-aos-anchor=".mobile_menu_list">
+                <a href="#" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="1300" data-aos-delay="400" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
                     <FaPercent size={24} /> Розпродаж
                 </a>
-                <a href="#" className={style.mobile_menu_link} data-aos="fade-right" data-aos-delay="500" data-aos-anchor=".mobile_menu_list">
+                <a href="#" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="1400" data-aos-delay="450" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
                     <BsCreditCard2Front size={24} /> Купити в кредит
                 </a>
-                <div className={style.mobile_menu_language} data-aos="fade-up" data-aos-delay="550" data-aos-anchor=".mobile_menu_list">
+                <div className={style.mobile_menu_language} data-aos="fade-up" data-aos-duration="900" data-aos-delay="500" data-aos-easing="ease-out-cubic" data-aos-anchor=".mobile_menu_list">
                     <span>Мова:</span>
                     <button className={`${style.lang_btn} ${style.active}`}>UA</button>
                     <button className={style.lang_btn}>EN</button>
                 </div>
-                <a href="#" className={style.callback_btn} data-aos="zoom-in" data-aos-delay="600" data-aos-anchor=".mobile_menu_list">
+                <a href="#" className={style.callback_btn} data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="550" data-aos-easing="ease-out-back" data-aos-anchor=".mobile_menu_list">
                     Передзвоніть мені
                 </a>
             </div>
-            <div className={style.blur_overlay} onClick={this.toggleMenu}></div>
+            <div className={style.blur_overlay} onClick={this.toggleMenu} data-aos="fade" data-aos-duration="400"></div>
         </>
     );
 
     renderMobileSearch = () => (
         <>
-            <div className={style.dropdown_menu} data-aos="fade-down" data-aos-duration="300">
+            <div className={style.dropdown_menu} data-aos="fade-down" data-aos-duration="600" data-aos-easing="ease-out-cubic">
                 <form className={style.header__form_mobile}>
-                    <input type="text" className={style.header__find_mob} placeholder="Я шукаю..." data-aos="zoom-in" data-aos-delay="150" data-aos-anchor=".dropdown_menu" />
-                    <button type="submit" className={style.mobile_search_btn} data-aos="zoom-in" data-aos-delay="250" data-aos-anchor=".dropdown_menu">
+                    <input type="text" className={style.header__find_mob} placeholder="Я шукаю..." data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100" data-aos-easing="ease-out-quart" data-aos-anchor=".dropdown_menu" />
+                    <button type="submit" className={style.mobile_search_btn} data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200" data-aos-easing="ease-out-back" data-aos-anchor=".dropdown_menu">
                         <FiSearch size={24} />
                     </button>
                 </form>
             </div>
-            <div className={style.blur_overlay_find} onClick={this.toggleSearchDropdown}></div>
+            <div className={style.blur_overlay_find} onClick={this.toggleSearchDropdown} data-aos="fade" data-aos-duration="400"></div>
         </>
     );
 

@@ -209,11 +209,11 @@ class Form extends React.Component {
                         </div>
                     </form>
                     <hr className={styles.dash} />
-                    <div className={styles.mainWrapperDelivery}>
-                        <div className={styles.titleContainer}>
+                    <div className={styles.titleContainer}>
                             <img src={iconDelivery} alt="icon-delivery" />
                             <p className={styles.titleOptions}>Вибір способу доставки</p>
                         </div>
+                    <div className={styles.mainWrapperDelivery}>
                         {cardDelivery.map((elem, index) => (
                             <button
                                 key={index}
@@ -222,7 +222,6 @@ class Form extends React.Component {
                                 <img src={elem.img} alt={elem.alt} />
                                 <div>
                                     <p className={styles.textLocation}>{elem.text}</p>
-                                    
                                     <p className={styles.textDescription}>{elem.description}</p>
                                 </div>
                                 {elem.map && (

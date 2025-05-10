@@ -1,9 +1,10 @@
 import style from "./LastReviews.module.scss"
+import containerStyle from "../../components/Container/Container.module.scss";
 
 export const LastReviews = () => {
   return (
     <section className={style.reviews}>
-  <div>
+      <div className={`${containerStyle.container} ${style.reviews__container}`}>
     <div className={style.reviews__containerReviews}>
       <div>
     <h3 className={style.reviews__title}>Останні відгуки</h3>

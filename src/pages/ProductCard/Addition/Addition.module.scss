@@ -1,155 +1,168 @@
+button {
+  background-color: transparent;
+  padding: 0;
+}
 .addition {
-    padding-top: 70px;
-    background-color: #F8F8F8;
+  padding-top: 70px;
+  background-color: #f8f8f8;
 
-    &__title {
-      color: dark;
-      font-family: "Proxima Nova";
-      font-size: 33px;
-      font-weight: 600;
-      line-height: 1.2;
-      margin-bottom: 40px;
-  
-      @media screen and (max-width: 480px) {
-        font-size: 31px;
-      }
-  
-      @media screen and (min-width: 1290px) {
-        font-size: 40px;
-      }
+  &__title {
+    color: dark;
+
+    font-size: 33px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 40px;
+
+    @media screen and (max-width: 480px) {
+      font-size: 31px;
     }
-  
-    &__list {
-      display: flex;
-      gap: 30px;
-      flex-direction: column;
-  
-      @media screen and (min-width: 1290px) {
-        font-size: 40px;
-        flex-direction: row;
-      }
-    }
-  
-    &__item {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      border-radius: 8px;
-      border: 1px solid #e3e2e2;
-      background: #fff;
-      box-shadow: -3px 4px 15px 0px rgba(0, 0, 0, 0.06);
-      width: 360px;
-  
-      @media screen and (max-width: 480px) {
-        width: 278px;
-      }
-  
-      @media screen and (min-width: 1290px) {
-        width: 260px;
-      }
-    }
-  
-    &__img {
-    //   width: 100%;
-    width: 260px;
-    height: 220px;
-    background-color: red;
-    }
-  
-    &__size {
-      color: grey;
-      font-family: "Proxima Nova";
-      font-size: 13px;
-      font-weight: 300;
-      line-height: 1.69;
-      width: 260px;
-      margin-top: 20px;
-    }
-  
-    &__text {
-      color: var(--Theme-Dark, #2b2929);
-      font-family: "Proxima Nova";
-      font-size: 19px;
-      font-weight: 600;
-      line-height: 1.26;
-      margin-bottom: 20px;
-    }
-  
-    &__activeFlex {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-  
-    &__svg {
-      height: 24px;
-      fill: #82b09d;
-    }
-  
-    &__active {
-      color: dark;
-      font-family: "Proxima Nova";
-      font-size: 13px;
-      font-weight: 300;
-      line-height: 1.69;
-    }
-  
-    &__nonCost {
-      color: #e03d3d;
-      font-family: "Proxima Nova";
-      font-size: 15px;
-      font-weight: 400;
-      line-height: 1.46;
-      text-decoration-line: line-through;
-    }
-  
-    &__cost {
-      color: dark;
-      font-family: "Proxima Nova";
-      font-size: 20px;
-      font-weight: 600;
-      line-height: 1.4;
-    }
-  
-    &__itemFooter {
-      display: flex;
-      margin-top: 20px;
-      align-items: center;
-    }
-  
-    &__obraneBc {
-      width: 50px;
-      height: 50px;
-      flex-shrink: 0;
-      background-color: light;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-left: auto;
-    }
-  
-    &__obraneSvg {
-      width: 25.927px;
-      height: 23px;
-      fill: grey-light;
-    }
-  
-    &__koshykBc {
-      width: 50px;
-      height: 50px;
-      flex-shrink: 0;
-      background-color: yellow;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-left: 10px;
-    }
-  
-    &__koshykSvg {
-      width: 25px;
-      height: 25px;
-      fill: #fff;
+
+    @media screen and (min-width: 1290px) {
+      font-size: 40px;
     }
   }
+
+  &__list {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    // flex-wrap: wrap;
+    justify-content: space-between;
+
+    @media screen and (min-width: 1290px) {
+      font-size: 40px;
+      flex-direction: row;
+    }
+  }
+
+  &__item {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    border: 1px solid #e3e2e2;
+    background: #fff;
+    box-shadow: -3px 4px 15px 0px rgba(0, 0, 0, 0.06);
+    width: 360px;
+
+    @media screen and (max-width: 480px) {
+      width: 278px;
+    }
+
+    @media screen and (max-width: 1290px) {
+      width: 260px;
+    }
+  }
+
+  &__img {
+    // width: 100%;
+    width: 260px;
+    height: 220px;
+  }
+
+  &__size {
+    color: grey;
+
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.69;
+    width: 260px;
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  &__text {
+    color: var(--Theme-Dark, #2b2929);
+
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.2;
+    display: flex;
+    text-align: left;
+    width: 260px;
+    height: 52px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__activeFlex {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &__svg {
+    height: 24px;
+    fill: #82b09d;
+  }
+
+  &__active {
+    color: dark;
+
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.69;
+  }
+
+  &__nonCost {
+    color: #e03d3d;
+
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.46;
+    text-decoration-line: line-through;
+  }
+
+  &__cost {
+    color: dark;
+
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  &__itemFooter {
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+  }
+
+  &__obraneBc {
+    // width: 50px;
+    // height: 50px;
+    // flex-shrink: 0;
+    // background-color: light;
+    // border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+  }
+
+  // &__obraneSvg {
+  //   width: 25.927px;
+  //   height: 23px;
+  //   fill: grey-light;
+  // }
+
+  &__koshykBc {
+    // width: 50px;
+    // height: 50px;
+    // flex-shrink: 0;
+    // background-color: yellow;
+    // border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+  }
+
+  // &__koshykSvg {
+  //   width: 25px;
+  //   height: 25px;
+  //   fill: #fff;
+  // }
+}

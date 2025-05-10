@@ -1,11 +1,17 @@
-import React from "react";
+import React, { Fragment } from "react";
+//import Container from "../../components/Container/Container";
+import Form from "./Form";
 import styles from './Basket.module.scss'
 class Basket extends React.Component {
     render() {
         return (
-            <div className={styles.wrapperBasket}>
-                <button className={styles.btnOrder} onClick={this.props.orderButton}>ОФОРМИТИ ЗАМОВЛЕННЯ</button>
-            </div>
+            <Fragment>
+                <section>  
+                     <Form />
+                        <div className={styles.wrapperBasket}> 
+                        </div>
+                </section>
+            </Fragment>
         )
     }
 }

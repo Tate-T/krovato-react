@@ -1,6 +1,6 @@
 import './App.css';
 
-// import { Main } from './pages/Main/Main';
+ import { Main } from './pages/Main/Main';
 // import { PaymentPage } from './pages/PaymentPage/PaymentPage';
 // import { Delivery } from './pages/Delivery/Delivery';
 import { ContactsPage } from './pages/ContactsPage/ContactsPage';
@@ -9,11 +9,11 @@ import { LastReviews } from './components/LastReviews/LastReviews';
 function App() {
   return (
     <div className="App">
-      {/* <Main /> */}
+     <Main /> 
       {/* <PaymentPage /> */}
       {/* <Delivery /> */}
-      <ContactsPage />
-      <LastReviews />
+      {/* <ContactsPage />
+      <LastReviews /> */}
     </div>
   );
 }

@@ -55,7 +55,7 @@
 
   &__textJoin {
     color: #fff;
-    font-family: "Proxima Nova";
+    
     font-size: 17px;
     font-weight: 400;
     line-height: 1.41;
@@ -115,7 +115,7 @@
 
   &__textHelp {
     color: #fff;
-    font-family: "Proxima Nova";
+    
     font-size: 17px;
     font-weight: 400;
     line-height: 1.41;
@@ -157,7 +157,7 @@
 
   &__link {
     color: white;
-    font-family: "Proxima Nova";
+    
     font-size: 17px;
     font-weight: 400;
     line-height: 1.41;
@@ -170,7 +170,7 @@
 
   &__linkActive {
     color: #fff;
-    font-family: "Proxima Nova";
+    
     font-size: 20px;
     font-weight: 600;
     line-height: 1.3;
@@ -245,10 +245,11 @@
 
   &__number {
     color: #fff;
-    font-family: "Proxima Nova";
+    
     font-size: 20px;
     font-weight: 600;
     line-height: 1.4;
+    text-align: left;
     cursor: pointer;
     transition: color 250ms ease-in-out;
 
@@ -259,7 +260,7 @@
 
   &__callMe {
     color: #FFBC57;
-    font-family: "Proxima Nova";
+    
     font-size: 20px;
     font-weight: 600;
     line-height: 1.4;
@@ -268,7 +269,7 @@
   &__adressText {
     text-align: center;
     color: #fff;
-    font-family: "Proxima Nova";
+    
     font-size: 20px;
     font-weight: 600;
     line-height: 1.4;
@@ -286,7 +287,7 @@
 
   &__scheduleText {
     color: #fff;
-    font-family: "Proxima Nova";
+    
     font-size: 20px;
     font-weight: 600;
     line-height: 1.4;
@@ -344,7 +345,7 @@
   &__copyrightText {
     color: #B1B1B1;
     text-align: center;
-    font-family: "Proxima Nova";
+    
     font-size: 15px;
     font-weight: 400;
     line-height: 1.46;
@@ -387,7 +388,7 @@
   
     &__title {
       color: #fff;
-      font-family: "Proxima Nova";
+      
       font-size: 20px;
       font-weight: 600;
       line-height: 1.4;
@@ -438,7 +439,7 @@
   
     &__link {
       color: white;
-      font-family: "Proxima Nova";
+      
       font-size: 17px;
       font-weight: 400;
       line-height: 1.41;

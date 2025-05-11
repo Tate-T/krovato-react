@@ -2082,3 +2082,11 @@ body {
         top: 160px;
     }
 }
+
+.container{
+    display: flex;
+    padding: 20px 0 25px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}

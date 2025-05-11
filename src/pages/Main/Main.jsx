@@ -8,6 +8,8 @@ import { About } from "../../components/About/About";
 import { Advantages } from "../../components/Advantages/Advantages";
 import { Footer } from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
+import { ProductCardPage } from "../ProductCard/ProductCardPage";
+
 
 
 
@@ -15,8 +17,8 @@ export const Main = () => {
   return (
     <>
       {/* <Header /> */}
-      
-      <main>
+      <ProductCardPage />
+      {/* <main>
         <Hero />
         <Categories />
         <Products />
@@ -26,7 +28,7 @@ export const Main = () => {
         <About />
         <Advantages />
       </main>
-      <Footer />
+      <Footer /> */}
     </>
   );
 };

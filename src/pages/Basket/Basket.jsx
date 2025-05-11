@@ -1,4 +1,4 @@
-import styles from './Form.module.scss';
+import styles from './Basket.module.scss';
 import React from 'react';
 import Modal from './Modal';
 import infoCircle from '../../images/basket/icon-info-mobile.svg';
@@ -31,7 +31,7 @@ const paymentOption = [
     { text: "Оплата частинами МоноБанк", pay: monobankLogo, alt: "monobankicon" },
 ]
 
-class Form extends React.Component {
+class Basket extends React.Component {
     state = {
         surnames: JSON.parse(localStorage.getItem("surname")) || [],
         surnameValue: "",
@@ -268,4 +268,4 @@ class Form extends React.Component {
         )
     }
 }
-export default Form;
+export default Basket;

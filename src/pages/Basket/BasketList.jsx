@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import promoIcon from '../../images/basket/promo.svg'
 import checkIcon from '../../images/basket/check.svg'
 //import Container from "../../components/Container/Container";
-import styles from './Basket.module.scss'
+import styles from './BasketList.module.scss'
 import spartaImg from '../../images/basket/sparta.jpg'
 const validPromoCodes = {
     "DISCOUNT10": 10,

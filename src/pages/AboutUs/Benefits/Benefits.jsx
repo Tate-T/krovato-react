@@ -1,7 +1,7 @@
 import style from './Bemefits.module.scss'
-import containerStyle from "../../components/Container/Container.module.scss";
+import containerStyle from "../../../components/Container/Container.module.scss";
 
-const Benefits = () => {
+export const Benefits = () => {
     return <section className={style.about}>
     <div className={containerStyle.container}>
       <h2 className={style.about__title}>KROVATO це</h2>

@@ -3,9 +3,8 @@ $primary-hover: #e5a94a;
 
 .conditions {
   background-color: #f8f8f8;
+  padding-bottom: 50px;
   margin-top: 59px;
-  height: auto;
-  background-color: light;
 
   &__list {
     display: flex;
@@ -46,7 +45,7 @@ $primary-hover: #e5a94a;
   &__svg {
     width: 33.794px;
     height: 40px;
-    fill: yellow;
+    fill: $primary-color;
   }
 
   &__subtitle {
@@ -64,7 +63,7 @@ $primary-hover: #e5a94a;
   }
 
   &__textBox {
-    @media screen and (max-width:480px) {
+    @media screen and (max-width: 480px) {
       width: 219px;
     }
   }
@@ -94,14 +93,14 @@ $primary-hover: #e5a94a;
       transform: scale(1.05);
       text-decoration: none;
     }
-  }
 
-  &__more span {
-    color: $primary-color;
-    font-family: "Proxima Nova";
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.46;
+    span {
+      color: $primary-color;
+      font-family: "Proxima Nova";
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.46;
+    }
   }
 
   &__arrow {
@@ -109,12 +108,4 @@ $primary-hover: #e5a94a;
     height: 16px;
     fill: $primary-color;
   }
-}
-
-// .oplata, .support, .garant, .dostavkaImg{
-//   background-color: aqua;
-// }
-.conditions__iconBc{
-  background-color: (255, 255, rgb255);
-
 }

@@ -67,6 +67,27 @@
         @media screen and (min-width: 1290px) {
             display: flex;
         }
+
+        padding: 10px !important;
+        border-radius: 20px !important;
+        display: inline-flex;
+        transition: all ease-in-out 0.2s;
+
+        & path {
+
+            fill: #ffbc57;
+        }
+
+        &:hover:not(:active) {
+
+            background-color: #ffbc57;
+            color: #fff;
+
+            & path {
+
+                fill: #fff;
+            }
+        }
     }
 
     &__arrow {

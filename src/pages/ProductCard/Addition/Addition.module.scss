@@ -26,13 +26,15 @@ button {
   &__list {
     display: flex;
     gap: 30px;
-    flex-direction: column;
-    // flex-wrap: wrap;
-    justify-content: space-between;
+    // flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
 
     @media screen and (min-width: 1290px) {
       font-size: 40px;
       flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: nowrap;
     }
   }
 
@@ -51,7 +53,7 @@ button {
     }
 
     @media screen and (max-width: 1290px) {
-      width: 260px;
+      width: 280px;
     }
   }
 

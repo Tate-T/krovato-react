@@ -67,6 +67,7 @@
     margin-bottom: 30px;
     display: flex;
     align-items: start;
+    gap: 15px;
   }
 
   &__svg {
@@ -90,6 +91,7 @@
   &__boxHelp {
     display: flex;
     margin-bottom: 40px;
+    gap: 15px;
   }
 
   &__svgBug {
@@ -332,9 +334,10 @@
     margin-bottom: 30px;
   }
 
-  &__boxPayMob {
+  &__boxPay {
     display: flex;
-    justify-content: center;
+    align-items: start;
+    gap: 15px;
   }
 
   &__copyright {

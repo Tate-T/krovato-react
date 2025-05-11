@@ -11,7 +11,7 @@ import { Footer } from "../../components/Footer/Footer";
 export const Main = () => {
   return (
     <>
-      {/* Header */}
+      
       <Header/>
       <main>
         <Hero />
@@ -23,7 +23,7 @@ export const Main = () => {
         {/* <About /> */}
         <Advantages />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

@@ -13,15 +13,14 @@ class ProductCardPage extends Component {
   render() {
     return (
       <div className="ProductCardPage">
-      <Header/>
-      <Conditions />
-
-        <ProductDescription />
-        <Сharacteristic />
-        <Addition />
-        <Recommendations />
-        <Advantages />
-        <Footer />
+        <Header></Header>
+    <ProductDescription/>
+    <Conditions/>
+    <Сharacteristic/>
+    <Addition/>
+    <Recommendations/>
+    <Advantages/>
+    <Footer/>
       </div>
     );
   }

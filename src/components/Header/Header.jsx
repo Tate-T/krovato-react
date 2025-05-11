@@ -9,6 +9,9 @@ import { AiOutlineStar } from "react-icons/ai";
 import { FiHome, FiShoppingCart, FiTruck, FiMessageSquare, FiBook, FiMail } from "react-icons/fi";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import './body-padding-top.css';
+
+
 
 class Header extends Component {
     state = { 

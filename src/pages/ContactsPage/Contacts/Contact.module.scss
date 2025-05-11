@@ -1,3 +1,5 @@
+@import '../../../styles/fonts.scss';
+
 .contact {
     padding-top: 75px;
     background-color: whitesmoke;
@@ -9,7 +11,7 @@
 
     &__list {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         gap: 50px;
         justify-content: space-around;
         align-items: center;
@@ -124,7 +126,12 @@
         .contact__list {
             display: flex;
             flex-direction: row;
+            align-items: flex-start;
             gap: 50px;
+        }
+
+        .contact__item {
+            text-align: start;
         }
 
         .contact__itemMap {

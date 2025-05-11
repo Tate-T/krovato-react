@@ -173,12 +173,13 @@ padding-right: 0;
 
 
     @media screen and (min-width: 1200px) {
-        .write__container {
-            background-size: cover;
-            background-repeat: no-repeat;
-            // background-image: url(/images/contacts-page/write-bg@1x.webp);
-            flex-direction: row;
-            justify-content: space-between;
+        .write {
+            &__container {
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-image: url(../../../images/contacts/write-bg@1x.webp);
+                flex-direction: row;
+                justify-content: space-between;
             padding-left: 50px;
             padding-top: 50px;
             padding-bottom: 25px;
@@ -186,47 +187,49 @@ padding-right: 0;
                         @media (min-device-pixel-ratio: 2),
                         (min-resolution: 192dpi),
                         (min-resolution: 2dppx) {
-                            // background-image: url(/images/contacts-page/write-bg@2x.webp);
-                        }
+                    background-image: url(../../../images/contacts/write-bg@2x.webp);
+                }
+                }
+
+            &__button {
+                height: 50px;
+                width: 240px;
+            }
+
+            &__listText {
+                width: 65%;
+            }
+
+            &__form {
+                align-items: start;
+            }
+
+            &__input {
+                max-width: 100%;
+            }
+
+            &__itemText {
+                display: flex;
+            }
+
+            &__two {
+                margin: 0 0;
+                display: flex;
+                text-align: start;
+                width: 470px;
+            }
+
+            &__three {
+                text-align: start;
+                margin-left: 0;
+                margin-right: 0;
+                width: 410px;
+            }
+
+
+
+
         }
-
-        .write__button {
-            height: 50px;
-            width: 240px;
-        }
-
-        .write__listText {
-            width: 65%;
-        }
-
-        .write__form {
-            align-items: start;
-        }
-
-        .write__input {
-            max-width: 100%;
-        }
-
-        .write__itemText {
-            display: flex;
-        }
-
-        .write__two {
-            margin: 0 0;
-            display: flex;
-            text-align: start;
-            width: 470px;
-        }
-
-        .write__three {
-            text-align: start;
-            margin-left: 0;
-            margin-right: 0;
-            width: 410px;
-        }
-
-
-
 
     }
 

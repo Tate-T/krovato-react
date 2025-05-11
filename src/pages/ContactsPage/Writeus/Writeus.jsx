@@ -1,9 +1,9 @@
-import style from "./Writeus.module.scss";
-
+import style from "./Write.module.scss";
+import containerStyle from "../../../components/Container/Container.module.scss";
 export const Writeus = () => {
     return (
-        <section className={style.write}>
-            <div className={`${style.container} ${style.write__container}`}  data-aos="zoom-out" data-aos-duration="3500">
+        <section className={style}>
+            <div className={`${containerStyle.container} ${style.write__container}`}  data-aos="zoom-out" data-aos-duration="3500">
                 <ul className={style.write__listText}>
                     <li className={style.write__itemText}>
                         <p className={style.write__one}>
@@ -24,7 +24,7 @@ export const Writeus = () => {
                     </li>
                 </ul>
 
-                <form className={style.writeForm} onSubmit={(e) => e.preventDefault()}>
+                <form className={style.write__form} onSubmit={(e) => e.preventDefault()}>
                     <input className={style.write__input} type="text" placeholder="Ваше ім'я та прізвище" required />
                     <input className={style.write__input} type="email" placeholder="E-mail" required />
                     <input className={style.write__input} type="tel" placeholder="Контактний телефон" required />

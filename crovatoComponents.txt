@@ -9,5 +9,7 @@
 Юрій Цапій - ProductCard, Header
 Вячеслав Цибульський - Blog, BlogArticle, Advantages
 Вікторія Чельняк - Footer, половина ProductCard, затянути список ліжок та підключити
+Заморило Сергій - Favorite
+
 Влад Сидоров
 

@@ -1,6 +1,5 @@
 import styles from './Form.module.scss';
 import React from 'react';
-import BasketButton from './BasketButton';
 import Modal from './Modal';
 import infoCircle from '../../images/basket/icon-info-mobile.svg';
 import iconComment from '../../images/basket/icon-comment-mobile.svg';
@@ -16,6 +15,7 @@ import creditLogo from '../../images/basket/privaty-credit-logo.svg';
 import monobankLogo from '../../images/basket/monobank.svg';
 import iconPay from '../../images/basket/icon-oplata.svg';
 import btnLogo from '../../images/basket/map.svg';
+import BasketList from './BasketList';
 const cardDelivery = [
     { text: "Самовивіз із магазину", description: "Бесплатно", img: checkCircle, alt: "check-icon" },
     { text: "Графік роботи: щодня з 9:00 до 18:00", description: "м. Київ, пров. Ізяславський 52, пов. 2", img: location, alt: "location-icon", map: "На мапі", mapIcon: btnLogo },
@@ -263,7 +263,7 @@ class Form extends React.Component {
                         <textarea placeholder="Ваш коментар" className={styles.commentInput} onChange={this.handleComment} value={this.state.commentValue}></textarea>
                     </div>
                 </div>
-                <BasketButton orderButton={this.handleInfoOrder} />
+               <BasketList orderButton={this.handleInfoOrder}/>
             </div>
         )
     }

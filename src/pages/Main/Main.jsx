@@ -23,7 +23,7 @@ export const Main = () => {
         {/* <About /> */}
         <Advantages />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

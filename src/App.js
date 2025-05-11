@@ -5,6 +5,7 @@ import './App.css';
 // import { Delivery } from './pages/Delivery/Delivery';
 import { ContactsPage } from './pages/ContactsPage/ContactsPage';
 import { LastReviews } from './components/LastReviews/LastReviews';
+import { ProductCardPage } from './pages/ProductCard/ProductCardPage';
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
       {/* <Main /> */}
       {/* <PaymentPage /> */}
       {/* <Delivery /> */}
-      <ContactsPage />
-      <LastReviews />
+      {/* <ContactsPage /> */}
+      {/* <LastReviews /> */}
+      <ProductCardPage/>
     </div>
   );
 }

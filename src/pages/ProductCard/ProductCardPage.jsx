@@ -14,16 +14,16 @@ class ProductCardPage extends Component {
     return (
       <div className="ProductCardPage">
         <Header></Header>
-    <ProductDescription/>
-    <Conditions/>
-    <Сharacteristic/>
-    <Addition/>
-    <Recommendations/>
-    <Advantages/>
-    <Footer/>
+        <ProductDescription/>
+        <Conditions/>
+        <Сharacteristic/>
+        <Addition/>
+        <Recommendations/>
+        <Advantages/>
+        <Footer/>
       </div>
     );
   }
 }
 
-export default ProductCardPage;
+export { ProductCardPage };

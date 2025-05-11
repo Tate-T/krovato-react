@@ -8,19 +8,21 @@ import { Articles } from "./Articles/Articles";
 import { About } from "../../components/About/About";
 import { Advantages } from "../../components/Advantages/Advantages";
 import { Footer } from "../../components/Footer/Footer";
+//import Basket from "../Basket/Basket";
 export const Main = () => {
   return (
     <>
       {/* Header */}
       <main>
         <Hero />
-        <Categories />
+        {/* <Basket /> */}
+         <Categories />
         <Products />
         <Promotions />
         <LastReviews />
         <Articles />
         <About />
-        <Advantages />
+        <Advantages />  
       </main>
       <Footer />
     </>

@@ -1,4 +1,4 @@
-// import { Header } from "../../components/Header/Header";
+import { Header } from "../../components/Header/Header";
 import { Hero } from "./Hero/Hero";
 import { Categories } from "./Categories/Categories";
 import { Products } from "./Products/Products";
@@ -8,11 +8,12 @@ import { Articles } from "./Articles/Articles";
 import { About } from "../../components/About/About";
 import { Advantages } from "../../components/Advantages/Advantages";
 import { Footer } from "../../components/Footer/Footer";
-//import Basket from "../Basket/Basket";
+// import Basket from "../Basket/Basket";
+
 export const Main = () => {
   return (
     <>
-      {/* Header */}
+      {/* <Header /> */}
       <main>
         <Hero />
         {/* <Basket /> */}

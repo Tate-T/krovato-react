@@ -1,205 +1,192 @@
 import style from './Footer.module.scss'
 import containerStyle from "../Container/Container.module.scss"
 
+import logo from '../../images/footer/logo-footer.svg'
+import arrow from '../../images/footer/arrow.svg'
+import facebook from '../../images/footer/facebook.svg'
+import instagram from '../../images/footer/instagram.svg'
+import whatsapp from '../../images/footer/whatsapp.svg'
+import telegram from '../../images/footer/telegram.svg'
+import viber from '../../images/footer/viber.svg'
+import visa from '../../images/footer/visa.svg'
+import mastercard from '../../images/footer/mastercard.svg'
+import tel from '../../images/footer/tel.svg'
+import adres from '../../images/footer/adres.svg'
+import calendar from '../../images/footer/calendar.svg'
+
 export const Footer = () => {
   return (
     <section className={style.footer}>
-      <div className={style.footerMobSec}>
-        {/* <div className={`${style.footerLogoBox} ${style.footerLogoBoxMob}`}>
-          <svg className={style.footerLogoSofa}>
-            <use href="./images/symbol-defs.svg#icon-logo-sofa"></use>
-          </svg>
-          <svg className={style.footerLogoText}>
-            <use href="./images/symbol-defs.svg#icon-footer-logo-text"></use>
-          </svg>
-        </div> */}
+      <div className={style.footer__mobSec}>
+        <div className={`${style.footer__logoBox} ${style.footer__logoBoxMob}`}>
+          <img src={logo} alt="" />
+        </div>
         <div className={style.footerMenu}>
-          <ul className={style.footerMenuList}>
-            <li className={style.footerMenuItem}>
+          <ul className={style.footerMenu__list}>
+            <li className={style.footerMenu__item}>
               <input
-                className={style.footerMenuInput}
+                className={style.footerMenu__input}
                 type="checkbox"
                 name="footer__input-name"
                 id="fimput1"
               />
-              <label className={style.footerMenuLabel} htmlFor="fimput1">
-                <h3 className={style.footerMenuTitle}>Категорії</h3>
-                <svg className={style.footerMenuArrow}>
-                  <use href="./images/symbol-defs.svg#icon-arrow"></use>
-                </svg>
+              <label className={style.footerMenu__label} htmlFor="fimput1">
+                <h3 className={style.footerMenu__title}>Категорії</h3>
+                <img src={arrow} className={style.footerMenu__arrow} alt="" />
               </label>
-              <div className={style.footerMenuParagraph}>
-                <ul className={style.footerMenuCategories}>
-                  <li className={style.footerMenuCategorie}>
-                    <a href="#" className={style.footerMenuLink}>Ліжка</a>
+              <div className={style.footerMenu__paragraph}>
+                <ul className={style.footerMenu__categories}>
+                  <li className={style.footerMenu__categorie}>
+                    <a href="#" className={style.footerMenu__link}>Ліжка</a>
                   </li>
-                  <li className={style.footerMenuCategorie}>
-                    <a href="#" className={style.footerMenuLink}>Матраци</a>
+                  <li className={style.footerMenu__categorie}>
+                    <a href="#" className={style.footerMenu__link}>Матраци</a>
                   </li>
-                  <li className={style.footerMenuCategorie}>
-                    <a href="#" className={style.footerMenuLink}>М’які меблі</a>
+                  <li className={style.footerMenu__categorie}>
+                    <a href="#" className={style.footerMenu__link}>М’які меблі</a>
                   </li>
-                  <li className={style.footerMenuCategorie}>
-                    <a href="#" className={style.footerMenuLink}>Шафи</a>
+                  <li className={style.footerMenu__categorie}>
+                    <a href="#" className={style.footerMenu__link}>Шафи</a>
                   </li>
-                  <li className={style.footerMenuCategorie}>
-                    <a href="#" className={style.footerMenuLink}>Комоди</a>
+                  <li className={style.footerMenu__categorie}>
+                    <a href="#" className={style.footerMenu__link}>Комоди</a>
                   </li>
-                  <li className={style.footerMenuCategorie}>
-                    <a href="#" className={style.footerMenuLink}>Тумби</a>
+                  <li className={style.footerMenu__categorie}>
+                    <a href="#" className={style.footerMenu__link}>Тумби</a>
                   </li>
-                  <li className={style.footerMenuCategorie}>
-                    <a href="#" className={style.footerMenuLink}>Столи</a>
+                  <li className={style.footerMenu__categorie}>
+                    <a href="#" className={style.footerMenu__link}>Столи</a>
                   </li>
-                  <li className={style.footerMenuCategorie}>
-                    <a href="#" className={style.footerMenuLink}>Стільці</a>
+                  <li className={style.footerMenu__categorie}>
+                    <a href="#" className={style.footerMenu__link}>Стільці</a>
                   </li>
-                  <li className={style.footerMenuCategorie}>
-                    <a href="#" className={style.footerMenuLink}>Меблеві стіни</a>
+                  <li className={style.footerMenu__categorie}>
+                    <a href="#" className={style.footerMenu__link}>Меблеві стіни</a>
                   </li>
-                  <li className={style.footerMenuCategorie}>
-                    <a href="#" className={style.footerMenuLink}>Кухні</a>
+                  <li className={style.footerMenu__categorie}>
+                    <a href="#" className={style.footerMenu__link}>Кухні</a>
                   </li>
                 </ul>
               </div>
             </li>
-            <li className={style.footerMenuItem}>
+
+            <li className={style.footerMenu__item}>
               <input
-                className={style.footerMenuInput}
+                className={style.footerMenu__input}
                 type="checkbox"
                 name="footer__input-name"
                 id="fimput2"
               />
-              <label className={style.footerMenuLabel} htmlFor="fimput2">
-                <h3 className={style.footerMenuTitle}>Інформація</h3>
-                <svg className={style.footerMenuArrow}>
-                  <use href="./images/symbol-defs.svg#icon-arrow"></use>
-                </svg>
+              <label className={style.footerMenu__label} htmlFor="fimput2">
+                <h3 className={style.footerMenu__title}>Інформація</h3>
+                <img src={arrow} className={style.footerMenu__arrow} alt="" />
               </label>
-              <div className={style.footerMenuParagraph}>
-                <ul className={style.footerMenuInformations}>
-                  <li className={style.footerMenuInformation}>
-                    <a href="./about-us.html" className={style.footerMenuLink}>Про нас</a>
+              <div className={style.footerMenu__paragraph}>
+                <ul className={style.footerMenu__informations}>
+                  <li className={style.footerMenu__information}>
+                    <a href="./about-us.html" className={style.footerMenu__link}>Про нас</a>
                   </li>
-                  <li className={style.footerMenuInformation}>
-                    <a href="./pay.html" className={style.footerMenuLink}>Оплата</a>
+                  <li className={style.footerMenu__information}>
+                    <a href="./pay.html" className={style.footerMenu__link}>Оплата</a>
                   </li>
-                  <li className={style.footerMenuInformation}>
-                    <a href="./delivery.html" className={style.footerMenuLink}>Доставка та збірка</a>
+                  <li className={style.footerMenu__information}>
+                    <a href="./delivery.html" className={style.footerMenu__link}>Доставка та збірка</a>
                   </li>
-                  <li className={style.footerMenuInformation}>
-                    <a href="./reviews.html" className={style.footerMenuLink}>Відгуки</a>
+                  <li className={style.footerMenu__information}>
+                    <a href="./reviews.html" className={style.footerMenu__link}>Відгуки</a>
                   </li>
-                  <li className={style.footerMenuInformation}>
-                    <a href="./blog-page.html" className={style.footerMenuLink}>Блог</a>
+                  <li className={style.footerMenu__information}>
+                    <a href="./blog-page.html" className={style.footerMenu__link}>Блог</a>
                   </li>
-                  <li className={style.footerMenuInformation}>
-                    <a href="./contacts.html" className={style.footerMenuLink}>Контакти</a>
+                  <li className={style.footerMenu__information}>
+                    <a href="./contacts.html" className={style.footerMenu__link}>Контакти</a>
                   </li>
-                  <li className={style.footerMenuInformation}>
-                    <a href="./contacts.html" className={style.footerMenuLink}>Мапа сайту</a>
+                  <li className={style.footerMenu__information}>
+                    <a href="./contacts.html" className={style.footerMenu__link}>Мапа сайту</a>
                   </li>
                 </ul>
               </div>
             </li>
-            <li className={style.footerMenuItem}>
+
+            <li className={style.footerMenu__item}>
               <input
-                className={style.footerMenuInput}
+                className={style.footerMenu__input}
                 type="checkbox"
                 name="footer__input-name"
                 id="fimput3"
               />
-              <label className={style.footerMenuLabel} htmlFor="fimput3">
-                <h3 className={style.footerMenuTitle}>Клієнтам</h3>
-                <svg className={style.footerMenuArrow}>
-                  <use href="./images/symbol-defs.svg#icon-arrow"></use>
-                </svg>
+              <label className={style.footerMenu__label} htmlFor="fimput3">
+                <h3 className={style.footerMenu__title}>Клієнтам</h3>
+                <img src={arrow} className={style.footerMenu__arrow} alt="" />
               </label>
-              <div className={style.footerMenuParagraph}>
-                <ul className={style.footerMenuCustomers}>
-                  <li className={style.footerMenuCustomer}>
-                    <a href="#" className={style.footerMenuLink}>Акції</a>
+              <div className={style.footerMenu__paragraph}>
+                <ul className={style.footerMenu__customers}>
+                  <li className={style.footerMenu__customer}>
+                    <a href="#" className={style.footerMenu__link}>Акції</a>
                   </li>
-                  <li className={style.footerMenuCustomer}>
-                    <a href="#" className={style.footerMenuLink}>Розпродаж</a>
+                  <li className={style.footerMenu__customer}>
+                    <a href="#" className={style.footerMenu__link}>Розпродаж</a>
                   </li>
-                  <li className={style.footerMenuCustomer}>
-                    <a href="#" className={style.footerMenuLink}>Купити в кредит</a>
+                  <li className={style.footerMenu__customer}>
+                    <a href="#" className={style.footerMenu__link}>Купити в кредит</a>
                   </li>
-                  <li className={style.footerMenuCustomer}>
-                    <a href="#" className={style.footerMenuLink}>Обмін і повернення товару</a>
+                  <li className={style.footerMenu__customer}>
+                    <a href="#" className={style.footerMenu__link}>Обмін і повернення товару</a>
                   </li>
-                  <li className={style.footerMenuCustomer}>
-                    <a href="#" className={style.footerMenuLink}>Часто задавані питання</a>
+                  <li className={style.footerMenu__customer}>
+                    <a href="#" className={style.footerMenu__link}>Часто задавані питання</a>
                   </li>
-                  <li className={style.footerMenuCustomer}>
-                    <a href="#" className={style.footerMenuLink}>Умови покупки</a>
+                  <li className={style.footerMenu__customer}>
+                    <a href="#" className={style.footerMenu__link}>Умови покупки</a>
                   </li>
-                  <li className={style.footerMenuCustomer}>
-                    <a href="#" className={style.footerMenuLink}>Політика конфіденційності</a>
+                  <li className={style.footerMenu__customer}>
+                    <a href="#" className={style.footerMenu__link}>Політика конфіденційності</a>
                   </li>
                 </ul>
               </div>
             </li>
           </ul>
         </div>
+
+
       </div>
 
       <div className={containerStyle.container}>
         <div className={style.footer__mainContainer}>
           <div className={style.footer__container1}>
             <div className={style.footer__logoBox}>
-              <svg className={style.footer__logoSofa}>
-                <use href="./images/symbol-defs.svg#icon-logo-sofa"></use>
-              </svg>
-              <svg className={style.footer__logoText}>
-                <use href="./images/symbol-defs.svg#icon-footer-logo-text"></use>
-              </svg>
+              <img src={logo} alt="" />
             </div>
             <div className={style.footer__socialsBoxDesk}>
               <p className={style.footer__textJoin}>Приєднуйтесь:</p>
               <div className={style.footer__boxJoin}>
                 <a href="https://www.facebook.com" className={style.footer__iconLink}>
-                  <svg className={style.footer__svg + ' ' + style.footer__facebook}>
-                    <use href="./images/symbol-defs.svg#icon-facebook"></use>
-                  </svg>
+                  <img src={facebook} alt="" />
                 </a>
                 <a href="https://www.instagram.com" className={style.footer__iconLink}>
-                  <svg className={style.footer__svg + ' ' + style.footer__instagram}>
-                    <use href="./images/symbol-defs.svg#icon-instagram"></use>
-                  </svg>
+                  <img src={instagram} alt="" />
                 </a>
               </div>
               <p className={style.footer__textHelp}>Допомога і консультація:</p>
               <div className={style.footer__boxHelp}>
                 <a href="https://web.whatsapp.com" className={style.footer__iconLink}>
                   <div className={style.footer__svgBug}>
-                    <svg className={style.footer__svg + ' ' + style.footer__whatsapp}>
-                      <use href="./images/symbol-defs.svg#icon-whatsapp"></use>
-                    </svg>
+                    <img src={whatsapp} alt="" />
                   </div>
                 </a>
                 <a href="https://web.telegram.org" className={style.footer__iconLink}>
-                  <svg className={style.footer__svg + ' ' + style.footer__telegram}>
-                    <use href="./images/symbol-defs.svg#icon-telegram"></use>
-                  </svg>
+                  <img src={telegram} alt="" />
                 </a>
                 <a href="https://account.viber.com" className={style.footer__iconLink}>
-                  <svg className={style.footer__svg + ' ' + style.footer__viber}>
-                    <use href="./images/symbol-defs.svg#icon-viber"></use>
-                  </svg>
+                  <img src={viber} alt="" />
                 </a>
               </div>
               <div className={style.footer__boxPay}>
                 <a href="#" className={style.footer__iconLink}>
-                  <svg className={style.footer__paySvg + ' ' + style.footer__paySvgVisa}>
-                    <use href="./images/symbol-defs.svg#icon-visa"></use>
-                  </svg>
+                  <img src={visa} alt="" />
                 </a>
                 <a href="#" className={style.footer__iconLink}>
-                  <svg className={style.footer__paySvg + ' ' + style.footer__paySvgMastercard}>
-                    <use href="./images/symbol-defs.svg#icon-mastercard"></use>
-                  </svg>
+                  <img src={mastercard} alt="" />
                 </a>
               </div>
             </div>
@@ -301,11 +288,7 @@ export const Footer = () => {
           </ul>
           <div className={style.footer__box3}>
             <div className={style.footer__call}>
-              <div className={style.footer__svgPhoneBorder}>
-                <svg className={style.footer__svgPhone}>
-                  <use href="./images/symbol-defs.svg#icon-telephone"></use>
-                </svg>
-              </div>
+              <img src={tel} alt="" />
               <div className={style.footer__numbers}>
                 <a href="tel:+380679294545" className={style.footer__number}>+38 067 929-45-45</a>
                 <a href="tel:+380501334545" className={style.footer__number}>+38 050 133-45-45</a>
@@ -314,28 +297,20 @@ export const Footer = () => {
               </div>
             </div>
             <div className={style.footer__adress}>
-              <div className={style.footer__adressSvgBorder}>
-                <svg className={style.footer__adressSvg}>
-                  <use href="./images/symbol-defs.svg#icon-adres"></use>
-                </svg>
-              </div>
+              <img src={adres} alt="" />
               <a href="./contacts.html" className={style.footer__adressText}>м. Київ, провулок Ізяславський 52, поверх 2</a>
             </div>
             <div className={style.footer__schedule}>
-              <div className={style.footer__calendarBorder}>
-                <svg className={style.footer__calendar}>
-                  <use href="./images/symbol-defs.svg#icon-calendar"></use>
-                </svg>
-              </div>
+              <img src={calendar} alt="" />
               <p className={style.footer__scheduleText}>Працюємо щодня з 9:00 до 18:00</p>
             </div>
           </div>
         </div>
-      </div>
-      <div className={style.footer__copyright}>
-        <p className={style.footer__copyrightText}>
-          © KROVATO - Технології сну - 2022. Всі права захищені.
-        </p>
+        <div className={style.footer__copyright}>
+          <p className={style.footer__copyrightText}>
+            © KROVATO - Технології сну - 2022. Всі права захищені.
+          </p>
+        </div>
       </div>
     </section>
   )

@@ -1,6 +1,6 @@
 import styles from './Form.module.scss';
 import React from 'react';
-import Basket from './Basket';
+import BasketButton from './BasketButton';
 import Modal from './Modal';
 import infoCircle from '../../images/basket/icon-info-mobile.svg';
 import iconComment from '../../images/basket/icon-comment-mobile.svg';
@@ -263,7 +263,7 @@ class Form extends React.Component {
                         <textarea placeholder="Ваш коментар" className={styles.commentInput} onChange={this.handleComment} value={this.state.commentValue}></textarea>
                     </div>
                 </div>
-                <Basket orderButton={this.handleInfoOrder} />
+                <BasketButton orderButton={this.handleInfoOrder} />
             </div>
         )
     }

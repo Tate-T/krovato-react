@@ -1,21 +1,21 @@
-import "./App.css";
+import './App.css';
 
-import { Main } from "./pages/Main/Main";
-import { BlogPage } from './pages/Blog/BlogPage';
-import { BlogArticle } from './pages/BlogArticle/BlogArticle'
-import { Advantages } from "./components/Advantages/Advantages";
+ import { Main } from './pages/Main/Main';
 // import { PaymentPage } from './pages/PaymentPage/PaymentPage';
 // import { Delivery } from './pages/Delivery/Delivery';
+// import { ContactsPage } from './pages/ContactsPage/ContactsPage';
+// import { LastReviews } from './components/LastReviews/LastReviews';
+// import { ProductCardPage } from './pages/ProductCard/ProductCardPage';
 
 function App() {
   return (
     <div className="App">
-      <Advantages />
-      <BlogPage />
-      <BlogArticle />
-      {/* <Main /> */}
+     <Main /> 
       {/* <PaymentPage /> */}
       {/* <Delivery /> */}
+      {/* <ContactsPage /> */}
+      {/* <LastReviews /> */}
+      {/* <ProductCardPage /> */}
     </div>
   );
 }

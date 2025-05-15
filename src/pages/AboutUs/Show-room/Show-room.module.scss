@@ -56,11 +56,12 @@
 
     background-color: #FFBC57;
 
-    transition: background-color 250ms ease-in;
+    transition: 250ms ease-in;
 
     &:hover,
     &:focus {
       background-color: #f3ab3f;
+      padding: 17px 24px;
     }
 
     @media screen and (min-width: 1290px) {

@@ -1,3 +1,9 @@
+@import "../../../styles/placeholders.scss";
+@import "../../../styles/mixins.scss";
+@import "../../../styles/vars.scss";
+
+// @import "../../../images/blog-article/mark.svg";
+
 .article {
   &__container {
     @extend %flex-center;
@@ -71,7 +77,7 @@
       display: block;
       @include size(32px, 32px);
 
-      background-image: url(../images/check.svg);
+      background-image: url('../../../images/blog-article/mark.svg');
     }
   }
 

@@ -1,4 +1,3 @@
-import { ProductsItem } from "./Item/Item";
 import style from "../Products.module.scss";
 import MobileSpartaBed1x from "../../../../images/main/mobile/1x/sparta-bed@1x.webp";
 import MobileSpartaBed2x from "../../../../images/main/mobile/2x/sparta-bed@2x.webp";
@@ -31,7 +30,15 @@ import { useState, useEffect } from "react";
 
 export const Check = () => {
 
-  let products = JSON.parse(localStorage.getItem('activeProducts'));
+  let products;
+
+  try {
+    
+    products = JSON.parse(localStorage.getItem('activeProducts'));
+  } catch (error) {
+    
+    console.log('JSON.parse error' + error);
+  }
 
   const buttons = [...document.querySelectorAll('.' + style.products__button)].filter((item, index) => index % 2 !== 1);
   
@@ -39,8 +46,13 @@ export const Check = () => {
 
     item.addEventListener('click', () => {
 
-      products = JSON.parse(localStorage.getItem('activeProducts'));
-      
+      try {
+    
+        products = JSON.parse(localStorage.getItem('activeProducts'));
+      } catch (error) {
+        
+        console.log('JSON.parse error' + error);
+      }
     })
   })
   

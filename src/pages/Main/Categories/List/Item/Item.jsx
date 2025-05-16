@@ -7,7 +7,7 @@ export const CategoriesItem = ({ id, title, number }) => {
       <p className={style.categories__number}>{number}</p>
       <a className={style.categories__button} href="./catalog.html">
         <svg
-          // className={style.categories__icon}
+          className={style.categories__icon}
           width="50"
           height="50"
           viewBox="0 0 50 50"

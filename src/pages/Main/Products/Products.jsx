@@ -2,7 +2,6 @@ import { ProductsList } from "./List/List";
 
 import containerStyle from "../../../components/Container/Container.module.scss";
 import style from "./Products.module.scss";
-import { Check } from "./List/Test1";
 
 export const Products = () => {
 
@@ -28,7 +27,6 @@ export const Products = () => {
                     <span className={style.products__buttonText}>Показати ще товари</span>
                 </button>
             </div>
-            <Check />
         </section>
         
     );

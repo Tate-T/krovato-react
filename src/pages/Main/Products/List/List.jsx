@@ -32,6 +32,7 @@ import DesktopMK5Bed2x from "../../../../images/main/desktop/2x/mk5-bed@2x.webp"
 import { useState, useEffect } from "react";
 
 export const ProductsList = () => {
+  
   const items = [
     {
       id: "product-1",
@@ -59,10 +60,10 @@ export const ProductsList = () => {
     {
       id: "product-2",
       image: {
-        src: `${MobileSpartaBed1x}`,
+        src: `${DesktopArgonBed1x}`,
         srcSet: {
           mobile:
-            `${MobileSpartaBed1x}, ${MobileSpartaBed2x}`,
+            `${DesktopArgonBed1x}, ${DesktopArgonBed2x}`,
           desktop:
             `${DesktopArgonBed1x}, ${DesktopArgonBed2x}`,
         },
@@ -82,10 +83,10 @@ export const ProductsList = () => {
     {
       id: "product-3",
       image: {
-        src: `${MobileSpartaBed1x}`,
+        src: `${DesktopPrestigeBed1x}`,
         srcSet: {
           mobile:
-            `${MobileSpartaBed1x}, ${MobileSpartaBed2x}`,
+            `${DesktopPrestigeBed1x}, ${DesktopPrestigeBed2x}`,
           desktop:
             `${DesktopPrestigeBed1x}, ${DesktopPrestigeBed2x}`,
         },
@@ -105,10 +106,10 @@ export const ProductsList = () => {
     {
       id: "product-4",
       image: {
-        src: `${MobileSpartaBed1x}`,
+        src: `${DesktopTokioSofa1x}`,
         srcSet: {
           mobile:
-            `${MobileSpartaBed1x}, ${MobileSpartaBed2x}`,
+            `${DesktopTokioSofa1x}, ${DesktopTokioSofa2x}`,
           desktop:
             `${DesktopTokioSofa1x}, ${DesktopTokioSofa2x}`,
         },
@@ -128,10 +129,10 @@ export const ProductsList = () => {
     {
       id: "product-5",
       image: {
-        src: `${MobileSpartaBed1x}`,
+        src: `${DesktopLargoMatress1x}`,
         srcSet: {
           mobile:
-            `${MobileSpartaBed1x}, ${MobileSpartaBed2x}`,
+            `${DesktopLargoMatress1x}, ${DesktopLargoMatress2x}`,
           desktop:
             `${DesktopLargoMatress1x}, ${DesktopLargoMatress2x}`,
         },
@@ -151,10 +152,10 @@ export const ProductsList = () => {
     {
       id: "product-6",
       image: {
-        src: `${MobileSpartaBed1x}`,
+        src: `${DesktopArgentumMatress1x}`,
         srcSet: {
           mobile:
-            `${MobileSpartaBed1x}, ${MobileSpartaBed2x}`,
+            `${DesktopArgentumMatress1x}, ${DesktopArgentumMatress2x}`,
           desktop:
             `${DesktopArgentumMatress1x}, ${DesktopArgentumMatress2x}`,
         },
@@ -174,10 +175,10 @@ export const ProductsList = () => {
     {
       id: "product-7",
       image: {
-        src: `${MobileSpartaBed1x}`,
+        src: `${DesktopBravoSofa1x}`,
         srcSet: {
           mobile:
-            `${MobileSpartaBed1x}, ${MobileSpartaBed2x}`,
+            `${DesktopBravoSofa1x}, ${DesktopBravoSofa2x}`,
           desktop:
             `${DesktopBravoSofa1x}, ${DesktopBravoSofa2x}`,
         },
@@ -197,10 +198,10 @@ export const ProductsList = () => {
     {
       id: "product-8",
       image: {
-        src: `${MobileSpartaBed1x}`,
+        src: `${DesktopMK5Bed1x}`,
         srcSet: {
           mobile:
-            `${MobileSpartaBed1x}, ${MobileSpartaBed2x}`,
+            `${DesktopMK5Bed1x}, ${DesktopMK5Bed2x}`,
           desktop:
             `${DesktopMK5Bed1x}, ${DesktopMK5Bed2x}`,
         },

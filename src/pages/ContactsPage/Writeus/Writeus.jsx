@@ -1,8 +1,9 @@
 import style from "./Write.module.scss";
 import containerStyle from "../../../components/Container/Container.module.scss";
+
 export const Writeus = () => {
     return (
-        <section className={style}>
+        <section className={style.write}>
             <div className={`${containerStyle.container} ${style.write__container}`}  data-aos="zoom-out" data-aos-duration="3500">
                 <ul className={style.write__listText}>
                     <li className={style.write__itemText}>

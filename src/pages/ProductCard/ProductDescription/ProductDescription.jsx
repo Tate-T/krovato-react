@@ -3,9 +3,20 @@ import containerStyle from '../../../components/Container/Container.module.scss'
 
 import { Component } from 'react';
 
-import palitra from "../../../images/product-card/palitra.png";
-import star from '../../../images/product-card/empty-star.svg'
-import { render } from '@testing-library/react';
+// import palitra from "../../../images/product-card/palitra.png";
+import img1 from '../../../images/product-card/palitra/lunar-ash.png'
+import img2 from '../../../images/product-card/palitra/lunar-beige.png'
+import img3 from '../../../images/product-card/palitra/lunar-chocolate.png'
+import img4 from '../../../images/product-card/palitra/lunar-coffee.png'
+import img5 from '../../../images/product-card/palitra/lunar-grey.png'
+import img6 from '../../../images/product-card/palitra/lunar-desert.png'
+import img7 from '../../../images/product-card/palitra/lunar-forest.png'
+import img8 from '../../../images/product-card/palitra/lunar-mustard.png'
+import img9 from '../../../images/product-card/palitra/lunar-mint.png'
+import img10 from '../../../images/product-card/palitra/lunar-ivory.png'
+import img11 from '../../../images/product-card/palitra/lunar-latte.png'
+import img12 from '../../../images/product-card/palitra/lunar-navy.png'
+
 
 export class ProductDescription extends Component {
     state = {
@@ -72,6 +83,16 @@ export class ProductDescription extends Component {
         }, 1000)
     }
 
+    openColorModal =(e)=>{
+        const backdrop = document.querySelector('#imgModalBackdrop')
+        backdrop.children[0].children[0].src = e.target.src
+        backdrop.style.display = 'block'
+    
+    }
+    closeColorModal =(e)=>{
+        e.currentTarget.style.display = 'none'        
+    }
+
     render() {
         return (
             <section className={style.description}>
@@ -83,7 +104,22 @@ export class ProductDescription extends Component {
                             виготовляється з ДСП та оснащена м'якою спинкою. Також може бути виготовлена з дерев'яного щита (сосни).
                             Ламелі виконані з бука. Подібна конструкція характеризується надійністю та привабливим зовнішнім виглядом.
                         </p>
-                        <img className={style.description__image} src={palitra} alt="bed" />
+                        <ul className={style.description__list}>
+                            <li className={style.description__item}><button onClick={this.openColorModal} className={style.description__btn}><img src={img1} alt="" className={style.description__img} /></button></li>
+                            <li className={style.description__item}><button onClick={this.openColorModal} className={style.description__btn}><img src={img2} alt="" className={style.description__img} /></button></li>
+                            <li className={style.description__item}><button onClick={this.openColorModal} className={style.description__btn}><img src={img3} alt="" className={style.description__img} /></button></li>
+                            <li className={style.description__item}><button onClick={this.openColorModal} className={style.description__btn}><img src={img4} alt="" className={style.description__img} /></button></li>
+                            <li className={style.description__item}><button onClick={this.openColorModal} className={style.description__btn}><img src={img5} alt="" className={style.description__img} /></button></li>
+                            <li className={style.description__item}><button onClick={this.openColorModal} className={style.description__btn}><img src={img6} alt="" className={style.description__img} /></button></li>
+                            <li className={style.description__item}><button onClick={this.openColorModal} className={style.description__btn}><img src={img7} alt="" className={style.description__img} /></button></li>
+                            <li className={style.description__item}><button onClick={this.openColorModal} className={style.description__btn}><img src={img8} alt="" className={style.description__img} /></button></li>
+                            <li className={style.description__item}><button onClick={this.openColorModal} className={style.description__btn}><img src={img9} alt="" className={style.description__img} /></button></li>
+                            <li className={style.description__item}><button onClick={this.openColorModal} className={style.description__btn}><img src={img10} alt="" className={style.description__img} /></button></li>
+                            <li className={style.description__item}><button onClick={this.openColorModal} className={style.description__btn}><img src={img11} alt="" className={style.description__img} /></button></li>
+                            <li className={style.description__item}><button onClick={this.openColorModal} className={style.description__btn}><img src={img12} alt="" className={style.description__img} /></button></li>
+                        </ul>
+                        <div onClick={this.closeColorModal} className={style.imgBackdrop} id='imgModalBackdrop'><div id='imgModal' className={style.imgModal}><img src={img1} alt="" /></div></div>
+                        {/* <img className={style.description__image} src={palitra} alt="bed" /> */}
                     </div>
                     <div className={style.descriptionForm__bug}>
                         <form onSubmit={this.addReview} className={style.descriptionForm}>

@@ -16,7 +16,7 @@ export const Main = () => {
       <Header />
       <main style={{paddingTop: 9}}>
         <Hero />
-        {/* <Basket /> */}
+        {/* <Basket /> */} 
         <Categories />
         <Products />
         <Promotions />

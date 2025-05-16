@@ -12,7 +12,9 @@ export const ProductsItem = ({
   inStock,
   oldPrice,
   currentPrice,
+  onSelect
 }) => {
+
   return (
     <li
       key={id}
@@ -54,7 +56,7 @@ export const ProductsItem = ({
       <p className={style.products__price}>{currentPrice}</p>
       <ul className={style.products__couple}>
         <li className={style.products__coupleItem}>
-          <button type="button" className={style.products__button}>
+          <button type="button" onClick={() => onSelect(id)} className={style.products__button}>
             <svg
               className={style.products__likeIcon}
               width="50"

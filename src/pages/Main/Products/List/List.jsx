@@ -29,6 +29,8 @@ import DesktopBravoSofa2x from "../../../../images/main/desktop/2x/bravo-sofa@2x
 import DesktopMK5Bed1x from "../../../../images/main/desktop/1x/mk5-bed@1x.webp";
 import DesktopMK5Bed2x from "../../../../images/main/desktop/2x/mk5-bed@2x.webp";
 
+import { useState, useEffect } from "react";
+
 export const ProductsList = () => {
   const items = [
     {
@@ -217,10 +219,25 @@ export const ProductsList = () => {
     },
   ];
 
+  const [product, setProduct] = useState([]);
+
+  function activeProducts (productId) {
+
+    setProduct(prev => [...prev, items.filter(item => item.id === productId)]);
+  };
+
+  useEffect(() => {
+
+    localStorage.setItem('activeProducts', JSON.stringify(product));
+    console.log('localStorage updated');
+    
+  }, [product]);
+
   return (
     <ul className={style.products__list}>
       {items.map((item) => (
         <ProductsItem
+          id={item.id}
           key={item.id}
           src={item.image.src}
           mobileImage={item.image.srcSet.mobile}
@@ -232,6 +249,7 @@ export const ProductsList = () => {
           inStock={item.inStock}
           oldPrice={item.price.oldPrice}
           currentPrice={item.price.currentPrice}
+          onSelect={activeProducts}
         />
       ))}
     </ul>

@@ -6,6 +6,7 @@ import './App.css';
 import { ContactsPage } from './pages/ContactsPage/ContactsPage';
 import { LastReviews } from './components/LastReviews/LastReviews';
 import { ProductCardPage } from './pages/ProductCard/ProductCardPage';
+import { BasketModal } from './components/BasketModal/BasketModal';
 
 function App() {
   return (

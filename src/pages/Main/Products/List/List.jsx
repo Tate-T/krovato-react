@@ -223,7 +223,7 @@ export const ProductsList = () => {
 
   function activeProducts (productId) {
 
-    setProduct(prev => [...prev, items.filter(item => item.id === productId)]);
+    setProduct(prev => [...prev, items.find(item => item.id === productId)]);
   };
 
   useEffect(() => {

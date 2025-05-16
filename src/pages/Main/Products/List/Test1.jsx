@@ -47,40 +47,7 @@ export const Check = () => {
 
   useEffect(() => {
 
-    products = JSON.parse(localStorage.getItem('activeProducts'));
     console.log('products checked' + products);
     
   }, [products]);
-
-  //   return (
-  //     <>
-  //       {/* {products.map(item => {
-
-  //         console.log(item);
-          
-          
-  //         // <ProductsItem
-  //         //   id={item.id}
-  //         //   key={item.id}
-  //         //   src={item.image.src}
-  //         //   mobileImage={item.image.srcSet.mobile}
-  //         //   desktopImage={item.image.srcSet.desktop}
-  //         //   alt={item.image.alt}
-  //         //   size={item.size}
-  //         //   mobileTitle={item.title.mobileTitle}
-  //         //   desktopTitle={item.title.desktopTitle}
-  //         //   inStock={item.inStock}
-  //         //   oldPrice={item.price.oldPrice}
-  //         //   currentPrice={item.price.currentPrice}
-  //         // />
-  //       })} */}
-  //     </>
-  //   )
-  // } else {  
-
-  //   return (
-
-  //     <h3>empty</h3>
-  //   );
-  // };   
 };

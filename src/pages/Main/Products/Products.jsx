@@ -2,8 +2,10 @@ import { ProductsList } from "./List/List";
 
 import containerStyle from "../../../components/Container/Container.module.scss";
 import style from "./Products.module.scss";
+import { Check } from "./List/Test1";
 
 export const Products = () => {
+
     return (
         <section className={style.products}>
             <div className={`${containerStyle.container} ${style.products__container}`}>
@@ -26,6 +28,8 @@ export const Products = () => {
                     <span className={style.products__buttonText}>Показати ще товари</span>
                 </button>
             </div>
+            <Check />
         </section>
+        
     );
-}
+};

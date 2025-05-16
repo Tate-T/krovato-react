@@ -14,7 +14,11 @@ import Desktop2xSale2 from "../../../../images/main/desktop/2x/sale2@2x.webp";
 import Desktop1xSale3 from "../../../../images/main/desktop/1x/sale3@1x.webp";
 import Desktop2xSale3 from "../../../../images/main/desktop/2x/sale3@2x.webp";
 
-export const PromotionsList = () => {
+import Sale4 from '../../../../images/discount/black-friday.jpg';
+
+import Sale5 from '../../../../images/discount/summer-sale.png';
+
+export const PromotionsList = ({activeSlide}) => {
   const items = [
     {
       id: "promotion-1",
@@ -55,17 +59,32 @@ export const PromotionsList = () => {
         alt: "Королівські скидки на м'які меблі",
       },
     },
+    {
+      id: "promotion-4",
+      image: {
+        src: `${Sale4}`,
+        alt: "Чорна п'ятниця",
+      },
+    },
+    {
+      id: "promotion-5",
+      image: {
+        src: `${Sale5}`,
+        alt: "Літня розпродаж",
+      },
+    },
   ];
 
   return (
     <ul className={style.promotions__list}>
       {items.map((item) => (
         <PromotionsItem
+          activeSlide={activeSlide}
           key={item.id}
           src={item.image.src}
           alt={item.image.alt}
-          mobileImage={item.image.srcSet.mobile}
-          desktopImage={item.image.srcSet.desktop}
+          mobileImage={item.image.srcSet?.mobile}
+          desktopImage={item.image.srcSet?.desktop}
         />
       ))}
     </ul>

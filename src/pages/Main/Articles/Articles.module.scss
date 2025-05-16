@@ -24,6 +24,7 @@
         @extend %flex-center;
         @include block-model(0, none, 0, 0 auto 23px auto);
         gap: 30px;
+        padding-top: 5px !important;
 
         @media screen and (min-width: 1200px) {
             @include size(410px, auto);
@@ -44,6 +45,27 @@
 
         @media screen and (min-width: 1290px) {
             display: flex;
+        }
+
+        padding: 10px !important;
+        border-radius: 20px !important;
+        display: inline-flex;
+        transition: all ease-in-out 0.2s;
+
+        & path {
+
+            fill: #ffbc57;
+        }
+
+        &:hover:not(:active) {
+
+            background-color: #ffbc57;
+            color: #fff;
+
+            & path {
+
+                fill: #fff;
+            }
         }
     }
 
@@ -75,28 +97,53 @@
         fill: $yellow-color;
     }
 
-    &__arrow1 {
-        @include block-model(0, none, 0, 0 auto 0 0);
-        @include size(60px, 60px);
-    }
-
     &__button {
         @include size(60px, 60px);
         background-color: #fff;
         @include block-model(0, none, 50%, 0);
+        transition: all ease-in-out 0.2s;
+        border-radius: 50%;
+        border: 1px solid #ffbc57;
+
+        &:not([disabled]):hover:not(:active) {
+
+            background-color: #ffbc57;
+            
+            & path {
+
+                fill: #fff;
+            }
+        };
+
+        &[disabled] {
+
+            cursor: not-allowed;
+            border-color: red;
+
+            & path {
+
+                fill: red;
+            }
+        };
+
+        & path {
+
+            fill: #ffbc57;
+        }
     }
 
     &__list {
-        @extend %flex-center;
-        flex-direction: column;
         @include block-model(0, none, 0, 0 auto 0 auto);
         gap: 30px;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        overflow: hidden;
 
         @media screen and (min-width: 1290px) {
             flex-direction: row;
             @include size(100%, auto);
-        }
-    }
+        };
+    };
 
     &__item {
         @include block-model(0 0 20px 0, 1px solid #E3E2E2, 8px, 0);
@@ -105,10 +152,15 @@
         background-color: #fff;
         box-shadow: -3px 4px 15px 0px rgba(0, 0, 0, 0.06);
 
+        position: relative;
+        transition: all ease-in-out 0.5s;
+
         @media screen and (min-width: 440px) {
             @include block-model(0 0 20px 0, 1px solid #E3E2E2, 8px, 0);
             @include size(410px, 476px);
         }
+
+        text-align: left;
     }
 
     &__photo {
@@ -142,6 +194,27 @@
 
         @media screen and (min-width: 440px) {
             @include block-model(0, none, 0, 0 0 0 30px);
+        }
+
+        padding: 10px !important;
+        border-radius: 20px !important;
+        display: inline-flex;
+        transition: all ease-in-out 0.2s;
+
+        & path {
+
+            fill: #ffbc57;
+        }
+
+        &:hover:not(:active) {
+
+            background-color: #ffbc57;
+            color: #fff;
+
+            & path {
+
+                fill: #fff;
+            }
         }
     }
 

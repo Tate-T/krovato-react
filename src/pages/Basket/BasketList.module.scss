@@ -1,13 +1,33 @@
-
-
 .wrapperBasket {
-    width: 520px;
-    height: 100%;
+    width: 410px;
     background-color: #FFF;
     display: flex;
     flex-direction: column;
-    gap:30px;
-    align-items: center;
+    gap: 30px;
+}
+@media(min-width:768px){
+    .wrapperBasket{
+        width:520px;
+    }
+}
+.buttonShowAll {
+    background: none;
+    border: none;
+    color: #FFBC57;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    margin: auto;
+}
+
+.arrowIcon {
+    transition: transform 0.3s ease;
+    margin-left: 6px;
+}
+
+.rotated {
+    transform: rotate(180deg);
 }
 
 
@@ -16,7 +36,8 @@
     height: 50px;
     background: #FFBC57;
     border-radius: 8px;
-    color:#FFF;
+    color: #FFF;
+    margin: auto;
 }
 
 .containerPromocode {
@@ -35,7 +56,7 @@
     font-size: 19px;
     line-height: 24px;
     border-radius: 8px;
-    color:#FFF;
+    color: #FFF;
 }
 
 .inputPromocode {
@@ -62,7 +83,9 @@
     font-weight: 600;
     font-size: 26px;
     line-height: 34px;
-    text-align: left;
+    display: flex;
+    gap: 10px;
+
     .textBasketNumber {
         color: #FFBC57;
     }
@@ -70,7 +93,9 @@
 
 .containerBed {
     display: flex;
-    gap:20px;
+    gap: 20px;
+    padding: 10px;
+    position: relative;
 }
 
 .imgBed {
@@ -87,6 +112,7 @@
     height: 50px;
     justify-content: center;
     gap: 30px;
+    border: 1px solid #B1B1B1;
 }
 
 .textBed {
@@ -104,39 +130,47 @@
     font-size: 19px;
     line-height: 24px;
     color: #2B2929;
+
     .textPrice {
-    font-size:20px;
-    line-height: 28px;
+        font-size: 20px;
+        line-height: 28px;
     }
 }
+
 .bedStatus {
     display: flex;
     justify-content: center;
-    gap:10px;
+    gap: 10px;
 }
+
 .containerDescription {
     display: flex;
-    flex-direction:column;
-    gap:15px;
+    flex-direction: column;
+    gap: 15px;
 }
-.lineDotted{
-    width:218px;
+
+.lineDotted {
+    width: 218px;
     border: 1px dotted #6A6A6A;
     height: 1px;
 }
+
 .togetherSum {
     display: flex;
     align-items: center;
-    gap:20px;
+    gap: 20px;
 }
+
 .dashBed {
-    width:520px;
-    opacity:30%;
+    width: 520px;
+    opacity: 30%;
     border: 2px solid #C5C5C5
 }
+
 .userOkay {
-    color:#FFBC57;
+    color: #FFBC57;
 }
+
 .listContainer {
     display: flex;
     flex-direction: column;
@@ -144,11 +178,47 @@
     align-items: center;
     margin-bottom: 20px;
 }
-.textSum {
-font-family: 'Proxima Nova';
-font-weight: 400;
-font-size: 16px;
-line-height: 30px;
-color:#2B2929;
 
+.textSum {
+    font-family: 'Proxima Nova';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    color: #2B2929;
+
+}
+
+.btnMath {
+    background: none;
+}
+
+.btnDelete {
+    background: none;
+    display: flex;
+    align-items: start;
+}
+.shadowFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.05), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+.showMoreWrapper {
+  position: relative;
+  z-index: 2; 
+  display: flex;
+  justify-content: center;
+  margin-top: -40px; 
+}
+.shadowContainer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 2;
 }

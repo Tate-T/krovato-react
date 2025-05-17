@@ -33,7 +33,7 @@
       flex-direction: row;
     }
   }
-  &__pashalko {
+  &__container {
     @extend %flex-center2;
     gap: 10px;
 
@@ -55,6 +55,7 @@
     border: 1px solid $grey-light-color;
     padding: 3px 10px;
     gap: 5px;
+    cursor: pointer;
   }
   &__text {
     @include font($dark-color, 147%, 15px, 400);

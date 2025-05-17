@@ -123,8 +123,6 @@ export class Questions extends Component {
       <section className={style.questions}>
         <div className={`${containerStyle.container} ${style.questions__container}`}>
           <h2
-            data-aos="zoom-out-right"
-            data-aos-duration="1500"
             className={style.questions__title}
           >
             {currentSection.title}

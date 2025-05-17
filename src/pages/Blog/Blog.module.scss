@@ -1,8 +1,23 @@
-.blog {
-	@include block-model(0 0 60px 0, none, 0, 0);
-	background-color: $light-color;
+@import "../../styles/placeholders.scss";
+@import "../../styles/mixins.scss";
+@import "../../styles/vars.scss";
 
-	@media screen and (min-width: 1290px) {
-			@include block-model(0 0 70px 0, none, 0, 0);
-	}
+.blog {
+  @include block-model(0 0 60px 0, none, 0, 0);
+  background-color: $light-color;
+
+  @media screen and (min-width: 1290px) {
+    @include block-model(0 0 70px 0, none, 0, 0);
+  }
+
+  &__title {
+    text-align: center;
+    @include block-model(0, none, 0, 0 0 40px 0);
+    @include font($dark-color, 1.33, 30px, 600);
+
+    @media screen and (min-width: 1290px) {
+      text-align: left;
+      @include font($dark-color, 1.2, 40px, 600);
+    }
+  }
 }

@@ -1,0 +1,221 @@
+[
+  {
+    "id": "product-1",
+    "image": {
+      "src": "MobileSpartaBed1x",
+      "srcSet": {
+        "mobile":
+          "MobileSpartaBed1x, MobileSpartaBed2x",
+        "desktop":
+          "DesktopSpartaBed1x, DesktopSpartaBed2x"
+      },
+      "alt": "Ліжко Спарта"
+    },
+    "alt": "sparta bed",
+    "size": "61 x 184 x 2130 мм",
+    "title": "Ліжко Спарта / Sparta з підйомним механізмом",
+    "inStock": true,
+    "oldPrice": "25 400 грн.",
+    "price": "15 400 грн."
+  },
+  {
+    "id": "product-2",
+    "image": {
+      "src": "DesktopArgonBed1x",
+      "srcSet": {
+        "mobile":
+          "DesktopArgonBed1x, DesktopArgonBed2x",
+        "desktop":
+          "DesktopArgonBed1x, DesktopArgonBed2x"
+      },
+      "alt": "Ліжко Спарта"
+    },
+    "alt": "argon bed",
+    "size": "61 x 184 x 2130 мм",
+    "title": "Ліжко Аргон з підйомним механізмом",
+    "inStock": true,
+    "price": "16 400 грн."
+  },
+  {
+    "id": "product-3",
+    "image": {
+      "src": "DesktopPrestigeBed1x",
+      "srcSet": {
+        "mobile":
+          "DesktopPrestigeBed1x, DesktopPrestigeBed2x",
+        "desktop":
+          "DesktopPrestigeBed1x, DesktopPrestigeBed2x"
+      },
+      "alt": "Ліжко Спарта"
+    },
+    "alt": "prestige bed",
+    "size": "61 x 184 x 2130 мм",
+    "title": "Ліжко Престиж з підйомним механізмом",
+    "inStock": true,
+    "price": "14 969 грн."
+  },
+  {
+    "id": "product-4",
+    "image": {
+      "src": "DesktopTokioSofa1x",
+      "srcSet": {
+        "mobile":
+          "DesktopTokioSofa1x, DesktopTokioSofa2x",
+        "desktop":
+          "DesktopTokioSofa1x, DesktopTokioSofa2x"
+      },
+      "alt": "Ліжко Спарта"
+    },
+    "alt": "tokio-sofa",
+    "size": "61 x 184 x 2130 мм",
+    "title": "Диван Токіо-2",
+    "inStock": true,
+    "price": "13 211 грн."
+  },
+  {
+    "id": "product-5",
+    "image": {
+      "src": "DesktopLargoMatress1x",
+      "srcSet": {
+        "mobile":
+          "DesktopLargoMatress1x, DesktopLargoMatress2x",
+        "desktop":
+          "DesktopLargoMatress1x, DesktopLargoMatress2x"
+      },
+      "alt": "Ліжко Спарта"
+    },
+    "alt": "largo matress",
+    "size": "61 x 184 x 2130 мм",
+    "title": "Матрац Largo SLIM / Ларго Слім",
+    "inStock": true,
+    "oldPrice": "3122 грн.",
+    "price": "2 810 грн."
+  },
+  {
+    "id": "product-6",
+    "image": {
+      "src": "DesktopArgentumMatress1x",
+      "srcSet": {
+        "mobile":
+          "DesktopArgentumMatress1x, DesktopArgentumMatress2x",
+        "desktop":
+          "DesktopArgentumMatress1x, DesktopArgentumMatress2x"
+      },
+      "alt": "Ліжко Спарта"
+    },
+    "alt": "argentum matress",
+    "size": "61 x 184 x 2130 мм",
+    "title": "Матрац ARGENTUM AMALTEA / Аргентум Амалті",
+    "inStock": true,
+    "oldPrice": "5966 грн.",
+    "price": "5 071 грн."
+  },
+  {
+    "id": "product-7",
+    "image": {
+      "src": "DesktopBravoSofa1x",
+      "srcSet": {
+        "mobile":
+          "DesktopBravoSofa1x, DesktopBravoSofa2x",
+        "desktop":
+          "DesktopBravoSofa1x, DesktopBravoSofa2x"
+      },
+      "alt": "Ліжко Спарта"
+    },
+    "alt": "sparta bed",
+    "size": "61 x 184 x 2130 мм",
+    "title": "Диван Браво",
+    "inStock": true,
+    "price": "10 008 грн."
+  },
+  {
+    "id": "product-8",
+    "image": {
+      "src": "DesktopMK5Bed1x",
+      "srcSet": {
+        "mobile":
+          "DesktopMK5Bed1x, DesktopMK5Bed2x",
+        "desktop":
+          "DesktopMK5Bed1x, DesktopMK5Bed2x"
+      },
+      "alt": "Ліжко Спарта"
+    },
+    "alt": "sparta bed",
+    "size": "61 x 184 x 2130 мм",
+    "title": "Ліжко МК-5",
+    "inStock": true,
+    "price": "8 775 грн."
+  },
+  {
+    "id": "product-9",
+    "image": {
+      "src": "DesktopMK5Bed1x",
+      "srcSet": {
+        "mobile":
+          "DesktopMK5Bed1x, DesktopMK5Bed2x",
+        "desktop":
+          "DesktopMK5Bed1x, DesktopMK5Bed2x"
+      },
+      "alt": "Ліжко Спарта"
+    },
+    "alt": "sparta bed",
+    "size": "61 x 184 x 2130 мм",
+    "title": "Ліжко МК-5",
+    "inStock": true,
+    "price": "8 775 грн."
+  },
+  {
+    "id": "product-10",
+    "image": {
+      "src": "DesktopMK5Bed1x",
+      "srcSet": {
+        "mobile":
+          "DesktopMK5Bed1x, DesktopMK5Bed2x",
+        "desktop":
+          "DesktopMK5Bed1x, DesktopMK5Bed2x"
+      },
+      "alt": "Ліжко Спарта"
+    },
+    "alt": "sparta bed",
+    "size": "61 x 184 x 2130 мм",
+    "title": "Ліжко МК-5",
+    "inStock": true,
+    "price": "8 775 грн."
+  },
+  {
+    "id": "product-11",
+    "image": {
+      "src": "DesktopMK5Bed1x",
+      "srcSet": {
+        "mobile":
+          "DesktopMK5Bed1x, DesktopMK5Bed2x",
+        "desktop":
+          "DesktopMK5Bed1x, DesktopMK5Bed2x"
+      },
+      "alt": "Ліжко Спарта"
+    },
+    "alt": "sparta bed",
+    "size": "61 x 184 x 2130 мм",
+    "title": "Ліжко МК-5",
+    "inStock": true,
+    "price": "8 775 грн."
+  },
+  {
+    "id": "product-12",
+    "image": {
+      "src": "DesktopMK5Bed1x",
+      "srcSet": {
+        "mobile":
+          "DesktopMK5Bed1x, DesktopMK5Bed2x",
+        "desktop":
+          "DesktopMK5Bed1x, DesktopMK5Bed2x"
+      },
+      "alt": "Ліжко Спарта"
+    },
+    "alt": "sparta bed",
+    "size": "61 x 184 x 2130 мм",
+    "title": "Ліжко МК-5",
+    "inStock": true,
+    "price": "8 775 грн."
+  }
+]

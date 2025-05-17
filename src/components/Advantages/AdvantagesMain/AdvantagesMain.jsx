@@ -1,31 +1,32 @@
 import style from "./AdvantagesMain.module.scss";
+import iconBus from "../../../images/adventages/car.svg";
+import iconBox from "../../../images/adventages/box.svg";
+import iconHeadphone from "../../../images/adventages/headphones.svg";
+import iconDiscount from "../../../images/adventages/discount.svg";
 
 export const AdvantagesMain = () => {
   return (
     <ul className={style.advantages__list}>
       <li className={style.advantages__item}>
-        <svg className={style.advantages__icon}>
-          <use href="./images/symbol-defs.svg#icon-bus"></use>
-        </svg>
-        <p className="advantages__text">Безкоштовна доставка</p>
+        <img src={iconBus} alt="icon" className={style.advantages__icon} />
+        <p className={style.advantages__text}>Безкоштовна доставка</p>
       </li>
       <li className={style.advantages__item}>
-        <svg className={style.advantages__icon}>
-          <use href="./images/symbol-defs.svg#icon-korobka"></use>
-        </svg>
-        <p className="advantages__text">Безкоштовна збірка</p>
+        <img src={iconBox} alt="icon" className={style.advantages__icon} />
+        <p className={style.advantages__text}>Безкоштовна збірка</p>
       </li>
       <li className={style.advantages__item}>
-        <svg className={style.advantages__icon}>
-          <use href="./images/symbol-defs.svg#icon-headphone"></use>
-        </svg>
-        <p className="advantages__text">Післягарантійне обслуговування</p>
+        <img
+          src={iconHeadphone}
+          alt="icon"
+          className={style.advantages__icon}
+        />
+				
+        <p className={style.advantages__text}>Післягарантійне обслуговування</p>
       </li>
       <li className={style.advantages__item}>
-        <svg className={style.advantages__icon}>
-          <use href="./images/symbol-defs.svg#icon-discounts"></use>
-        </svg>
-        <p className="advantages__text">Знижки клієнтам</p>
+        <img src={iconDiscount} alt="icon" className={style.advantages__icon} />
+        <p className={style.advantages__text}>Знижки клієнтам</p>
       </li>
     </ul>
   );

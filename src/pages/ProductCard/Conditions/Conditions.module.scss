@@ -1,6 +1,11 @@
+$primary-color: #ffbc57;
+$primary-hover: #e5a94a;
+
 .conditions {
-  background-color: #F8F8F8;
-padding-bottom: 50px;
+  background-color: #f8f8f8;
+  padding-bottom: 50px;
+  margin-top: 59px;
+
   &__list {
     display: flex;
     gap: 20px;
@@ -15,6 +20,11 @@ padding-bottom: 50px;
   &__item {
     display: flex;
     gap: 20px;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.02);
+    }
   }
 
   &__iconBc {
@@ -25,17 +35,22 @@ padding-bottom: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: rotate(15deg);
+    }
   }
 
   &__svg {
     width: 33.794px;
     height: 40px;
-    color: var(--Theme-Yellow, #FFBC57);
+    fill: $primary-color;
   }
 
   &__subtitle {
     color: dark;
-
+    font-family: "Proxima Nova";
     font-size: 20px;
     font-weight: 600;
     line-height: 28px;
@@ -55,7 +70,7 @@ padding-bottom: 50px;
 
   &__text {
     color: grey;
-
+    font-family: "Proxima Nova";
     font-size: 15px;
     font-weight: 400;
     line-height: 1.46;
@@ -72,13 +87,25 @@ padding-bottom: 50px;
     gap: 13px;
     align-items: center;
     margin-top: 11px;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.05);
+      text-decoration: none;
+    }
+
+    span {
+      color: $primary-color;
+      font-family: "Proxima Nova";
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.46;
+    }
   }
 
-  &__more span {
-    color: var(--Theme-Yellow, #FFBC57);
-
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 1.46;
+  &__arrow {
+    width: 16px;
+    height: 16px;
+    fill: $primary-color;
   }
 }

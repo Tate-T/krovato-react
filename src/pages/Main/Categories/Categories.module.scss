@@ -113,10 +113,9 @@
 
     &__icon {
         @include size(18px, 18px);
-        fill: $yellow-color;
 
         @media screen and (min-width: 1290px) {
-            @include size(22px, 22px);
+            @include size(50px, 50px);
         }
     }
 

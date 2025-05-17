@@ -19,6 +19,16 @@
         padding-top: 40px;
     }
 
+    &__textContent {
+        display: flex;
+        flex-direction: column;
+        margin-left: 15px;
+    }
+
+    &__textContent h3{
+        margin-right: 23px;
+        margin-bottom: 10px;
+    }
     &__itemMap {
         display: flex;
         flex-direction: column;
@@ -79,7 +89,6 @@
     &__boxText {
         display: flex;
         flex-direction: column;
-        padding-left: 65px;
     }
 
     &__item {

@@ -45,6 +45,27 @@
     gap: 10px;
     @include font($yellow-color, 1.26, 19px, 600);
     @extend %animation-of-button;
+
+    padding: 10px !important;
+        border-radius: 20px !important;
+        display: inline-flex;
+        transition: all ease-in-out 0.2s;
+
+        & path {
+
+            fill: #ffbc57;
+        }
+
+        &:hover:not(:active) {
+
+            background-color: #ffbc57;
+            color: #fff;
+
+            & path {
+
+                fill: #fff;
+            }
+        } 
   }
 
   &__couple {
@@ -78,6 +99,33 @@
     background-color: #fff;
     @include block-model(0, none, 50%, 0);
     cursor: pointer;
+    transition: all ease-in-out 0.2s;
+
+    &:not([disabled]):hover:not(:active) {
+
+      background-color: #ffbc57;
+      
+      & path {
+
+          fill: #fff;
+      }
+    };
+
+    &[disabled] {
+
+      cursor: not-allowed;
+      border-color: red;
+
+      & path {
+
+          fill: red;
+      }
+    }
+
+    & path {
+
+      fill: #ffbc57;
+  }
   }
 
   &__list {
@@ -85,13 +133,25 @@
     gap: 30px;
 
     @media screen and (min-width: 1290px) {
-      display: flex;
+
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      overflow: hidden;
     }
   }
 
   &__item {
     cursor: pointer;
     flex-basis: calc((100% - 60px) / 3);
+    width: 410px;
+    position: relative;
+    transition: transform ease-in-out 2.5s, right ease-in-out 0.4s !important;
+    transform: rotateX(90deg);
+
+    &.aos-animate {
+
+      transform: rotateX(0deg);
+    }
   }
 
   &__photo {

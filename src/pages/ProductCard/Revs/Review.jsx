@@ -1,16 +1,17 @@
 import { Component } from "react";
 import r from "./r.module.scss";
 import { IoChatbubblesOutline, IoThumbsUpOutline, IoPersonOutline, IoCloseOutline } from "react-icons/io5";
+import reviewsData from "./r.json";
 
 class Review extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      review: props.review,
+      review: reviewsData, // Используем данные из JSON
       newReply: "",
       replyName: "",
-      likes: props.review.map(reviewItem => reviewItem.likes), // Получаем лайки из базы данных
-      liked: Array(props.review.length).fill(false), // Массив для отслеживания, лайкнуто ли
+      likes: reviewsData.map(reviewItem => reviewItem.likes), // Получаем лайки из базы данных
+      liked: Array(reviewsData.length).fill(false), // Массив для отслеживания, лайкнуто ли
       showModal: false,
       currentReviewIndex: null,
     };

@@ -6,19 +6,16 @@ import './App.css';
 import { ContactsPage } from './pages/ContactsPage/ContactsPage';
 import { LastReviews } from './components/LastReviews/LastReviews';
 import { ProductCardPage } from './pages/ProductCard/ProductCardPage';
-import { AboutUsPage } from './pages/AboutUs/About-us-page';
 
 function App() {
   return (
     <div className="App">
-      <AboutUsPage />
-
       {/* <Main /> */}
       {/* <PaymentPage /> */}
       {/* <Delivery /> */}
       {/* <ContactsPage /> */}
       {/* <LastReviews /> */}
-      {/* <ProductCardPage/> */}
+      <ProductCardPage/>
     </div>
   );
 }

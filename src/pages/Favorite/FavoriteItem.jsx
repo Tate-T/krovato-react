@@ -9,7 +9,7 @@ export class FavoriteItem extends Component {
     return (
       <li className={style.Item}>
             <img src={onelink} alt={this.props.Favorite.alt } className={style.Item_image}/> 
-            <h3>`{this.props.Favorite.title.desktopTitle}`</h3>
+            <h5>`{this.props.Favorite.title.desktopTitle}`</h5>
             <p>{this.props.Favorite.price.currentPrice}</p>
       </li>
     );

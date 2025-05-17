@@ -27,9 +27,9 @@ const Favorite = () => {
 
   const [products, setProducts] = useState(() => {
 
-    return JSON.parse(localStorage.getItem("activeProducts")) ;
+    return JSON.parse(localStorage.getItem("activeProducts"));
   });
-
+  
 
   const updateProducts = () => {
     const newProducts = JSON.parse(localStorage.getItem("activeProducts"));

@@ -15,16 +15,15 @@ export const Main = () => {
       <Header />
       <main style={{paddingTop: 9}}>
         <Hero />
-        {/* <Basket /> */} 
-        <Categories />
+         {/* <Categories />
         <Products />
         <Promotions />
         <LastReviews />
         <Articles />
         <About />
-        <Advantages />  
+        <Advantages />   */}
       </main>
-      <Footer /> */}
+      <Footer /> 
     </>
   );
 };

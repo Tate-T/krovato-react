@@ -473,6 +473,8 @@ $border-color-primary: rgba(229, 169, 74, 0.2);
     // Средняя секция
     &__list2 {
         display: none;
+        position: relative;
+        z-index: 1;
     }
 
     // Нижняя секция - скрытый контент

@@ -12,7 +12,13 @@ export const ProductsList = () => {
 
   function activeProducts (productId) {
 
-    setProduct(prev => [...prev, products.find(item => item.id === productId)]);
+    if (product.find(item => item.id === productId)) {
+     
+      setProduct(prev => prev.filter(item => item.id !== productId));
+    } else {
+
+      setProduct(prev => [...prev, items.find(item => item.id === productId)]);
+    };
   };
 
   useEffect(() => {

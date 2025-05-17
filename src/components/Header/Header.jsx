@@ -10,7 +10,7 @@ import { FiHome, FiShoppingCart, FiTruck, FiMessageSquare, FiBook, FiMail } from
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './body-padding-top.css';
-
+import Favorite from "../../pages/Favorite/Favorite";
 class Header extends Component {
     state = { 
         languageDropdownVisible: false,
@@ -305,13 +305,14 @@ class Header extends Component {
             </div>
 
             {/* 4. Иконка избранного */}
-            <div className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="400" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2">
+            <div className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="400" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2"  >
                 <div className={style.icon_with_badge}>
                     <FaHeart className={style.heart_icon} size={24} />
                     {this.state.favoritesCount > 0 && (
                         <span className={style.badge}>{this.state.favoritesCount}</span>
                     )}
                 </div>
+                <Favorite/>
             </div>
             
             {/* 5. Иконка корзины */}

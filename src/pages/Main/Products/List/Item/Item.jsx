@@ -81,7 +81,7 @@ export const ProductsItem = ({
           </button>
         </li>
         <li className={style.products__coupleItem}>
-          <a type="button" className={style.products__button} href="...">
+          <a type="button" className={style.products__button} href="">
             <svg
               className={style.products__basketIcon}
               width="50"

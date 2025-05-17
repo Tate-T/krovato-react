@@ -31,7 +31,7 @@ let products = productsData;
 
 products = productsData.reduce((acc, item) => {
 
-    console.log(item.image.src);
+    // console.log(item.image.src);
 
     switch (item.image.src) {
 

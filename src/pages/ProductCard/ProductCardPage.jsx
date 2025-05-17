@@ -1,29 +1,24 @@
-import "./ProductCard.scss";
-import { ProductDescription } from "./ProductDescription/ProductDescription";
-import { Conditions } from "./Conditions/Conditions";
-import { Сharacteristic } from './Сharacteristic/Сharacteristic';
-import { Addition } from "./Addition/Addition";
-import { Recommendations } from './Recommendations/Recommendations';
-import { Advantages } from "../../components/Advantages/Advantages";
-import { Footer } from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
 import React, { Component } from 'react';
+import Header from '../../components/Header/Header';
+import { ProductDescription } from './ProductDescription/ProductDescription';
+import { Conditions } from './Conditions/Conditions';
+import Review from './Revs/Review.jsx'; 
+import reviews from "./Revs/r.json";
+import { Сharacteristic } from './Сharacteristic/Сharacteristic';
 
-class ProductCardPage extends Component {
+
+export class ProductCardPage extends Component {
   render() {
     return (
-      <div className="ProductCardPage">
-        <Header></Header>
-        <ProductDescription/>
-        <Conditions/>
+      <div className="product-card-page"> {/* Обернуть содержимое в div */}
+        <Header />
+        <Conditions />
+
+        <ProductDescription />
         <Сharacteristic/>
-        <Addition/>
-        <Recommendations/>
-        <Advantages/>
-        <Footer/>
+        <Review review={reviews} />
+        {/* Другие содержимое */}
       </div>
     );
   }
 }
-
-export { ProductCardPage };

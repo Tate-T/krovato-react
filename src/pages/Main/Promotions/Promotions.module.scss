@@ -145,7 +145,13 @@
     flex-basis: calc((100% - 60px) / 3);
     width: 410px;
     position: relative;
-    transition: all ease-in-out 0.4s; 
+    transition: transform ease-in-out 2.5s, right ease-in-out 0.4s !important;
+    transform: rotateX(90deg);
+
+    &.aos-animate {
+
+      transform: rotateX(0deg);
+    }
   }
 
   &__photo {

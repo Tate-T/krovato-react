@@ -20,14 +20,14 @@ const Favorite = () => {
     console.log("products checked" + products);
   }, [products]);
   return(
-    <div className={styleFavorite.Favorite}>
+    <li className={styleFavorite.Favorite}>
     
     {products.map((item)=>{
       return(
         <FavoriteItem Favorite={item}/>
       )
     })}
-  </div>
+  </li>
   );
 };
 export default Favorite

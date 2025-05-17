@@ -10,14 +10,15 @@ import { ProductCardPage } from './pages/ProductCard/ProductCardPage';
 function App() {
   return (
     <div className="App">
-      <Main />
-      {/* <PaymentPage />
+      <Main /> 
+      <PaymentPage />
       <Delivery />
       <ContactsPage />
       <LastReviews />
-      <ProductCardPage/> */}
+      <ProductCardPage />
     </div>
   );
 }
 
 export default App;
+

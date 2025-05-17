@@ -1,4 +1,6 @@
 import style from "./BlogArticleList.module.scss";
+import right from "../../../images/blog-article/arrowRight.svg";
+import left from "../../../images/blog-article/arrowLeft.svg";
 
 export const BlogArticleList = () => {
   return (
@@ -63,18 +65,20 @@ export const BlogArticleList = () => {
       <ul className={style.article__buttons}>
         <li className={style.article__button}>
           <button className={style.article__btn}>
-            <svg className={style.article__icon}> {/*article__icon--left*/}
-              <use href="../images/symbol-defs.svg#icon-arrow-left"></use>
-            </svg>
+            <img
+              src={left}
+              className={`${style.article__icon} ${style.article__iconLeft}`}
+            />
             <span>Попередня стаття</span>
           </button>
         </li>
         <li className={style.article__button}>
           <button className={style.article__btn}>
             <span>Наступна стаття</span>
-            <svg className={style.article__icon}> {/*article__icon--right*/}
-              <use href="../images/symbol-defs.svg#icon-arrow-left"></use>
-            </svg>
+            <img
+              src={right}
+              className={`${style.article__icon} ${style.article__iconRight}`}
+            />
           </button>
         </li>
       </ul>

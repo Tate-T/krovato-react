@@ -2,12 +2,14 @@
 Артем Дмитренко - LastReviews, ContactsPage
 Нікіта Мельник - Гармошка (секція), Delivery (сторінка)
 Артур Панковець - Questions
-Софія Питлюк - Pagination, Basket
+Софія Питлюк - Basket (сторінка)
 Максим Рябошапка - PaymentPage, Catalog (Зробити фільтрацію товарів - список з головної сторінки від Дані) - Винести список ліжок як окремий компонент
 Даня Нестеренко - Main, динамічний список у компоненті categories, затянути список ліжок та підключити
 
 Юрій Цапій - ProductCard(conditions, reviews, recomandations), Header
 Вячеслав Цибульський - Blog, BlogArticle, Advantages
 Вікторія Чельняк - Footer, половина ProductCard, затянути список ліжок та підключити
-Влад Сидоров
+Сергій Заморило - Favorite
 
+Влад Сидоров - Pagination
+Назар Бенєвський - Basket (модальне вікно)

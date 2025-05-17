@@ -4,6 +4,7 @@ import containerStyle from "../../../components/Container/Container.module.scss"
 import style from "./Products.module.scss";
 
 export const Products = () => {
+
     return (
         <section className={style.products}>
             <div className={`${containerStyle.container} ${style.products__container}`}>
@@ -27,5 +28,6 @@ export const Products = () => {
                 </button>
             </div>
         </section>
+        
     );
-}
+};

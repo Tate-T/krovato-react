@@ -5,7 +5,8 @@ export class FavoriteItem extends Component {
     super(props);
   }
   render() {
-    const [onelink, twolink] = this.props.Favorite.image.srcSet.desktop.split(",")
+
+    const [onelink, twolink] = this.props.Favorite.image.srcSet.desktop.split(",");
     return (
       <li className={style.Item}>
             <img src={onelink} alt={this.props.Favorite.alt } className={style.Item_image}/> 

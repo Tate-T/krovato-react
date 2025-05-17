@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import c from "../../components/Container/Container.module.scss"
+
 import style from "./h.module.scss";
 import { HiOutlineShoppingBag } from "react-icons/hi";
-import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
 import { FiSearch, FiPhone, FiMenu, FiChevronDown } from "react-icons/fi";
 import { BsCreditCard2Front } from "react-icons/bs";
 import { FaPercent } from "react-icons/fa";
@@ -10,7 +12,8 @@ import { FiHome, FiShoppingCart, FiTruck, FiMessageSquare, FiBook, FiMail } from
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './body-padding-top.css';
-import Favorite from "../../pages/Favorite/Favorite";
+// import Favorite from "../../pages/Favorite/Favorite";
+
 class Header extends Component {
     state = { 
         languageDropdownVisible: false,
@@ -18,7 +21,7 @@ class Header extends Component {
         additionalNumbersVisible: false,
         searchDropdownVisible: false,
         basketCount: 0,
-        favoritesCount: 0
+        // favoritesCount: 0
     }; 
 
     componentDidMount() {
@@ -229,12 +232,7 @@ class Header extends Component {
                         <FiSearch size={24} />
                     </div>
                     <div className={style.header__icon_btn} data-aos="zoom-in" data-aos-duration="700" data-aos-delay="350" data-aos-easing="ease-out-back">
-                        <div className={style.icon_with_badge}>
-                            <FaRegHeart size={24} />
-                            {this.state.favoritesCount > 0 && (
-                                <span className={style.badge}>{this.state.favoritesCount}</span>
-                            )}
-                        </div>
+                        <FaRegHeart size={24} />
                     </div>
                     <div className={style.header__icon_btn} data-aos="zoom-in" data-aos-duration="700" data-aos-delay="400" data-aos-easing="ease-out-back">
                         <div className={style.icon_with_badge}>
@@ -250,7 +248,10 @@ class Header extends Component {
     );
 
     renderMiddleSection = () => (
-        <div className={style.header__list2} data-aos="fade" data-aos-duration="1000" data-aos-easing="ease-out-cubic">
+        <div className={[c.container, style.container].join(' ')}>
+
+        
+        {/* <div className={style.header__list2} data-aos="fade" data-aos-duration="1000" data-aos-easing="ease-out-cubic"> */}
             {/* 1. Логотип */}
             <div className={style.header__item} data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100" data-aos-easing="ease-out-cubic" data-aos-anchor=".header__list2">
                 <a className={style.header__logo_link} href="./index.html">
@@ -259,6 +260,7 @@ class Header extends Component {
                     </div>
                 </a>
             </div>
+            {/* </div> */}
             
             {/* 2. Поле поиска */}
             <div className={style.header__form_box} data-aos="fade-up" data-aos-duration="900" data-aos-delay="200" data-aos-easing="ease-out-quart" data-aos-anchor=".header__list2">
@@ -304,17 +306,6 @@ class Header extends Component {
                 )}
             </div>
 
-            {/* 4. Иконка избранного */}
-            <div className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="400" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2"  >
-                <div className={style.icon_with_badge}>
-                    <FaHeart className={style.heart_icon} size={24} />
-                    {this.state.favoritesCount > 0 && (
-                        <span className={style.badge}>{this.state.favoritesCount}</span>
-                    )}
-                </div>
-                <Favorite/>
-            </div>
-            
             {/* 5. Иконка корзины */}
             <a href="#" className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="500" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2">
                 <div className={style.icon_with_badge}>

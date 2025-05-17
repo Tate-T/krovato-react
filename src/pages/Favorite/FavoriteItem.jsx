@@ -1,13 +1,14 @@
 import { Component } from "react";
+import style from "./Favorite.module.scss"
 export class FavoriteItem extends Component {
   constructor(props) {
     super(props);
   }
-
   render() {
+    const [onelink, twolink] = this.props.Favorite.image.srcSet.desktop.split(",")
     return (
-      <li>
-            <img src={this.props.Favorite.image.src} alt={this.props.Favorite.alt } /> {/**src стоїть тимчасово поки не будуть нормально зроблені посилання в srcSet */}
+      <li className={style.Item}>
+            <img src={onelink} alt={this.props.Favorite.alt } className={style.Item_image}/> 
             <h3>`{this.props.Favorite.title.desktopTitle}`</h3>
             <p>{this.props.Favorite.price.currentPrice}</p>
       </li>

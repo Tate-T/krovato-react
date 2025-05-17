@@ -22,11 +22,11 @@ export const ProductsItem = ({
       data-aos-duration="1500"
       className={style.products__item}
     >
-      <picture>
-        <source srcSet={desktopImage} media="(min-width: 1200px)" />
-        <source srcSet={mobileImage} media="(min-width: 320px)" />
+      {/* <picture> */}
+        {/* <source srcSet={desktopImage} media="(min-width: 1200px)" /> */}
+        {/* <source srcSet={mobileImage} media="(min-width: 320px)" /> */}
         <img src={src} alt={alt} />
-      </picture>
+      {/* </picture> */}
       <p className={style.products__size}>{size}</p>
       <a href="./product-card.html" className={style.products__subtitleDesktop}>
         {desktopTitle}

@@ -5,8 +5,6 @@ import style from "../Products.module.scss";
 import { useState, useEffect } from "react";
 
 import products from '../../../../products';
-console.log(products);
-
 
 export const ProductsList = () => {
 
@@ -38,8 +36,8 @@ export const ProductsList = () => {
           mobileTitle={item.title.mobileTitle}
           desktopTitle={item.title.desktopTitle}
           inStock={item.inStock}
-          oldPrice={item.price.oldPrice}
-          currentPrice={item.price.currentPrice}
+          oldPrice={item.oldPrice}
+          currentPrice={item.price}
           onSelect={activeProducts}
         />
       ))}

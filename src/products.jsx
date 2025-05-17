@@ -26,7 +26,6 @@ import DesktopBravoSofa2x from "./images/main/desktop/2x/bravo-sofa@2x.webp";
 
 import DesktopMK5Bed1x from "./images/main/desktop/1x/mk5-bed@1x.webp";
 import DesktopMK5Bed2x from "./images/main/desktop/2x/mk5-bed@2x.webp";
-import divan from "./images/hero/divan-1.png";
 
 let products = productsData;
 
@@ -38,7 +37,7 @@ products = productsData.reduce((acc, item) => {
 
         case 'MobileSpartaBed1x':
             
-            item.image.src = `${divan}`;
+            item.image.src = `${MobileSpartaBed1x}`;
         
             break;
 

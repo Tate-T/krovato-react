@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import c from "../../components/Container/Container.module.scss"
+
 import style from "./h.module.scss";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
@@ -250,7 +252,10 @@ class Header extends Component {
     );
 
     renderMiddleSection = () => (
-        <div className={style.header__list2} data-aos="fade" data-aos-duration="1000" data-aos-easing="ease-out-cubic">
+        <div className={[c.container, style.container].join(' ')}>
+
+        
+        {/* <div className={style.header__list2} data-aos="fade" data-aos-duration="1000" data-aos-easing="ease-out-cubic"> */}
             {/* 1. Логотип */}
             <div className={style.header__item} data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100" data-aos-easing="ease-out-cubic" data-aos-anchor=".header__list2">
                 <a className={style.header__logo_link} href="./index.html">
@@ -259,6 +264,7 @@ class Header extends Component {
                     </div>
                 </a>
             </div>
+            {/* </div> */}
             
             {/* 2. Поле поиска */}
             <div className={style.header__form_box} data-aos="fade-up" data-aos-duration="900" data-aos-delay="200" data-aos-easing="ease-out-quart" data-aos-anchor=".header__list2">

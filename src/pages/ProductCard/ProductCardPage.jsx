@@ -10,23 +10,15 @@ import { Advantages } from "../../components/Advantages/Advantages";
 import { Footer } from "../../components/Footer/Footer";
 
 import  products from '../../products'
-import React, { Component } from 'react';
+      <div className="product-card-page"> {/* Обернуть содержимое в div */}
+        <Header />
+        <Conditions />
 
-class ProductCardPage extends Component {
-  render() {
-    return (
-      <div className="ProductCardPage">
-        {/* <Header></Header> */}
-        <ProductDescription/>
-        <Conditions/>
+        <ProductDescription />
         <Сharacteristic/>
-        <Addition productsData={products}/>
-        <Recommendations productsData={products}/>
-        <Advantages/>
-        <Footer/>
+        <Review review={reviews} />
+        {/* Другие содержимое */}
       </div>
     );
   }
 }
-
-export { ProductCardPage };

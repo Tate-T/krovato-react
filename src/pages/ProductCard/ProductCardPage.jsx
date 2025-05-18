@@ -32,7 +32,7 @@ export class ProductCardPage extends Component {
             <Advantages />
           </div>
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }

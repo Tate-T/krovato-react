@@ -6,12 +6,15 @@
   flex-direction: column;
   gap: 24px;
   padding: 32px;
-  background: linear-gradient(145deg, #ffffff, #f8fafc);
+  // background: linear-gradient(145deg, #ffffff, #f8fafc);
   border-radius: 16px;
   box-shadow: 
     0 4px 20px rgba(0, 0, 0, 0.05),
     0 1px 3px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
+  max-width: 80%;
+  // @media (max-width: 1200px) {
+  //   width: 80%;
+  // }
   margin: 0 auto;
   backdrop-filter: blur(10px);
 }

@@ -10,11 +10,11 @@ import { ProductCardPage } from './pages/ProductCard/ProductCardPage';
 function App() {
   return (
     <div className="App">
-      <Main /> 
+      {/* <Main /> 
       <PaymentPage />
       <Delivery />
       <ContactsPage />
-      <LastReviews />
+      <LastReviews /> */}
       <ProductCardPage />
     </div>
   );

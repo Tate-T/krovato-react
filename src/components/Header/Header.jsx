@@ -19,9 +19,7 @@ export class Header extends Component {
         languageDropdownVisible: false,
         mobileMenuVisible: false,
         additionalNumbersVisible: false,
-        searchDropdownVisible: false,
-        basketCount: 0,
-        favoritesCount: 0
+        searchDropdownVisible: false
     }; 
 
     componentDidMount() {
@@ -222,9 +220,6 @@ export class Header extends Component {
                     <div className={style.header__icon_btn} data-aos="zoom-in" data-aos-duration="700" data-aos-delay="350" data-aos-easing="ease-out-back">
                         <div className={style.icon_with_badge}>
                             <HiOutlineShoppingBag size={24} />
-                            {this.state.basketCount > 0 && (
-                                <span className={style.badge}>{this.state.basketCount}</span>
-                            )}
                         </div>
                     </div>
                 </div>
@@ -282,19 +277,11 @@ export class Header extends Component {
                 )}
             </div>
             <div className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="400" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2">
-                <div className={style.icon_with_badge}>
-                    <FaHeart className={style.heart_icon} size={24} />
-                    {this.state.favoritesCount > 0 && (
-                        <span className={style.badge}>{this.state.favoritesCount}</span>
-                    )}
-                </div>
+                <FaHeart className={style.heart_icon} size={24} />
             </div>
             <a href="#" className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="500" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2">
                 <div className={style.icon_with_badge}>
                     <HiOutlineShoppingBag className={style.cart_icon} size={24} />
-                    {this.state.basketCount > 0 && (
-                        <span className={style.badge}>{this.state.basketCount}</span>
-                    )}
                 </div>
             </a>
         </div>

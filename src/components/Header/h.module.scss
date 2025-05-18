@@ -545,9 +545,10 @@ $border-color-primary: rgba(229, 169, 74, 0.2);
     // Стили для списков
     &__list {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         padding: 10px;
         list-style: none; 
+        width: 100%;
     }
 
     &__item {
@@ -587,6 +588,7 @@ $border-color-primary: rgba(229, 169, 74, 0.2);
         display: flex;
         align-items: center;
         position: relative;
+        order: 999;
     }
     
     &__lang_container {
@@ -1851,6 +1853,11 @@ $border-color-primary: rgba(229, 169, 74, 0.2);
                 height: 10px;
             }
         }
+
+        &__list-svg {
+            margin-left: auto;
+            order: 999;
+        }
     }
     
     .mobile_menu_list {
@@ -1904,10 +1911,7 @@ $border-color-primary: rgba(229, 169, 74, 0.2);
         top: 160px;
     }
     
-    .mobile_menu_list {
-        top: 160px;
-    }
-    
+    .mobile_menu_list, 
     .blur_overlay, 
     .blur_overlay_find {
         top: 160px;

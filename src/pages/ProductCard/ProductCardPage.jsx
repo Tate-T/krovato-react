@@ -20,7 +20,7 @@ export class ProductCardPage extends Component {
   render() {
     return (
       <div className="product-card-page">
-        {/* <Header /> */}
+        <Header />
         <main>
           <div className="container">
             <ProductDescription product={this.state.currentProduct} />

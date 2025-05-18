@@ -1,6 +1,6 @@
 import { PromotionsList } from "./List/List";
 
-import containerStyle from "../../../components/Container/Container.module.scss";
+import Container from "../../../components/Container/Container";
 import style from "./Promotions.module.scss";
 import { useState } from "react";
 
@@ -26,9 +26,7 @@ export const Promotions = () => {
 
   return (
     <section className={style.promotions}>
-      <div
-        className={`${containerStyle.container} ${style.promotions__container}`}
-      >
+      <Container>
         <div className={style.promotions__titleBox}>
           <h2
             data-aos="zoom-out-right"
@@ -158,7 +156,7 @@ export const Promotions = () => {
             ></div>
           </li>
         </ul>
-      </div>
+      </Container>
     </section>
   );
 };

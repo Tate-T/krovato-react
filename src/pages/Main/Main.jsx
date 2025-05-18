@@ -15,13 +15,13 @@ export const Main = () => {
       <Header />
       <main style={{paddingTop: 9}}>
         <Hero />
-         {/* <Categories />
+        <Categories />
         <Products />
         <Promotions />
         <LastReviews />
         <Articles />
         <About />
-        <Advantages />   */}
+        <Advantages />  
       </main>
       <Footer /> 
     </>

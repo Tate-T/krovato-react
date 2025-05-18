@@ -1,6 +1,6 @@
 import { ArticlesList } from "./List/List";
 
-import containerStyle from "../../../components/Container/Container.module.scss";
+import Container from "../../../components/Container/Container";
 import style from "./Articles.module.scss";
 import { useState } from "react";
 
@@ -26,9 +26,7 @@ export const Articles = () => {
 
   return (
     <section className={style.articles}>
-      <div
-        className={`${containerStyle.container} ${style.articles__container}`}
-      >
+      <Container>
         <div className={style.articles__titleBox}>
           <h2
             data-aos="zoom-out-right"
@@ -133,7 +131,7 @@ export const Articles = () => {
           </svg>
           <p className={style.articles__mainButtonText}>Показати ще товари</p>
         </button>
-      </div>
+      </Container>
     </section>
   );
 };

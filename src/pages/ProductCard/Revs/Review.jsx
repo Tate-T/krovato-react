@@ -1,150 +1,160 @@
-import React, { useState, useEffect } from 'react';
-import styles from './r.module.scss';
-
-const Review = ({ reviews }) => {
-  const [reviewsList, setReviewsList] = useState(reviews || []);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedReview, setSelectedReview] = useState(null);
-  const [replyText, setReplyText] = useState('');
-  const [likedReviews, setLikedReviews] = useState(() => {
-    const saved = localStorage.getItem('likedReviews');
-    return saved ? JSON.parse(saved) : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem('likedReviews', JSON.stringify(likedReviews));
-  }, [likedReviews]);
-
-  const handleReply = (review) => {
-    setSelectedReview(review);
-    setIsModalOpen(true);
-  };
-
-  const handleLike = (reviewIndex) => {
-    if (likedReviews.includes(reviewIndex)) {
-      return; // Если отзыв уже лайкнут, ничего не делаем
-    }
-
-    setReviewsList(prevReviews => {
-      const newReviews = [...prevReviews];
-      newReviews[reviewIndex] = {
-        ...newReviews[reviewIndex],
-        likes: (newReviews[reviewIndex].likes || 0) + 1
-      };
-      return newReviews;
-    });
-
-    setLikedReviews(prev => [...prev, reviewIndex]);
-  };
-
-  const handleSubmitReply = () => {
-    if (!replyText.trim() || !selectedReview) return;
-
-    const newReply = {
-      username: 'Магазин',
-      text: replyText,
-      date: new Date().toISOString().split('T')[0]
+import { Component } from "react";
+import r from "./r.module.scss";
+import {
+  IoChatbubblesOutline,
+  IoThumbsUpOutline,
+  IoPersonOutline,
+  IoCloseOutline,
+} from "react-icons/io5";
+import reviewsData from "./r.json";
+import { BiLike } from "react-icons/bi";
+class Review extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      review: reviewsData, // Используем данные из JSON
+      newReply: "",
+      replyName: "",
+      likes: reviewsData.map((reviewItem) => reviewItem.likes), // Получаем лайки из базы данных
+      liked: Array(reviewsData.length).fill(false), // Массив для отслеживания, лайкнуто ли
+      showModal: false,
+      currentReviewIndex: null,
     };
+  }
 
-    setReviewsList(prevReviews => {
-      return prevReviews.map(review => {
-        if (review === selectedReview) {
-          return {
-            ...review,
-            replies: [...(review.replies || []), newReply]
-          };
-        }
-        return review;
-      });
-    });
-
-    setReplyText('');
-    setIsModalOpen(false);
-    setSelectedReview(null);
+  handleReplyChange = (e) => {
+    this.setState({ newReply: e.target.value });
   };
 
-  if (!reviewsList.length) {
+  handleNameChange = (e) => {
+    this.setState({ replyName: e.target.value });
+  };
+
+  handleReplySubmit = () => {
+    const { review, newReply, replyName, currentReviewIndex } = this.state;
+    if (newReply.trim() && replyName.trim()) {
+      const updatedReview = [...review];
+      updatedReview[currentReviewIndex].replies.push({
+        username: replyName,
+        text: newReply,
+        date: new Date().toLocaleString(),
+      });
+      this.setState({
+        review: updatedReview,
+        newReply: "",
+        replyName: "",
+        showModal: false,
+        currentReviewIndex: null,
+      });
+    }
+  };
+
+  handleLike = (reviewIndex) => {
+    this.setState((prevState) => {
+      const newLikes = [...prevState.likes];
+      const newLiked = [...prevState.liked];
+      if (!newLiked[reviewIndex]) {
+        // Проверяем, был ли лайк
+        newLikes[reviewIndex] += 1; // Добавляем лайк
+        newLiked[reviewIndex] = true; // Устанавливаем, что лайк был добавлен
+      }
+      return { likes: newLikes, liked: newLiked };
+    });
+  };
+
+  openModal = (index) => {
+    this.setState({ showModal: true, currentReviewIndex: index });
+  };
+
+  closeModal = () => {
+    this.setState({
+      showModal: false,
+      newReply: "",
+      replyName: "",
+      currentReviewIndex: null,
+    });
+  };
+
+  render() {
+    const {
+      review,
+      newReply,
+      replyName,
+      likes,
+      showModal,
+      currentReviewIndex,
+    } = this.state;
     return (
-      <div className={styles.rev}>
-        <p>Пока нет отзывов</p>
+      <div className={r.rev}>
+        {review.map((reviewItem, index) => (
+          <div key={index} className={r.review}>
+            <div className={r.usernameLine}>
+              <IoPersonOutline className={r.userIcon} />
+              <h3>{reviewItem.username}</h3>
+              <span>
+                {new Date(reviewItem.date).toLocaleDateString("ru-RU")}
+              </span>
+              <span>{"★".repeat(reviewItem.stars)}</span>
+            </div>
+            <p>{reviewItem.text}</p>
+            <div className={r.replySection}>
+              <button
+                className={r.replyButton}
+                onClick={() => this.openModal(index)}
+              >
+                <IoChatbubblesOutline className={r.replyIcon} />
+                Ответить
+              </button>
+              <button
+                className={r.likeButton}
+                onClick={() => this.handleLike(index)}
+              >
+                <BiLike className={r.likeIcon} />
+                Нравится ({likes[index]})
+              </button>
+              <span>{reviewItem.replies.length} ответов</span>
+              {index === 0 && <span className={r.also}>А также</span>}
+            </div>
+            <div className={r.likesSection}>
+              {reviewItem.replies.map((reply, replyIndex) => (
+                <div key={replyIndex} className={r.reply}>
+                  <strong>{reply.username}</strong>: {reply.text}{" "}
+                  <span>{reply.date}</span>
+                </div>
+              ))}
+              {showModal && currentReviewIndex === index && (
+                <div className={r.modal}>
+                  <button className={r.closeButton} onClick={this.closeModal}>
+                    <IoCloseOutline />
+                  </button>
+                  <h3>Добавить ответ</h3>
+                  <input
+                    type="text"
+                    value={replyName}
+                    onChange={this.handleNameChange}
+                    placeholder="Ваше имя"
+                    className={r.modalInput}
+                  />
+                  <textarea
+                    value={newReply}
+                    onChange={this.handleReplyChange}
+                    placeholder="Ваш ответ..."
+                    className={r.modalTextarea}
+                  />
+                  <button
+                    className={r.submitButton}
+                    onClick={this.handleReplySubmit}
+                  >
+                    Отправить
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
       </div>
     );
   }
-
-  return (
-    <div className={styles.rev}>
-      {reviewsList.map((review, index) => (
-        <div key={index} className={styles.review}>
-          <div className={styles.usernameLine}>
-            <span className={styles.userIcon}>👤</span>
-            <h3>{review.username}</h3>
-            <span>{review.date}</span>
-            <span>★ {review.stars}</span>
-          </div>
-          <p>{review.text}</p>
-          
-          <div className={styles.replySection}>
-            <button 
-              className={styles.replyButton}
-              onClick={() => handleReply(review)}
-            >
-              <span className={styles.replyIcon}>↩</span>
-              Ответить
-            </button>
-            <span className={styles.also}>
-              {review.replies?.length ? `Ещё ${review.replies.length} ответов` : ''}
-            </span>
-          </div>
-
-          {review.replies?.map((reply, replyIndex) => (
-            <div key={replyIndex} className={styles.reply}>
-              <strong>{reply.username}</strong>
-              {reply.text}
-              <span>{reply.date}</span>
-            </div>
-          ))}
-
-          <div className={styles.likesSection}>
-            <button 
-              className={`${styles.likeButton} ${likedReviews.includes(index) ? styles.liked : ''}`}
-              onClick={() => handleLike(index)}
-              disabled={likedReviews.includes(index)}
-            >
-              <span className={styles.likeIcon}>❤</span>
-              {likedReviews.includes(index) ? 'Понравилось' : 'Нравится'}
-            </button>
-            <span>{review.likes || 0} людям понравилось</span>
-          </div>
-        </div>
-      ))}
-
-      {isModalOpen && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modal}>
-            <button 
-              className={styles.closeButton}
-              onClick={() => setIsModalOpen(false)}
-            >
-              ✕
-            </button>
-            <h3>Ответить на отзыв</h3>
-            <textarea
-              value={replyText}
-              onChange={(e) => setReplyText(e.target.value)}
-              placeholder="Введите ваш ответ..."
-              className={styles.replyTextarea}
-            />
-            <button 
-              className={styles.submitButton}
-              onClick={handleSubmitReply}
-            >
-              Отправить
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
+}
 
 export default Review;

@@ -40,6 +40,12 @@ $primary-hover: #e5a94a;
     &:hover {
       transform: rotate(15deg);
     }
+
+    img {
+      max-width: 40px; /* Уменьшил размер картинок */
+      max-height: 40px;
+      object-fit: contain;
+    }
   }
 
   &__svg {
@@ -49,7 +55,7 @@ $primary-hover: #e5a94a;
   }
 
   &__subtitle {
-    color: dark;
+    color: #333333;
     font-family: "Proxima Nova";
     font-size: 20px;
     font-weight: 600;
@@ -69,7 +75,7 @@ $primary-hover: #e5a94a;
   }
 
   &__text {
-    color: grey;
+    color: #666666;
     font-family: "Proxima Nova";
     font-size: 15px;
     font-weight: 400;

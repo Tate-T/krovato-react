@@ -1,4 +1,4 @@
-import containerStyle from "../../../components/Container/Container.module.scss";
+import Container from "../../../components/Container/Container";
 import style from "./Hero.scss";
 import { useState, useEffect } from "react";
 import divan1 from '../../../images/hero/divan-1.png';
@@ -36,7 +36,7 @@ export function Hero () {
 
   return (
     <section className="hero">
-      <div className={`${containerStyle.container} hero__inner`}>
+      <Container className='hero__inner'>
         <ul className={`hero__list slide-${slide + 1}`}>
           <li className='hero__list-item'>
             <img className = 'hero__list-item' src={divan1} alt="" />
@@ -117,7 +117,7 @@ export function Hero () {
           <span onClick={() => setSlide(4)} className='hero__pagination-dot'></span>
           <span className={`hero__pagination-anchor slide-${slide + 1}`}></span>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

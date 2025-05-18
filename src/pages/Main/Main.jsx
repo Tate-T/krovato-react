@@ -15,7 +15,6 @@ export const Main = () => {
       <Header />
       <main style={{paddingTop: 9}}>
         <Hero />
-        {/* <Basket /> */} 
         <Categories />
         <Products />
         <Promotions />
@@ -24,7 +23,7 @@ export const Main = () => {
         <About />
         <Advantages />  
       </main>
-      <Footer />
+      <Footer /> 
     </>
   );
 };

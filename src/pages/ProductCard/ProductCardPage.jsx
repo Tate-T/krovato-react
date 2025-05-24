@@ -10,12 +10,12 @@ import { Advantages } from "../../components/Advantages/Advantages";
 import { Footer } from "../../components/Footer/Footer";
 import Review from "./Revs/Review";
 import { Component } from "react";
-import productsData from "../../productsData.json";
+import productsData from "../../productsData.json";     
 
 
 export class ProductCardPage extends Component {
   state = {
-    currentProduct: productsData[0] // Берем первый продукт для примера
+    currentProduct: productsData[0]
   }
 
   render() {
@@ -23,7 +23,6 @@ export class ProductCardPage extends Component {
       <div className="product-card-page">
         <Header />
         <main>
-          <div className="container">
           <Hero />
           <ProductDescription/>
           <Conditions />
@@ -32,7 +31,6 @@ export class ProductCardPage extends Component {
           <Addition productsData={productsData} />
           <Recommendations productsData={productsData} />
           <Advantages />
-          </div>
         </main>
         <Footer />
       </div>

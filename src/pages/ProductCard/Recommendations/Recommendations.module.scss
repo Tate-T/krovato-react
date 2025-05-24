@@ -24,18 +24,22 @@ button {
     }
   }
 
-  &__list {
+   &__list {
     display: flex;
-    gap: 30px;
+    // gap: 30px; 
     // flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
 
+    @media screen and (min-width: 768px) {
+          justify-content: space-between;
+    }
+
     @media screen and (min-width: 1290px) {
       font-size: 40px;
       flex-direction: row;
-      justify-content: space-between;
-      flex-wrap: nowrap;
+      // justify-content: space-between;
+      // flex-wrap: nowrap;
     }
   }
 
@@ -47,7 +51,7 @@ button {
     border: 1px solid #e3e2e2;
     background: #fff;
     box-shadow: -3px 4px 15px 0px rgba(0, 0, 0, 0.06);
-    width: 360px;
+    width: 300px;
 
     @media screen and (max-width: 480px) {
       width: 278px;

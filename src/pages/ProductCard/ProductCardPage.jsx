@@ -1,5 +1,6 @@
 import "./ProductCard.scss";
 import { Header } from "../../components/Header/Header";
+import { Hero } from "./Hero/Hero";
 import { ProductDescription } from "./ProductDescription/ProductDescription";
 import { Conditions } from "./Conditions/Conditions";
 import { Сharacteristic } from "./Сharacteristic/Сharacteristic";
@@ -22,15 +23,16 @@ export class ProductCardPage extends Component {
       <div className="product-card-page">
         <Header />
         <main>
-          <div className="container">
-            <ProductDescription product={this.state.currentProduct} />
-            <Conditions />
-            <Сharacteristic product={this.state.currentProduct} />
-            <Review />
-            <Addition productsData={productsData} />
-            <Recommendations productsData={productsData} />
-            <Advantages />
-          </div>
+          {/* <div className="container"> */}
+          <Hero />
+          <ProductDescription product={this.state.currentProduct} />
+          <Conditions />
+          <Сharacteristic product={this.state.currentProduct} />
+          <Review />
+          <Addition productsData={productsData} />
+          <Recommendations productsData={productsData} />
+          <Advantages />
+          {/* </div> */}
         </main>
         <Footer />
       </div>

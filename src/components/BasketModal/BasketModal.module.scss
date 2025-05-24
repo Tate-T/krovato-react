@@ -20,6 +20,11 @@ $red: red;
   padding: 20px;
   overflow-y: auto;
   max-height: 100vh;
+  z-index: 1000000000;
+
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
 }
 
 .header {
@@ -133,4 +138,9 @@ $red: red;
     color: $orange;
     border: 2px solid $orange;
   }
+}
+
+.none {
+  display: none;
+  color: red;
 }

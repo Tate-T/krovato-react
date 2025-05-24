@@ -1,5 +1,6 @@
 import "./ProductCard.scss";
-import Header from "../../components/Header/Header";
+import { Header } from "../../components/Header/Header";
+import { Hero } from "./Hero/Hero";
 import { ProductDescription } from "./ProductDescription/ProductDescription";
 import { Conditions } from "./Conditions/Conditions";
 import { Сharacteristic } from "./Сharacteristic/Сharacteristic";
@@ -9,13 +10,8 @@ import { Advantages } from "../../components/Advantages/Advantages";
 import { Footer } from "../../components/Footer/Footer";
 import Review from "./Revs/Review";
 import { Component } from "react";
-import productsData from "../../productsData.json";
-import reviewsData from "./Revs/r.json";
 
-class ProductCardPage extends Component {
-  state = {
-    currentProduct: productsData[0] // Берем первый продукт для примера
-  }
+export class ProductCardPage extends Component {
 
   render() {
     return (
@@ -23,19 +19,17 @@ class ProductCardPage extends Component {
         <Header />
         <main>
           <div className="container">
-            <ProductDescription product={this.state.currentProduct} />
+            <ProductDescription/>
             <Conditions />
-            <Сharacteristic product={this.state.currentProduct} />
-            <Review reviews={reviewsData} />
-            <Addition productsData={productsData} />
-            <Recommendations productsData={productsData} />
+            <Сharacteristic />
+            <Review />
+            {/* <Addition  /> */}
+            {/* <Recommendations /> */}
             <Advantages />
           </div>
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }
 }
-
-export default ProductCardPage;

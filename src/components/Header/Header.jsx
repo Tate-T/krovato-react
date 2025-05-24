@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import c from "../../components/Container/Container.module.scss"
+import c from "../../components/Container/Container.module.scss";
 
 import style from "./h.module.scss";
 import { HiOutlineShoppingBag } from "react-icons/hi";
-import { FaRegHeart } from "react-icons/fa";
 import { FiSearch, FiPhone, FiMenu, FiChevronDown } from "react-icons/fi";
 import { BsCreditCard2Front } from "react-icons/bs";
 import { FaPercent } from "react-icons/fa";
@@ -12,16 +11,15 @@ import { FiHome, FiShoppingCart, FiTruck, FiMessageSquare, FiBook, FiMail } from
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './body-padding-top.css';
-// import Favorite from "../../pages/Favorite/Favorite";
+import { FaHeart } from "react-icons/fa";
 
-class Header extends Component {
+
+export class Header extends Component {
     state = { 
         languageDropdownVisible: false,
         mobileMenuVisible: false,
         additionalNumbersVisible: false,
-        searchDropdownVisible: false,
-        basketCount: 0,
-        // favoritesCount: 0
+        searchDropdownVisible: false
     }; 
 
     componentDidMount() {
@@ -43,15 +41,11 @@ class Header extends Component {
             animatedClassName: 'aos-animate'
         });
 
-        // Обновление AOS после полной загрузки страницы для повышения производительности
         window.addEventListener('load', () => {
             AOS.refresh();
         });
 
-        // Обновление AOS при изменении размера окна для корректной работы на разных устройствах
         window.addEventListener('resize', this.handleResize);
-        
-        // Закрытие дропдаунов при клике вне их области
         document.addEventListener('mousedown', this.handleClickOutside);
     }
 
@@ -60,14 +54,12 @@ class Header extends Component {
         document.removeEventListener('mousedown', this.handleClickOutside);
     }
 
-    // Создаем рефы для дропдаунов
     languageRef = React.createRef();
     mobileMenuRef = React.createRef();
     additionalNumbersRef = React.createRef();
     searchRef = React.createRef();
 
     handleClickOutside = (event) => {
-        // Проверяем, был ли клик вне области дропдауна
         if (this.state.languageDropdownVisible && 
             this.languageRef.current && 
             !this.languageRef.current.contains(event.target)) {
@@ -79,9 +71,6 @@ class Header extends Component {
             !this.additionalNumbersRef.current.contains(event.target)) {
             this.setState({ additionalNumbersVisible: false });
         }
-        
-        // Для мобильного меню и поиска оставляем существующую обработку 
-        // через overlay, так как они занимают весь экран
     }
 
     handleResize = () => {
@@ -130,9 +119,8 @@ class Header extends Component {
         }));
     };
 
-    // Методы рендеринга отдельных секций для лучшей читаемости
     renderDesktopTopSection = () => (
-        <div className={style.header__section1} data-aos="fade-down" data-aos-duration="800" data-aos-easing="ease-out-back" data-aos-delay="100">
+        <div className={[c.container, style.container, style.header__section1].join(' ')} data-aos="fade-down" data-aos-duration="800" data-aos-easing="ease-out-back" data-aos-delay="100">
             <ul className={style.header__list}>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="600" data-aos-delay="150" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
                     <a href="./about-us.html"><FiHome size={16} /> Про нас</a>
@@ -174,7 +162,6 @@ class Header extends Component {
 
     renderMobileTopSection = () => (
         <div className={style.header__mobile} data-aos="fade-down" data-aos-duration="800" data-aos-easing="ease-out-cubic">
-            {/* Первая строка мобильного хедера */}
             <div className={style.header__mobile_row}>
                 <div 
                     ref={this.mobileMenuRef}
@@ -214,7 +201,6 @@ class Header extends Component {
                 </div>
             </div>
             
-            {/* Вторая строка мобильного хедера */}
             <div className={style.header__mobile_row}>
                 <div className={style.header__catalog_btn} data-aos="flip-up" data-aos-duration="900" data-aos-delay="250" data-aos-easing="ease-out-back">
                     <a href="#" className={style.catalog_orange_btn}>Каталог</a>
@@ -232,14 +218,8 @@ class Header extends Component {
                         <FiSearch size={24} />
                     </div>
                     <div className={style.header__icon_btn} data-aos="zoom-in" data-aos-duration="700" data-aos-delay="350" data-aos-easing="ease-out-back">
-                        <FaRegHeart size={24} />
-                    </div>
-                    <div className={style.header__icon_btn} data-aos="zoom-in" data-aos-duration="700" data-aos-delay="400" data-aos-easing="ease-out-back">
                         <div className={style.icon_with_badge}>
                             <HiOutlineShoppingBag size={24} />
-                            {this.state.basketCount > 0 && (
-                                <span className={style.badge}>{this.state.basketCount}</span>
-                            )}
                         </div>
                     </div>
                 </div>
@@ -248,11 +228,7 @@ class Header extends Component {
     );
 
     renderMiddleSection = () => (
-        <div className={[c.container, style.container].join(' ')}>
-
-        
-        {/* <div className={style.header__list2} data-aos="fade" data-aos-duration="1000" data-aos-easing="ease-out-cubic"> */}
-            {/* 1. Логотип */}
+        <div className={[c.container, style.container, style.header__middle].join(' ')} data-aos="fade-up" data-aos-duration="900" data-aos-delay="200" data-aos-easing="ease-out-quart">
             <div className={style.header__item} data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100" data-aos-easing="ease-out-cubic" data-aos-anchor=".header__list2">
                 <a className={style.header__logo_link} href="./index.html">
                     <div className={style.header__logo}>
@@ -260,9 +236,6 @@ class Header extends Component {
                     </div>
                 </a>
             </div>
-            {/* </div> */}
-            
-            {/* 2. Поле поиска */}
             <div className={style.header__form_box} data-aos="fade-up" data-aos-duration="900" data-aos-delay="200" data-aos-easing="ease-out-quart" data-aos-anchor=".header__list2">
                 <form className={style.header__form}>
                     <input className={style.header__find} type="text" placeholder="Я шукаю..." />
@@ -271,8 +244,6 @@ class Header extends Component {
                     </button>
                 </form>
             </div>
-            
-            {/* 3. Блок с номерами телефонов */}
             <div 
                 ref={this.additionalNumbersRef}
                 className={style.header__item} 
@@ -305,21 +276,19 @@ class Header extends Component {
                     </div>
                 )}
             </div>
-
-            {/* 5. Иконка корзины */}
+            <div className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="400" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2">
+                <FaHeart className={style.heart_icon} size={24} />
+            </div>
             <a href="#" className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="500" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2">
                 <div className={style.icon_with_badge}>
                     <HiOutlineShoppingBag className={style.cart_icon} size={24} />
-                    {this.state.basketCount > 0 && (
-                        <span className={style.badge}>{this.state.basketCount}</span>
-                    )}
                 </div>
             </a>
         </div>
     );
 
     renderBottomSection = () => (
-        <div className={style.header__list3} data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" data-aos-easing="ease-in-out">
+        <div className={[c.container, style.container, style.header__list3].join(' ')} data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" data-aos-easing="ease-in-out">
             <div className={style.header__item} data-aos="zoom-in-right" data-aos-duration="900" data-aos-delay="100" data-aos-easing="ease-out-back" data-aos-anchor=".header__list3">
                 <a className={`${style.header__link} ${style.catalog_orange_btn}`} href="#">
                     Каталог
@@ -409,24 +378,15 @@ class Header extends Component {
     render() { 
         return (
             <header className={style.header}>
-                {/* Десктопная верхняя секция */}
-                {this.renderDesktopTopSection()}
-                
-                {/* Мобильная верхняя секция */}
-                {this.renderMobileTopSection()}
-                
-                {/* Средняя секция - только для десктопа */}
                 <div className={style.desktop_only}>
+                    {this.renderDesktopTopSection()}
                     {this.renderMiddleSection()}
                     {this.renderBottomSection()}
                 </div>
-                
-                {/* Мобильное меню и поиск */}
+                {this.renderMobileTopSection()}
                 {this.state.mobileMenuVisible && this.renderMobileMenu()}
                 {this.state.searchDropdownVisible && this.renderMobileSearch()}
             </header>
         );
     }
 }
-
-export default Header;

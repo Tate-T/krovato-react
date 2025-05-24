@@ -1,13 +1,12 @@
 import { ProductsList } from "./List/List";
-
-import containerStyle from "../../../components/Container/Container.module.scss";
+import Container from "../../../components/Container/Container";
 import style from "./Products.module.scss";
 
 export const Products = () => {
 
     return (
         <section className={style.products}>
-            <div className={`${containerStyle.container} ${style.products__container}`}>
+            <Container>
                 <div className={style.products__titleBox}>
                     <h2 data-aos="zoom-out-right" data-aos-duration="1500" className={style.products__title}>
                         Найпопулярніші товари
@@ -26,7 +25,7 @@ export const Products = () => {
                     </svg>
                     <span className={style.products__buttonText}>Показати ще товари</span>
                 </button>
-            </div>
+            </Container>
         </section>
         
     );

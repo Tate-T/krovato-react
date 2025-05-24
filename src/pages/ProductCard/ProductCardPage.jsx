@@ -10,8 +10,13 @@ import { Advantages } from "../../components/Advantages/Advantages";
 import { Footer } from "../../components/Footer/Footer";
 import Review from "./Revs/Review";
 import { Component } from "react";
+import productsData from "../../productsData.json";
+
 
 export class ProductCardPage extends Component {
+  state = {
+    currentProduct: productsData[0] // Берем первый продукт для примера
+  }
 
   render() {
     return (
@@ -19,16 +24,17 @@ export class ProductCardPage extends Component {
         <Header />
         <main>
           <div className="container">
-            <ProductDescription/>
-            <Conditions />
-            <Сharacteristic />
-            <Review />
-            {/* <Addition  /> */}
-            {/* <Recommendations /> */}
-            <Advantages />
+          <Hero />
+          <ProductDescription/>
+          <Conditions />
+          <Сharacteristic/>
+          <Review />
+          <Addition productsData={productsData} />
+          <Recommendations productsData={productsData} />
+          <Advantages />
           </div>
         </main>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     );
   }

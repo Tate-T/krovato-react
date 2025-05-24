@@ -288,7 +288,7 @@ export const Footer = () => {
           </ul>
           <div className={style.footer__box3}>
             <div className={style.footer__call}>
-              <img src={tel} alt="" />
+              <img className={style.footer__callSvg} src={tel} alt="" />
               <div className={style.footer__numbers}>
                 <a href="tel:+380679294545" className={style.footer__number}>+38 067 929-45-45</a>
                 <a href="tel:+380501334545" className={style.footer__number}>+38 050 133-45-45</a>
@@ -297,14 +297,53 @@ export const Footer = () => {
               </div>
             </div>
             <div className={style.footer__adress}>
-              <img src={adres} alt="" />
+              <img className={style.footer__adressSvg} src={adres} alt="" />
               <a href="./contacts.html" className={style.footer__adressText}>м. Київ, провулок Ізяславський 52, поверх 2</a>
             </div>
             <div className={style.footer__schedule}>
-              <img src={calendar} alt="" />
+              <img className={style.footer__scheduleSvg} src={calendar} alt="" />
               <p className={style.footer__scheduleText}>Працюємо щодня з 9:00 до 18:00</p>
             </div>
           </div>
+          <div className={style.footer__socialsBoxMob}>
+            <p className={`${style.footer__textJoin} ${style.footer__textJoinMob}`}>
+              Приєднуйтесь:
+            </p>
+            <div className={`${style.footer__boxJoin} ${style.footer__boxJoinMob}`}>
+              <a href="https://www.facebook.com" className={style.footer__iconLink}>
+                <img src={facebook} alt="Facebook" />
+              </a>
+              <a href="https://www.instagram.com" className={style.footer__iconLink}>
+                <img src={instagram} alt="Instagram" />
+              </a>
+            </div>
+            <p className={`${style.footer__textHelp} ${style.footer__textHelpMob}`}>
+              Допомога і консультація:
+            </p>
+            <div className={style.footer__boxHelpMob}>
+              <a href="https://web.whatsapp.com" className={style.footer__iconLink}>
+                <div className={style.footer__svgBug}>
+                  <img src={whatsapp} alt="WhatsApp" />
+                </div>
+              </a>
+              <a href="https://web.telegram.org" className={style.footer__iconLink}>
+                <img src={telegram} alt="Telegram" />
+              </a>
+              <a href="https://account.viber.com" className={style.footer__iconLink}>
+                <img src={viber} alt="Viber" />
+              </a>
+            </div>
+            <div className={`${style.footer__boxPay} ${style.footer__boxPayMob}`}>
+              <a href="#" className={style.footer__iconLink}>
+                <img src={visa} alt="Visa" />
+              </a>
+              <a href="#" className={style.footer__iconLink}>
+                <img src={mastercard} alt="Mastercard" />
+              </a>
+            </div>
+          </div>
+
+
         </div>
         <div className={style.footer__copyright}>
           <p className={style.footer__copyrightText}>

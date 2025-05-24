@@ -22,8 +22,8 @@ export class ProductCardPage extends Component {
             <Conditions />
             <Сharacteristic />
             <Review />
-            <Addition  />
-            <Recommendations />
+            {/* <Addition  /> */}
+            {/* <Recommendations /> */}
             <Advantages />
           </div>
         </main>

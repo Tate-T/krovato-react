@@ -16,9 +16,8 @@ export class Recommendations extends Component {
                     <h2 className={style.recommendations__title}>Рекомендовані товари</h2>
                     <ul className={style.recommendations__list}>
                         {
-                            this.state.productsData.map((product, indx) => {
-                                console.log(product.oldPrice)
-                                return <li className={style.recommendations__item}>
+                            this.state.productsData.map((product,indx) => {
+                                return <li className={style.recommendations__item} key={indx}>
                                     <img className={style.recommendations__img} src={product.image.src} alt={product.image.alt} />
                                     <p className={style.recommendations__size}>Розмір: {product.size}</p>
                                     <p className={style.recommendations__text}>{product.title}</p>

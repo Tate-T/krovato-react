@@ -1,5 +1,6 @@
 import "./ProductCard.scss";
 import { Header } from "../../components/Header/Header";
+import { Hero } from "./Hero/Hero";
 import { ProductDescription } from "./ProductDescription/ProductDescription";
 import { Conditions } from "./Conditions/Conditions";
 import { Сharacteristic } from "./Сharacteristic/Сharacteristic";

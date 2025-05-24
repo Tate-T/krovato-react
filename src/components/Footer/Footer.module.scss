@@ -1,3 +1,7 @@
+img {
+  width: auto;
+}
+
 .footer {
   padding-top: 40px;
   padding-bottom: 20px;
@@ -37,7 +41,7 @@
   &__logoSofa {
     height: 50px;
     width: 74px;
-    fill: #FFBC57;
+    fill: #ffbc57;
   }
 
   &__logoText {
@@ -55,7 +59,7 @@
 
   &__textJoin {
     color: #fff;
-    
+
     font-size: 17px;
     font-weight: 400;
     line-height: 1.41;
@@ -117,7 +121,7 @@
 
   &__textHelp {
     color: #fff;
-    
+
     font-size: 17px;
     font-weight: 400;
     line-height: 1.41;
@@ -126,7 +130,7 @@
   }
 
   &__paySvg {
-    fill: #B1B1B1;
+    fill: #b1b1b1;
     height: 30px;
     flex-shrink: 0;
   }
@@ -159,20 +163,20 @@
 
   &__link {
     color: white;
-    
+
     font-size: 17px;
     font-weight: 400;
     line-height: 1.41;
     transition: color 250ms ease-in-out;
 
     &:hover {
-      color: #FFBC57;
+      color: #ffbc57;
     }
   }
 
   &__linkActive {
     color: #fff;
-    
+
     font-size: 20px;
     font-weight: 600;
     line-height: 1.3;
@@ -193,6 +197,15 @@
       justify-content: start;
     }
   }
+  &__callSvg {
+    max-width: 50px;
+    max-height: 50px;
+    display: none;
+
+    @media screen and (min-width: 1290px) {
+      display: block;
+    }
+  }
 
   &__adress {
     display: flex;
@@ -201,6 +214,18 @@
 
     @media screen and (min-width: 1290px) {
       justify-content: start;
+    }
+  }
+
+  &__adressSvg {
+    max-width: 50px;
+    min-width: 50px;
+    max-height: 50px;
+    min-height: 50px;
+    display: none;
+
+    @media screen and (min-width: 1290px) {
+      display: block;
     }
   }
 
@@ -213,30 +238,9 @@
     }
   }
 
-  &__svgPhoneBorder,
-  &__adressSvgBorder,
-  &__calendarBorder {
-    border: 2px solid #b1b1b166;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 15px;
-    display: none;
-
-    @media screen and (min-width: 1290px) {
-      display: flex;
-    }
-  }
-
-  &__svgPhone,
-  &__adressSvg,
-  &__calendar {
-    fill: #B1B1B1;
-    width: 23px;
-    height: 23px;
+  &__scheduleSvg {
+    max-width: 50px;
+    max-height: 50px;
     display: none;
 
     @media screen and (min-width: 1290px) {
@@ -248,11 +252,15 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+
+    @media screen and (max-width: 1290px) {
+      align-items: center;
+    }
   }
 
   &__number {
     color: #fff;
-    
+
     font-size: 20px;
     font-weight: 600;
     line-height: 1.4;
@@ -261,13 +269,13 @@
     transition: color 250ms ease-in-out;
 
     &:hover {
-      color: #FFBC57;
+      color: #ffbc57;
     }
   }
 
   &__callMe {
-    color: #FFBC57;
-    
+    color: #ffbc57;
+
     font-size: 20px;
     font-weight: 600;
     line-height: 1.4;
@@ -276,7 +284,7 @@
   &__adressText {
     text-align: center;
     color: #fff;
-    
+
     font-size: 20px;
     font-weight: 600;
     line-height: 1.4;
@@ -284,7 +292,7 @@
     transition: color 250ms ease-in-out;
 
     &:hover {
-      color: #FFBC57;
+      color: #ffbc57;
     }
 
     @media screen and (min-width: 1290px) {
@@ -294,7 +302,7 @@
 
   &__scheduleText {
     color: #fff;
-    
+
     font-size: 20px;
     font-weight: 600;
     line-height: 1.4;
@@ -308,6 +316,7 @@
 
   &__socialsBoxMob {
     margin-top: 30px;
+    padding-bottom: 30px;
 
     @media screen and (min-width: 1290px) {
       display: none;
@@ -337,6 +346,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
+    gap: 10px;
   }
 
   &__boxPay {
@@ -345,129 +355,132 @@
     gap: 15px;
   }
 
+  &__boxPayMob {
+justify-content: center;
+  }
+
   &__copyright {
     padding-top: 15px;
     border-top: solid rgba(61, 61, 61, 1);
   }
 
   &__copyrightText {
-    color: #B1B1B1;
+    color: #b1b1b1;
     text-align: center;
-    
+
     font-size: 15px;
     font-weight: 400;
     line-height: 1.46;
   }
 }
-  
-  .footerMenu {
-    margin-bottom: 40px;
-  
-    @media screen and (min-width: 1290px) {
-      display: none;
-    }
-  
-    &__list {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-width: 100%;
-      gap: 5px;
-    }
-  
-    &__item {
-      position: relative;
-      width: 100%;
-      padding-top: 11px;
-      background: #1a1a1a;
-    }
-  
-    &__input {
-      position: absolute;
-      opacity: 0;
-      z-index: -1;
-    }
-  
-    &__label {
-      display: flex;
-      align-items: center;
-    }
-  
-    &__title {
-      color: #fff;
-      
-      font-size: 20px;
-      font-weight: 600;
-      line-height: 1.4;
-      margin-right: 20px;
-      margin-left: auto;
-    }
-  
-    &__arrow {
-      flex-shrink: 0;
-      fill: #fff;
-      transform: rotate(180deg);
-      margin-right: auto;
-    }
-  
-    &__text {
-      max-width: 230px;
-      text-align: center;
-    }
-  
-    &__paragraph {
-      max-width: 1289px;
-      margin-top: 10px;
-      max-height: 0;
-      overflow: hidden;
-      transition: all 0.35s;
-    }
-  
-    &__categories,
-    &__informations,
-    &__customers {
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      gap: 20px;
-      background-color: rgba(43, 41, 41, 1);
-      padding-bottom: 15px;
-      padding-top: 20px;
-    }
-  
-    &__categorie,
-    &__information,
-    &__customer {
-      display: flex;
-      justify-content: center;
-    }
-  
-    &__link {
-      color: white;
-      
-      font-size: 17px;
-      font-weight: 400;
-      line-height: 1.41;
-  
-      &:hover {
-        color: #FFBC57;
-      }
-    }
-  
-    &__item &__input:checked ~ &__paragraph {
-      display: block;
-      transition: all 1.5s;
-      max-height: 520px;
-  
-      @media screen and (min-width: 1200px) {
-        max-height: 1000px;
-        transition: all 0.35s;
-      }
+
+.footerMenu {
+  margin-bottom: 40px;
+
+  @media screen and (min-width: 1290px) {
+    display: none;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%;
+    gap: 5px;
+  }
+
+  &__item {
+    position: relative;
+    width: 100%;
+    padding-top: 11px;
+    background: #1a1a1a;
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    color: #fff;
+
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-right: 20px;
+    margin-left: auto;
+  }
+
+  &__arrow {
+    flex-shrink: 0;
+    fill: #fff;
+    transform: rotate(180deg);
+    margin-right: auto;
+  }
+
+  &__text {
+    max-width: 230px;
+    text-align: center;
+  }
+
+  &__paragraph {
+    max-width: 1289px;
+    margin-top: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.35s;
+  }
+
+  &__categories,
+  &__informations,
+  &__customers {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    background-color: rgba(43, 41, 41, 1);
+    padding-bottom: 15px;
+    padding-top: 20px;
+  }
+
+  &__categorie,
+  &__information,
+  &__customer {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__link {
+    color: white;
+
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.41;
+
+    &:hover {
+      color: #ffbc57;
     }
   }
-  
-  
+
+  &__item &__input:checked ~ &__paragraph {
+    display: block;
+    transition: all 1.5s;
+    max-height: 520px;
+
+    @media screen and (min-width: 1200px) {
+      max-height: 1000px;
+      transition: all 0.35s;
+    }
+  }
+}
+
 //   .backToTop {
 //     background: #3E64FF;
 //     border-radius: 50%;
@@ -478,7 +491,7 @@
 //     cursor: pointer;
 //     transition: 0.3s all;
 //   }
-  
+
 //   #backToTopBtn {
 //     display: none;
 //     position: fixed;
@@ -491,7 +504,7 @@
 //     padding: 10px 20px;
 //     cursor: pointer;
 //   }
-  
+
 //   #backToTopBtn > svg {
 //    width: 50px;
 //    height: 50px;
@@ -499,11 +512,9 @@
 //    transform: rotate(180deg);
 //    backdrop-filter: blur(10px);
 //   }
-  
-  
+
 //   @media screen and (min-width: 768px) {
 //     #backToTopBtn {
 //       display: none;
 //     }
 //   }
-  

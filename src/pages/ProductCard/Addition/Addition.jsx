@@ -18,8 +18,7 @@ export class Addition extends Component {
                     <ul className={style.addition__list}>
                         {
                             this.state.productsData.map((product, indx) => {
-                                console.log(product.oldPrice)
-                                return <li className={style.addition__item}>
+                                return <li className={style.addition__item} key={indx}>
                                     <img className={style.addition__img} src={product.image.src} alt={product.image.alt} />
                                     <p className={style.addition__size}>Розмір: {product.size}</p>
                                     <p className={style.addition__text}>{product.title}</p>

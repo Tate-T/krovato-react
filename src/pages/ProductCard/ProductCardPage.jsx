@@ -11,24 +11,28 @@ import { Footer } from "../../components/Footer/Footer";
 import Review from "./Revs/Review";
 import { Component } from "react";
 
+import productsData from '../../productsData.json'
+
 export class ProductCardPage extends Component {
+state = {
+    currentProduct: productsData
+  }
 
   render() {
     return (
       <div className="product-card-page">
         <Header />
         <main>
-          <div className="container">
+            <Hero/>
             <ProductDescription/>
             <Conditions />
             <Сharacteristic />
             <Review />
-            {/* <Addition  /> */}
-            {/* <Recommendations /> */}
+            <Addition  productsData={this.state.currentProduct}/>
+            <Recommendations productsData={this.state.currentProduct}/>
             <Advantages />
-          </div>
         </main>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     );
   }

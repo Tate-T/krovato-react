@@ -12,6 +12,9 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './body-padding-top.css';
 import { FaHeart } from "react-icons/fa";
+import { CartModal } from "../BasketModal/BasketModal";
+import bm from '../BasketModal/BasketModal.module.scss';
+
 
 
 export class Header extends Component {
@@ -21,6 +24,8 @@ export class Header extends Component {
         additionalNumbersVisible: false,
         searchDropdownVisible: false
     }; 
+
+    cartModalRef = React.createRef();
 
     componentDidMount() {
         AOS.init({
@@ -162,6 +167,7 @@ export class Header extends Component {
 
     renderMobileTopSection = () => (
         <div className={style.header__mobile} data-aos="fade-down" data-aos-duration="800" data-aos-easing="ease-out-cubic">
+            
             <div className={style.header__mobile_row}>
                 <div 
                     ref={this.mobileMenuRef}
@@ -172,6 +178,7 @@ export class Header extends Component {
                     data-aos-delay="150"
                     data-aos-easing="ease-out-back"
                 >
+                    
                     <FiMenu size={28} />
                 </div>
                 <div className={style.header__logo} data-aos="zoom-in" data-aos-duration="700" data-aos-delay="100" data-aos-easing="ease-out-cubic">
@@ -280,10 +287,13 @@ export class Header extends Component {
                 <FaHeart className={style.heart_icon} size={24} />
             </div>
             <a href="#" className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="500" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2">
-                <div className={style.icon_with_badge}>
-                    <HiOutlineShoppingBag className={style.cart_icon} size={24} />
-                </div>
+                <button className={style.icon_with_badge} onClick={() => {
+                    CartModal.openModal();
+                }}>
+                    <HiOutlineShoppingBag className={style.cart_icon} size={24}/>
+                </button>
             </a>
+            <CartModal ref={this.cartModalRef} />
         </div>
     );
 
@@ -315,6 +325,7 @@ export class Header extends Component {
             <div className={style.header__button} data-aos="zoom-in-left" data-aos-duration="900" data-aos-delay="500" data-aos-easing="ease-out-back" data-aos-anchor=".header__list3">
                 Передзвоніть мені
             </div>
+
         </div>
     );
 

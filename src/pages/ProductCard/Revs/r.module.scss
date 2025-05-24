@@ -6,12 +6,15 @@
   flex-direction: column;
   gap: 24px;
   padding: 32px;
-  background: linear-gradient(145deg, #ffffff, #f8fafc);
+  // background: linear-gradient(145deg, #ffffff, #f8fafc);
   border-radius: 16px;
   box-shadow: 
     0 4px 20px rgba(0, 0, 0, 0.05),
     0 1px 3px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
+  max-width: 80%;
+  // @media (max-width: 1200px) {
+  //   width: 80%;
+  // }
   margin: 0 auto;
   backdrop-filter: blur(10px);
 }
@@ -42,14 +45,6 @@
   }
 }
 
-.review:hover {
-  transform: translateY(-4px) scale(1.01);
-  box-shadow: 
-    0 12px 24px rgba(0, 0, 0, 0.08),
-    0 4px 8px rgba(0, 0, 0, 0.06);
-  border-color: rgba(255, 165, 0, 0.3);
-}
-
 .usernameLine {
   display: flex;
   flex-direction: row;
@@ -65,11 +60,7 @@
   background: #f3f4f6;
   padding: 6px;
   border-radius: 50%;
-  transition: color 0.3s ease;
-}
-
-.userIcon:hover {
-  color: #ffa500;
+  transition: all 0.2s ease;
 }
 
 .usernameLine h3 {
@@ -129,30 +120,31 @@
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   letter-spacing: 0.3px;
-  transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
-}
+  transition: all 0.2s ease;
 
-.replyButton:hover {
-  background: #e5e7eb;
-  color: #1f2937;
-  transform: translateY(-1px);
-}
+  &:hover {
+    background: #e5e7eb;
+    color: #1f2937;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
 
-.replyButton:active {
-  transform: translateY(0);
+  &:active {
+    transform: translateY(0);
+  }
 }
 
 .replyIcon {
   margin-right: 6px;
   color: #6b7280;
   font-size: 16px;
-  transition: transform 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .replyButton:hover .replyIcon {
-  color: #1f2937;
+  color: #ffa500;
 }
 
 .also {
@@ -185,30 +177,31 @@
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   letter-spacing: 0.3px;
-  transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
-}
+  transition: all 0.2s ease;
 
-.likeButton:hover {
-  background: #e5e7eb;
-  color: #1f2937;
-  transform: translateY(-1px);
-}
+  &:hover {
+    background: #e5e7eb;
+    color: #1f2937;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
 
-.likeButton:active {
-  transform: translateY(0);
+  &:active {
+    transform: translateY(0);
+  }
 }
 
 .likeIcon {
   margin-right: 6px;
   color: #6b7280;
   font-size: 16px;
-  transition: transform 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .likeButton:hover .likeIcon {
-  color: #1f2937;
+  color: #ffa500;
 }
 
 .likesSection span {
@@ -230,15 +223,8 @@
   font-family: 'Roboto', sans-serif;
   line-height: 1.6;
   letter-spacing: 0.2px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-.reply:hover {
-  transform: translateX(4px);
-  background: linear-gradient(145deg, #f1f5f9, #e2e8f0);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .reply strong {
@@ -265,28 +251,12 @@
   animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .modal {
-  // margin: 16px -24px -24px -24px;
   padding: 16px 24px;
-  // background: #f8fafc;
   position: relative;
   animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  // border-top: 1px solid #e5e7eb;
   width: 100%;
-
 }
-
 
 @keyframes slideIn {
   from {
@@ -313,14 +283,13 @@
   font-size: 18px;
   color: #6b7280;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 50%;
-}
+  transition: all 0.2s ease;
 
-.closeButton:hover {
-  color: #ffa500;
-  background: rgba(255, 165, 0, 0.1);
-  transform: rotate(90deg);
+  &:hover {
+    color: #ffa500;
+    background: rgba(255, 165, 0, 0.15);
+  }
 }
 
 .modal h3 {
@@ -343,7 +312,6 @@
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   font-family: 'Roboto', sans-serif;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   background: #ffffff;
 }
 

@@ -10,31 +10,25 @@ import { Advantages } from "../../components/Advantages/Advantages";
 import { Footer } from "../../components/Footer/Footer";
 import Review from "./Revs/Review";
 import { Component } from "react";
-import productsData from "../../productsData.json";
-
 
 export class ProductCardPage extends Component {
-  state = {
-    currentProduct: productsData[0] // Берем первый продукт для примера
-  }
 
   render() {
     return (
       <div className="product-card-page">
         <Header />
         <main>
-          {/* <div className="container"> */}
-          <Hero />
-          <ProductDescription product={this.state.currentProduct} />
-          <Conditions />
-          <Сharacteristic product={this.state.currentProduct} />
-          <Review />
-          <Addition productsData={productsData} />
-          <Recommendations productsData={productsData} />
-          <Advantages />
-          {/* </div> */}
+          <div className="container">
+            <ProductDescription/>
+            <Conditions />
+            <Сharacteristic />
+            <Review />
+            {/* <Addition  /> */}
+            {/* <Recommendations /> */}
+            <Advantages />
+          </div>
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }

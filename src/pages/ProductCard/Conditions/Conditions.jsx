@@ -1,11 +1,10 @@
-import style from './Conditions.module.scss'
-import containerStyle from '../../../components/Container/Container.module.scss'
-import dostavkaImg from '../../../images/product-card/dostavka.png'
-import garant from '../../../images/product-card/garant.png'
-import oplata from '../../../images/product-card/oplata.png'
-import support from '../../../images/product-card/support.png'
+import style from './Conditions.module.scss';
+import containerStyle from '../../../components/Container/Container.module.scss';
+import dostavkaImg from '../../../images/product-card/dostavka.png';
+import garant from '../../../images/product-card/garant.png';
+import oplata from '../../../images/product-card/oplata.png';
+import support from '../../../images/product-card/support.png';
 import { MdArrowOutward } from "react-icons/md";
-
 
 export const Conditions = () => {
     return (
@@ -67,5 +66,5 @@ export const Conditions = () => {
                 </ul>
             </div>
         </section>
-    )
-}
+    );
+};

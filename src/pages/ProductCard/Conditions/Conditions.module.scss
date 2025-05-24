@@ -3,23 +3,23 @@ $primary-hover: #e5a94a;
 
 .conditions {
   background-color: #f8f8f8;
-  padding-bottom: 50px;
-  margin-top: 59px;
+  padding-bottom: 40px;
+  margin-top: 45px;
 
   &__list {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     flex-direction: column;
 
     @media screen and (min-width: 1290px) {
       flex-direction: row;
-      gap: 30px;
+      gap: 25px;
     }
   }
 
   &__item {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     transition: transform 0.3s;
 
     &:hover {
@@ -28,8 +28,8 @@ $primary-hover: #e5a94a;
   }
 
   &__iconBc {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     background-color: #fff;
     border-radius: 50%;
     display: flex;
@@ -40,21 +40,27 @@ $primary-hover: #e5a94a;
     &:hover {
       transform: rotate(15deg);
     }
+
+    img {
+      max-width: 35px;
+      max-height: 35px;
+      object-fit: contain;
+    }
   }
 
   &__svg {
-    width: 33.794px;
-    height: 40px;
+    width: 30px;
+    height: 35px;
     fill: $primary-color;
   }
 
   &__subtitle {
-    color: dark;
+    color: #333333;
     font-family: "Proxima Nova";
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
-    line-height: 28px;
-    margin-bottom: 11px;
+    line-height: 24px;
+    margin-bottom: 8px;
     text-align: left;
 
     @media screen and (min-width: 1290px) {
@@ -64,29 +70,29 @@ $primary-hover: #e5a94a;
 
   &__textBox {
     @media screen and (max-width: 480px) {
-      width: 219px;
+      width: 200px;
     }
   }
 
   &__text {
-    color: grey;
+    color: #666666;
     font-family: "Proxima Nova";
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 400;
-    line-height: 1.46;
+    line-height: 1.4;
     width: 100%;
     text-align: left;
 
     @media screen and (min-width: 1290px) {
-      width: 200px;
+      width: 180px;
     }
   }
 
   &__more {
     display: flex;
-    gap: 13px;
+    gap: 10px;
     align-items: center;
-    margin-top: 11px;
+    margin-top: 8px;
     transition: transform 0.3s;
 
     &:hover {
@@ -97,15 +103,15 @@ $primary-hover: #e5a94a;
     span {
       color: $primary-color;
       font-family: "Proxima Nova";
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 400;
-      line-height: 1.46;
+      line-height: 1.4;
     }
   }
 
   &__arrow {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     fill: $primary-color;
   }
 }

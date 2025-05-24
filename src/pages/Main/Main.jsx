@@ -13,7 +13,7 @@ export const Main = () => {
   return (
     <>
       <Header />
-      <main>
+      <main style={{paddingTop: 9}}>
         <Hero />
         <Categories />
         <Products />

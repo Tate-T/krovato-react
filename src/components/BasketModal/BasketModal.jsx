@@ -18,17 +18,8 @@ export class CartModal extends Component {
   componentDidMount() {
     modalInstance = this;
   }
-
-  componentWillUnmount() {
-    if (modalInstance === this) {
-      modalInstance = null;
-    }
-  }
-
-  onClose = (e) => {
-    if (e) {
-      e.stopPropagation();
-    }
+  
+  onClose = () => {
     this.setState({ isModalOpened: false });
   };
 
@@ -39,9 +30,7 @@ export class CartModal extends Component {
   };
 
   static openModal = () => {
-    if (modalInstance) {
       modalInstance.setState({ isModalOpened: true });
-    }
   };
 
   render() {

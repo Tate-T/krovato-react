@@ -58,10 +58,16 @@ class Review extends Component {
         throw new Error('Полученные данные не являются массивом');
       }
 
+      const sortedData = data.sort((a, b) => {
+        const dateA = typeof a.date === 'string' ? new Date(a.date).getTime() : a.date * 1000;
+        const dateB = typeof b.date === 'string' ? new Date(b.date).getTime() : b.date * 1000;
+        return dateB - dateA;
+      });
+
       this.setState(prevState => ({
-        review: loadMore ? [...prevState.review, ...data] : data,
-        likes: loadMore ? [...prevState.likes, ...data.map(review => review.likes || 0)] : data.map(review => review.likes || 0),
-        liked: loadMore ? [...prevState.liked, ...Array(data.length).fill(false)] : Array(data.length).fill(false),
+        review: loadMore ? [...prevState.review, ...sortedData] : sortedData,
+        likes: loadMore ? [...prevState.likes, ...sortedData.map(review => review.likes || 0)] : sortedData.map(review => review.likes || 0),
+        liked: loadMore ? [...prevState.liked, ...Array(sortedData.length).fill(false)] : Array(sortedData.length).fill(false),
         loading: false,
         error: null,
         hasMore: data.length === limit
@@ -188,6 +194,7 @@ class Review extends Component {
     const { newReview } = this.state;
     
     try {
+      const currentDate = Math.floor(Date.now() / 1000);
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
@@ -195,7 +202,7 @@ class Review extends Component {
         },
         body: JSON.stringify({
           ...newReview,
-          date: Math.floor(Date.now() / 1000)
+          date: currentDate
         })
       });
 

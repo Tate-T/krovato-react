@@ -7,7 +7,7 @@ import { ContactsPage } from './pages/ContactsPage/ContactsPage';
 import { LastReviews } from './components/LastReviews/LastReviews';
 import { ProductCardPage } from './pages/ProductCard/ProductCardPage';
 import { CartModal } from './components/BasketModal/BasketModal';
-
+import Favorite from './pages/Favorite/Favorite';
 function App() {
   return (
     <div className="App">
@@ -18,6 +18,7 @@ function App() {
       <LastReviews />
       <ProductCardPage />
       <CartModal />
+      <Favorite/>
     </div>
   );
 }

@@ -128,22 +128,22 @@ export class Header extends Component {
         <div className={[c.container, style.container, style.header__section1].join(' ')} data-aos="fade-down" data-aos-duration="800" data-aos-easing="ease-out-back" data-aos-delay="100">
             <ul className={style.header__list}>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="600" data-aos-delay="150" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./about-us.html"><FiHome size={16} /> Про нас</a>
+                    <a href="./about-us.html"><FiHome size={16} strokeWidth={1} /> Про нас</a>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="700" data-aos-delay="200" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./pay.html"><FiShoppingCart size={16} /> Оплата</a>
+                    <a href="./pay.html"><FiShoppingCart size={16} strokeWidth={1} /> Оплата</a>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="800" data-aos-delay="250" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./delivery.html"><FiTruck size={16} /> Доставка та збірка</a>
+                    <a href="./delivery.html"><FiTruck size={16} strokeWidth={1} /> Доставка та збірка</a>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="900" data-aos-delay="300" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./reviews.html"><FiMessageSquare size={16} /> Відгуки</a>
+                    <a href="./reviews.html"><FiMessageSquare size={16} strokeWidth={1} /> Відгуки</a>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="1000" data-aos-delay="350" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./blog-page.html"><FiBook size={16} /> Блог</a>
+                    <a href="./blog-page.html"><FiBook size={16} strokeWidth={1} /> Блог</a>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="1100" data-aos-delay="400" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./contacts.html"><FiMail size={16} /> Контакти</a>
+                    <a href="./contacts.html"><FiMail size={16} strokeWidth={1} /> Контакти</a>
                 </li>
                 <li className={style["header__list-svg"]} data-aos="fade-left" data-aos-duration="800" data-aos-delay="450" data-aos-easing="ease-out-back" data-aos-anchor=".header__section1">
                     <div 
@@ -152,7 +152,7 @@ export class Header extends Component {
                         onClick={this.toggleLanguage}
                     >
                         <p className={style.header__lang_text}>UA</p>
-                        <FiChevronDown size={16} />
+                        <FiChevronDown size={16} strokeWidth={1} />
                         {this.state.languageDropdownVisible && (
                             <div className={style.header__dropdown_menu}>
                                 <div>EN</div>
@@ -179,7 +179,7 @@ export class Header extends Component {
                     data-aos-easing="ease-out-back"
                 >
                     
-                    <FiMenu size={28} />
+                    <FiMenu size={28} strokeWidth={1} />
                 </div>
                 <div className={style.header__logo} data-aos="zoom-in" data-aos-duration="700" data-aos-delay="100" data-aos-easing="ease-out-cubic">
                     <a href="./index.html">
@@ -195,7 +195,7 @@ export class Header extends Component {
                     data-aos-delay="200"
                     data-aos-easing="ease-out-back"
                 >
-                    <FiPhone size={28} />
+                    <FiPhone size={28} strokeWidth={1} />
                     {this.state.additionalNumbersVisible && (
                         <div className={style.mobile_phone_dropdown}>
                             <p className={style.mobile_phone_text}>Щодня з 9:00 до 18:00</p>

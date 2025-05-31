@@ -8,7 +8,7 @@ import {
 } from "react-icons/io5";
 import { BiLike } from "react-icons/bi";
 
-const API_URL = 'https://683491c1464b499636035baf.mockapi.io/api/revs/revs';
+const API_URL = 'https://683491c1464b499636035baf.mockapi.io/api/revs/revs'; // Я знаю что запалил апи, и что на работе за такое дадут по шапке, но проект учебный и никому моя апишка не сделась
 
 class Review extends Component {
   constructor(props) {
@@ -42,17 +42,17 @@ class Review extends Component {
 
   fetchReviews = async (loadMore = false) => {
     try {
-      console.log('Начинаем загрузку отзывов...');
+      // console.log('Начинаем загрузку отзывов...');
       const { page, limit } = this.state;
       const response = await fetch(`${API_URL}?page=${page}&limit=${limit}`);
-      console.log('Получен ответ:', response.status);
+      // console.log('Получен ответ:', response.status);
       
       if (!response.ok) {
         throw new Error(`Ошибка при загрузке отзывов: ${response.status}`);
       }
       
       const data = await response.json();
-      console.log('Получены данные:', data);
+      // console.log('Получены данные:', data);
       
       if (!Array.isArray(data)) {
         throw new Error('Полученные данные не являются массивом');

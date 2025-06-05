@@ -1,4 +1,5 @@
 import styles from './Basket.module.scss';
+import axios from 'axios'
 import React from 'react';
 import Modal from './Modal';
 import infoCircle from '../../images/basket/icon-info-mobile.svg';
@@ -50,6 +51,34 @@ class Basket extends React.Component {
         isModalOpen: false,
         modalMessage: "",
         selectedDelivery: ""
+    }
+    componentDidMount() {
+        const { surnameValue, nameValue, paternalValue, phoneValue, emailValue, commentValue, selectedPayment, selectedDelivery } = this.state
+        const infoOrder = {
+            surname: surnameValue,
+            name: nameValue,
+            paternal: paternalValue,
+            phone: phoneValue,
+            email: emailValue,
+            comment: commentValue,
+            methodPay: selectedPayment,
+            methodDelivery: selectedDelivery
+        }
+        axios.post("http://localhost:3000/info", { infoOrder })
+            .then(() => {
+                console.log("Дані завантажено")
+            })
+            .catch((error) => {
+                console.log("Помилка", error)
+            })
+    }
+    componentDidUpdate(prevState) {
+        if (prevState.selectedPayment !== this.state.selectedPayment) {
+            console.log("Метод оплати змінився:", this.state.selectedPayment);
+        }
+        if (prevState.selectedDelivery !== this.state.selectedDelivery) {
+            console.log("Метод доставки змінився:", this.state.selectedDelivery);
+        }
     }
     handleModalMessage = (message) => {
         this.setState({
@@ -139,16 +168,9 @@ class Basket extends React.Component {
             methodPay: selectedPayment,
             methodDelivery: selectedDelivery
         }
-        fetch("http://localhost:3000/info", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                infoOrder
-            })
-        })
-        this.handleModalMessage("Успішно")
+        axios.post("http://localhost:3000/info", { infoOrder })
+            .then(() => this.handleModalMessage("Успішно"))
+            .catch((err) => console.error("Помилка надсилання:", err));
         this.setState({
             surnames: updateSurname,
             names: updateName,
@@ -210,9 +232,9 @@ class Basket extends React.Component {
                     </form>
                     <hr className={styles.dash} />
                     <div className={styles.titleContainer}>
-                            <img src={iconDelivery} alt="icon-delivery" />
-                            <p className={styles.titleOptions}>Вибір способу доставки</p>
-                        </div>
+                        <img src={iconDelivery} alt="icon-delivery" />
+                        <p className={styles.titleOptions}>Вибір способу доставки</p>
+                    </div>
                     <div className={styles.mainWrapperDelivery}>
                         {cardDelivery.map((elem, index) => (
                             <button
@@ -226,10 +248,10 @@ class Basket extends React.Component {
                                 </div>
                                 {elem.map && (
                                     <a href='https://maps.app.goo.gl/N2bf9k6Ws4Ujx3Wd6'>
-                                    <button className={styles.btnMap} type="button">
-                                        <img src={elem.mapIcon} alt={elem.alt}/>
-                                        <p className={styles.textMap}>{elem.map}</p>
-                                    </button>
+                                        <button className={styles.btnMap} type="button">
+                                            <img src={elem.mapIcon} alt={elem.alt} />
+                                            <p className={styles.textMap}>{elem.map}</p>
+                                        </button>
                                     </a>
                                 )}
                             </button>
@@ -263,7 +285,7 @@ class Basket extends React.Component {
                         <textarea placeholder="Ваш коментар" className={styles.commentInput} onChange={this.handleComment} value={this.state.commentValue}></textarea>
                     </div>
                 </div>
-               <BasketList orderButton={this.handleInfoOrder}/>
+                <BasketList orderButton={this.handleInfoOrder} />
             </div>
         )
     }

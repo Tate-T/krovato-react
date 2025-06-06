@@ -206,6 +206,7 @@
     align-items: center;
     gap: 20px;
     color: #FFF;
+    padding: 10px;
   }
 
   .textMap {
@@ -238,6 +239,7 @@
       flex-wrap: wrap;
       width: 700px;
       height: 300px;
+      margin:auto;
     }
     .mainWrapperDelivery{
       flex-direction: row;

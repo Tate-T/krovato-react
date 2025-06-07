@@ -12,8 +12,20 @@
     margin: 0 auto;
   }
 
+  &__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  &__subtitleButton {
+    width: 24px;
+    height: 24px;
+  }
+
   input {
     @include size(260px, 50px);
+    top: 0;
+    left: 0;
     // outline: 2px solid red;
     cursor: pointer;
 
@@ -26,7 +38,7 @@
     }
 
     @media screen and (min-width: 1290px) {
-      @include size(1040px, 50px);
+      @include size(1070px, 70px);
     }
   }
 

@@ -153,7 +153,13 @@
         box-shadow: -3px 4px 15px 0px rgba(0, 0, 0, 0.06);
 
         position: relative;
-        transition: all ease-in-out 0.5s;
+        transition: right ease-in-out 0.5s, transform ease-in-out 1.5s !important;
+        transform: translateX(-100px) scale(1.2);
+
+        &.aos-animate {
+
+            transform: translate3d(0) scale(1);
+        }
 
         @media screen and (min-width: 440px) {
             @include block-model(0 0 20px 0, 1px solid #E3E2E2, 8px, 0);

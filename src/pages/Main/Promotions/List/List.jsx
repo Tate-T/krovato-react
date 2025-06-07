@@ -14,21 +14,19 @@ import Desktop2xSale2 from "../../../../images/main/desktop/2x/sale2@2x.webp";
 import Desktop1xSale3 from "../../../../images/main/desktop/1x/sale3@1x.webp";
 import Desktop2xSale3 from "../../../../images/main/desktop/2x/sale3@2x.webp";
 
-import Sale4 from '../../../../images/discount/black-friday.jpg';
+import Sale4 from "../../../../images/discount/black-friday.jpg";
 
-import Sale5 from '../../../../images/discount/summer-sale.png';
+import Sale5 from "../../../../images/discount/summer-sale.png";
 
-export const PromotionsList = ({activeSlide}) => {
+export const PromotionsList = ({ data }) => {
   const items = [
     {
       id: "promotion-1",
       image: {
         src: `${Desktop1xSale1}`,
         srcSet: {
-          mobile:
-            `${Mobile1xSale}, ${Mobile2xSale}`,
-          desktop:
-            `${Desktop1xSale1}, ${Desktop2xSale1}`,
+          mobile: `${Mobile1xSale}, ${Mobile2xSale}`,
+          desktop: `${Desktop1xSale1}, ${Desktop2xSale1}`,
         },
         alt: "Літній розпродаж",
       },
@@ -38,10 +36,8 @@ export const PromotionsList = ({activeSlide}) => {
       image: {
         src: `${Desktop1xSale2}`,
         srcSet: {
-          mobile:
-            `${Mobile1xSale}, ${Mobile2xSale}`,
-          desktop:
-            `${Desktop1xSale2}, ${Desktop2xSale2}`,
+          mobile: `${Mobile1xSale}, ${Mobile2xSale}`,
+          desktop: `${Desktop1xSale2}, ${Desktop2xSale2}`,
         },
         alt: "Диванний цінопад",
       },
@@ -51,10 +47,8 @@ export const PromotionsList = ({activeSlide}) => {
       image: {
         src: `${Desktop1xSale3}`,
         srcSet: {
-          mobile:
-            `${Mobile1xSale}, ${Mobile2xSale}`,
-          desktop:
-            `${Desktop1xSale3}, ${Desktop2xSale3}`,
+          mobile: `${Mobile1xSale}, ${Mobile2xSale}`,
+          desktop: `${Desktop1xSale3}, ${Desktop2xSale3}`,
         },
         alt: "Королівські скидки на м'які меблі",
       },
@@ -77,16 +71,23 @@ export const PromotionsList = ({activeSlide}) => {
 
   return (
     <ul className={style.promotions__list}>
-      {items.map((item) => (
-        <PromotionsItem
-          activeSlide={activeSlide}
-          key={item.id}
-          src={item.image.src}
-          alt={item.image.alt}
-          mobileImage={item.image.srcSet?.mobile}
-          desktopImage={item.image.srcSet?.desktop}
-        />
-      ))}
+      {data.map((item) => {
+        // <PromotionsItem
+        //   key={item.id}
+        //   src={item.image.src}
+        //   alt={item.image.alt}
+        //   mobileImage={item.image.srcSet?.mobile}
+        //   desktopImage={item.image.srcSet?.desktop}
+        // />
+
+        return (
+          <PromotionsItem
+            key={item.id}
+            src={item.photo}
+            alt={item.name}
+          />
+        );
+      })}
     </ul>
   );
 };

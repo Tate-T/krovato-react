@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import c from "../../components/Container/Container.module.scss";
+
 import style from "./h.module.scss";
 import { HiOutlineShoppingBag } from "react-icons/hi";
-import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { FiSearch, FiPhone, FiMenu, FiChevronDown } from "react-icons/fi";
 import { BsCreditCard2Front } from "react-icons/bs";
 import { FaPercent } from "react-icons/fa";
@@ -10,16 +11,21 @@ import { FiHome, FiShoppingCart, FiTruck, FiMessageSquare, FiBook, FiMail } from
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './body-padding-top.css';
+import { FaHeart } from "react-icons/fa";
+import { CartModal } from "../BasketModal/BasketModal";
+import bm from '../BasketModal/BasketModal.module.scss';
 
-class Header extends Component {
+
+
+export class Header extends Component {
     state = { 
         languageDropdownVisible: false,
         mobileMenuVisible: false,
         additionalNumbersVisible: false,
-        searchDropdownVisible: false,
-        basketCount: 0,
-        favoritesCount: 0
+        searchDropdownVisible: false
     }; 
+
+    cartModalRef = React.createRef();
 
     componentDidMount() {
         AOS.init({
@@ -40,15 +46,11 @@ class Header extends Component {
             animatedClassName: 'aos-animate'
         });
 
-        // Обновление AOS после полной загрузки страницы для повышения производительности
         window.addEventListener('load', () => {
             AOS.refresh();
         });
 
-        // Обновление AOS при изменении размера окна для корректной работы на разных устройствах
         window.addEventListener('resize', this.handleResize);
-        
-        // Закрытие дропдаунов при клике вне их области
         document.addEventListener('mousedown', this.handleClickOutside);
     }
 
@@ -57,14 +59,12 @@ class Header extends Component {
         document.removeEventListener('mousedown', this.handleClickOutside);
     }
 
-    // Создаем рефы для дропдаунов
     languageRef = React.createRef();
     mobileMenuRef = React.createRef();
     additionalNumbersRef = React.createRef();
     searchRef = React.createRef();
 
     handleClickOutside = (event) => {
-        // Проверяем, был ли клик вне области дропдауна
         if (this.state.languageDropdownVisible && 
             this.languageRef.current && 
             !this.languageRef.current.contains(event.target)) {
@@ -76,9 +76,6 @@ class Header extends Component {
             !this.additionalNumbersRef.current.contains(event.target)) {
             this.setState({ additionalNumbersVisible: false });
         }
-        
-        // Для мобильного меню и поиска оставляем существующую обработку 
-        // через overlay, так как они занимают весь экран
     }
 
     handleResize = () => {
@@ -127,27 +124,26 @@ class Header extends Component {
         }));
     };
 
-    // Методы рендеринга отдельных секций для лучшей читаемости
     renderDesktopTopSection = () => (
-        <div className={style.header__section1} data-aos="fade-down" data-aos-duration="800" data-aos-easing="ease-out-back" data-aos-delay="100">
+        <div className={[c.container, style.container, style.header__section1].join(' ')} data-aos="fade-down" data-aos-duration="800" data-aos-easing="ease-out-back" data-aos-delay="100">
             <ul className={style.header__list}>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="600" data-aos-delay="150" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./about-us.html"><FiHome size={16} /> Про нас</a>
+                    <a href="./about-us.html"><FiHome size={16} strokeWidth={1} /> Про нас</a>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="700" data-aos-delay="200" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./pay.html"><FiShoppingCart size={16} /> Оплата</a>
+                    <a href="./pay.html"><FiShoppingCart size={16} strokeWidth={1} /> Оплата</a>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="800" data-aos-delay="250" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./delivery.html"><FiTruck size={16} /> Доставка та збірка</a>
+                    <a href="./delivery.html"><FiTruck size={16} strokeWidth={1} /> Доставка та збірка</a>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="900" data-aos-delay="300" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./reviews.html"><FiMessageSquare size={16} /> Відгуки</a>
+                    <a href="./reviews.html"><FiMessageSquare size={16} strokeWidth={1} /> Відгуки</a>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="1000" data-aos-delay="350" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./blog-page.html"><FiBook size={16} /> Блог</a>
+                    <a href="./blog-page.html"><FiBook size={16} strokeWidth={1} /> Блог</a>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="1100" data-aos-delay="400" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./contacts.html"><FiMail size={16} /> Контакти</a>
+                    <a href="./contacts.html"><FiMail size={16} strokeWidth={1} /> Контакти</a>
                 </li>
                 <li className={style["header__list-svg"]} data-aos="fade-left" data-aos-duration="800" data-aos-delay="450" data-aos-easing="ease-out-back" data-aos-anchor=".header__section1">
                     <div 
@@ -156,7 +152,7 @@ class Header extends Component {
                         onClick={this.toggleLanguage}
                     >
                         <p className={style.header__lang_text}>UA</p>
-                        <FiChevronDown size={16} />
+                        <FiChevronDown size={16} strokeWidth={1} />
                         {this.state.languageDropdownVisible && (
                             <div className={style.header__dropdown_menu}>
                                 <div>EN</div>
@@ -171,7 +167,7 @@ class Header extends Component {
 
     renderMobileTopSection = () => (
         <div className={style.header__mobile} data-aos="fade-down" data-aos-duration="800" data-aos-easing="ease-out-cubic">
-            {/* Первая строка мобильного хедера */}
+            
             <div className={style.header__mobile_row}>
                 <div 
                     ref={this.mobileMenuRef}
@@ -182,7 +178,8 @@ class Header extends Component {
                     data-aos-delay="150"
                     data-aos-easing="ease-out-back"
                 >
-                    <FiMenu size={28} />
+                    
+                    <FiMenu size={28} strokeWidth={1} />
                 </div>
                 <div className={style.header__logo} data-aos="zoom-in" data-aos-duration="700" data-aos-delay="100" data-aos-easing="ease-out-cubic">
                     <a href="./index.html">
@@ -198,7 +195,7 @@ class Header extends Component {
                     data-aos-delay="200"
                     data-aos-easing="ease-out-back"
                 >
-                    <FiPhone size={28} />
+                    <FiPhone size={28} strokeWidth={1} />
                     {this.state.additionalNumbersVisible && (
                         <div className={style.mobile_phone_dropdown}>
                             <p className={style.mobile_phone_text}>Щодня з 9:00 до 18:00</p>
@@ -211,7 +208,6 @@ class Header extends Component {
                 </div>
             </div>
             
-            {/* Вторая строка мобильного хедера */}
             <div className={style.header__mobile_row}>
                 <div className={style.header__catalog_btn} data-aos="flip-up" data-aos-duration="900" data-aos-delay="250" data-aos-easing="ease-out-back">
                     <a href="#" className={style.catalog_orange_btn}>Каталог</a>
@@ -230,18 +226,7 @@ class Header extends Component {
                     </div>
                     <div className={style.header__icon_btn} data-aos="zoom-in" data-aos-duration="700" data-aos-delay="350" data-aos-easing="ease-out-back">
                         <div className={style.icon_with_badge}>
-                            <FaRegHeart size={24} />
-                            {this.state.favoritesCount > 0 && (
-                                <span className={style.badge}>{this.state.favoritesCount}</span>
-                            )}
-                        </div>
-                    </div>
-                    <div className={style.header__icon_btn} data-aos="zoom-in" data-aos-duration="700" data-aos-delay="400" data-aos-easing="ease-out-back">
-                        <div className={style.icon_with_badge}>
                             <HiOutlineShoppingBag size={24} />
-                            {this.state.basketCount > 0 && (
-                                <span className={style.badge}>{this.state.basketCount}</span>
-                            )}
                         </div>
                     </div>
                 </div>
@@ -250,8 +235,7 @@ class Header extends Component {
     );
 
     renderMiddleSection = () => (
-        <div className={style.header__list2} data-aos="fade" data-aos-duration="1000" data-aos-easing="ease-out-cubic">
-            {/* 1. Логотип */}
+        <div className={[c.container, style.container, style.header__middle].join(' ')} data-aos="fade-up" data-aos-duration="900" data-aos-delay="200" data-aos-easing="ease-out-quart">
             <div className={style.header__item} data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100" data-aos-easing="ease-out-cubic" data-aos-anchor=".header__list2">
                 <a className={style.header__logo_link} href="./index.html">
                     <div className={style.header__logo}>
@@ -259,8 +243,6 @@ class Header extends Component {
                     </div>
                 </a>
             </div>
-            
-            {/* 2. Поле поиска */}
             <div className={style.header__form_box} data-aos="fade-up" data-aos-duration="900" data-aos-delay="200" data-aos-easing="ease-out-quart" data-aos-anchor=".header__list2">
                 <form className={style.header__form}>
                     <input className={style.header__find} type="text" placeholder="Я шукаю..." />
@@ -269,8 +251,6 @@ class Header extends Component {
                     </button>
                 </form>
             </div>
-            
-            {/* 3. Блок с номерами телефонов */}
             <div 
                 ref={this.additionalNumbersRef}
                 className={style.header__item} 
@@ -303,31 +283,22 @@ class Header extends Component {
                     </div>
                 )}
             </div>
-
-            {/* 4. Иконка избранного */}
             <div className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="400" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2">
-                <div className={style.icon_with_badge}>
-                    <FaHeart className={style.heart_icon} size={24} />
-                    {this.state.favoritesCount > 0 && (
-                        <span className={style.badge}>{this.state.favoritesCount}</span>
-                    )}
-                </div>
+                <FaHeart className={style.heart_icon} size={24} />
             </div>
-            
-            {/* 5. Иконка корзины */}
             <a href="#" className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="500" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2">
-                <div className={style.icon_with_badge}>
-                    <HiOutlineShoppingBag className={style.cart_icon} size={24} />
-                    {this.state.basketCount > 0 && (
-                        <span className={style.badge}>{this.state.basketCount}</span>
-                    )}
-                </div>
+                <button className={style.icon_with_badge} onClick={() => {
+                    CartModal.openModal();
+                }}>
+                    <HiOutlineShoppingBag className={style.cart_icon} size={24}/>
+                </button>
             </a>
+            <CartModal ref={this.cartModalRef} />
         </div>
     );
 
     renderBottomSection = () => (
-        <div className={style.header__list3} data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" data-aos-easing="ease-in-out">
+        <div className={[c.container, style.container, style.header__list3].join(' ')} data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" data-aos-easing="ease-in-out">
             <div className={style.header__item} data-aos="zoom-in-right" data-aos-duration="900" data-aos-delay="100" data-aos-easing="ease-out-back" data-aos-anchor=".header__list3">
                 <a className={`${style.header__link} ${style.catalog_orange_btn}`} href="#">
                     Каталог
@@ -354,6 +325,7 @@ class Header extends Component {
             <div className={style.header__button} data-aos="zoom-in-left" data-aos-duration="900" data-aos-delay="500" data-aos-easing="ease-out-back" data-aos-anchor=".header__list3">
                 Передзвоніть мені
             </div>
+
         </div>
     );
 
@@ -417,24 +389,15 @@ class Header extends Component {
     render() { 
         return (
             <header className={style.header}>
-                {/* Десктопная верхняя секция */}
-                {this.renderDesktopTopSection()}
-                
-                {/* Мобильная верхняя секция */}
-                {this.renderMobileTopSection()}
-                
-                {/* Средняя секция - только для десктопа */}
                 <div className={style.desktop_only}>
+                    {this.renderDesktopTopSection()}
                     {this.renderMiddleSection()}
                     {this.renderBottomSection()}
                 </div>
-                
-                {/* Мобильное меню и поиск */}
+                {this.renderMobileTopSection()}
                 {this.state.mobileMenuVisible && this.renderMobileMenu()}
                 {this.state.searchDropdownVisible && this.renderMobileSearch()}
             </header>
         );
     }
 }
-
-export default Header;

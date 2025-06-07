@@ -12,7 +12,9 @@ export const ProductsItem = ({
   inStock,
   oldPrice,
   currentPrice,
+  onSelect
 }) => {
+
   return (
     <li
       key={id}
@@ -20,11 +22,11 @@ export const ProductsItem = ({
       data-aos-duration="1500"
       className={style.products__item}
     >
-      <picture>
-        <source srcSet={desktopImage} media="(min-width: 1200px)" />
-        <source srcSet={mobileImage} media="(min-width: 320px)" />
+      {/* <picture> */}
+        {/* <source srcSet={desktopImage} media="(min-width: 1200px)" /> */}
+        {/* <source srcSet={mobileImage} media="(min-width: 320px)" /> */}
         <img src={src} alt={alt} />
-      </picture>
+      {/* </picture> */}
       <p className={style.products__size}>{size}</p>
       <a href="./product-card.html" className={style.products__subtitleDesktop}>
         {desktopTitle}
@@ -54,7 +56,7 @@ export const ProductsItem = ({
       <p className={style.products__price}>{currentPrice}</p>
       <ul className={style.products__couple}>
         <li className={style.products__coupleItem}>
-          <button type="button" className={style.products__button}>
+          <button type="button" onClick={() => onSelect(id)} className={style.products__button}>
             <svg
               className={style.products__likeIcon}
               width="50"
@@ -79,7 +81,7 @@ export const ProductsItem = ({
           </button>
         </li>
         <li className={style.products__coupleItem}>
-          <a type="button" className={style.products__button} href="...">
+          <a type="button" className={style.products__button} href="">
             <svg
               className={style.products__basketIcon}
               width="50"

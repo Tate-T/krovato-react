@@ -10,12 +10,12 @@ import { ContactsPage } from './pages/ContactsPage/ContactsPage';
 function App() {
   return (
     <div className="App">
-      <Main /> 
+      {/* <Main /> 
       <PaymentPage />
-      <Delivery />
+      <Delivery /> */}
       <ContactsPage />
-      <LastReviews />
-      <ProductCardPage />
+      {/* <LastReviews />
+      <ProductCardPage /> */}
     </div>
   );
 }

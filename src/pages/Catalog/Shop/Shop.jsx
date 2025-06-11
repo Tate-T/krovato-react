@@ -1,19 +1,26 @@
 import { Component } from "react";
 import "./shop.scss";
 import containerStyles from "../../../components/Container/Container.module.scss";
-import productsData from "../../../productsData.json";
 
 export class Shop extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    products: [],
+  };
 
-    this.state = {
-      products: productsData,
-    };
-  }
+  componentDidMount = async () => {
+    const data = await fetch(
+      "https://6849567745f4c0f5ee70fe69.mockapi.io/products"
+    ).then((res) => res.json());
 
-  handleFilterClear = () => {
-    this.setState({ products: productsData });
+    await this.setState({ products: data });
+  };
+
+  handleFilterClear = async () => {
+    const data = await fetch(
+      "https://6849567745f4c0f5ee70fe69.mockapi.io/products"
+    ).then((res) => res.json());
+
+    await this.setState({ products: data });
   };
 
   handleFilterPrice = () => {

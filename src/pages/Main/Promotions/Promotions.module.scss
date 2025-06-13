@@ -47,25 +47,22 @@
     @extend %animation-of-button;
 
     padding: 10px !important;
-        border-radius: 20px !important;
-        display: inline-flex;
-        transition: all ease-in-out 0.2s;
+    border-radius: 20px !important;
+    display: inline-flex;
+    transition: all ease-in-out 0.2s;
 
-        & path {
+    & path {
+      fill: #ffbc57;
+    }
 
-            fill: #ffbc57;
-        }
+    &:hover:not(:active) {
+      background-color: #ffbc57;
+      color: #fff;
 
-        &:hover:not(:active) {
-
-            background-color: #ffbc57;
-            color: #fff;
-
-            & path {
-
-                fill: #fff;
-            }
-        } 
+      & path {
+        fill: #fff;
+      }
+    }
   }
 
   &__couple {
@@ -102,42 +99,34 @@
     transition: all ease-in-out 0.2s;
 
     &:not([disabled]):hover:not(:active) {
-
       background-color: #ffbc57;
-      
-      & path {
 
-          fill: #fff;
+      & path {
+        fill: #fff;
       }
-    };
+    }
 
     &[disabled] {
-
       cursor: not-allowed;
       border-color: red;
 
       & path {
-
-          fill: red;
+        fill: red;
       }
     }
 
     & path {
-
       fill: #ffbc57;
-  }
+    }
   }
 
   &__list {
     padding: 0;
     gap: 30px;
-
-    @media screen and (min-width: 1290px) {
-
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      overflow: hidden;
-    }
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    overflow: hidden;
+    
   }
 
   &__item {
@@ -145,11 +134,11 @@
     flex-basis: calc((100% - 60px) / 3);
     width: 410px;
     position: relative;
+    right: 0;
     transition: transform ease-in-out 2.5s, right ease-in-out 0.4s !important;
     transform: rotateX(90deg);
 
     &.aos-animate {
-
       transform: rotateX(0deg);
     }
   }

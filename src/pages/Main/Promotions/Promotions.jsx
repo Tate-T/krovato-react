@@ -164,6 +164,19 @@ import { Component, useState } from "react";
 export class Promotions extends Component {
   state = {
     promos: [],
+    slide: 1,
+  };
+
+  incrementSlide = () => {
+    this.setState((prev) => ({
+      slide: prev.slide + 1,
+    }));
+  };
+
+  dicrementSlide = () => {
+    this.setState((prev) => ({
+      slide: prev.slide - 1,
+    }));
   };
 
   componentDidMount() {
@@ -222,7 +235,12 @@ export class Promotions extends Component {
                 data-aos-duration="1500"
                 className={style.promotions__couplePart}
               >
-                <button type="button" className={style.promotions__button}>
+                <button
+                  disabled={this.state.slide === 1}
+                  type="button"
+                  className={style.promotions__button}
+                  onClick={this.dicrementSlide}
+                >
                   <svg
                     className={`${style.promotions__arrow} ${style.promotions__arrow1}`}
                     width="60"
@@ -251,7 +269,12 @@ export class Promotions extends Component {
                 data-aos-duration="1500"
                 className={style.promotions__couplePart}
               >
-                <button type="button" className={style.promotions__button}>
+                <button
+                  disabled={this.state.slide === 9}
+                  type="button"
+                  className={style.promotions__button}
+                  onClick={this.incrementSlide}
+                >
                   <svg
                     className={`${style.promotions__arrow} ${style.promotions__arrow2}`}
                     width="60"
@@ -273,7 +296,10 @@ export class Promotions extends Component {
               </li>
             </ul>
           </div>
-          <PromotionsList data={this.state.promos} />
+          <PromotionsList
+            activeSlide={this.state.slide}
+            data={this.state.promos}
+          />
           <ul className={style.promotions__circles}>
             <li className={style.promotions__circle}>
               <div

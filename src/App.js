@@ -7,19 +7,17 @@ import { ContactsPage } from './pages/ContactsPage/ContactsPage';
 import { LastReviews } from './components/LastReviews/LastReviews';
 import { ProductCardPage } from './pages/ProductCard/ProductCardPage';
 import { CartModal } from './components/BasketModal/BasketModal';
-import { Benefits } from './pages/AboutUs/Benefits/Benefits';
 
 function App() {
   return (
     <div className="App">
-      <Benefits/>
-      {/* <Main /> 
+      <Main /> 
       <PaymentPage />
       <Delivery />
       <ContactsPage />
       <LastReviews />
       <ProductCardPage />
-      <CartModal /> */}
+      <CartModal />
     </div>
   );
 }

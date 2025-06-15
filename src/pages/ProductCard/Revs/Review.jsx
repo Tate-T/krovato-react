@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { useEffect, useState } from "react";
 import r from "./r.module.scss";
 import {
   IoChatbubblesOutline,
@@ -8,108 +8,103 @@ import {
 } from "react-icons/io5";
 import { BiLike } from "react-icons/bi";
 
-const API_URL = 'https://683491c1464b499636035baf.mockapi.io/api/revs/revs'; // Я знаю что запалил апи, и что на работе за такое дадут по шапке, но проект учебный и никому моя апишка не сделась
+const API_URL = "https://683491c1464b499636035baf.mockapi.io/api/revs/revs";
 
-class Review extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      review: [],
-      newReply: "",
-      replyName: "",
-      likes: [],
-      liked: [],
-      showModal: false,
-      currentReviewIndex: null,
-      loading: true,
-      error: null,
-      showNewReviewForm: false,
-      newReview: {
-        username: "",
-        text: "",
-        likes: 0,
-        replies: []
-      },
-      page: 1,
-      limit: 10,
-      hasMore: true
-    };
-  }
+const Review = () => {
+  const [review, setReview] = useState([]);
+  const [newReply, setNewReply] = useState("");
+  const [replyName, setReplyName] = useState("");
+  const [likes, setLikes] = useState([]);
+  const [liked, setLiked] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [currentReviewIndex, setCurrentReviewIndex] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [showNewReviewForm, setShowNewReviewForm] = useState(false);
+  const [newReviewUsername, setNewReviewUsername] = useState("");
+  const [newReviewText, setNewReviewText] = useState("");
+  const [newReviewLikes, setNewReviewLikes] = useState(0);
+  const [newReviewReplies, setNewReviewReplies] = useState([]);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const [hasMore, setHasMore] = useState(true);
 
-  componentDidMount() {
-    this.fetchReviews();
-  }
+  useEffect(() => {
+    fetchReviews();
+  }, []);
 
-  fetchReviews = async (loadMore = false) => {
+  const fetchReviews = async (loadMore = false) => {
     try {
-      // console.log('Начинаем загрузку отзывов...');
-      const { page, limit } = this.state;
       const response = await fetch(`${API_URL}?page=${page}&limit=${limit}`);
-      // console.log('Получен ответ:', response.status);
       
       if (!response.ok) {
         throw new Error(`Ошибка при загрузке отзывов: ${response.status}`);
       }
-      
+
       const data = await response.json();
-      // console.log('Получены данные:', data);
-      
+
       if (!Array.isArray(data)) {
         throw new Error('Полученные данные не являются массивом');
       }
 
-      const sortedData = data.sort((a, b) => {
-        const dateA = typeof a.date === 'string' ? new Date(a.date).getTime() : a.date * 1000;
-        const dateB = typeof b.date === 'string' ? new Date(b.date).getTime() : b.date * 1000;
-        return dateB - dateA;
-      });
+      const sortedData = data
+        .map(review => ({
+          ...review,
+          timestamp: typeof review.date === 'string' ? new Date(review.date).getTime() : review.date * 1000
+        }))
+        .sort((a, b) => b.timestamp - a.timestamp);
 
-      this.setState(prevState => ({
-        review: loadMore ? [...prevState.review, ...sortedData] : sortedData,
-        likes: loadMore ? [...prevState.likes, ...sortedData.map(review => review.likes || 0)] : sortedData.map(review => review.likes || 0),
-        liked: loadMore ? [...prevState.liked, ...Array(sortedData.length).fill(false)] : Array(sortedData.length).fill(false),
-        loading: false,
-        error: null,
-        hasMore: data.length === limit
+      const sortedDataWithReplies = sortedData.map(review => ({
+        ...review,
+        replies: review.replies 
+          ? review.replies
+              .map(reply => ({
+                ...reply,
+                timestamp: new Date(reply.date).getTime()
+              }))
+              .sort((a, b) => b.timestamp - a.timestamp)
+          : []
       }));
+
+      setReview(prevReview => loadMore ? [...prevReview, ...sortedDataWithReplies] : sortedDataWithReplies);
+      setLikes(prevLikes => loadMore ? [...prevLikes, ...sortedData.map(review => review.likes || 0)] : sortedData.map(review => review.likes || 0));
+      setLiked(prevLiked => loadMore ? [...prevLiked, ...Array(sortedData.length).fill(false)] : Array(sortedData.length).fill(false));
+      setLoading(false);
+      setError(null);
+      setHasMore(data.length === limit);
     } catch (error) {
       console.error('Ошибка при загрузке отзывов:', error);
-      this.setState({
-        error: error.message,
-        loading: false
-      });
+      setError(error.message);
+      setLoading(false);
     }
   };
 
-  loadMore = () => {
-    this.setState(prevState => ({
-      page: prevState.page + 1
-    }), () => {
-      this.fetchReviews(true);
-    });
+  const loadMore = () => {
+    setPage(prevPage => prevPage + 1);
+    fetchReviews(true);
   };
 
-  handleReplyChange = (e) => {
-    this.setState({ newReply: e.target.value });
+  const handleReplyChange = (e) => {
+    setNewReply(e.target.value);
   };
 
-  handleNameChange = (e) => {
-    this.setState({ replyName: e.target.value });
+  const handleNameChange = (e) => {
+    setReplyName(e.target.value);
   };
 
-  handleReplySubmit = async () => {
-    const { review, newReply, replyName, currentReviewIndex } = this.state;
+  const handleReplySubmit = async () => {
     if (newReply.trim() && replyName.trim()) {
       try {
         const updatedReview = [...review];
         const reply = {
           username: replyName,
           text: newReply,
-          date: new Date().toISOString()
+          date: new Date().toISOString(),
+          timestamp: new Date().getTime()
         };
-        
-        updatedReview[currentReviewIndex].replies.push(reply);
-        
+
+        updatedReview[currentReviewIndex].replies = [reply, ...(updatedReview[currentReviewIndex].replies || [])];
+
         const response = await fetch(`${API_URL}/${updatedReview[currentReviewIndex].id}`, {
           method: 'PUT',
           headers: {
@@ -122,21 +117,18 @@ class Review extends Component {
           throw new Error('Ошибка при отправке ответа');
         }
 
-        this.setState({
-          review: updatedReview,
-          newReply: "",
-          replyName: "",
-          showModal: false,
-          currentReviewIndex: null,
-        });
+        setReview(updatedReview);
+        setNewReply("");
+        setReplyName("");
+        setShowModal(false);
+        setCurrentReviewIndex(null);
       } catch (error) {
         console.error('Ошибка при отправке ответа:', error);
       }
     }
   };
 
-  handleLike = async (reviewIndex) => {
-    const { review, likes, liked } = this.state;
+  const handleLike = async (reviewIndex) => {
     if (!liked[reviewIndex]) {
       try {
         const newLikes = [...likes];
@@ -159,40 +151,28 @@ class Review extends Component {
           throw new Error('Ошибка при обновлении лайков');
         }
 
-        this.setState({ likes: newLikes, liked: newLiked });
+        setLikes(newLikes);
+        setLiked(newLiked);
       } catch (error) {
         console.error('Ошибка при обновлении лайков:', error);
       }
     }
   };
 
-  openModal = (index) => {
-    this.setState({ showModal: true, currentReviewIndex: index });
+  const openModal = (index) => {
+    setShowModal(true);
+    setCurrentReviewIndex(index);
   };
 
-  closeModal = () => {
-    this.setState({
-      showModal: false,
-      newReply: "",
-      replyName: "",
-      currentReviewIndex: null,
-    });
+  const closeModal = () => {
+    setShowModal(false);
+    setNewReply("");
+    setReplyName("");
+    setCurrentReviewIndex(null);
   };
 
-  handleNewReviewChange = (e) => {
-    const { name, value } = e.target;
-    this.setState(prevState => ({
-      newReview: {
-        ...prevState.newReview,
-        [name]: value
-      }
-    }));
-  };
-
-  handleNewReviewSubmit = async (e) => {
+  const handleNewReviewSubmit = async (e) => {
     e.preventDefault();
-    const { newReview } = this.state;
-    
     try {
       const currentDate = Math.floor(Date.now() / 1000);
       const response = await fetch(API_URL, {
@@ -201,7 +181,10 @@ class Review extends Component {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...newReview,
+          username: newReviewUsername,
+          text: newReviewText,
+          likes: newReviewLikes,
+          replies: newReviewReplies,
           date: currentDate
         })
       });
@@ -211,193 +194,162 @@ class Review extends Component {
       }
 
       const createdReview = await response.json();
-      
-      this.setState(prevState => ({
-        review: [createdReview, ...prevState.review],
-        likes: [0, ...prevState.likes],
-        liked: [false, ...prevState.liked],
-        showNewReviewForm: false,
-        newReview: {
-          username: "",
-          text: "",
-          likes: 0,
-          replies: []
-        }
-      }));
+
+      setReview(prevReview => [createdReview, ...prevReview]);
+      setLikes(prevLikes => [0, ...prevLikes]);
+      setLiked(prevLiked => [false, ...prevLiked]);
+      setShowNewReviewForm(false);
+      setNewReviewUsername("");
+      setNewReviewText("");
+      setNewReviewLikes(0);
+      setNewReviewReplies([]);
     } catch (error) {
       console.error('Ошибка при создании отзыва:', error);
     }
   };
 
-  toggleNewReviewForm = () => {
-    this.setState(prevState => ({
-      showNewReviewForm: !prevState.showNewReviewForm
-    }));
+  const toggleNewReviewForm = () => {
+    setShowNewReviewForm(prev => !prev);
   };
 
-  render() {
-    const {
-      review,
-      newReply,
-      replyName,
-      likes,
-      showModal,
-      currentReviewIndex,
-      loading,
-      error,
-      showNewReviewForm,
-      newReview,
-      hasMore
-    } = this.state;
-
-    if (loading && !review.length) {
-      return (
-        <div className={r.loading}>
-          <div className={r.loadingSpinner}></div>
-          Загрузка отзывов...
-        </div>
-      );
-    }
-
-    if (error && !review.length) {
-      return (
-        <div className={r.error}>
-          <p>Ошибка при загрузке отзывов: {error}</p>
-          <button 
-            className={r.retryButton}
-            onClick={() => this.fetchReviews()}
-          >
-            Попробовать снова
-          </button>
-        </div>
-      );
-    }
-
+  if (loading && !review.length) {
     return (
-      <div className={r.rev}>
-        <button 
-          className={r.newReviewButton}
-          onClick={this.toggleNewReviewForm}
-        >
-          <IoAddOutline className={r.buttonIcon} />
-          Написать отзыв
-        </button>
-
-        {showNewReviewForm && (
-          <div className={r.newReviewForm}>
-            <h3>Новый отзыв</h3>
-            <form onSubmit={this.handleNewReviewSubmit}>
-              <input
-                type="text"
-                name="username"
-                value={newReview.username}
-                onChange={this.handleNewReviewChange}
-                placeholder="Ваше имя"
-                required
-                className={r.modalInput}
-              />
-              <textarea
-                name="text"
-                value={newReview.text}
-                onChange={this.handleNewReviewChange}
-                placeholder="Ваш отзыв..."
-                required
-                className={r.modalTextarea}
-              />
-              <div className={r.formButtons}>
-                <button type="submit" className={r.submitButton}>
-                  Отправить
-                </button>
-                <button
-                  type="button"
-                  onClick={this.toggleNewReviewForm}
-                  className={r.cancelButton}
-                >
-                  Отмена
-                </button>
-              </div>
-            </form>
-          </div>
-        )}
-
-        {review.map((reviewItem, index) => (
-          <div key={reviewItem.id} className={r.review}>
-            <div className={r.usernameLine}>
-              <IoPersonOutline className={r.userIcon} />
-              <h3>{reviewItem.username}</h3>
-              <span>
-                {new Date(reviewItem.date * 1000).toLocaleDateString("ru-RU")}
-              </span>
-            </div>
-            <p>{reviewItem.text}</p>
-            <div className={r.replySection}>
-              <button
-                className={r.replyButton}
-                onClick={() => this.openModal(index)}
-              >
-                <IoChatbubblesOutline className={r.replyIcon} />
-                Ответить
-              </button>
-              <button
-                className={r.likeButton}
-                onClick={() => this.handleLike(index)}
-              >
-                <BiLike className={r.likeIcon} />
-                Нравится ({likes[index]})
-              </button>
-              <span>{reviewItem.replies?.length || 0} ответов</span>
-              {index === 0 && <span className={r.also}>А также</span>}
-            </div>
-            <div className={r.likesSection}>
-              {reviewItem.replies?.map((reply, replyIndex) => (
-                <div key={replyIndex} className={r.reply}>
-                  <strong>{reply.username}</strong>: {reply.text}{" "}
-                  <span>{new Date(reply.date).toLocaleDateString("ru-RU")}</span>
-                </div>
-              ))}
-              {showModal && currentReviewIndex === index && (
-                <div className={r.modal}>
-                  <button className={r.closeButton} onClick={this.closeModal}>
-                    <IoCloseOutline />
-                  </button>
-                  <h3>Добавить ответ</h3>
-                  <input
-                    type="text"
-                    value={replyName}
-                    onChange={this.handleNameChange}
-                    placeholder="Ваше имя"
-                    className={r.modalInput}
-                  />
-                  <textarea
-                    value={newReply}
-                    onChange={this.handleReplyChange}
-                    placeholder="Ваш ответ..."
-                    className={r.modalTextarea}
-                  />
-                  <button
-                    className={r.submitButton}
-                    onClick={this.handleReplySubmit}
-                  >
-                    Отправить
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        ))}
-
-        {hasMore && (
-          <button 
-            className={r.loadMoreButton}
-            onClick={this.loadMore}
-            disabled={loading}
-          >
-            {loading ? 'Загрузка...' : 'Загрузить еще'}
-          </button>
-        )}
+      <div className={r.loading}>
+        <div className={r.loadingSpinner}></div>
+        Загрузка отзывов...
       </div>
     );
   }
-}
+
+  if (error && !review.length) {
+    return (
+      <div className={r.error}>
+        <p>Ошибка при загрузке отзывов: {error}</p>
+        <button
+          className={r.retryButton}
+          onClick={() => fetchReviews()}
+        >
+          Попробовать снова
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className={r.rev}>
+      <button className={r.newReviewButton} onClick={toggleNewReviewForm}>
+        <IoAddOutline className={r.buttonIcon} />
+        Написать отзыв
+      </button>
+
+      {showNewReviewForm && (
+        <div className={r.newReviewForm}>
+          <h3>Новый отзыв</h3>
+          <form onSubmit={handleNewReviewSubmit}>
+            <input
+              type="text"
+              value={newReviewUsername}
+              onChange={(e) => setNewReviewUsername(e.target.value)}
+              placeholder="Ваше имя"
+              required
+              className={r.modalInput}
+            />
+            <textarea
+              value={newReviewText}
+              onChange={(e) => setNewReviewText(e.target.value)}
+              placeholder="Ваш отзыв..."
+              required
+              className={r.modalTextarea}
+            />
+            <div className={r.formButtons}>
+              <button type="submit" className={r.submitButton}>
+                Отправить
+              </button>
+              <button type="button" onClick={toggleNewReviewForm} className={r.cancelButton}>
+                Отмена
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+
+      {review.map((reviewItem, index) => (
+        <div key={reviewItem.id} className={r.review}>
+          <div className={r.usernameLine}>
+            <IoPersonOutline className={r.userIcon} />
+            <h3>{reviewItem.username}</h3>
+            <span>
+              {new Date(reviewItem.date * 1000).toLocaleDateString("ru-RU")}
+            </span>
+          </div>
+          <p>{reviewItem.text}</p>
+          <div className={r.replySection}>
+            <button
+              className={r.replyButton}
+              onClick={() => openModal(index)}
+            >
+              <IoChatbubblesOutline className={r.replyIcon} />
+              Ответить
+            </button>
+            <button
+              className={r.likeButton}
+              onClick={() => handleLike(index)}
+            >
+              <BiLike className={r.likeIcon} />
+              Нравится ({likes[index]})
+            </button>
+            <span>{reviewItem.replies?.length || 0} ответов</span>
+            {index === 0 && <span className={r.also}>А также</span>}
+          </div>
+          <div className={r.likesSection}>
+            {reviewItem.replies?.map((reply, replyIndex) => (
+              <div key={replyIndex} className={r.reply}>
+                <strong>{reply.username}</strong>: {reply.text}{" "}
+                <span>{new Date(reply.date).toLocaleDateString("ru-RU")}</span>
+              </div>
+            ))}
+            {showModal && currentReviewIndex === index && (
+              <div className={r.modal}>
+                <button className={r.closeButton} onClick={closeModal}>
+                  <IoCloseOutline />
+                </button>
+                <h3>Добавить ответ</h3>
+                <input
+                  type="text"
+                  value={replyName}
+                  onChange={handleNameChange}
+                  placeholder="Ваше имя"
+                  className={r.modalInput}
+                />
+                <textarea
+                  value={newReply}
+                  onChange={handleReplyChange}
+                  placeholder="Ваш ответ..."
+                  className={r.modalTextarea}
+                />
+                <button
+                  className={r.submitButton}
+                  onClick={handleReplySubmit}
+                >
+                  Отправить
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+
+      {hasMore && (
+        <button
+          className={r.loadMoreButton}
+          onClick={() => loadMore()}
+          disabled={loading}
+        >
+          {loading ? 'Загрузка...' : 'Загрузить еще'}
+        </button>
+      )}
+    </div>
+  );
+};
 
 export default Review;

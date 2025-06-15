@@ -1,9 +1,9 @@
-
 import containerStyle from '../../../components/Container/Container.module.scss'
 import style from './Hero.module.scss'
 import { Component } from "react"
+// import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
-import mainBed from '../../../images/product-card/hero-bed.png'
+import miniBed0 from '../../../images/product-card/hero-bed.png'
 
 import miniBed2 from '../../../images/product-card/hero-mini-beds/img-2.png'
 import miniBed3 from '../../../images/product-card/hero-mini-beds/img-3.png'
@@ -27,17 +27,58 @@ import whatsapp from '../../../images/product-card/whatsapp.svg'
 export class Hero extends Component {
     state = {
         currentProduct: {
-            img: mainBed,
+            img: miniBed0,
             name: 'Ліжко двоспальне МК-1 з підйомним механізмом',
             price: {
                 cost: '15 400 грн.',
                 oldCost: '25 400 грн.'
             },
             stars: 3,
-        }
+            beds: [miniBed0,miniBed2,miniBed3,miniBed4,miniBed5]
+        },
+        currentImageIndex: 0
     }
+
+    handlePrevImage = () => {
+        this.setState(prevState => ({
+            currentImageIndex: prevState.currentImageIndex === 0 
+                ? prevState.currentProduct.beds.length - 1 
+                : prevState.currentImageIndex - 1,
+            currentProduct: {
+                ...prevState.currentProduct,
+                img: prevState.currentImageIndex === 0 
+                    ? prevState.currentProduct.beds[prevState.currentProduct.beds.length - 1]
+                    : prevState.currentProduct.beds[prevState.currentImageIndex - 1]
+            }
+        }));
+    }
+
+    handleNextImage = () => {
+        this.setState(prevState => ({
+            currentImageIndex: prevState.currentImageIndex === prevState.currentProduct.beds.length - 1 
+                ? 0 
+                : prevState.currentImageIndex + 1,
+            currentProduct: {
+                ...prevState.currentProduct,
+                img: prevState.currentImageIndex === prevState.currentProduct.beds.length - 1 
+                    ? prevState.currentProduct.beds[0]
+                    : prevState.currentProduct.beds[prevState.currentImageIndex + 1]
+            }
+        }));
+    }
+
+    handleThumbnailClick = (index) => {
+        this.setState(prevState => ({
+            currentImageIndex: index,
+            currentProduct: {
+                ...prevState.currentProduct,
+                img: prevState.currentProduct.beds[index]
+            }
+        }));
+    }
+
     render() {
-        console.log(this.state.currentProduct.img)
+        // console.log(this.state.currentProduct.img)
         return <section className={style.hero}>
             <div className={containerStyle.container}>
                 <nav className={style.hero__nav} >
@@ -100,83 +141,49 @@ export class Hero extends Component {
                         <p className={style.hero__model + " " + style.hero__modelMob}>Модель: 62003836</p>
                     </div>
                     <div className={style.hero__container1}>
-                        <img className={style.hero__img} src={this.state.currentProduct.img} alt="bed" />
+                        <img className={style.hero__img} src={this.state.currentProduct.img} alt="bed" id="MYIMG" />
                         <ul className={style.hero__buttonsMob}>
-                            <li className={style.hero__buttonItemMob}>
-                                <button className={style.hero__buttonMob}>
-                                    <div className={style.hero__buttonBorderMob}>
-                                        <div className={style.hero__buttonBcMob}></div>
-                                    </div>
-                                </button>
-                            </li>
-                            <li className={style.hero__buttonItemMob}>
-                                <button className={style.hero__buttonMob}>
-                                    <div className={style.hero__buttonBorderMob}>
-                                        <div className={style.hero__buttonBcMob}></div>
-                                    </div>
-                                </button>
-                            </li>
-                            <li className={style.hero__buttonItemMob}>
-                                <button className={style.hero__buttonMob}>
-                                    <div className={style.hero__buttonBorderMob + " " + style.hero__buttonActiveBorderMob}>
-                                        <div className={style.hero__buttonBcMob + " " + style.hero__buttonActiveBcMob}></div>
-                                    </div>
-                                </button>
-                            </li>
-                            <li className={style.hero__buttonItemMob}>
-                                <button className={style.hero__buttonMob}>
-                                    <div className={style.hero__buttonBorderMob}>
-                                        <div className={style.hero__buttonBcMob}></div>
-                                    </div>
-                                </button>
-                            </li>
-                            <li className={style.hero__buttonItemMob}>
-                                <button className={style.hero__buttonMob}>
-                                    <div className={style.hero__buttonBorderMob}>
-                                        <div className={style.hero__buttonBcMob}></div>
-                                    </div>
-                                </button>
-                            </li>
+                            {this.state.currentProduct.beds.map((_, index) => (
+                                <li key={index} className={style.hero__buttonItemMob}>
+                                    <button 
+                                        className={style.hero__buttonMob}
+                                        onClick={() => this.handleThumbnailClick(index)}
+                                    >
+                                        <div className={`${style.hero__buttonBorderMob} ${index === this.state.currentImageIndex ? style.hero__buttonActiveBorderMob : ''}`}>
+                                            <div className={`${style.hero__buttonBcMob} ${index === this.state.currentImageIndex ? style.hero__buttonActiveBcMob : ''}`}></div>
+                                        </div>
+                                    </button>
+                                </li>
+                            ))}
                         </ul>
-                        <button className={style.hero__buttonLeft}>
+                        <button className={style.hero__buttonLeft} onClick={this.handlePrevImage}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="20" viewBox="0 0 12 20" fill="none">
                                 <path d="M0.970665 8.89704L9.44004 0.44262C9.57915 0.302369 9.74465 0.191049 9.92699 0.115081C10.1093 0.0391125 10.3049 0 10.5025 0C10.7 0 10.8956 0.0391125 11.0779 0.115081C11.2603 0.191049 11.4258 0.302369 11.5649 0.44262C11.8436 0.722981 12 1.10224 12 1.49755C12 1.89287 11.8436 2.27212 11.5649 2.55248L4.15791 10.0343L11.5649 17.4412C11.8436 17.7216 12 18.1008 12 18.4962C12 18.8915 11.8436 19.2707 11.5649 19.5511C11.4263 19.6925 11.261 19.805 11.0787 19.882C10.8963 19.9591 10.7004 19.9992 10.5025 20C10.3045 19.9992 10.1086 19.9591 9.92626 19.882C9.74389 19.805 9.57863 19.6925 9.44004 19.5511L0.970665 11.0967C0.818778 10.9566 0.69756 10.7865 0.614651 10.5972C0.531742 10.4079 0.488939 10.2035 0.488939 9.99686C0.488939 9.79021 0.531742 9.5858 0.614651 9.39651C0.69756 9.20722 0.818778 9.03716 0.970665 8.89704Z" fill="#FFBC57" />
                             </svg>
                         </button>
-                        <button className={style.hero__buttonRight}>
+
+                        <button className={style.hero__buttonRight} onClick={this.handleNextImage}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="20" viewBox="0 0 12 20" fill="none">
                                 <g transform="translate(12,0) scale(-1,1)">
                                     <path d="M0.970665 8.89704L9.44004 0.44262C9.57915 0.302369 9.74465 0.191049 9.92699 0.115081C10.1093 0.0391125 10.3049 0 10.5025 0C10.7 0 10.8956 0.0391125 11.0779 0.115081C11.2603 0.191049 11.4258 0.302369 11.5649 0.44262C11.8436 0.722981 12 1.10224 12 1.49755C12 1.89287 11.8436 2.27212 11.5649 2.55248L4.15791 10.0343L11.5649 17.4412C11.8436 17.7216 12 18.1008 12 18.4962C12 18.8915 11.8436 19.2707 11.5649 19.5511C11.4263 19.6925 11.261 19.805 11.0787 19.882C10.8963 19.9591 10.7004 19.9992 10.5025 20C10.3045 19.9992 10.1086 19.9591 9.92626 19.882C9.74389 19.805 9.57863 19.6925 9.44004 19.5511L0.970665 11.0967C0.818778 10.9566 0.69756 10.7865 0.614651 10.5972C0.531742 10.4079 0.488939 10.2035 0.488939 9.99686C0.488939 9.79021 0.531742 9.5858 0.614651 9.39651C0.69756 9.20722 0.818778 9.03716 0.970665 8.89704Z" fill="#FFBC57" />
                                 </g>
                             </svg>
-
                         </button>
                         <ul className={style.hero__images}>
-                            <li className={style.hero__image}>
-                                <a href="#" className={style.hero__itemLink}>
-                                    <img className={style.hero__currentImage} src={mainBed} alt="bed" />
-                                </a>
-                            </li>
-                            <li className={style.hero__item}>
-                                <a href="#" className={style.hero__itemLink}>
-                                    <img className={style.hero__image} src={miniBed2} alt="bed" />
-                                </a>
-                            </li>
-                            <li className={style.hero__item}>
-                                <a href="#" className={style.hero__itemLink}>
-                                    <img className={style.hero__image} src={miniBed3} alt="bed" />
-                                </a>
-                            </li>
-                            <li className={style.hero__item}>
-                                <a href="#" className={style.hero__itemLink}>
-                                    <img className={style.hero__image} src={miniBed4} alt="bed" />
-                                </a>
-                            </li>
-                            <li className={style.hero__item}>
-                                <a href="#" className={style.hero__itemLink}>
-                                    <img className={style.hero__image} src={miniBed5} alt="bed" />
-                                </a>
-                            </li>
+                            {this.state.currentProduct.beds.map((bed, index) => (
+                                <li key={index} className={style.hero__item}>
+                                    <a href="#" className={style.hero__itemLink} onClick={(e) => {
+                                        e.preventDefault();
+                                        this.handleThumbnailClick(index);
+                                    }}>
+                                        <img 
+                                            className={`${style.hero__image} ${index === this.state.currentImageIndex ? style.hero__currentImage : ''}`} 
+                                            src={bed} 
+                                            alt="bed" 
+                                        />
+                                    </a>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div className={style.hero__container2}>

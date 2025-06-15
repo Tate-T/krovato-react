@@ -119,8 +119,10 @@ line-height: 1.41;
   &__img {
     width: 410px;
     height: 410px;
-      margin-left: auto;
-      margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
 
     @media screen and (max-width: 420px) {
       width: 100%;
@@ -251,16 +253,25 @@ line-height: 1.41;
   }
 
   &__currentImage {
-    // height: 100%;
     width: 123px;
+    height: 123px;
+    object-fit: cover;
     border-radius: 10px;
     border: solid 2px #ffbc57;
+    transition: all 0.3s ease;
   }
 
   &__image {
-    width: auto;
-    height: auto;
-    flex-shrink: 0;
+    width: 123px;
+    height: 123px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 
   &__imageImg {

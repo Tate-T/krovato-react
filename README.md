@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+# Krovato
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Интернет-магазин мебели **Krovato** — современное веб-приложение, разработанное на React.
 
-## Available Scripts
+## О проекте
 
-In the project directory, you can run:
+Данный проект представляет собой интернет-магазин мебели с возможностью просмотра каталога товаров, добавления в корзину, оформления заказа, чтения и публикации отзывов, а также ознакомления с акциями, условиями доставки и оплаты.
 
-### `npm start`
+## Структура проекта
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **/src/components/** — переиспользуемые компоненты (Header, Footer, BasketModal и др.)
+- **/src/pages/** — страницы сайта (Главная, Каталог, Блог, Контакты, Доставка, Оплата и др.)
+- **/src/images/** — изображения для различных разделов сайта
+- **/src/styles/** — SCSS-стили и переменные
+- **/public/** — статические файлы и иконки
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Запуск проекта
 
-### `npm test`
+1. Установите зависимости:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```bash
+   npm install
+   ```
 
-### `npm run build`
+2. Запустите проект в режиме разработки:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   npm start
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   Приложение будет доступно по адресу [http://localhost:3000](http://localhost:3000).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Сборка проекта для продакшена:
 
-### `npm run eject`
+   ```bash
+   npm run build
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Основные возможности
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Просмотр каталога товаров с фильтрацией по категориям
+- Страница отдельного товара с описанием, характеристиками и отзывами
+- Добавление и удаление товаров из корзины
+- Оформление заказа
+- Просмотр и публикация отзывов
+- Информация о доставке и оплате
+- Блог и статьи
+- Адаптивная верстка для мобильных устройств
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Используемые технологии
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- React
+- SCSS (модули)
+- Create React App
 
-## Learn More
+## Структура каталогов
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+src/
+  components/      # Общие компоненты
+  pages/           # Страницы сайта
+  images/          # Изображения
+  styles/          # SCSS-стили
+public/            # Статические файлы
+```
+## Цветные вкладки
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+В проекте реализована поддержка цветных вкладок (theme color) для различных устройств и браузеров. Это позволяет отображать вкладку сайта с фирменным цветом в поддерживаемых браузерах и операционных системах, улучшая визуальное восприятие бренда.
 
-### Code Splitting
+### Совместимость браузеров и устройств
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+| Устройство / ОС      | Браузер                | Обычная вкладка | Веб приложения (установленно) |
+|----------------------|------------------------|:--------------:|:----------------:|
+| **Android**          | Chrome                 |      🟢        |        🟢        |
+|                      | Samsung Internet       |      🟢        |        🟢        |
+|                      | Firefox                |      🟢        |        🟢        |
+|                      | Edge                   |      🟢        |        🟢        |
+|                      | Opera                  |      🟢        |        🟢        |
+| **iOS/iPadOS**       | Safari                 |      🔴        |        🟢       |
+|                      | Chrome/Edge/Opera      |      🔴        |        🟢       |
+| **macOS**            | Safari                 |      🟢      |        —         |
+|                      | Chrome                 |      🔴        |        🟢        |
+|                      | Edge                   |      🔴        |        🟢        |
+|                      | Opera/Vivaldi/Brave    |      🔴        |        🟢        |
+|                      | Firefox                |      🔴        |        🔴        |
+| **Windows**          | Chrome                 |      🟢        |        🟢        |
+|                      | Edge                   |      🟢        |        🟢        |
+|                      | Firefox                |      🟢        |        🟢        |
+|                      | Opera                  |      🟢        |        🟢        |
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---

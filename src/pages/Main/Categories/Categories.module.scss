@@ -119,203 +119,203 @@
         }
     }
 
-    &__item:nth-child(1) {
-        background: url(../../../images/main/mobile/1x/bed@1x.webp) center no-repeat #fff;
+    // &__item:nth-child(1) {
+    //     background: url(../../../images/main/mobile/1x/bed@1x.webp) center no-repeat #fff;
 
-        @media (min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi),
-        (min-resolution: 2dppx) {
-            background: url(../../../images/main/mobile/2x/bed@2x.webp) contain / center no-repeat #fff;
-        }
+    //     @media (min-device-pixel-ratio: 2),
+    //     (min-resolution: 192dpi),
+    //     (min-resolution: 2dppx) {
+    //         background: url(../../../images/main/mobile/2x/bed@2x.webp) contain / center no-repeat #fff;
+    //     }
 
-        @media screen and (min-width: 1290px) {
-            background: url(../../../images/main/desktop/1x/bed@1x.webp) center no-repeat #fff;
+    //     @media screen and (min-width: 1290px) {
+    //         background: url(../../../images/main/desktop/1x/bed@1x.webp) center no-repeat #fff;
 
-            @media (min-device-pixel-ratio: 2),
-            (min-resolution: 192dpi),
-            (min-resolution: 2dppx) {
-                background: url(../../../images/main/desktop/2x/bed@2x.webp) contain / center no-repeat #fff;
-            }
-        }
-    }
+    //         @media (min-device-pixel-ratio: 2),
+    //         (min-resolution: 192dpi),
+    //         (min-resolution: 2dppx) {
+    //             background: url(../../../images/main/desktop/2x/bed@2x.webp) contain / center no-repeat #fff;
+    //         }
+    //     }
+    // }
 
-    &__item:nth-child(2) {
-        background: url(../../../images/main/mobile/1x/matress@1x.webp) center no-repeat #fff;
+    // &__item:nth-child(2) {
+    //     background: url(../../../images/main/mobile/1x/matress@1x.webp) center no-repeat #fff;
 
-        @media (min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi),
-        (min-resolution: 2dppx) {
-            background: url(../../../images/main/mobile/2x/matress@2x.webp) contain / center no-repeat #fff;
-        }
+    //     @media (min-device-pixel-ratio: 2),
+    //     (min-resolution: 192dpi),
+    //     (min-resolution: 2dppx) {
+    //         background: url(../../../images/main/mobile/2x/matress@2x.webp) contain / center no-repeat #fff;
+    //     }
 
-        @media screen and (min-width: 1290px) {
-            background: url(../../../images/main/desktop/1x/matress@1x.webp) center no-repeat #fff;
+    //     @media screen and (min-width: 1290px) {
+    //         background: url(../../../images/main/desktop/1x/matress@1x.webp) center no-repeat #fff;
 
-            @media (min-device-pixel-ratio: 2),
-            (min-resolution: 192dpi),
-            (min-resolution: 2dppx) {
-                background: url(../../../images/main/desktop/2x/matress@2x.webp) contain / center no-repeat #fff;
-            }
-        }
-    }
+    //         @media (min-device-pixel-ratio: 2),
+    //         (min-resolution: 192dpi),
+    //         (min-resolution: 2dppx) {
+    //             background: url(../../../images/main/desktop/2x/matress@2x.webp) contain / center no-repeat #fff;
+    //         }
+    //     }
+    // }
 
-    &__item:nth-child(3) {
-        background: url(../../../images/main/mobile/1x/furniture@1x.webp) center no-repeat #fff;
+    // &__item:nth-child(3) {
+    //     background: url(../../../images/main/mobile/1x/furniture@1x.webp) center no-repeat #fff;
 
-        @media (min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi),
-        (min-resolution: 2dppx) {
-            background: url(../../../images/main/mobile/2x/furniture@2x.webp) contain / center no-repeat #fff;
-        }
+    //     @media (min-device-pixel-ratio: 2),
+    //     (min-resolution: 192dpi),
+    //     (min-resolution: 2dppx) {
+    //         background: url(../../../images/main/mobile/2x/furniture@2x.webp) contain / center no-repeat #fff;
+    //     }
 
-        @media screen  and (min-width: 1290px) {
-            background: url(../../../images/main/desktop/1x/furniture@1x.webp) center no-repeat #fff;
+    //     @media screen  and (min-width: 1290px) {
+    //         background: url(../../../images/main/desktop/1x/furniture@1x.webp) center no-repeat #fff;
 
-            @media (min-device-pixel-ratio: 2),
-            (min-resolution: 192dpi),
-            (min-resolution: 2dppx) {
-                background: url(../../../images/main/desktop/2x/furniture@2x.webp) contain / center no-repeat #fff;
-            }
-        }
-    }
+    //         @media (min-device-pixel-ratio: 2),
+    //         (min-resolution: 192dpi),
+    //         (min-resolution: 2dppx) {
+    //             background: url(../../../images/main/desktop/2x/furniture@2x.webp) contain / center no-repeat #fff;
+    //         }
+    //     }
+    // }
 
-    &__item:nth-child(4) {
-        background: url(../../../images/main/mobile/1x/shafa@1x.webp) center no-repeat #fff;
+    // &__item:nth-child(4) {
+    //     background: url(../../../images/main/mobile/1x/shafa@1x.webp) center no-repeat #fff;
 
-        @media (min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi),
-        (min-resolution: 2dppx) {
-            background: url(../../../images/main/mobile/2x/shafa@2x.webp) contain / center no-repeat #fff;
-        }
+    //     @media (min-device-pixel-ratio: 2),
+    //     (min-resolution: 192dpi),
+    //     (min-resolution: 2dppx) {
+    //         background: url(../../../images/main/mobile/2x/shafa@2x.webp) contain / center no-repeat #fff;
+    //     }
 
-        @media screen and (min-width: 1290px) {
-            background: url(../../../images/main/desktop/1x/shafa@1x.webp) center no-repeat #fff;
+    //     @media screen and (min-width: 1290px) {
+    //         background: url(../../../images/main/desktop/1x/shafa@1x.webp) center no-repeat #fff;
 
-            @media (min-device-pixel-ratio: 2),
-            (min-resolution: 192dpi),
-            (min-resolution: 2dppx) {
-                background: url(../../../images/main/desktop/2x/shafa@2x.webp) contain / center no-repeat #fff;
-            }
-        }
-    }
+    //         @media (min-device-pixel-ratio: 2),
+    //         (min-resolution: 192dpi),
+    //         (min-resolution: 2dppx) {
+    //             background: url(../../../images/main/desktop/2x/shafa@2x.webp) contain / center no-repeat #fff;
+    //         }
+    //     }
+    // }
 
-    &__item:nth-child(5) {
-        background: url(../../../images/main/mobile/1x/komod@1x.webp) center no-repeat #fff;
+    // &__item:nth-child(5) {
+    //     background: url(../../../images/main/mobile/1x/komod@1x.webp) center no-repeat #fff;
 
-        @media (min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi),
-        (min-resolution: 2dppx) {
-            background: url(../../../images/main/mobile/2x/komod@2x.webp) contain / center no-repeat #fff;
-        }
+    //     @media (min-device-pixel-ratio: 2),
+    //     (min-resolution: 192dpi),
+    //     (min-resolution: 2dppx) {
+    //         background: url(../../../images/main/mobile/2x/komod@2x.webp) contain / center no-repeat #fff;
+    //     }
 
-        @media screen and (min-width: 1290px) {
-            background: url(../../../images/main/desktop/1x/komod@1x.webp) center no-repeat #fff;
+    //     @media screen and (min-width: 1290px) {
+    //         background: url(../../../images/main/desktop/1x/komod@1x.webp) center no-repeat #fff;
 
-            @media (min-device-pixel-ratio: 2),
-            (min-resolution: 192dpi),
-            (min-resolution: 2dppx) {
-                background: url(../../../images/main/desktop/2x/komod@2x.webp) contain / center no-repeat #fff;
-            }
-        }
-    }
+    //         @media (min-device-pixel-ratio: 2),
+    //         (min-resolution: 192dpi),
+    //         (min-resolution: 2dppx) {
+    //             background: url(../../../images/main/desktop/2x/komod@2x.webp) contain / center no-repeat #fff;
+    //         }
+    //     }
+    // }
 
-    &__item:nth-child(6) {
-        background: url(../../../images/main/mobile/1x/shelf@1x.webp) center no-repeat #fff;
+    // &__item:nth-child(6) {
+    //     background: url(../../../images/main/mobile/1x/shelf@1x.webp) center no-repeat #fff;
 
-        @media (min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi),
-        (min-resolution: 2dppx) {
-            background: url(../../../images/main/mobile/2x/shelf@2x.webp) contain / center no-repeat #fff;
-        }
+    //     @media (min-device-pixel-ratio: 2),
+    //     (min-resolution: 192dpi),
+    //     (min-resolution: 2dppx) {
+    //         background: url(../../../images/main/mobile/2x/shelf@2x.webp) contain / center no-repeat #fff;
+    //     }
 
-        @media screen and (min-width: 1290px) {
-            background: url(../../../images/main/desktop/1x/shelf@1x.webp) center no-repeat #fff;
+    //     @media screen and (min-width: 1290px) {
+    //         background: url(../../../images/main/desktop/1x/shelf@1x.webp) center no-repeat #fff;
 
-            @media (min-device-pixel-ratio: 2),
-            (min-resolution: 192dpi),
-            (min-resolution: 2dppx) {
-                background: url(../../../images/main/desktop/2x/shelf@2x.webp) contain / center no-repeat #fff;
-            }
-        }
-    }
+    //         @media (min-device-pixel-ratio: 2),
+    //         (min-resolution: 192dpi),
+    //         (min-resolution: 2dppx) {
+    //             background: url(../../../images/main/desktop/2x/shelf@2x.webp) contain / center no-repeat #fff;
+    //         }
+    //     }
+    // }
 
-    &__item:nth-child(7) {
-        background: url(../../../images/main/mobile/1x/table@1x.webp) center no-repeat #fff;
+    // &__item:nth-child(7) {
+    //     background: url(../../../images/main/mobile/1x/table@1x.webp) center no-repeat #fff;
 
-        @media (min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi),
-        (min-resolution: 2dppx) {
-            background: url(../../../images/main/mobile/2x/table@2x.webp) contain / center no-repeat #fff;
-        }
+    //     @media (min-device-pixel-ratio: 2),
+    //     (min-resolution: 192dpi),
+    //     (min-resolution: 2dppx) {
+    //         background: url(../../../images/main/mobile/2x/table@2x.webp) contain / center no-repeat #fff;
+    //     }
 
-        @media screen and (min-width: 1290px) {
-            background: url(../../../images/main/desktop/1x/table@1x.webp) center no-repeat #fff;
+    //     @media screen and (min-width: 1290px) {
+    //         background: url(../../../images/main/desktop/1x/table@1x.webp) center no-repeat #fff;
 
-            @media (min-device-pixel-ratio: 2),
-            (min-resolution: 192dpi),
-            (min-resolution: 2dppx) {
-                background: url(../../../images/main/desktop/2x/table@2x.webp) contain / center no-repeat #fff;
-            }
-        }
-    }
+    //         @media (min-device-pixel-ratio: 2),
+    //         (min-resolution: 192dpi),
+    //         (min-resolution: 2dppx) {
+    //             background: url(../../../images/main/desktop/2x/table@2x.webp) contain / center no-repeat #fff;
+    //         }
+    //     }
+    // }
 
-    &__item:nth-child(8) {
-        background: url(../../../images/main/mobile/1x/chair@1x.webp) center no-repeat #fff;
+    // &__item:nth-child(8) {
+    //     background: url(../../../images/main/mobile/1x/chair@1x.webp) center no-repeat #fff;
 
-        @media (min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi),
-        (min-resolution: 2dppx) {
-            background: url(../../../images/main/mobile/2x/chair@2x.webp) contain / center no-repeat #fff;
-        }
+    //     @media (min-device-pixel-ratio: 2),
+    //     (min-resolution: 192dpi),
+    //     (min-resolution: 2dppx) {
+    //         background: url(../../../images/main/mobile/2x/chair@2x.webp) contain / center no-repeat #fff;
+    //     }
 
-        @media screen and (min-width: 1290px) {
-            background: url(../../../images/main/desktop/1x/chair@1x.webp) center no-repeat #fff;
+    //     @media screen and (min-width: 1290px) {
+    //         background: url(../../../images/main/desktop/1x/chair@1x.webp) center no-repeat #fff;
 
-            @media (min-device-pixel-ratio: 2),
-            (min-resolution: 192dpi),
-            (min-resolution: 2dppx) {
-                background: url(../../../images/main/desktop/2x/chair@2x.webp) contain / center no-repeat #fff;
-            }
-        }
-    }
+    //         @media (min-device-pixel-ratio: 2),
+    //         (min-resolution: 192dpi),
+    //         (min-resolution: 2dppx) {
+    //             background: url(../../../images/main/desktop/2x/chair@2x.webp) contain / center no-repeat #fff;
+    //         }
+    //     }
+    // }
 
-    &__item:nth-child(9) {
-        background: url(../../../images/main/mobile/1x/furniture-walls@1x.webp) center no-repeat #fff;
+    // &__item:nth-child(9) {
+    //     background: url(../../../images/main/mobile/1x/furniture-walls@1x.webp) center no-repeat #fff;
 
-        @media (min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi),
-        (min-resolution: 2dppx) {
-            background: url(../../../images/main/mobile/2x/furniture-walls@2x.webp) contain / center no-repeat #fff;
-        }
+    //     @media (min-device-pixel-ratio: 2),
+    //     (min-resolution: 192dpi),
+    //     (min-resolution: 2dppx) {
+    //         background: url(../../../images/main/mobile/2x/furniture-walls@2x.webp) contain / center no-repeat #fff;
+    //     }
 
-        @media screen and (min-width: 1290px) {
-            background: url(../../../images/main/desktop/1x/furniture-walls@1x.webp) center no-repeat #fff;
+    //     @media screen and (min-width: 1290px) {
+    //         background: url(../../../images/main/desktop/1x/furniture-walls@1x.webp) center no-repeat #fff;
 
-            @media (min-device-pixel-ratio: 2),
-            (min-resolution: 192dpi),
-            (min-resolution: 2dppx) {
-                background: url(../../../images/main/desktop/2x/furniture-walls@2x.webp) contain / center no-repeat #fff;
-            }
-        }
-    }
+    //         @media (min-device-pixel-ratio: 2),
+    //         (min-resolution: 192dpi),
+    //         (min-resolution: 2dppx) {
+    //             background: url(../../../images/main/desktop/2x/furniture-walls@2x.webp) contain / center no-repeat #fff;
+    //         }
+    //     }
+    // }
 
-    &__item:nth-child(10) {
-        background: url(../../../images/main/mobile/1x/kitchen@1x.webp) center no-repeat #fff;
+    // &__item:nth-child(10) {
+    //     background: url(../../../images/main/mobile/1x/kitchen@1x.webp) center no-repeat #fff;
 
-        @media (min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi),
-        (min-resolution: 2dppx) {
-            background: url(../../../images/main/mobile/2x/kitchen@2x.webp) contain / center no-repeat #fff;
-        }
+    //     @media (min-device-pixel-ratio: 2),
+    //     (min-resolution: 192dpi),
+    //     (min-resolution: 2dppx) {
+    //         background: url(../../../images/main/mobile/2x/kitchen@2x.webp) contain / center no-repeat #fff;
+    //     }
 
-        @media screen and (min-width: 1290px) {
-            background: url(../../../images/main/desktop/1x/kitchen@1x.webp) center no-repeat #fff;
+    //     @media screen and (min-width: 1290px) {
+    //         background: url(../../../images/main/desktop/1x/kitchen@1x.webp) center no-repeat #fff;
 
-            @media (min-device-pixel-ratio: 2),
-            (min-resolution: 192dpi),
-            (min-resolution: 2dppx) {
-                background: url(../../../images/main/desktop/2x/kitchen@2x.webp) contain / center no-repeat #fff;
-            }
-        }
-    }
+    //         @media (min-device-pixel-ratio: 2),
+    //         (min-resolution: 192dpi),
+    //         (min-resolution: 2dppx) {
+    //             background: url(../../../images/main/desktop/2x/kitchen@2x.webp) contain / center no-repeat #fff;
+    //         }
+    //     }
+    // }
 }

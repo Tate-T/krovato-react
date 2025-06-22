@@ -97,7 +97,7 @@
 
         &__item { 
             position: relative;
-            @include block-model(20px 0 0 0, 1px solid #E3E2E2, 8px, 0);
+            @include block-model(20px 20px 20px 20px, 1px solid #E3E2E2, 8px, 0);
             @include size(280px, 420px);
             background: #FFF;
             box-shadow: -3px 4px 15px 0px rgba(0, 0, 0, 0.06);
@@ -112,6 +112,16 @@
 
             @media screen and (min-width: 1290px) {
                 @include size(300px, 468px);
+            }
+
+            
+
+            & img {
+
+                @include size(260px, 220px);
+                object-fit: cover;
+                overflow: hidden;
+                border-radius: 8px;
             }
         }
 

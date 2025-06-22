@@ -30,9 +30,7 @@ import DesktopMK5Bed2x from "./images/main/desktop/2x/mk5-bed@2x.webp";
 let products = productsData;
 
 products = productsData.reduce((acc, item) => {
-
-    console.log(item.image.src);
-
+  
     switch (item.image.src) {
 
         case 'MobileSpartaBed1x':

@@ -1,11 +1,71 @@
+import { useEffect, useState } from "react";
 import "./shop.scss";
 import containerStyles from "../../../components/Container/Container.module.scss";
+import { getProductsAPI } from "../../../api/getProductsAPI";
 
 export const Shop = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    // fetch("https://6849567745f4c0f5ee70fe69.mockapi.io/products")
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setProducts(data);
+    //   });
+    getProductsAPI().then(data => setProducts(data));
+    // setProducts(getProductsAPI());
+  }, []);
+
+  const handleFilterClear = () => {
+    fetch("https://6849567745f4c0f5ee70fe69.mockapi.io/products")
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+      });
+  };
+
+  const handleFilterPrice = () => {
+    const filteredProducts = products.slice(0).filter((product, index) => {
+      const productPrice = parseInt(
+        product.price.split(" грн.").join("").split(" ").join("")
+      );
+
+      return productPrice >= 1195 && productPrice <= 9566;
+    });
+
+    setProducts(filteredProducts);
+  };
+
+  const handleFilterIsInStock = () => {
+    const filteredProducts = products
+      .slice(0)
+      .filter((product) => product.inStock);
+
+    setProducts(filteredProducts);
+  };
+
+  const handleFilterCorners = () => {
+    const filteredProducts = products
+      .slice(0)
+      .filter((product) => product.title.toLowerCase().includes("corners"));
+
+    setProducts(filteredProducts);
+  };
+
+  const handleFilterSize = () => {
+    const filteredProducts = products
+      .slice(0)
+      .filter((product) => product.size.toLowerCase().includes("200 x 210"));
+
+    setProducts(filteredProducts);
+  };
+
   return (
     <>
       <section className="shop">
-        <div className={[containerStyles.container, "shop__container"].join(" ")}>
+        <div
+          className={[containerStyles.container, "shop__container"].join(" ")}
+        >
           <aside className="aside">
             <div className="aside__box">
               <svg className="aside__icon">
@@ -26,7 +86,7 @@ export const Shop = () => {
                   <form action="" className="aside__form">
                     <input
                       type="text"
-                      placeholder="1488"
+                      placeholder="1195"
                       className="aside__input"
                     />
                     <input
@@ -234,7 +294,7 @@ export const Shop = () => {
               <div className="choose__box">
                 <h3 className="choose__title">Ви вибрали:</h3>
 
-                <div className="choose__pashalko">
+                <div className="choose__container">
                   <svg className="choose__filter">
                     <use href="#"></use>
                   </svg>
@@ -246,38 +306,36 @@ export const Shop = () => {
                 </div>
               </div>
               <ul className="choose__list">
-                <li className="choose__item">
+                <li className="choose__item" onClick={handleFilterClear}>
                   <p className="choose__text">Очистити</p>
                   <svg className="choose__close">
                     <use href="#"></use>
                   </svg>
                 </li>
-                <li className="choose__item">
-                  <p className="choose__text">Ціна: 1488-9566</p>
+                <li className="choose__item" onClick={handleFilterPrice}>
+                  <p className="choose__text">Ціна: 1195-9566</p>
                   <svg className="choose__close">
                     <use href="#"></use>
                   </svg>
                 </li>
-                <li className="choose__item">
+                <li className="choose__item" onClick={handleFilterIsInStock}>
                   <p className="choose__text">В наявності</p>
                   <svg className="choose__close">
                     <use href="#"></use>
                   </svg>
                 </li>
                 <li className="choose__item">
-                  <p className="choose__text">Виробник: Corners</p>
+                  <p className="choose__text" onClick={handleFilterCorners}>
+                    Виробник: Corners
+                  </p>
                   <svg className="choose__close">
                     <use href="#"></use>
                   </svg>
                 </li>
                 <li className="choose__item">
-                  <p className="choose__text">Без узголов'я</p>
-                  <svg className="choose__close">
-                    <use href="#"></use>
-                  </svg>
-                </li>
-                <li className="choose__item">
-                  <p className="choose__text">200x210 см</p>
+                  <p className="choose__text" onClick={handleFilterSize}>
+                    200x210 см
+                  </p>
                   <svg className="choose__close">
                     <use href="#"></use>
                   </svg>
@@ -285,391 +343,42 @@ export const Shop = () => {
               </ul>
             </div>
             <ul className="shop__list">
-              <li className="shop__item">
-                <img src="#" alt="sparta bed" className="shop__image" />
-                <div>
-                  <p className="shop__text">Розмір: 61 x 184 x 2130 мм</p>
-                  <a className="shop__suptitle" href="./product-card.html">
-                    Ліжко Спарта / Sparta з підйомним механізмом
-                  </a>
-                  <div className="shop__pashalka">
-                    <svg className="shop__icon">
-                      <use href="#"></use>
-                    </svg>
-                    <p className="shop__instock">В наявності</p>
+              {products.map((product) => (
+                <li key={product.id} className={`shop__item`}>
+                  <img src="#" alt={product.alt} className="shop__image" />
+                  <div>
+                    <p className="shop__text">Розмір: {product.size}</p>
+                    <h2 className="shop__suptitle">{product.title}</h2>
+                    <div className="shop__pashalka">
+                      <svg className="shop__icon">
+                        <use href="#"></use>
+                      </svg>
+                      <p className="shop__instock">
+                        {product.inStock ? "В наявності" : "Під замовлення"}
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div className="shop__item-element">
-                  <div className="shop__promo">
-                    <p className="shop__old">25 400 грн.</p>
-                    <p className="shop__price">15 400 грн.</p>
+                  <div className="shop__item-element">
+                    {product.oldPrice ? (
+                      <div className="shop__promo">
+                        <p className="shop__old">{product.oldPrice}</p>
+                        <p className="shop__price">{product.price}</p>
+                      </div>
+                    ) : (
+                      <p className="shop__price">{product.price}</p>
+                    )}
+                    <div className="shop__icons">
+                      <svg className="shop__heart">
+                        <use href="#"></use>
+                      </svg>
+                      <svg className="shop__basket">
+                        <use href="#"></use>
+                      </svg>
+                    </div>
                   </div>
-                  <div className="shop__icons">
-                    <svg className="shop__heart">
-                      <use href="#"></use>
-                    </svg>
-                    <svg className="shop__basket">
-                      <use href="#"></use>
-                    </svg>
-                  </div>
-                </div>
-              </li>
-              <li className="shop__item">
-                <img src="#" alt="argon bed" className="shop__image" />
-                <div className="">
-                  <p className="shop__text">Розмір: 61 x 184 x 2130 мм</p>
-                  <a className="shop__suptitle" href="./product-card.html">
-                    Ліжко Аргон з підйомним механізмом
-                  </a>
-                  <div className="shop__pashalka">
-                    <svg className="shop__icon">
-                      <use href="#"></use>
-                    </svg>
-                    <p className="shop__instock">В наявності</p>
-                  </div>
-                </div>
-
-                <div className="shop__item-element">
-                  <p className="shop__price">16 400 грн.</p>
-                  <div className="shop__icons">
-                    <svg className="shop__heart">
-                      <use href="#"></use>
-                    </svg>
-                    <svg className="shop__basket">
-                      <use href="#"></use>
-                    </svg>
-                  </div>
-                </div>
-              </li>
-              <li className="shop__item">
-                <img src="#" alt="prestige bed" className="shop__image" />
-                <div>
-                  <p className="shop__text">Розмір: 61 x 184 x 2130 мм</p>
-                  <a className="shop__suptitle" href="./product-card.html">
-                    Ліжко Престиж з підйомним механізмом
-                  </a>
-                  <div className="shop__pashalka">
-                    <svg className="shop__icon">
-                      <use href="#"></use>
-                    </svg>
-                    <p className="shop__instock">В наявності</p>
-                  </div>
-                </div>
-
-                <div className="shop__item-element">
-                  <p className="shop__price">14 969 грн.</p>
-                  <div className="shop__icons">
-                    <svg className="shop__heart">
-                      <use href="#"></use>
-                    </svg>
-                    <svg className="shop__basket">
-                      <use href="#"></use>
-                    </svg>
-                  </div>
-                </div>
-              </li>
-              <li className="shop__item">
-                <img src="#" alt="tokio-sofa" className="shop__image" />
-                <div>
-                  <p className="shop__text">Розмір: 61 x 184 x 2130 мм</p>
-                  <a className="shop__suptitle" href="./product-card.html">
-                    Диван Токіо-2
-                  </a>
-                  <div className="shop__pashalka">
-                    <svg className="shop__icon">
-                      <use href="#"></use>
-                    </svg>
-                    <p className="shop__instock">В наявності</p>
-                  </div>
-                </div>
-
-                <div className="shop__item-element">
-                  <p className="shop__price">13 211 грн.</p>
-                  <div className="shop__icons">
-                    <svg className="shop__heart">
-                      <use href="#"></use>
-                    </svg>
-                    <svg className="shop__basket">
-                      <use href="#"></use>
-                    </svg>
-                  </div>
-                </div>
-              </li>
-              <li className="shop__item">
-                <img src="#" alt="largo matress" className="shop__image" />
-
-                <div>
-                  <p className="shop__text">Розмір: 61 x 184 x 2130 мм</p>
-                  <a className="shop__suptitle" href="./product-card.html">
-                    Матрац Largo SLIM / Ларго Слім
-                  </a>
-                  <div className="shop__pashalka">
-                    <svg className="shop__icon">
-                      <use href="#"></use>
-                    </svg>
-                    <p className="shop__instock">В наявності</p>
-                  </div>
-                </div>
-                <div className="shop__item-element">
-                  <div className="shop__promo">
-                    <p className="shop__old">3122 грн.</p>
-                    <p className="shop__price">2 810 грн.</p>
-                  </div>
-
-                  <div className="shop__icons">
-                    <svg className="shop__heart">
-                      <use href="#"></use>
-                    </svg>
-                    <svg className="shop__basket">
-                      <use href="#"></use>
-                    </svg>
-                  </div>
-                </div>
-              </li>
-              <li className="shop__item shop__ban">
-                <img src="#" alt="argentum matress" className="shop__image" />
-                <div>
-                  <p className="shop__text">Розмір: 61 x 184 x 2130 мм</p>
-                  <a className="shop__suptitle" href="./product-card.html">
-                    Матрац ARGENTUM AMALTEA / Аргентум Амалті
-                  </a>
-                  <div className="shop__pashalka">
-                    <svg className="shop__icon">
-                      <use href="#"></use>
-                    </svg>
-                    <p className="shop__instock">В наявності</p>
-                  </div>
-                </div>
-                <div className="shop__item-element">
-                  <div className="shop__promo">
-                    <p className="shop__old">5966 грн.</p>
-                    <p className="shop__price">5 071 грн.</p>
-                  </div>
-
-                  <div className="shop__icons">
-                    <svg className="shop__heart">
-                      <use href="#"></use>
-                    </svg>
-                    <svg className="shop__basket">
-                      <use href="#"></use>
-                    </svg>
-                  </div>
-                </div>
-              </li>
-              <li className="shop__item shop__ban">
-                <img src="#" alt="sparta bed" className="shop__image" />
-                <div>
-                  <p className="shop__text">Розмір: 61 x 184 x 2130 мм</p>
-                  <a className="shop__suptitle" href="./product-card.html">
-                    Диван Браво
-                  </a>
-                  <div className="shop__pashalka">
-                    <svg className="shop__icon">
-                      <use href="#"></use>
-                    </svg>
-                    <p className="shop__instock">В наявності</p>
-                  </div>
-                </div>
-
-                <div className="shop__item-element">
-                  <p className="shop__price">10 008 грн.</p>
-                  <div className="shop__icons">
-                    <svg className="shop__heart">
-                      <use href="#"></use>
-                    </svg>
-                    <svg className="shop__basket">
-                      <use href="#"></use>
-                    </svg>
-                  </div>
-                </div>
-              </li>
-              <li className="shop__item shop__ban">
-                <img src="#" alt="sparta bed" className="shop__image" />
-
-                <div>
-                  <p className="shop__text">Розмір: 61 x 184 x 2130 мм</p>
-                  <a className="shop__suptitle" href="./product-card.html">
-                    Ліжко МК-5
-                  </a>
-                  <div className="shop__pashalka">
-                    <svg className="shop__icon">
-                      <use href="#"></use>
-                    </svg>
-                    <p className="shop__instock">В наявності</p>
-                  </div>
-                </div>
-                <div className="shop__item-element">
-                  <p className="shop__price">8 775 грн.</p>
-                  <div className="shop__icons">
-                    <svg className="shop__heart">
-                      <use href="#"></use>
-                    </svg>
-                    <svg className="shop__basket">
-                      <use href="#"></use>
-                    </svg>
-                  </div>
-                </div>
-              </li>
-              <li className="shop__item shop__ban">
-                <img src="#" alt="sparta bed" className="shop__image" />
-                <div>
-                  <p className="shop__text">Розмір: 61 x 184 x 2130 мм</p>
-                  <a className="shop__suptitle" href="./product-card.html">
-                    Ліжко МК-5
-                  </a>
-                  <div className="shop__pashalka">
-                    <svg className="shop__icon">
-                      <use href="#"></use>
-                    </svg>
-                    <p className="shop__instock">В наявності</p>
-                  </div>
-                </div>
-
-                <div className="shop__item-element">
-                  <p className="shop__price">8 775 грн.</p>
-                  <div className="shop__icons">
-                    <svg className="shop__heart">
-                      <use href="#"></use>
-                    </svg>
-                    <svg className="shop__basket">
-                      <use href="#"></use>
-                    </svg>
-                  </div>
-                </div>
-              </li>
-              <li className="shop__item shop__ban">
-                <img src="#" alt="sparta bed" className="shop__image" />
-                <div>
-                  <p className="shop__text">Розмір: 61 x 184 x 2130 мм</p>
-                  <a className="shop__suptitle" href="./product-card.html">
-                    Ліжко МК-5
-                  </a>
-                  <div className="shop__pashalka">
-                    <svg className="shop__icon">
-                      <use href="#"></use>
-                    </svg>
-                    <p className="shop__instock">В наявності</p>
-                  </div>
-                </div>
-
-                <div className="shop__item-element">
-                  <p className="shop__price">8 775 грн.</p>
-                  <div className="shop__icons">
-                    <svg className="shop__heart">
-                      <use href="#"></use>
-                    </svg>
-                    <svg className="shop__basket">
-                      <use href="#"></use>
-                    </svg>
-                  </div>
-                </div>
-              </li>
-              <li className="shop__item shop__ban">
-                <img src="#" alt="sparta bed" className="shop__image" />
-                <div>
-                  <p className="shop__text">Розмір: 61 x 184 x 2130 мм</p>
-                  <a className="shop__suptitle" href="./product-card.html">
-                    Ліжко МК-5
-                  </a>
-                  <div className="shop__pashalka">
-                    <svg className="shop__icon">
-                      <use href="#"></use>
-                    </svg>
-                    <p className="shop__instock">В наявності</p>
-                  </div>
-                </div>
-
-                <div className="shop__item-element">
-                  <p className="shop__price">8 775 грн.</p>
-                  <div className="shop__icons">
-                    <svg className="shop__heart">
-                      <use href="#"></use>
-                    </svg>
-                    <svg className="shop__basket">
-                      <use href="#"></use>
-                    </svg>
-                  </div>
-                </div>
-              </li>
-              <li className="shop__item shop__ban">
-                <img src="#" alt="sparta bed" className="shop__image" />
-                <div>
-                  <p className="shop__text">Розмір: 61 x 184 x 2130 мм</p>
-                  <a className="shop__suptitle" href="./product-card.html">
-                    Ліжко МК-5
-                  </a>
-                  <div className="shop__pashalka">
-                    <svg className="shop__icon">
-                      <use href="#"></use>
-                    </svg>
-                    <p className="shop__instock">В наявності</p>
-                  </div>
-                </div>
-
-                <div className="shop__item-element">
-                  <p className="shop__price">8 775 грн.</p>
-                  <div className="shop__icons">
-                    <svg className="shop__heart">
-                      <use href="#"></use>
-                    </svg>
-                    <svg className="shop__basket">
-                      <use href="#"></use>
-                    </svg>
-                  </div>
-                </div>
-              </li>
+                </li>
+              ))}
             </ul>
-            <ul className="reviews__list-button shop__list-more">
-              <li className="reviews__item-more ">
-                <button className="reviews__button-more">
-                  <svg className="reviews__arrow">
-                    <use href="#"></use>
-                  </svg>
-                </button>
-              </li>
-              <li className="reviews__button-item">
-                <button className="reviews__button-more reviews__btn-active">
-                  1
-                </button>
-              </li>
-              <li className="reviews__button-item">
-                <button className="reviews__button-more">2</button>
-              </li>
-              <li className="reviews__button-item">
-                <button className="reviews__button-more">3</button>
-              </li>
-              <li className="reviews__button-item">
-                <button className="reviews__button-more">4</button>
-              </li>
-              <li className="reviews__button-item">
-                <button className="reviews__button-more">5</button>
-              </li>
-              <li className="reviews__button-item">
-                <button className="reviews__button-more">6</button>
-              </li>
-              <li className="reviews__button-item">
-                <button className="reviews__button-more">7</button>
-              </li>
-              <li className="reviews__button-item">
-                <button className="reviews__button-more">...</button>
-              </li>
-              <li className="reviews__button-item">
-                <button className="reviews__button-more">18</button>
-              </li>
-              <li className="reviews__button-item">
-                <button className="reviews__button-more">
-                  <svg className="reviews__arrow">
-                    <use href="#"></use>
-                  </svg>
-                </button>
-              </li>
-            </ul>
-            <button className="reviews__more-button">
-              <svg className="reviews__icon-more">
-                <use href="#"></use>
-              </svg>
-              Показати ще товари
-            </button>
           </div>
         </div>
       </section>

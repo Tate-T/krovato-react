@@ -1,6 +1,6 @@
-import styles from './Form.module.scss';
+import styles from './Basket.module.scss';
+import axios from 'axios'
 import React from 'react';
-import BasketButton from './BasketButton';
 import Modal from './Modal';
 import infoCircle from '../../images/basket/icon-info-mobile.svg';
 import iconComment from '../../images/basket/icon-comment-mobile.svg';
@@ -16,6 +16,7 @@ import creditLogo from '../../images/basket/privaty-credit-logo.svg';
 import monobankLogo from '../../images/basket/monobank.svg';
 import iconPay from '../../images/basket/icon-oplata.svg';
 import btnLogo from '../../images/basket/map.svg';
+import BasketList from './BasketList';
 const cardDelivery = [
     { text: "Самовивіз із магазину", description: "Бесплатно", img: checkCircle, alt: "check-icon" },
     { text: "Графік роботи: щодня з 9:00 до 18:00", description: "м. Київ, пров. Ізяславський 52, пов. 2", img: location, alt: "location-icon", map: "На мапі", mapIcon: btnLogo },
@@ -31,7 +32,7 @@ const paymentOption = [
     { text: "Оплата частинами МоноБанк", pay: monobankLogo, alt: "monobankicon" },
 ]
 
-class Form extends React.Component {
+class Basket extends React.Component {
     state = {
         surnames: JSON.parse(localStorage.getItem("surname")) || [],
         surnameValue: "",
@@ -50,6 +51,34 @@ class Form extends React.Component {
         isModalOpen: false,
         modalMessage: "",
         selectedDelivery: ""
+    }
+    componentDidMount() {
+        const { surnameValue, nameValue, paternalValue, phoneValue, emailValue, commentValue, selectedPayment, selectedDelivery } = this.state
+        const infoOrder = {
+            surname: surnameValue,
+            name: nameValue,
+            paternal: paternalValue,
+            phone: phoneValue,
+            email: emailValue,
+            comment: commentValue,
+            methodPay: selectedPayment,
+            methodDelivery: selectedDelivery
+        }
+        axios.post("http://localhost:3000/info", { infoOrder })
+            .then(() => {
+                console.log("Дані завантажено")
+            })
+            .catch((error) => {
+                console.log("Помилка", error)
+            })
+    }
+    componentDidUpdate(prevState) {
+        if (prevState.selectedPayment !== this.state.selectedPayment) {
+            console.log("Метод оплати змінився:", this.state.selectedPayment);
+        }
+        if (prevState.selectedDelivery !== this.state.selectedDelivery) {
+            console.log("Метод доставки змінився:", this.state.selectedDelivery);
+        }
     }
     handleModalMessage = (message) => {
         this.setState({
@@ -139,16 +168,9 @@ class Form extends React.Component {
             methodPay: selectedPayment,
             methodDelivery: selectedDelivery
         }
-        fetch("http://localhost:3000/info", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                infoOrder
-            })
-        })
-        this.handleModalMessage("Успішно")
+        axios.post("http://localhost:3000/info", { infoOrder })
+            .then(() => this.handleModalMessage("Успішно"))
+            .catch((err) => console.error("Помилка надсилання:", err));
         this.setState({
             surnames: updateSurname,
             names: updateName,
@@ -210,9 +232,9 @@ class Form extends React.Component {
                     </form>
                     <hr className={styles.dash} />
                     <div className={styles.titleContainer}>
-                            <img src={iconDelivery} alt="icon-delivery" />
-                            <p className={styles.titleOptions}>Вибір способу доставки</p>
-                        </div>
+                        <img src={iconDelivery} alt="icon-delivery" />
+                        <p className={styles.titleOptions}>Вибір способу доставки</p>
+                    </div>
                     <div className={styles.mainWrapperDelivery}>
                         {cardDelivery.map((elem, index) => (
                             <button
@@ -226,10 +248,10 @@ class Form extends React.Component {
                                 </div>
                                 {elem.map && (
                                     <a href='https://maps.app.goo.gl/N2bf9k6Ws4Ujx3Wd6'>
-                                    <button className={styles.btnMap} type="button">
-                                        <img src={elem.mapIcon} alt={elem.alt}/>
-                                        <p className={styles.textMap}>{elem.map}</p>
-                                    </button>
+                                        <button className={styles.btnMap} type="button">
+                                            <img src={elem.mapIcon} alt={elem.alt} />
+                                            <p className={styles.textMap}>{elem.map}</p>
+                                        </button>
                                     </a>
                                 )}
                             </button>
@@ -263,9 +285,9 @@ class Form extends React.Component {
                         <textarea placeholder="Ваш коментар" className={styles.commentInput} onChange={this.handleComment} value={this.state.commentValue}></textarea>
                     </div>
                 </div>
-                <BasketButton orderButton={this.handleInfoOrder} />
+                <BasketList orderButton={this.handleInfoOrder} />
             </div>
         )
     }
 }
-export default Form;
+export default Basket;

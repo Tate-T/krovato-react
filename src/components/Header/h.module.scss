@@ -46,12 +46,8 @@ $border-color-primary: rgba(229, 169, 74, 0.2);
     display: flex;
     flex-direction: column;
     transition: padding 0.3s ease;
-    position: fixed;
-    z-index: 1000;
     width: 100%;
     box-shadow: 0 2px 10px $shadow-color-light;
-    top: 0;
-    left: 0;
     height: auto;
     margin-bottom: 0;
 
@@ -545,9 +541,10 @@ $border-color-primary: rgba(229, 169, 74, 0.2);
     // Стили для списков
     &__list {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         padding: 10px;
         list-style: none; 
+        width: 100%;
     }
 
     &__item {
@@ -587,6 +584,7 @@ $border-color-primary: rgba(229, 169, 74, 0.2);
         display: flex;
         align-items: center;
         position: relative;
+        order: 999;
     }
     
     &__lang_container {
@@ -1851,6 +1849,11 @@ $border-color-primary: rgba(229, 169, 74, 0.2);
                 height: 10px;
             }
         }
+
+        &__list-svg {
+            margin-left: auto;
+            order: 999;
+        }
     }
     
     .mobile_menu_list {
@@ -1904,10 +1907,7 @@ $border-color-primary: rgba(229, 169, 74, 0.2);
         top: 160px;
     }
     
-    .mobile_menu_list {
-        top: 160px;
-    }
-    
+    .mobile_menu_list, 
     .blur_overlay, 
     .blur_overlay_find {
         top: 160px;
@@ -2048,16 +2048,7 @@ $border-color-primary: rgba(229, 169, 74, 0.2);
 
 // Обновляем отступ для контента, чтобы он не перекрывался хедером
 body {
-    padding-top: 200px;
     position: relative;
-    
-    @media screen and (max-width: 1023px) {
-        padding-top: 140px;
-    }
-    
-    @media screen and (min-width: 768px) and (max-width: 1023px) {
-        padding-top: 160px;
-    }
 }
 
 // Обновляем высоты и позиции для дропдаунов и меню
@@ -2083,4 +2074,12 @@ body {
     .dropdown_menu {
         top: 160px;
     }
+}
+
+.container{
+    display: flex;
+    padding: 20px 0 25px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }

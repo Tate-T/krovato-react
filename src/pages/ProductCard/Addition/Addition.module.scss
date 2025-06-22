@@ -25,16 +25,20 @@ button {
 
   &__list {
     display: flex;
-    gap: 30px;
+    // gap: 30px; 
     // flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
 
+    @media screen and (min-width: 768px) {
+          justify-content: space-between;
+    }
+
     @media screen and (min-width: 1290px) {
       font-size: 40px;
       flex-direction: row;
-      justify-content: space-between;
-      flex-wrap: nowrap;
+      // justify-content: space-between;
+      // flex-wrap: nowrap;
     }
   }
 
@@ -46,7 +50,7 @@ button {
     border: 1px solid #e3e2e2;
     background: #fff;
     box-shadow: -3px 4px 15px 0px rgba(0, 0, 0, 0.06);
-    width: 360px;
+    width: 300px;
 
     @media screen and (max-width: 480px) {
       width: 278px;
@@ -126,6 +130,12 @@ button {
     line-height: 1.4;
   }
 
+  &__costFlex {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+  }
+
   &__itemFooter {
     display: flex;
     margin-top: 20px;
@@ -142,6 +152,11 @@ button {
     align-items: center;
     justify-content: center;
     margin-left: auto;
+  }
+
+  &__obraneSvg {
+    width: auto;
+    height: auto;
   }
 
   // &__obraneSvg {
@@ -162,9 +177,9 @@ button {
     margin-left: 10px;
   }
 
-  // &__koshykSvg {
-  //   width: 25px;
-  //   height: 25px;
-  //   fill: #fff;
-  // }
+  &__koshykSvg {
+    width: auto;
+    height: auto;
+    fill: #fff;
+  }
 }

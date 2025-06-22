@@ -1,29 +1,39 @@
 import "./ProductCard.scss";
+import { Header } from "../../components/Header/Header";
+import { Hero } from "./Hero/Hero";
 import { ProductDescription } from "./ProductDescription/ProductDescription";
 import { Conditions } from "./Conditions/Conditions";
-import { Сharacteristic } from './Сharacteristic/Сharacteristic';
+import { Сharacteristic } from "./Сharacteristic/Сharacteristic";
 import { Addition } from "./Addition/Addition";
-import { Recommendations } from './Recommendations/Recommendations';
+import { Recommendations } from "./Recommendations/Recommendations";
 import { Advantages } from "../../components/Advantages/Advantages";
 import { Footer } from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
-import React, { Component } from 'react';
+import Review from "./Revs/Review";
+import { Component } from "react";
+import productsData from "../../productsData.json";     
 
-class ProductCardPage extends Component {
+
+export class ProductCardPage extends Component {
+  state = {
+    currentProduct: productsData[0]
+  }
+
   render() {
     return (
-      <div className="ProductCardPage">
-        <Header></Header>
-        <ProductDescription/>
-        <Conditions/>
-        <Сharacteristic/>
-        <Addition/>
-        <Recommendations/>
-        <Advantages/>
-        <Footer/>
+      <div className="product-card-page">
+        <Header />
+        <main>
+          <Hero />
+          <ProductDescription/>
+          <Conditions />
+          <Сharacteristic/>
+          <Review />
+          <Addition productsData={productsData} />
+          <Recommendations productsData={productsData} />
+          <Advantages />
+        </main>
+        <Footer />
       </div>
     );
   }
 }
-
-export { ProductCardPage };

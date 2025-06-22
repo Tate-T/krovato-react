@@ -7,7 +7,7 @@ import { getQuestionsAPI } from "../../api/getQuestionsAPI";
 import containerStyle from "../Container/Container.module.scss";
 import style from "./Questions.module.scss";
 
-//Щоб підключити цю секцію пишіть так: <Questions sectionId="..." />, id секції може бути - "return-questions" або "bed-questions".
+// Щоб підключити цю секцію пишіть так: <Questions sectionId="..." />, id секції може бути - "return-questions" або "bed-questions".
 
 export const Questions = ({ sectionId }) => {
   const [ sections, setSections ] = useState([]);

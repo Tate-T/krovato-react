@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import "./shop.scss";
 import containerStyles from "../../../components/Container/Container.module.scss";
+import { getProductsAPI } from "../../../api/getProductsAPI";
 
 export const Shop = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("https://6849567745f4c0f5ee70fe69.mockapi.io/products")
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data);
-      });
+    // fetch("https://6849567745f4c0f5ee70fe69.mockapi.io/products")
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setProducts(data);
+    //   });
+    getProductsAPI().then(data => setProducts(data));
+    // setProducts(getProductsAPI());
   }, []);
 
   const handleFilterClear = () => {

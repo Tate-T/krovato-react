@@ -1,5 +1,4 @@
 import styleProduct from "../Main/Products/Products.module.scss";
-
 import { useState, useEffect } from "react";
 import { FavoriteItem } from "./FavoriteItem";
 

@@ -10,7 +10,7 @@ const FavoriteItem=()=>{
     />
     <h5>{this.props.Favorite.title}</h5>
     <p>{this.props.Favorite.price}</p>
-  </li>
+  </li>z
   ) 
 }
 export default FavoriteItem

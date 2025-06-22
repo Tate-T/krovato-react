@@ -7,23 +7,42 @@ import { useState, useEffect } from "react";
 import products from "../../../../products";
 
 export const ProductsList = () => {
-  const [product, setProduct] = useState([]);
+  // Сохраняем избранные товары из localStorage
+  const [favoriteProducts, setFavoriteProducts] = useState(() => {
+    return JSON.parse(localStorage.getItem("activeProducts")) || [];
+  });
 
-  function activeProducts(productId) {
-    if (product.find((item) => item.id === productId)) {
-      setProduct((prev) => prev.filter((item) => item.id !== productId));
+  // Проверка, лайкнут ли товар
+  const isFavorite = (productId) => {
+    return favoriteProducts.some((item) => item.id === productId);
+  };
+
+  // Добавление/удаление товара из избранного
+  function toggleFavorite(productId) {
+    let updatedFavorites;
+    if (isFavorite(productId)) {
+      updatedFavorites = favoriteProducts.filter((item) => item.id !== productId);
     } else {
-      setProduct((prev) => [
-        ...prev,
-        products.find((item) => item.id === productId),
-      ]);
+      const productToAdd = products.find((item) => item.id === productId);
+      if (!productToAdd) return;
+      updatedFavorites = [...favoriteProducts, productToAdd];
     }
+    setFavoriteProducts(updatedFavorites);
+    localStorage.setItem("activeProducts", JSON.stringify(updatedFavorites));
+    window.dispatchEvent(new Event('storage'));
   }
 
+  // Слушаем изменения localStorage (например, если лайкнули в другой вкладке)
   useEffect(() => {
-    localStorage.setItem("activeProducts", JSON.stringify(product));
-    console.log("localStorage updated");
-  }, [product]);
+    const handleStorage = (event) => {
+      if (event.key === "activeProducts") {
+        const newFavorites = JSON.parse(event.newValue) || [];
+        setFavoriteProducts(newFavorites);
+      }
+    };
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
+  }, []);
 
   return (
     <ul className={style.products__list}>
@@ -41,7 +60,8 @@ export const ProductsList = () => {
           inStock={item.inStock}
           oldPrice={item.oldPrice}
           currentPrice={item.price}
-          onSelect={activeProducts}
+          onSelect={toggleFavorite}
+          isFavorite={isFavorite(item.id)}
         />
       ))}
     </ul>

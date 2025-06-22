@@ -14,12 +14,14 @@ import './body-padding-top.css';
 import { FaHeart } from "react-icons/fa";
 import { CartModal } from "../BasketModal/BasketModal";
 import bm from '../BasketModal/BasketModal.module.scss';
+import Favorite from "../../pages/Favorite/Favorite";
 
 export const Header = () => {
     const [languageDropdownVisible, setLanguageDropdownVisible] = useState(false);
     const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
     const [additionalNumbersVisible, setAdditionalNumbersVisible] = useState(false);
     const [searchDropdownVisible, setSearchDropdownVisible] = useState(false);
+    const [favoriteModalVisible, setFavoriteModalVisible] = useState(false);
 
     const cartModalRef = useRef();
     const languageRef = useRef();
@@ -278,7 +280,7 @@ export const Header = () => {
                 )}
             </div>
             <div className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="400" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2">
-                <FaHeart className={style.heart_icon} size={24} />
+                <FaHeart className={style.heart_icon} size={24} onClick={() => setFavoriteModalVisible(true)} style={{cursor: 'pointer'}} />
             </div>
             <a href="#" className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="500" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2">
                 <button className={style.icon_with_badge} onClick={() => {
@@ -389,6 +391,13 @@ export const Header = () => {
             {renderMobileTopSection()}
             {mobileMenuVisible && renderMobileMenu()}
             {searchDropdownVisible && renderMobileSearch()}
+            {favoriteModalVisible && (
+                <div className={style.favorite_modal_overlay} onClick={() => setFavoriteModalVisible(false)}>
+                    <div className={style.favorite_modal} onClick={e => e.stopPropagation()}>
+                        <Favorite isOpen={favoriteModalVisible} onClose={() => setFavoriteModalVisible(false)} />
+                    </div>
+                </div>
+            )}
         </header>
     );
 };

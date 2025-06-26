@@ -7,21 +7,11 @@ export const Shop = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // fetch("https://6849567745f4c0f5ee70fe69.mockapi.io/products")
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setProducts(data);
-    //   });
-    getProductsAPI().then(data => setProducts(data));
-    // setProducts(getProductsAPI());
+    getProductsAPI().then((data) => setProducts(data));
   }, []);
 
   const handleFilterClear = () => {
-    fetch("https://6849567745f4c0f5ee70fe69.mockapi.io/products")
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data);
-      });
+    getProductsAPI().then((data) => setProducts(data));
   };
 
   const handleFilterPrice = () => {

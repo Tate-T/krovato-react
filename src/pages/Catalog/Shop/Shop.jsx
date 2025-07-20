@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import "./shop.scss";
 import containerStyles from "../../../components/Container/Container.module.scss";
 import { getProductsAPI } from "../../../api/getProductsAPI";
@@ -25,6 +25,20 @@ export const Shop = () => {
 
     setProducts(filteredProducts);
   };
+
+  // const memoizedHandleFilterPrice = useMemo((products) => {
+  //   if (!products) return [];
+    
+  //   const filteredProducts = products.slice(0).filter((product, index) => {
+  //     const productPrice = parseInt(
+  //       product.price.split(" грн.").join("").split(" ").join("")
+  //     );
+
+  //     return productPrice >= 1195 && productPrice <= 9566;
+  //   });
+
+  //   setProducts(filteredProducts);
+  // }, [products]);
 
   const handleFilterIsInStock = () => {
     const filteredProducts = products

@@ -1,12 +1,9 @@
-import './App.css';
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
 
-// import { Main } from './pages/Main/Main';
-// import { PaymentPage } from './pages/PaymentPage/PaymentPage';
-// import { Delivery } from './pages/Delivery/Delivery';
-import { ContactsPage } from './pages/ContactsPage/ContactsPage';
-import { LastReviews } from './components/LastReviews/LastReviews';
-import { ProductCardPage } from './pages/ProductCard/ProductCardPage';
-import { CartModal } from './components/BasketModal/BasketModal';
+import { Header } from "./components/Header/Header";
+import { MainPage } from "./pages/MainPage/MainPage";
+import { Footer } from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -14,10 +11,17 @@ function App() {
       {/* <Main /> 
       <PaymentPage />
       {/* <Delivery /> */}
-      <ContactsPage />
+      {/* <ContactsPage />
       <LastReviews />
       <ProductCardPage />
-      <CartModal />
+      <CartModal /> */}
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<MainPage />}></Route>
+        </Routes>
+      </main>
+      <Footer />
     </div>
   );
 }

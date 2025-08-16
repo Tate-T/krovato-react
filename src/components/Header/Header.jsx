@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
+import { NavLink } from "react-router-dom";
 import c from "../../components/Container/Container.module.scss";
 
 import style from "./h.module.scss";
@@ -178,9 +179,9 @@ export const Header = () => {
                     <FiMenu size={28} strokeWidth={1} />
                 </div>
                 <div className={style.header__logo} data-aos="zoom-in" data-aos-duration="700" data-aos-delay="100" data-aos-easing="ease-out-cubic">
-                    <a href="./index.html">
+                    <NavLink to="/">
                         <img src="https://tate-t.github.io/krovato-market/assets/logo-header@2x-f83feaba.webp" alt="Krovato" />
-                    </a>
+                    </NavLink>
                 </div>
                 <div
                     ref={additionalNumbersRef}

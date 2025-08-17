@@ -4,21 +4,16 @@ import { Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header/Header";
 import { MainPage } from "./pages/MainPage/MainPage";
 import { Footer } from "./components/Footer/Footer";
-
+import { Catalog } from "./pages/Catalog/Catalog";
 function App() {
   return (
     <div className="App">
-      {/* <Main /> 
-      <PaymentPage />
-      {/* <Delivery /> */}
-      {/* <ContactsPage />
-      <LastReviews />
-      <ProductCardPage />
-      <CartModal /> */}
       <Header />
       <main>
         <Routes>
-          <Route path="/" element={<MainPage />}></Route>
+          <Route path="/" element={<MainPage />}/>
+          <Route path="/catalog" element={<Catalog/>}/>
+          <Route path="*" element={<MainPage/>}/>
         </Routes>
       </main>
       <Footer />

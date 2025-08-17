@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ProductsProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/krovato-react">
         <App />
       </BrowserRouter>
     </ProductsProvider>

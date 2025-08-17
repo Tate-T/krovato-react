@@ -7,15 +7,12 @@ import { LastReviews } from "../../components/LastReviews/LastReviews";
 import { Articles } from "./Articles/Articles";
 import { About } from "../../components/About/About";
 import { Advantages } from "../../components/Advantages/Advantages";
-import Basket from "../Basket/Basket";
 import { Footer } from "../../components/Footer/Footer";
 
 export const MainPage = () => {
   return (
     <>
-
         <Hero />
-        <Basket />
         <Categories />
         <Products />
         <Promotions />

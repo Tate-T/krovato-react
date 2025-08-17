@@ -207,7 +207,7 @@ export const Header = () => {
 
             <div className={style.header__mobile_row}>
                 <div className={style.header__catalog_btn} data-aos="flip-up" data-aos-duration="900" data-aos-delay="250" data-aos-easing="ease-out-back">
-                    <a href="#" className={style.catalog_orange_btn}>Каталог</a>
+                    <NavLink to="/catalog" className={style.catalog_orange_btn}>Каталог</NavLink>
                 </div>
                 <div className={style.header__mobile_icons}>
                     <div
@@ -297,9 +297,9 @@ export const Header = () => {
     const renderBottomSection = () => (
         <div className={[c.container, style.container, style.header__list3].join(' ')} data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" data-aos-easing="ease-in-out">
             <div className={style.header__item} data-aos="zoom-in-right" data-aos-duration="900" data-aos-delay="100" data-aos-easing="ease-out-back" data-aos-anchor=".header__list3">
-                <a className={`${style.header__link} ${style.catalog_orange_btn}`} href="#">
+                <NavLink to="/catalog" className={`${style.header__link} ${style.catalog_orange_btn}`} href="#">
                     Каталог
-                </a>
+                </NavLink>
             </div>
             <div className={style.header__item} data-aos="zoom-in-up" data-aos-duration="800" data-aos-delay="200" data-aos-easing="ease-out-back" data-aos-anchor=".header__list3">
                 <a className={style.header__link} href="#">

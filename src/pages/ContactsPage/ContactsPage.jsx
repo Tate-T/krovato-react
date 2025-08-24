@@ -7,15 +7,13 @@ import { LastReviews } from "../../components/LastReviews/LastReviews";
 export const ContactsPage = () => {
   return (
     <>
-      <header></header>
-      <main>
-        <Contacts />
-        <Route />
-        <Writeus />
-        <Advantages />
-        <LastReviews />
-      </main>
-      <footer></footer>
+      <Contacts />
+      <Route />
+      <Writeus />
+      <Advantages />
+      <LastReviews />
     </>
   );
 };
+
+export default ContactsPage

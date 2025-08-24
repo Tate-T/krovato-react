@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink,Link } from "react-router-dom";
 import c from "../../components/Container/Container.module.scss";
 
 import style from "./h.module.scss";
@@ -125,13 +125,13 @@ export const Header = () => {
         <div className={[c.container, style.container, style.header__section1].join(' ')} data-aos="fade-down" data-aos-duration="800" data-aos-easing="ease-out-back" data-aos-delay="100">
             <ul className={style.header__list}>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="600" data-aos-delay="150" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./about-us.html"><FiHome size={16} strokeWidth={1} /> Про нас</a>
+                    <Link to="/aboutUs"><FiHome size={16} strokeWidth={1} /> Про нас</Link>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="700" data-aos-delay="200" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./pay.html"><FiShoppingCart size={16} strokeWidth={1} /> Оплата</a>
+                    <Link to="/pay"><FiShoppingCart size={16} strokeWidth={1} /> Оплата</Link>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="800" data-aos-delay="250" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./delivery.html"><FiTruck size={16} strokeWidth={1} /> Доставка та збірка</a>
+                    <Link to="/delivery"><FiTruck size={16} strokeWidth={1} /> Доставка та збірка</Link>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="900" data-aos-delay="300" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
                     <a href="./reviews.html"><FiMessageSquare size={16} strokeWidth={1} /> Відгуки</a>

@@ -1,10 +1,10 @@
 import style from './Navigation.module.scss'
-
+import { Link } from 'react-router-dom'
 export const Navigation = () => {
     return (
         <div className="mainNav">
             <nav className={style.pay__navigation}>
-                <a className={style.pay__mainLink} href="./index.html">Головна</a>
+                <Link className={style.pay__mainLink} to="/">Головна</Link>
                 <svg data-aos="fade-down" data-aos-duration="1000" className={style.pay__icon}>
                     <use href="./images/symbol-defs.svg#icon-arrow"></use>
                 </svg>

@@ -328,15 +328,15 @@ export const Header = () => {
     const renderMobileMenu = () => (
         <>
             <div className={style.mobile_menu_list} data-aos="fade-right" data-aos-duration="800" data-aos-easing="ease-out-cubic">
-                <a href="./about-us.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="600" data-aos-delay="50" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
+                <Link to="/aboutUs" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="600" data-aos-delay="50" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
                     <FiHome size={24} /> Про нас
-                </a>
-                <a href="./pay.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="700" data-aos-delay="100" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
+                </Link>
+                <Link to="/pay" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="700" data-aos-delay="100" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
                     <FiShoppingCart size={24} /> Оплата
-                </a>
-                <a href="./delivery.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="800" data-aos-delay="150" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
+                </Link>
+                <Link to="/delivery" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="800" data-aos-delay="150" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
                     <FiTruck size={24} /> Доставка та збірка
-                </a>
+                </Link>
                 <a href="./reviews.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="900" data-aos-delay="200" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
                     <FiMessageSquare size={24} /> Відгуки
                 </a>

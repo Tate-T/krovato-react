@@ -1,18 +1,20 @@
-import style from './Footer.module.scss'
-import containerStyle from "../Container/Container.module.scss"
+import { Link } from 'react-router-dom';
 
-import logo from '../../images/footer/logo-footer.svg'
-import arrow from '../../images/footer/arrow.svg'
-import facebook from '../../images/footer/facebook.svg'
-import instagram from '../../images/footer/instagram.svg'
-import whatsapp from '../../images/footer/whatsapp.svg'
-import telegram from '../../images/footer/telegram.svg'
-import viber from '../../images/footer/viber.svg'
-import visa from '../../images/footer/visa.svg'
-import mastercard from '../../images/footer/mastercard.svg'
-import tel from '../../images/footer/tel.svg'
-import adres from '../../images/footer/adres.svg'
-import calendar from '../../images/footer/calendar.svg'
+import style from './Footer.module.scss';
+import containerStyle from "../Container/Container.module.scss";
+
+import logo from '../../images/footer/logo-footer.svg';
+import arrow from '../../images/footer/arrow.svg';
+import facebook from '../../images/footer/facebook.svg';
+import instagram from '../../images/footer/instagram.svg';
+import whatsapp from '../../images/footer/whatsapp.svg';
+import telegram from '../../images/footer/telegram.svg';
+import viber from '../../images/footer/viber.svg';
+import visa from '../../images/footer/visa.svg';
+import mastercard from '../../images/footer/mastercard.svg';
+import tel from '../../images/footer/tel.svg';
+import adres from '../../images/footer/adres.svg';
+import calendar from '../../images/footer/calendar.svg';
 
 export const Footer = () => {
   return (
@@ -84,25 +86,25 @@ export const Footer = () => {
               <div className={style.footerMenu__paragraph}>
                 <ul className={style.footerMenu__informations}>
                   <li className={style.footerMenu__information}>
-                    <a href="./about-us.html" className={style.footerMenu__link}>Про нас</a>
+                    <Link to="/aboutUs" className={style.footerMenu__link}>Про нас</Link>
                   </li>
                   <li className={style.footerMenu__information}>
-                    <a href="./pay.html" className={style.footerMenu__link}>Оплата</a>
+                    <Link to="/pay" className={style.footerMenu__link}>Оплата</Link>
                   </li>
                   <li className={style.footerMenu__information}>
-                    <a href="./delivery.html" className={style.footerMenu__link}>Доставка та збірка</a>
+                    <Link to="/delivery" className={style.footerMenu__link}>Доставка та збірка</Link>
                   </li>
                   <li className={style.footerMenu__information}>
-                    <a href="./reviews.html" className={style.footerMenu__link}>Відгуки</a>
+                    <Link to="/reviews" className={style.footerMenu__link}>Відгуки</Link>
                   </li>
                   <li className={style.footerMenu__information}>
-                    <a href="./blog-page.html" className={style.footerMenu__link}>Блог</a>
+                    <Link to="/blog" className={style.footerMenu__link}>Блог</Link>
                   </li>
                   <li className={style.footerMenu__information}>
-                    <a href="./contacts.html" className={style.footerMenu__link}>Контакти</a>
+                    <Link to="/contacts" className={style.footerMenu__link}>Контакти</Link>
                   </li>
                   <li className={style.footerMenu__information}>
-                    <a href="./contacts.html" className={style.footerMenu__link}>Мапа сайту</a>
+                    <Link to="/contacts" className={style.footerMenu__link}>Мапа сайту</Link>
                   </li>
                 </ul>
               </div>
@@ -198,25 +200,25 @@ export const Footer = () => {
                   <p className={style.footer__linkActive}>Інформація</p>
                 </li>
                 <li className={style.footer__informations}>
-                  <a href="./about-us.html" className={style.footer__link}>Про нас</a>
+                  <Link to="/aboutUs" className={style.footer__link}>Про нас</Link>
                 </li>
                 <li className={style.footer__informations}>
-                  <a href="./pay.html" className={style.footer__link}>Оплата</a>
+                  <Link to="/pay" className={style.footer__link}>Оплата</Link>
                 </li>
                 <li className={style.footer__informations}>
-                  <a href="./delivery.html" className={style.footer__link}>Доставка та збірка</a>
+                  <Link to="/delivery" className={style.footer__link}>Доставка та збірка</Link>
                 </li>
                 <li className={style.footer__informations}>
-                  <a href="./reviews.html" className={style.footer__link}>Відгуки</a>
+                  <Link to="/reviews" className={style.footer__link}>Відгуки</Link>
                 </li>
                 <li className={style.footer__informations}>
-                  <a href="./blog-page.html" className={style.footer__link}>Блог</a>
+                  <Link to="/blog" className={style.footer__link}>Блог</Link>
                 </li>
                 <li className={style.footer__informations}>
-                  <a href="./contacts.html" className={style.footer__link}>Контакти</a>
+                  <Link to="/contacts" className={style.footer__link}>Контакти</Link>
                 </li>
                 <li className={style.footer__informations}>
-                  <a href="./contacts.html" className={style.footer__link}>Мапа сайту</a>
+                  <Link to="/aboutUs" className={style.footer__link}>Мапа сайту</Link>
                 </li>
               </ul>
             </li>
@@ -310,10 +312,10 @@ export const Footer = () => {
               Приєднуйтесь:
             </p>
             <div className={`${style.footer__boxJoin} ${style.footer__boxJoinMob}`}>
-              <a href="https://www.facebook.com" className={style.footer__iconLink}>
+              <a href="https://www.facebook.com/krovato" className={style.footer__iconLink}>
                 <img src={facebook} alt="Facebook" />
               </a>
-              <a href="https://www.instagram.com" className={style.footer__iconLink}>
+              <a href="https://www.instagram.com/krovato_com/" className={style.footer__iconLink}>
                 <img src={instagram} alt="Instagram" />
               </a>
             </div>

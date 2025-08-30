@@ -3,249 +3,238 @@
 @import "../../../styles/vars.scss";
 
 .articles {
-    @include block-model(60px 0 60px 0, none, 0, 0);
-    background-color: $light-color;
+  @include block-model(60px 0 60px 0, none, 0, 0);
+  background-color: $light-color;
+
+  @media screen and (min-width: 1290px) {
+    @include block-model(70px 0 70px 0, none, 0, 0);
+  }
+
+  &__title {
+    @include size(410px, auto);
+    @include font($dark-color, 1.33, 30px, 600);
 
     @media screen and (min-width: 1290px) {
-        @include block-model(70px 0 70px 0, none, 0, 0);
+      @include size(645px, auto);
+      @include font($dark-color, 1.2, 40px, 600);
+    }
+  }
+
+  &__titleBox {
+    @extend %flex-center;
+    @include block-model(0, none, 0, 0 auto 23px auto);
+    gap: 30px;
+    padding-top: 5px !important;
+
+    @media screen and (min-width: 1200px) {
+      @include size(410px, auto);
     }
 
-    &__title {
-        @include size(410px, auto);
-        @include font($dark-color, 1.33, 30px, 600);
+    @media screen and (min-width: 1290px) {
+      @include block-model(0, none, 0, 0 0 40px 0);
+      @include size(1290px, auto);
+    }
+  }
 
-        @media screen and (min-width: 1290px) {
-            @include size(645px, auto);
-            @include font($dark-color, 1.2, 40px, 600);
-        }
+  &__link {
+    @extend %flex-center;
+    gap: 10px;
+    @include font($yellow-color, 1.26, 19px, 600);
+    @extend %animation-of-button;
+
+    padding: 10px !important;
+    border-radius: 20px !important;
+    display: inline-flex;
+
+    transition: all 0.5s ease-in-out;
+
+    & path {
+      fill: #ffbc57;
     }
 
-    &__titleBox {
-        @extend %flex-center;
-        @include block-model(0, none, 0, 0 auto 23px auto);
-        gap: 30px;
-        padding-top: 5px !important;
+    &:hover:not(:active) {
+      background-color: #ffbc57;
+      color: #fff;
 
-        @media screen and (min-width: 1200px) {
-            @include size(410px, auto);
-        }
+      & path {
+        fill: #fff;
+      }
+    }
+  }
 
-        @media screen and (min-width: 1290px) {
-            @include block-model(0, none, 0, 0 0 40px 0);
-            @include size(1290px, auto);
-        }
+  &__couple {
+    display: none;
+    margin-left: auto;
+    gap: 20px;
+
+    @media screen and (min-width: 1290px) {
+      display: flex;
+    }
+  }
+
+  &__titleArrow {
+    @include size(24px, 24px);
+    fill: $yellow-color;
+
+    & > path {
+      transition: all 0.6s ease;
+    }
+  }
+
+  &__button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  &__arrow {
+    @extend %flex-center;
+    @include block-model(0, none, 0, 0 0 0 auto);
+    @include size(60px, 60px);
+    fill: $yellow-color;
+  }
+
+  &__button {
+    @include size(60px, 60px);
+    background-color: #fff;
+    @include block-model(0, none, 50%, 0);
+    transition: all ease-in-out 0.2s;
+    border-radius: 50%;
+    border: 1px solid #ffbc57;
+
+    &:not([disabled]):hover:not(:active) {
+      background-color: #ffbc57;
+
+      & path {
+        fill: #fff;
+      }
     }
 
-    &__link {
-        display: none;
-        align-items: center;
-        gap: 10px;
-        @include font($yellow-color, 1.26, 19px, 600);
-        @extend %animation-of-button;
+    &[disabled] {
+      cursor: not-allowed;
+      border-color: red;
 
-        @media screen and (min-width: 1290px) {
-            display: flex;
-        }
-
-        padding: 10px !important;
-        border-radius: 20px !important;
-        display: inline-flex;
-        transition: all ease-in-out 0.2s;
-
-        & path {
-
-            fill: #ffbc57;
-        }
-
-        &:hover:not(:active) {
-
-            background-color: #ffbc57;
-            color: #fff;
-
-            & path {
-
-                fill: #fff;
-            }
-        }
+      & path {
+        fill: red;
+      }
     }
 
-    &__couple {
-        display: none;
-        margin-left: auto;
-        gap: 20px;
+    & path {
+      fill: #ffbc57;
+    }
+  }
 
-        @media screen and (min-width: 1290px) {
-            display: flex;
-        }
+  &__list {
+    @include block-model(0, none, 0, 0 auto 0 auto);
+    gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    overflow: hidden;
+
+    @media screen and (min-width: 1290px) {
+      flex-direction: row;
+      @include size(100%, auto);
+    }
+  }
+
+  &__item {
+    @include block-model(0 0 20px 0, 1px solid #e3e2e2, 8px, 0);
+    @include size(290px, 400px);
+
+    background-color: #fff;
+    box-shadow: -3px 4px 15px 0px rgba(0, 0, 0, 0.06);
+
+    position: relative;
+    transition: right ease-in-out 0.5s, transform ease-in-out 1.5s !important;
+    transform: translateX(-100px) scale(1.2);
+
+    &.aos-animate {
+      transform: translate3d(0) scale(1);
     }
 
-    &__titleArrow {
-        @include size(24px, 24px);
-        fill: $yellow-color;
+    @media screen and (min-width: 440px) {
+      @include block-model(0 0 20px 0, 1px solid #e3e2e2, 8px, 0);
+      @include size(410px, 476px);
     }
 
-    &__button {
-        border: none;
-        background-color: transparent;
-        cursor: pointer;
+    text-align: left;
+  }
+
+  &__photo {
+    @include size(290px, 200px);
+    @include block-model(0, none, 8px, 0);
+
+    @media screen and (min-width: 440px) {
+      @include size(410px, 260px);
+    }
+  }
+
+  &__subtitle {
+    @extend %flex-center;
+    @include block-model(0, none, 0, 15px);
+    @include size(260px, 120px);
+    @include font($dark-color, 1.31, 22px, 600);
+    text-align: left;
+
+    @media screen and (min-width: 440px) {
+      @include size(350px, 102px);
+      @include font($dark-color, 1.31, 26px, 600);
+      @include block-model(0, none, 0, 30px);
+    }
+  }
+
+  &__listLink {
+    @extend %flex-center2;
+    @include block-model(0, none, 0, 0 0 0 15px);
+    gap: 10px;
+    @include font($yellow-color, 1.26, 19px, 600);
+
+    @media screen and (min-width: 440px) {
+      @include block-model(0, none, 0, 0 0 0 30px);
     }
 
-    &__arrow {
-        @extend %flex-center;
-        @include block-model(0, none, 0, 0 0 0 auto);
-        @include size(60px, 60px);
-        fill: $yellow-color;
+    padding: 10px !important;
+    border-radius: 20px !important;
+    display: inline-flex;
+    transition: all ease-in-out 0.4s;
+
+    & path {
+      fill: #ffbc57;
+      transition: all 0.6s ease;
     }
 
-    &__button {
-        @include size(60px, 60px);
-        background-color: #fff;
-        @include block-model(0, none, 50%, 0);
-        transition: all ease-in-out 0.2s;
-        border-radius: 50%;
-        border: 1px solid #ffbc57;
+    &:hover:not(:active) {
+      background-color: #ffbc57;
+      color: #fff;
 
-        &:not([disabled]):hover:not(:active) {
+      & path {
+        fill: #fff;
+      }
+    }
+  }
 
-            background-color: #ffbc57;
-            
-            & path {
+  &__mainButton {
+    @extend %flex-center;
+    @include block-model(8px 20px 8px 20px, none, 8px, 30px auto 0 auto);
+    @include size(290px, 50px);
+    gap: 15px;
+    background-color: $yellow-color;
 
-                fill: #fff;
-            }
-        };
-
-        &[disabled] {
-
-            cursor: not-allowed;
-            border-color: red;
-
-            & path {
-
-                fill: red;
-            }
-        };
-
-        & path {
-
-            fill: #ffbc57;
-        }
+    @media screen and (min-width: 440px) {
+      @include size(410px, 50px);
     }
 
-    &__list {
-        @include block-model(0, none, 0, 0 auto 0 auto);
-        gap: 30px;
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
-        overflow: hidden;
-
-        @media screen and (min-width: 1290px) {
-            flex-direction: row;
-            @include size(100%, auto);
-        };
-    };
-
-    &__item {
-        @include block-model(0 0 20px 0, 1px solid #E3E2E2, 8px, 0);
-        @include size(290px, 400px);
-
-        background-color: #fff;
-        box-shadow: -3px 4px 15px 0px rgba(0, 0, 0, 0.06);
-
-        position: relative;
-        transition: right ease-in-out 0.5s, transform ease-in-out 1.5s !important;
-        transform: translateX(-100px) scale(1.2);
-
-        &.aos-animate {
-
-            transform: translate3d(0) scale(1);
-        }
-
-        @media screen and (min-width: 440px) {
-            @include block-model(0 0 20px 0, 1px solid #E3E2E2, 8px, 0);
-            @include size(410px, 476px);
-        }
-
-        text-align: left;
+    @media screen and (min-width: 1290px) {
+      display: none;
     }
+  }
 
-    &__photo {
-        @include size(290px, 200px);
-        @include block-model(0, none, 8px, 0);
-        
-        @media screen and (min-width: 440px) {
-            @include size(410px, 260px);
-        }
-    }
+  &__mainButtonArrow {
+    @include size(24px, 24px);
+    fill: #fff;
+  }
 
-    &__subtitle {
-        @extend %flex-center;
-        @include block-model(0, none, 0, 15px);
-        @include size(260px, 120px);
-        @include font($dark-color, 1.31, 22px, 600);
-        text-align: left;
-
-        @media screen and (min-width: 440px) {
-            @include size(350px, 102px);
-            @include font($dark-color, 1.31, 26px, 600);
-            @include block-model(0, none, 0, 30px);
-        }
-    }
-
-    &__listLink {
-        @extend %flex-center2;
-        @include block-model(0, none, 0, 0 0 0 15px);
-        gap: 10px;
-        @include font($yellow-color, 1.26, 19px, 600);
-
-        @media screen and (min-width: 440px) {
-            @include block-model(0, none, 0, 0 0 0 30px);
-        }
-
-        padding: 10px !important;
-        border-radius: 20px !important;
-        display: inline-flex;
-        transition: all ease-in-out 0.2s;
-
-        & path {
-
-            fill: #ffbc57;
-        }
-
-        &:hover:not(:active) {
-
-            background-color: #ffbc57;
-            color: #fff;
-
-            & path {
-
-                fill: #fff;
-            }
-        }
-    }
-
-    &__mainButton {
-        @extend %flex-center;
-        @include block-model(8px 20px 8px 20px, none, 8px, 30px  auto 0 auto);
-        @include size(290px, 50px);
-        gap: 15px;
-        background-color: $yellow-color;
-
-        @media screen and (min-width: 440px) {
-            @include size(410px, 50px);
-        }
-
-        @media screen and (min-width: 1290px) {
-            display: none;
-        }
-    }
-
-    &__mainButtonArrow {
-        @include size(24px, 24px);
-        fill: #FFF;
-    }
-
-    &__mainButtonText {
-        @include font(#FFF, 1.26, 19px, 600);
-    }
+  &__mainButtonText {
+    @include font(#fff, 1.26, 19px, 600);
+  }
 }

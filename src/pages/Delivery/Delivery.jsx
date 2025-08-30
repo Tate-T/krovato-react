@@ -23,3 +23,4 @@ export const Delivery = () => {
     </>
   );
 };
+export default Delivery

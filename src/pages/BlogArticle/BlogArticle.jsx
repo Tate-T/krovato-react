@@ -13,3 +13,4 @@ export const BlogArticle = () => {
     </section>
   );
 };
+export default BlogArticle

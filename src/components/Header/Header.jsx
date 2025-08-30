@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import { NavLink,Link } from "react-router-dom";
 import c from "../../components/Container/Container.module.scss";
 
 import style from "./h.module.scss";
@@ -14,20 +15,47 @@ import './body-padding-top.css';
 import { FaHeart } from "react-icons/fa";
 import { CartModal } from "../BasketModal/BasketModal";
 import bm from '../BasketModal/BasketModal.module.scss';
+import Favorite from "../../pages/Favorite/Favorite";
 
+export const Header = () => {
+    const [languageDropdownVisible, setLanguageDropdownVisible] = useState(false);
+    const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
+    const [additionalNumbersVisible, setAdditionalNumbersVisible] = useState(false);
+    const [searchDropdownVisible, setSearchDropdownVisible] = useState(false);
+    const [favoriteModalVisible, setFavoriteModalVisible] = useState(false);
 
+    const cartModalRef = useRef();
+    const languageRef = useRef();
+    const mobileMenuRef = useRef();
+    const additionalNumbersRef = useRef();
+    const searchRef = useRef();
 
-export class Header extends Component {
-    state = { 
-        languageDropdownVisible: false,
-        mobileMenuVisible: false,
-        additionalNumbersVisible: false,
-        searchDropdownVisible: false
-    }; 
+    // Handlers
+    const handleClickOutside = useCallback((event) => {
+        if (
+            languageDropdownVisible &&
+            languageRef.current &&
+            !languageRef.current.contains(event.target)
+        ) {
+            setLanguageDropdownVisible(false);
+        }
 
-    cartModalRef = React.createRef();
+        if (
+            additionalNumbersVisible &&
+            additionalNumbersRef.current &&
+            !additionalNumbersRef.current.contains(event.target)
+        ) {
+            setAdditionalNumbersVisible(false);
+        }
+    }, [languageDropdownVisible, additionalNumbersVisible]);
 
-    componentDidMount() {
+    const handleResize = useCallback(() => {
+        setTimeout(() => {
+            AOS.refresh();
+        }, 200);
+    }, []);
+
+    useEffect(() => {
         AOS.init({
             duration: 1200,
             once: false,
@@ -50,91 +78,60 @@ export class Header extends Component {
             AOS.refresh();
         });
 
-        window.addEventListener('resize', this.handleResize);
-        document.addEventListener('mousedown', this.handleClickOutside);
-    }
+        window.addEventListener('resize', handleResize);
+        document.addEventListener('mousedown', handleClickOutside);
 
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.handleResize);
-        document.removeEventListener('mousedown', this.handleClickOutside);
-    }
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [handleResize, handleClickOutside]);
 
-    languageRef = React.createRef();
-    mobileMenuRef = React.createRef();
-    additionalNumbersRef = React.createRef();
-    searchRef = React.createRef();
-
-    handleClickOutside = (event) => {
-        if (this.state.languageDropdownVisible && 
-            this.languageRef.current && 
-            !this.languageRef.current.contains(event.target)) {
-            this.setState({ languageDropdownVisible: false });
-        }
-        
-        if (this.state.additionalNumbersVisible && 
-            this.additionalNumbersRef.current && 
-            !this.additionalNumbersRef.current.contains(event.target)) {
-            this.setState({ additionalNumbersVisible: false });
-        }
-    }
-
-    handleResize = () => {
-        setTimeout(() => {
-            AOS.refresh();
-        }, 200);
-    };
-
-    toggleLanguage = (e) => {
+    // Toggle handlers
+    const toggleLanguage = (e) => {
         e.stopPropagation();
-        this.setState(prevState => ({ 
-            languageDropdownVisible: !prevState.languageDropdownVisible,
-            mobileMenuVisible: false,
-            additionalNumbersVisible: false,
-            searchDropdownVisible: false
-        }));
+        setLanguageDropdownVisible((prev) => !prev);
+        setMobileMenuVisible(false);
+        setAdditionalNumbersVisible(false);
+        setSearchDropdownVisible(false);
     };
 
-    toggleMenu = (e) => {
+    const toggleMenu = (e) => {
         e.stopPropagation();
-        this.setState(prevState => ({ 
-            mobileMenuVisible: !prevState.mobileMenuVisible,
-            languageDropdownVisible: false,
-            additionalNumbersVisible: false,
-            searchDropdownVisible: false 
-        }));
+        setMobileMenuVisible((prev) => !prev);
+        setLanguageDropdownVisible(false);
+        setAdditionalNumbersVisible(false);
+        setSearchDropdownVisible(false);
     };
 
-    toggleAdditionalNumbers = (e) => {
+    const toggleAdditionalNumbers = (e) => {
         e.stopPropagation();
-        this.setState(prevState => ({ 
-            additionalNumbersVisible: !prevState.additionalNumbersVisible,
-            languageDropdownVisible: false,
-            mobileMenuVisible: false,
-            searchDropdownVisible: false
-        }));
+        setAdditionalNumbersVisible((prev) => !prev);
+        setLanguageDropdownVisible(false);
+        setMobileMenuVisible(false);
+        setSearchDropdownVisible(false);
     };
 
-    toggleSearchDropdown = (e) => {
+    const toggleSearchDropdown = (e) => {
         e.stopPropagation();
-        this.setState(prevState => ({ 
-            searchDropdownVisible: !prevState.searchDropdownVisible,
-            languageDropdownVisible: false,
-            mobileMenuVisible: false,
-            additionalNumbersVisible: false
-        }));
+        setSearchDropdownVisible((prev) => !prev);
+        setLanguageDropdownVisible(false);
+        setMobileMenuVisible(false);
+        setAdditionalNumbersVisible(false);
     };
 
-    renderDesktopTopSection = () => (
+    // Render sections
+    const renderDesktopTopSection = () => (
         <div className={[c.container, style.container, style.header__section1].join(' ')} data-aos="fade-down" data-aos-duration="800" data-aos-easing="ease-out-back" data-aos-delay="100">
             <ul className={style.header__list}>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="600" data-aos-delay="150" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./about-us.html"><FiHome size={16} strokeWidth={1} /> Про нас</a>
+                    <Link to="/aboutUs"><FiHome size={16} strokeWidth={1} /> Про нас</Link>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="700" data-aos-delay="200" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./pay.html"><FiShoppingCart size={16} strokeWidth={1} /> Оплата</a>
+                    <Link to="/pay"><FiShoppingCart size={16} strokeWidth={1} /> Оплата</Link>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="800" data-aos-delay="250" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./delivery.html"><FiTruck size={16} strokeWidth={1} /> Доставка та збірка</a>
+                    <Link to="/delivery"><FiTruck size={16} strokeWidth={1} /> Доставка та збірка</Link>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="900" data-aos-delay="300" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
                     <a href="./reviews.html"><FiMessageSquare size={16} strokeWidth={1} /> Відгуки</a>
@@ -146,14 +143,14 @@ export class Header extends Component {
                     <a href="./contacts.html"><FiMail size={16} strokeWidth={1} /> Контакти</a>
                 </li>
                 <li className={style["header__list-svg"]} data-aos="fade-left" data-aos-duration="800" data-aos-delay="450" data-aos-easing="ease-out-back" data-aos-anchor=".header__section1">
-                    <div 
-                        ref={this.languageRef}
-                        className={style.header__lang_container} 
-                        onClick={this.toggleLanguage}
+                    <div
+                        ref={languageRef}
+                        className={style.header__lang_container}
+                        onClick={toggleLanguage}
                     >
                         <p className={style.header__lang_text}>UA</p>
                         <FiChevronDown size={16} strokeWidth={1} />
-                        {this.state.languageDropdownVisible && (
+                        {languageDropdownVisible && (
                             <div className={style.header__dropdown_menu}>
                                 <div>EN</div>
                                 <div>UA</div>
@@ -165,38 +162,38 @@ export class Header extends Component {
         </div>
     );
 
-    renderMobileTopSection = () => (
+    const renderMobileTopSection = () => (
         <div className={style.header__mobile} data-aos="fade-down" data-aos-duration="800" data-aos-easing="ease-out-cubic">
-            
+
             <div className={style.header__mobile_row}>
-                <div 
-                    ref={this.mobileMenuRef}
-                    className={`${style.header__burger_menu} ${this.state.mobileMenuVisible ? style.active : ''}`} 
-                    onClick={this.toggleMenu}
-                    data-aos="zoom-in" 
+                <div
+                    ref={mobileMenuRef}
+                    className={`${style.header__burger_menu} ${mobileMenuVisible ? style.active : ''}`}
+                    onClick={toggleMenu}
+                    data-aos="zoom-in"
                     data-aos-duration="600"
                     data-aos-delay="150"
                     data-aos-easing="ease-out-back"
                 >
-                    
+
                     <FiMenu size={28} strokeWidth={1} />
                 </div>
                 <div className={style.header__logo} data-aos="zoom-in" data-aos-duration="700" data-aos-delay="100" data-aos-easing="ease-out-cubic">
-                    <a href="./index.html">
+                    <NavLink to="/">
                         <img src="https://tate-t.github.io/krovato-market/assets/logo-header@2x-f83feaba.webp" alt="Krovato" />
-                    </a>
+                    </NavLink>
                 </div>
-                <div 
-                    ref={this.additionalNumbersRef}
-                    className={style.header__phone_icon} 
-                    onClick={this.toggleAdditionalNumbers}
-                    data-aos="zoom-in" 
+                <div
+                    ref={additionalNumbersRef}
+                    className={style.header__phone_icon}
+                    onClick={toggleAdditionalNumbers}
+                    data-aos="zoom-in"
                     data-aos-duration="600"
                     data-aos-delay="200"
                     data-aos-easing="ease-out-back"
                 >
                     <FiPhone size={28} strokeWidth={1} />
-                    {this.state.additionalNumbersVisible && (
+                    {additionalNumbersVisible && (
                         <div className={style.mobile_phone_dropdown}>
                             <p className={style.mobile_phone_text}>Щодня з 9:00 до 18:00</p>
                             <a href="tel:+380679294545" className={style.mobile_phone_number}>067 929-45-45</a>
@@ -207,17 +204,17 @@ export class Header extends Component {
                     )}
                 </div>
             </div>
-            
+
             <div className={style.header__mobile_row}>
                 <div className={style.header__catalog_btn} data-aos="flip-up" data-aos-duration="900" data-aos-delay="250" data-aos-easing="ease-out-back">
-                    <a href="#" className={style.catalog_orange_btn}>Каталог</a>
+                    <NavLink to="/catalog" className={style.catalog_orange_btn}>Каталог</NavLink>
                 </div>
                 <div className={style.header__mobile_icons}>
-                    <div 
-                        ref={this.searchRef}
-                        className={style.header__icon_btn} 
-                        onClick={this.toggleSearchDropdown}
-                        data-aos="zoom-in" 
+                    <div
+                        ref={searchRef}
+                        className={style.header__icon_btn}
+                        onClick={toggleSearchDropdown}
+                        data-aos="zoom-in"
                         data-aos-duration="700"
                         data-aos-delay="300"
                         data-aos-easing="ease-out-back"
@@ -234,7 +231,7 @@ export class Header extends Component {
         </div>
     );
 
-    renderMiddleSection = () => (
+    const renderMiddleSection = () => (
         <div className={[c.container, style.container, style.header__middle].join(' ')} data-aos="fade-up" data-aos-duration="900" data-aos-delay="200" data-aos-easing="ease-out-quart">
             <div className={style.header__item} data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100" data-aos-easing="ease-out-cubic" data-aos-anchor=".header__list2">
                 <a className={style.header__logo_link} href="./index.html">
@@ -251,14 +248,14 @@ export class Header extends Component {
                     </button>
                 </form>
             </div>
-            <div 
-                ref={this.additionalNumbersRef}
-                className={style.header__item} 
+            <div
+                ref={additionalNumbersRef}
+                className={style.header__item}
                 style={{ display: 'flex', alignItems: 'center' }}
-                data-aos="fade-up" 
-                data-aos-duration="900" 
+                data-aos="fade-up"
+                data-aos-duration="900"
                 data-aos-delay="300"
-                data-aos-easing="ease-out-quart" 
+                data-aos-easing="ease-out-quart"
                 data-aos-anchor=".header__list2"
             >
                 <FiPhone className={style.phone_icon} size={24} />
@@ -266,12 +263,12 @@ export class Header extends Component {
                     <p className={style.header__paragraph}>Щодня з 9:00 до 18:00</p>
                     <h4 className={style.header__number}>067 929-45-45</h4>
                 </div>
-                <FiChevronDown 
-                    className={style.dropdown_icon} 
-                    onClick={this.toggleAdditionalNumbers}
+                <FiChevronDown
+                    className={style.dropdown_icon}
+                    onClick={toggleAdditionalNumbers}
                     size={24}
                 />
-                {this.state.additionalNumbersVisible && (
+                {additionalNumbersVisible && (
                     <div className={style.header__dropdown_menu_box}>
                         <div className={style.header__dropdown_menu}>
                             <p className={style.header__paragraph_drop}>Щодня з 9:00 до 18:00</p>
@@ -284,25 +281,25 @@ export class Header extends Component {
                 )}
             </div>
             <div className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="400" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2">
-                <FaHeart className={style.heart_icon} size={24} />
+                <FaHeart className={style.heart_icon} size={24} onClick={() => setFavoriteModalVisible(true)} style={{cursor: 'pointer'}} />
             </div>
             <a href="#" className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="500" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2">
                 <button className={style.icon_with_badge} onClick={() => {
                     CartModal.openModal();
                 }}>
-                    <HiOutlineShoppingBag className={style.cart_icon} size={24}/>
+                    <HiOutlineShoppingBag className={style.cart_icon} size={24} />
                 </button>
             </a>
-            <CartModal ref={this.cartModalRef} />
+            <CartModal ref={cartModalRef} />
         </div>
     );
 
-    renderBottomSection = () => (
+    const renderBottomSection = () => (
         <div className={[c.container, style.container, style.header__list3].join(' ')} data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" data-aos-easing="ease-in-out">
             <div className={style.header__item} data-aos="zoom-in-right" data-aos-duration="900" data-aos-delay="100" data-aos-easing="ease-out-back" data-aos-anchor=".header__list3">
-                <a className={`${style.header__link} ${style.catalog_orange_btn}`} href="#">
+                <NavLink to="/catalog" className={`${style.header__link} ${style.catalog_orange_btn}`} href="#">
                     Каталог
-                </a>
+                </NavLink>
             </div>
             <div className={style.header__item} data-aos="zoom-in-up" data-aos-duration="800" data-aos-delay="200" data-aos-easing="ease-out-back" data-aos-anchor=".header__list3">
                 <a className={style.header__link} href="#">
@@ -325,11 +322,10 @@ export class Header extends Component {
             <div className={style.header__button} data-aos="zoom-in-left" data-aos-duration="900" data-aos-delay="500" data-aos-easing="ease-out-back" data-aos-anchor=".header__list3">
                 Передзвоніть мені
             </div>
-
         </div>
     );
 
-    renderMobileMenu = () => (
+    const renderMobileMenu = () => (
         <>
             <div className={style.mobile_menu_list} data-aos="fade-right" data-aos-duration="800" data-aos-easing="ease-out-cubic">
                 <a href="./about-us.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="600" data-aos-delay="50" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
@@ -368,11 +364,11 @@ export class Header extends Component {
                     Передзвоніть мені
                 </a>
             </div>
-            <div className={style.blur_overlay} onClick={this.toggleMenu} data-aos="fade" data-aos-duration="400"></div>
+            <div className={style.blur_overlay} onClick={toggleMenu} data-aos="fade" data-aos-duration="400"></div>
         </>
     );
 
-    renderMobileSearch = () => (
+    const renderMobileSearch = () => (
         <>
             <div className={style.dropdown_menu} data-aos="fade-down" data-aos-duration="600" data-aos-easing="ease-out-cubic">
                 <form className={style.header__form_mobile}>
@@ -382,22 +378,27 @@ export class Header extends Component {
                     </button>
                 </form>
             </div>
-            <div className={style.blur_overlay_find} onClick={this.toggleSearchDropdown} data-aos="fade" data-aos-duration="400"></div>
+            <div className={style.blur_overlay_find} onClick={toggleSearchDropdown} data-aos="fade" data-aos-duration="400"></div>
         </>
     );
 
-    render() { 
-        return (
-            <header className={style.header}>
-                <div className={style.desktop_only}>
-                    {this.renderDesktopTopSection()}
-                    {this.renderMiddleSection()}
-                    {this.renderBottomSection()}
+    return (
+        <header className={style.header}>
+            <div className={style.desktop_only}>
+                {renderDesktopTopSection()}
+                {renderMiddleSection()}
+                {renderBottomSection()}
+            </div>
+            {renderMobileTopSection()}
+            {mobileMenuVisible && renderMobileMenu()}
+            {searchDropdownVisible && renderMobileSearch()}
+            {favoriteModalVisible && (
+                <div className={style.favorite_modal_overlay} onClick={() => setFavoriteModalVisible(false)}>
+                    <div className={style.favorite_modal} onClick={e => e.stopPropagation()}>
+                        <Favorite isOpen={favoriteModalVisible} onClose={() => setFavoriteModalVisible(false)} />
+                    </div>
                 </div>
-                {this.renderMobileTopSection()}
-                {this.state.mobileMenuVisible && this.renderMobileMenu()}
-                {this.state.searchDropdownVisible && this.renderMobileSearch()}
-            </header>
-        );
-    }
-}
+            )}
+        </header>
+    );
+};

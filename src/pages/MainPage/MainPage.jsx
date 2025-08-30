@@ -7,16 +7,12 @@ import { LastReviews } from "../../components/LastReviews/LastReviews";
 import { Articles } from "./Articles/Articles";
 import { About } from "../../components/About/About";
 import { Advantages } from "../../components/Advantages/Advantages";
-import {Basket} from "../Basket/Basket";
-import { Footer } from "../../components/Footer/Footer";
 
-export const Main = () => {
+
+export const MainPage = () => {
   return (
     <>
-      <Header />
-      <main style={{paddingTop: 9}}>
         <Hero />
-        <Basket />
         <Categories />
         <Products />
         <Promotions />
@@ -24,8 +20,6 @@ export const Main = () => {
         <Articles />
         <About />
         <Advantages />  
-      </main>
-      <Footer /> 
     </>
   );
 };

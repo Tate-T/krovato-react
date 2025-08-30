@@ -9,7 +9,6 @@ import { Footer } from "../../components/Footer/Footer";
 export const AboutUsPage = () => {
   return (
     <>
-        <Header />
         <Topic />
         <Benefits />
         {/* <LastReviews /> */}

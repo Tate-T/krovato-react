@@ -5,13 +5,9 @@ import { Choice } from "./Choice/Choice";
 export const Catalog = () => {
   return (
     <>
-      <header></header>
-      <main>
-        <Subcategories />
-        <Shop />
-        <Choice />
-      </main>
-      <footer></footer>
+      <Subcategories />
+      <Shop />
+      <Choice />
     </>
   )
 };

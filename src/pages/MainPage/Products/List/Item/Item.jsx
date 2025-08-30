@@ -7,8 +7,7 @@ export const ProductsItem = ({
   desktopImage,
   alt,
   size,
-  mobileTitle,
-  desktopTitle,
+  title,
   inStock,
   oldPrice,
   currentPrice,
@@ -28,12 +27,9 @@ export const ProductsItem = ({
         {/* <source srcSet={mobileImage} media="(min-width: 320px)" /> */}
         <img src={src} alt={alt} />
       {/* </picture> */}
-      <p className={style.products__size}>{size}</p>
-      <a href="./product-card.html" className={style.products__subtitleDesktop}>
-        {desktopTitle}
-      </a>
-      <a href="./product-card.html" className={style.products__subtitleMobile}>
-        {mobileTitle}
+      <p className={style.products__size}>Розмір: {size}</p>
+      <a href="#" className={style.products__subtitle}>
+        {title}
       </a>
       <div className={style.products__stock}>
         <svg

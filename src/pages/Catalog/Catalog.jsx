@@ -1,6 +1,9 @@
 import { Subcategories } from "./Subcategoties/Subcategories";
 import { Shop } from "./Shop/Shop";
 import { Choice } from "./Choice/Choice";
+import { LastReviews } from "../../components/LastReviews/LastReviews";
+import { Questions } from "../../components/Questions/Questions";
+import { Advantages } from "../../components/Advantages/Advantages";
 
 export const Catalog = () => {
   return (
@@ -8,6 +11,9 @@ export const Catalog = () => {
       <Subcategories />
       <Shop />
       <Choice />
+      <LastReviews />
+      <Questions sectionId="bed-questions" />
+      <Advantages />
     </>
   )
 };

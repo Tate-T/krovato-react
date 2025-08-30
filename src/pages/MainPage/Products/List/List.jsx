@@ -55,8 +55,7 @@ export const ProductsList = () => {
           desktopImage={item.image.srcSet.desktop}
           alt={item.image.alt}
           size={item.size}
-          mobileTitle={item.title.mobileTitle}
-          desktopTitle={item.title.desktopTitle}
+          title={item.title}
           inStock={item.inStock}
           oldPrice={item.oldPrice}
           currentPrice={item.price}

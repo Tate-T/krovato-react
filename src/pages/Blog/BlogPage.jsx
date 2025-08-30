@@ -1,4 +1,6 @@
 import { BlogMain } from "./BlogMain/BlogMain";
+import { Advantages } from "../../components/Advantages/Advantages";
+
 import containerStyle from "../../components/Container/Container.module.scss";
 import style from "./Blog.module.scss";
 
@@ -8,6 +10,7 @@ export const BlogPage = () => {
       <div className={containerStyle.container}>
         <h1 className={style.blog__title}>Блог</h1>
         <BlogMain />
+        <Advantages />
       </div>
     </section>
   );

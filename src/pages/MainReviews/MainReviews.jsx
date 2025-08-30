@@ -1,7 +1,9 @@
-import style from './MainReviews.module.scss'
 import { Navigation } from "./Navigation/Navigation";
 import { Reviews } from "./Reviews/Reviews";
 import { PostReview } from './PostReview/PostReview';
+import { Advantages } from "../../components/Advantages/Advantages";
+
+import style from './MainReviews.module.scss';
 
 function MainReviewsPage() {
     return (
@@ -14,6 +16,7 @@ function MainReviewsPage() {
                     </div>
                     <PostReview />
                 </div>
+                <Advantages />
             </div>
         </section>
     );

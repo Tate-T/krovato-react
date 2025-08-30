@@ -234,11 +234,11 @@ export const Header = () => {
     const renderMiddleSection = () => (
         <div className={[c.container, style.container, style.header__middle].join(' ')} data-aos="fade-up" data-aos-duration="900" data-aos-delay="200" data-aos-easing="ease-out-quart">
             <div className={style.header__item} data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100" data-aos-easing="ease-out-cubic" data-aos-anchor=".header__list2">
-                <a className={style.header__logo_link} href="./index.html">
+                <Link className={style.header__logo_link} to="/">
                     <div className={style.header__logo}>
                         <img src="https://tate-t.github.io/krovato-market/assets/logo-header@2x-f83feaba.webp" alt="Krovato" />
                     </div>
-                </a>
+                </Link>
             </div>
             <div className={style.header__form_box} data-aos="fade-up" data-aos-duration="900" data-aos-delay="200" data-aos-easing="ease-out-quart" data-aos-anchor=".header__list2">
                 <form className={style.header__form}>

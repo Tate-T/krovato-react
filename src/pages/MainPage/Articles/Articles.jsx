@@ -36,8 +36,6 @@ export const Articles = () => {
             Свіжі статті та останні новини
           </h2>
           <a
-            data-aos="zoom-in-left"
-            data-aos-duration="1500"
             type="link"
             className={style.articles__link}
             href="./blog.html"

@@ -201,8 +201,8 @@ export const Basket = () => {
                     <label>
                         <input type='text' placeholder="По батькові" className={styles.inputForm} onChange={handlePaternal} value={paternalValue} />
                     </label>
-                    <div className={styles.titleContainer}>
-                        <input type='checkbox' checked={isPerson} onChange={handleChecked} />
+                    <div className={styles.titleContainer} style={{gap:15}}>
+                        <input type='checkbox' checked={isPerson} onChange={handleChecked} className={styles.checkboxes}/>
                         <p className={styles.textPerson}>Отримуватиме замовлення інша людина</p>
                     </div>
                 </form>
@@ -234,7 +234,7 @@ export const Basket = () => {
                     ))}
                 </div>
                 <hr className={styles.dash} />
-                <ul >
+                <ul style={{paddingBottom:30}}>
                     <div className={styles.titleContainer}>
                         <img src={iconPay} alt="icon-pay" />
                         <p className={styles.titleOptions}>Вибір способу оплати</p>
@@ -253,7 +253,7 @@ export const Basket = () => {
                     ))}
                 </ul>
                 <hr className={styles.dash} />
-                <div>
+                <div style={{paddingBottom:30}}>
                     <div className={styles.titleContainer}>
                         <img src={iconComment} alt="icon-comment" />
                         <p className={styles.titleOptions}>Коментар до замовлення</p>

@@ -6,7 +6,7 @@ import deleteSvg from "../../images/basket/delete.svg";
 import { useState, useEffect, useContext } from 'react'
 import styles from "./BasketList.module.scss";
 import { ContextBasketList } from "./ContextBasketList";
-
+import { Link } from "react-router-dom";
 const validPromoCodes = {
   DISCOUNT10: 10,
   SPRING20: 20,
@@ -32,7 +32,7 @@ export const BasketList = () => {
     } else {
       setCounts(items.map(() => 1));
     }
-  }, []); 
+  }, [items]); 
 
 
   useEffect(() => {
@@ -83,6 +83,11 @@ useEffect(() => {
     setShowAll((prev) => !prev)
   }
   const applyPromo = () => {
+    if(items.length === 0){
+      setDiscountPercent(0)
+      setPromoMessage("Товарів немає")
+      return;
+    }
     const input = promoInputValue.trim().toUpperCase();
     if (validPromoCodes.hasOwnProperty(input)) {
       const discount = validPromoCodes[input];
@@ -92,7 +97,10 @@ useEffect(() => {
           ? `Промокод застосовано! Знижка ${discount}%`
           : `Промокод застосовано! Безкоштовна доставка`
       );
-    } else {
+    } else if(!input.trim("")){
+      setPromoMessage("Порожнє поле промокоду");
+    }
+    else {
       setDiscountPercent(0);
       setPromoMessage("Недійсний промокод");
     }
@@ -126,6 +134,7 @@ useEffect(() => {
             {items.map((bed, index) => {
               const isHidden = !showAll && index >= 2;
               return (
+                <>
                 <li
                   key={index}
                   className={`${styles.containerBed} ${isHidden ? styles.hiddenOnMobile : ""
@@ -167,6 +176,8 @@ useEffect(() => {
                     <img src={deleteSvg} alt="deleteSvg" />
                   </button>
                 </li>
+                <hr className={styles.dash}  />
+              </>
               );
             })}
             <div className={styles.shadowContainer}>
@@ -196,6 +207,7 @@ useEffect(() => {
                 placeholder="Введіть код"
                 className={styles.inputPromocode}
                 value={promoInputValue}
+                disabled={items.length === 0}
                 onChange={(e) => setPromoInputValue(e.target.value)}
               />
               <button
@@ -207,8 +219,9 @@ useEffect(() => {
             </div>
           </div>
           <p id="message">{promoMessage}</p>
-          <div>
-            <p className={styles.textTogether}>Разом:</p>
+          <hr className={styles.dash}/>
+          <div style={{marginLeft:20}}>
+            <p className={styles.textTogether} style={{marginBottom:28}}>Разом:</p>
             <ul className={styles.listContainer}>
               <li className={styles.togetherSum}>
                 <p className={styles.textSum}>
@@ -231,11 +244,11 @@ useEffect(() => {
                 </p>
               </li>
             </ul>
-            <div className={styles.containerBed}>
-              <input type="checkbox" />
-              <p>Не передзвонюйте мені для підтвердження замовлення</p>
-            </div>
           </div>
+          <div className={styles.containerBed}>
+              <input type="checkbox" className={styles.checkboxes}/>
+              <p style={{textAlign:"left"}}>Не передзвонюйте мені для підтвердження замовлення</p>
+            </div>
           <button
             className={styles.btnOrder}
             onClick={orderButton}
@@ -244,7 +257,9 @@ useEffect(() => {
           </button>
           <p>
             Підтверджуючи замовлення, я приймаю умови{" "}
-            <span className={styles.userOkay}>Угоди користувача</span>
+            <span className={styles.userOkay}>
+              <Link to="/agree" style={{color:"#FFBC57"}}>Угоди користувача</Link>
+              </span>
           </p>
         </div>
       </section>

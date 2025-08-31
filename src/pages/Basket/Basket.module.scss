@@ -11,10 +11,24 @@
     justify-content: space-evenly;
     padding-top: 20px;
     padding-bottom: 20px;
+    align-items: center;
+    gap:68px;
+  }
+  .checkboxes {
+    width:20px;
+    height: 20px;
+    appearance: none;
+    border:1px solid #D1D5D5;
+  }
+  .mainWrapperDelivery {
+    padding-bottom: 30px;
   }
   @media(min-width:768px){
     .mainWrapper{
       flex-direction: row;
+      justify-content: center;
+      gap: 30px;
+      align-items: flex-start;
     }
   }
 
@@ -231,14 +245,13 @@
     .dash,
     .basketWrapper {
       width:740px;
-  
-  
+      border-radius: 8px;
     }
     .formInfo {
       flex-direction: row;
       flex-wrap: wrap;
       width: 700px;
-      height: 300px;
+      height: 285px;
       margin:auto;
     }
     .mainWrapperDelivery{

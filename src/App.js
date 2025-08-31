@@ -6,6 +6,7 @@ import { MainPage } from "./pages/MainPage/MainPage";
 import { Footer } from "./components/Footer/Footer";
 import { Catalog } from "./pages/Catalog/Catalog";
 import {Basket} from "./pages/Basket/Basket";
+import { AgreeTerms } from "./pages/Basket/AgreeTerms/AgreeTerms";
 import { About } from "./components/About/About";
 import { PaymentPage } from "./pages/PaymentPage/PaymentPage";
 import Delivery from "./pages/Delivery/Delivery";
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<MainPage />}/>
           <Route path="/catalog" element={<Catalog/>}/>
           <Route path="/basket" element={<Basket/>}/>
+          <Route path="/agree" element={<AgreeTerms />}/>
           <Route path="/aboutUs" element={<About/>}/>
           <Route path="/pay" element={<PaymentPage/>}/>
           <Route path="/delivery" element={<Delivery/>}/>

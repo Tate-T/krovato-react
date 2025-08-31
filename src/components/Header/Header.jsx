@@ -283,13 +283,11 @@ export const Header = () => {
             <div className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="400" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2">
                 <FaHeart className={style.heart_icon} size={24} onClick={() => setFavoriteModalVisible(true)} style={{cursor: 'pointer'}} />
             </div>
-            <a href="#" className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="500" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2">
-                <button className={style.icon_with_badge} onClick={() => {
-                    CartModal.openModal();
-                }}>
+            <Link to="/basket" className={style.header__icon_container} data-aos="flip-up" data-aos-duration="800" data-aos-delay="500" data-aos-easing="ease-out-back" data-aos-anchor=".header__list2">
+                <button className={style.icon_with_badge} >
                     <HiOutlineShoppingBag className={style.cart_icon} size={24} />
                 </button>
-            </a>
+            </Link>
             <CartModal ref={cartModalRef} />
         </div>
     );

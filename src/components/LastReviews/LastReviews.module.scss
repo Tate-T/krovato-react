@@ -34,7 +34,7 @@
 
   &__title {
     color: var(--Theme-Dark, #2b2929);
-    font-family: "Proxima Nova";
+    font-family: "Montserrat";
     font-size: 40px;
     font-style: normal;
     font-weight: 600;
@@ -56,7 +56,7 @@
 
   &__name {
     color: var(--Theme-Dark, #2b2929);
-    font-family: "Proxima Nova";
+    font-family: "Montserrat";
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -68,7 +68,7 @@
   &__date {
     color: var(--Theme-Grey, #535353);
     text-align: right;
-    font-family: "Proxima Nova";
+    font-family: "Montserrat";
     font-size: 17px;
     font-style: normal;
     font-weight: 400;
@@ -78,7 +78,7 @@
 
   &__text {
     color: var(--Theme-Grey, #535353);
-    font-family: "Proxima Nova";
+    font-family: "Montserrat";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -98,7 +98,7 @@
 
   &__rate {
     color: #f90;
-    font-family: "Proxima Nova";
+    font-family: "Montserrat";
     font-size: 19px;
     font-style: normal;
     font-weight: 600;
@@ -113,8 +113,8 @@
   }
 
   &__reviews {
-    color: var(--Theme-Grey, #535353);
-    font-family: "Proxima Nova";
+    color: #535353;
+    font-family: "Montserrat";
     font-size: 13px;
     font-style: normal;
     font-weight: 300;
@@ -149,6 +149,8 @@
   &__allLink {
     display: flex;
     align-items: center;
+    color: #535353;
+
     transition: all 0.3s ease-in-out;
   }
 
@@ -179,7 +181,7 @@
     justify-content: center;
     color: #fff;
     text-align: center;
-    font-family: "Proxima Nova";
+    font-family: "Montserrat";
     font-size: 19px;
     font-style: normal;
     font-weight: 600;
@@ -199,9 +201,9 @@
   }
 
   &__all-link {
-    color: var(--Theme-Grey, #535353);
+    color: #535353;
     text-align: center;
-    font-family: "Proxima Nova";
+    font-family: "Montserrat";
     font-size: 19px;
     font-style: normal;
     font-weight: 600;
@@ -218,6 +220,10 @@
     fill: #535353;
     margin-right: 15px;
     transition: all 0.3s ease-in-out;
+
+    &:hover {
+      fill: #ffbc57;
+    }
   }
 
   &__list {
@@ -299,7 +305,7 @@
 
   &__shop {
     color: var(--Theme-Dark, #2b2929);
-    font-family: "Proxima Nova";
+    font-family: "Montserrat";
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -317,7 +323,7 @@
 
   &__bedName {
     color: var(--Theme-Grey, #535353);
-    font-family: "Proxima Nova";
+    font-family: "Montserrat";
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -404,7 +410,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     color: var(--Theme-Grey, #535353);
-    font-family: "Proxima Nova";
+    font-family: "Montserrat";
     font-size: 14px;
 
     &:hover {

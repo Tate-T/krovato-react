@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import style from "../../Categories.module.scss";
 
 export const CategoriesItem = ({ id, title, number, src }) => {
@@ -6,7 +8,7 @@ export const CategoriesItem = ({ id, title, number, src }) => {
       <img src={src} alt="" />
       <h3 className={style.categories__subtitle}>{title}</h3>
       <p className={style.categories__number}>{number}</p>
-      <a className={style.categories__button} href="./catalog.html">
+      <Link className={style.categories__button} to="/catalog">
         <svg
           className={style.categories__icon}
           width="50"
@@ -28,7 +30,7 @@ export const CategoriesItem = ({ id, title, number, src }) => {
             </clipPath>
           </defs>
         </svg>
-      </a>
+      </Link>
     </li>
   );
 };

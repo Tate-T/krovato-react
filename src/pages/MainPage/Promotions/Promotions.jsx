@@ -208,8 +208,6 @@ export class Promotions extends Component {
               Акції
             </h2>
             <a
-              data-aos="zoom-in-left"
-              data-aos-duration="1500"
               type="link"
               className={style.promotions__link}
               href="..."

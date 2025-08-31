@@ -134,13 +134,13 @@ export const Header = () => {
                     <Link to="/delivery"><FiTruck size={16} strokeWidth={1} /> Доставка та збірка</Link>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="900" data-aos-delay="300" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./reviews.html"><FiMessageSquare size={16} strokeWidth={1} /> Відгуки</a>
+                    <Link to="/reviews"><FiMessageSquare size={16} strokeWidth={1} /> Відгуки</Link>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="1000" data-aos-delay="350" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./blog-page.html"><FiBook size={16} strokeWidth={1} /> Блог</a>
+                    <Link to="/blog"><FiBook size={16} strokeWidth={1} /> Блог</Link>
                 </li>
                 <li className={style.header__item} data-aos="fade-right" data-aos-duration="1100" data-aos-delay="400" data-aos-easing="ease-out-quart" data-aos-anchor=".header__section1">
-                    <a href="./contacts.html"><FiMail size={16} strokeWidth={1} /> Контакти</a>
+                    <Link to="/contacts"><FiMail size={16} strokeWidth={1} /> Контакти</Link>
                 </li>
                 <li className={style["header__list-svg"]} data-aos="fade-left" data-aos-duration="800" data-aos-delay="450" data-aos-easing="ease-out-back" data-aos-anchor=".header__section1">
                     <div
@@ -234,11 +234,11 @@ export const Header = () => {
     const renderMiddleSection = () => (
         <div className={[c.container, style.container, style.header__middle].join(' ')} data-aos="fade-up" data-aos-duration="900" data-aos-delay="200" data-aos-easing="ease-out-quart">
             <div className={style.header__item} data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100" data-aos-easing="ease-out-cubic" data-aos-anchor=".header__list2">
-                <a className={style.header__logo_link} href="./index.html">
+                <Link className={style.header__logo_link} to="/">
                     <div className={style.header__logo}>
                         <img src="https://tate-t.github.io/krovato-market/assets/logo-header@2x-f83feaba.webp" alt="Krovato" />
                     </div>
-                </a>
+                </Link>
             </div>
             <div className={style.header__form_box} data-aos="fade-up" data-aos-duration="900" data-aos-delay="200" data-aos-easing="ease-out-quart" data-aos-anchor=".header__list2">
                 <form className={style.header__form}>
@@ -306,10 +306,10 @@ export const Header = () => {
                 </a>
             </div>
             <div className={style.header__item} data-aos="zoom-in-up" data-aos-duration="800" data-aos-delay="300" data-aos-easing="ease-out-back" data-aos-anchor=".header__list3">
-                <a className={style.header__link} href="#">
+                <Link className={style.header__link} to="/catalog">
                     <FaPercent className={style.icon_sale} size={18} />
                     <span>Розпродаж</span>
-                </a>
+                </Link>
             </div>
             <div className={style.header__item} data-aos="zoom-in-up" data-aos-duration="800" data-aos-delay="400" data-aos-easing="ease-out-back" data-aos-anchor=".header__list3">
                 <a className={style.header__link} href="#">
@@ -326,15 +326,15 @@ export const Header = () => {
     const renderMobileMenu = () => (
         <>
             <div className={style.mobile_menu_list} data-aos="fade-right" data-aos-duration="800" data-aos-easing="ease-out-cubic">
-                <a href="./about-us.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="600" data-aos-delay="50" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
+                <Link to="/aboutUs" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="600" data-aos-delay="50" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
                     <FiHome size={24} /> Про нас
-                </a>
-                <a href="./pay.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="700" data-aos-delay="100" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
+                </Link>
+                <Link to="/pay" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="700" data-aos-delay="100" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
                     <FiShoppingCart size={24} /> Оплата
-                </a>
-                <a href="./delivery.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="800" data-aos-delay="150" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
+                </Link>
+                <Link to="/delivery" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="800" data-aos-delay="150" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
                     <FiTruck size={24} /> Доставка та збірка
-                </a>
+                </Link>
                 <a href="./reviews.html" className={style.mobile_menu_link} data-aos="fade-right" data-aos-duration="900" data-aos-delay="200" data-aos-easing="ease-out-quart" data-aos-anchor=".mobile_menu_list">
                     <FiMessageSquare size={24} /> Відгуки
                 </a>

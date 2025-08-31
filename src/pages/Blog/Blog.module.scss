@@ -3,11 +3,11 @@
 @import "../../styles/vars.scss";
 
 .blog {
-  @include block-model(0 0 60px 0, none, 0, 0);
+  @include block-model(0, none, 0, 0);
   background-color: $light-color;
 
   @media screen and (min-width: 1290px) {
-    @include block-model(0 0 70px 0, none, 0, 0);
+    @include block-model(0, none, 0, 0);
   }
 
   &__title {

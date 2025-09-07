@@ -1,7 +1,7 @@
-import './App.css'
-import { Routes, Route } from 'react-router-dom'
-import { lazy, Suspense } from 'react'
-import { Header } from './components/Header/Header'
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
+
 // const Header = lazy(() => import('./components/Header/Header.jsx'))
 // // import { MainPage } from "./pages/MainPage/MainPage";
 // const MainPage = lazy(() => import('./pages/MainPage/MainPage.jsx'))
@@ -32,12 +32,23 @@ const ContactsPage = lazy(() => import('./pages/ContactsPage/ContactsPage.jsx'))
 
 // const HeaderFooter = lazy(() => import('./pages/HeaderFooter/HeaderFooter.jsx'))
 
+// import { LoginPage } from "./components/Header/LoginPage";
+const LoginPage = lazy(() => import('./components/Header/LoginPage'))
+
 function App() {
+  const [isLogged, setIsLogged] = useState(false);
+  const handleLogin = () => {
+    setIsLogged(true);
+  }
+
+
 	return (
 		<div className='App'>
 			<Suspense>
 				<Routes>
-					{/* <Route path='/' element={<HeaderFooter />}>
+					{/* <Route path='/' element={<HeaderFooter />}> <----- to fix!!
+              <Header isLogged={isLogged} /> <---- to fix!!
+
 							<Route index element={<MainPage />} />
 							<Route path='catalog' element={<Catalog />} />
 							<Route path='/basket' element={<Basket />} />
@@ -50,6 +61,7 @@ function App() {
 							<Route path='/blogMain' element={<BlogMain />} />
 							<Route path='/blogArticle' element={<BlogArticle />} />
 							<Route path='/contacts' element={<ContactsPage />} />
+              <Route path="/login" element={<LoginPage isLogged={isLogged} setIsLogged={setIsLogged} handleLogin={handleLogin}/>
 							<Route path='*' element={<MainPage />} />
 						</Route> */}
 				</Routes>

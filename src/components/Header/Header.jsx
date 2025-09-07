@@ -25,7 +25,7 @@ import bm from "../BasketModal/BasketModal.module.scss";
 import Favorite from "../../pages/Favorite/Favorite";
 import { Login } from "./Login";
 
-export const Header = ({isLogged}) => {
+const Header = ({isLogged}) => {
 
     // console.log(isLogged);
   const [languageDropdownVisible, setLanguageDropdownVisible] = useState(false);
@@ -752,3 +752,5 @@ export const Header = ({isLogged}) => {
     </header>
   );
 };
+
+export default Header;

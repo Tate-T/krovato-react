@@ -3,7 +3,7 @@ import "./Login.scss";
 import "bootstrap";
 import { useState } from "react";
 
-export const LoginPage = ({isLogged, setIsLogged, handleLogin}) => {
+const LoginPage = ({isLogged, setIsLogged, handleLogin}) => {
     //const [isLogged, setIsLogged] = useState(false);
 
 
@@ -18,3 +18,5 @@ export const LoginPage = ({isLogged, setIsLogged, handleLogin}) => {
     </Container>
   );
 };
+
+export default LoginPage;

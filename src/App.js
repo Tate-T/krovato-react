@@ -17,8 +17,9 @@ const HeaderFooter = lazy(() => import("./pages/HeaderFooter/HeaderFooter.jsx"))
 // const AgreeTerms = lazy(() =>
   // import("./pages/Basket/AgreeTerms/AgreeTerms.jsx")
 // );
-// // import { About } from "./components/About/About";
-// const About = lazy(() => import("./components/About/About.jsx"));
+
+const About = lazy(() => import("./components/About/About.jsx"));
+
 // // import { PaymentPage } from "./pages/PaymentPage/PaymentPage";
 // const PaymentPage = lazy(() => import("./pages/PaymentPage/PaymentPage.jsx"));
 // // import Delivery from "./pages/Delivery/Delivery";
@@ -58,26 +59,17 @@ function App() {
             {/* <Route index element={<MainPage />} />
             <Route path="catalog" element={<Catalog />} />
             <Route path="basket" element={<Basket />} />
-            <Route path="agree" element={<AgreeTerms />} />
+            <Route path="agree" element={<AgreeTerms />} />*/}
             <Route path="aboutUs" element={<About />} />
-            <Route path="pay" element={<PaymentPage />} />
+            {/*<Route path="pay" element={<PaymentPage />} />
             <Route path="delivery" element={<Delivery />} />
             <Route path="reviews" element={<MainReviewsPage />} />
             <Route path="blog" element={<BlogPage />} />
             <Route path="blogMain" element={<BlogMain />} />
             <Route path="blogArticle" element={<BlogArticle />} />
             <Route path="contacts" element={<ContactsPage />} /> */}
-            {/* <Route
-              path="login"
-              element={
-                <LoginPage
-                  isLogged={isLogged}
-                  setIsLogged={setIsLogged}
-                  handleLogin={handleLogin}
-                />
-              }
-            />
-            <Route path="*" element={<MainPage />} /> */}
+            <Route path="login" element={<LoginPage isLogged={isLogged} setIsLogged={setIsLogged} handleLogin={handleLogin}/>}/>
+            {/*<Route path="*" element={<MainPage />} /> */}
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

@@ -1,7 +1,7 @@
 import style from "./About.module.scss";
 import { useState } from "react";
 
-export const About = () => {
+const About = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpand = () => {
@@ -36,3 +36,5 @@ export const About = () => {
     </div>
   );
 };
+
+export default About;

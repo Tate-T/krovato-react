@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom'
-import { Header } from '../../components/Header/Header'
+import Header from '../../components/Header/Header.jsx'
 import { Footer } from '../../components/Footer/Footer'
 
-export const HeaderFooter = () => {
+const HeaderFooter = () => {
 	return (
 		<>
 			<Header />
@@ -11,3 +11,5 @@ export const HeaderFooter = () => {
 		</>
 	)
 }
+
+export default HeaderFooter

@@ -19,34 +19,8 @@ import btnLogo from '../../images/basket/map.svg'
 import { BasketList } from './BasketList'
 import { ContextBasketList } from './ContextBasketList'
 import { ContextModal } from './ContextModal'
-const cardDelivery = [
-	{
-		text: 'Самовивіз із магазину',
-		description: 'Бесплатно',
-		img: checkCircle,
-		alt: 'check-icon',
-	},
-	{
-		text: 'Графік роботи: щодня з 9:00 до 18:00',
-		description: 'м. Київ, пров. Ізяславський 52, пов. 2',
-		img: location,
-		alt: 'location-icon',
-		map: 'На мапі',
-		mapIcon: btnLogo,
-	},
-	{
-		text: 'Доставка Нова Пошта',
-		description: '≈ від 500 грн',
-		img: novaPoshta,
-		alt: 'novaposhta-icon',
-	},
-	{
-		text: "Доставка кур'єром",
-		description: '≈ від 200 грн',
-		img: deliveryMan,
-		alt: 'deliveryman-icon',
-	},
-]
+import { useSelector } from 'react-redux'
+const cardDelivery = useSelector(state => state.cartDelivery)
 const paymentOption = [
 	{ text: 'Готівкою при отриманні (Післясплата)' },
 	{

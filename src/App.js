@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useState, Suspense, lazy } from 'react'
 import { MainPage } from "./pages/MainPage/MainPage"; 
 import { Footer } from "./components/Footer/Footer.jsx";
-import { About } from "./components/About/About.jsx";
+import  About  from "./components/About/About.jsx";
 import { PaymentPage } from "./pages/PaymentPage/PaymentPage";
 import Delivery from "./pages/Delivery/Delivery";
 import MainReviewsPage from "./pages/MainReviews/MainReviews";

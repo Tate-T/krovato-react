@@ -1,8 +1,5 @@
-import React from "react";
-import { Component } from "react";
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import styles from "./BasketModal.module.scss";
-import BasketList from '../../pages/Basket/BasketList'
-import { useState, useEffect } from 'react';
 import { FaTimes, FaMinus, FaPlus } from 'react-icons/fa';
 
 let openModalCallback = null;
@@ -13,7 +10,7 @@ export const openCartModal = () => {
   }
 };
 
-export const CartModal = () => {
+export const CartModal = forwardRef((props, ref) => {
   const [cartItems, setCartItems] = useState(() => {
     // Load cart items from localStorage on initial render
     const savedCart = localStorage.getItem('cartItems');
@@ -21,6 +18,12 @@ export const CartModal = () => {
   });
   
   const [isModalOpened, setIsModalOpened] = useState(false);
+
+  // Expose methods to parent via ref
+  useImperativeHandle(ref, () => ({
+    openModal: () => setIsModalOpened(true),
+    closeModal: () => setIsModalOpened(false)
+  }));
 
   // Save cart items to localStorage whenever they change
   useEffect(() => {
@@ -155,4 +158,6 @@ export const CartModal = () => {
       </div>
     </div>
   );
-};
+});
+
+CartModal.displayName = 'CartModal';

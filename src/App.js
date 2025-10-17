@@ -1,4 +1,6 @@
 import "./App.css";
+
+import Header from "./components/Header/Header.jsx";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useState, Suspense, lazy, useEffect } from 'react'
 import { MainPage } from "./pages/MainPage/MainPage";
@@ -15,7 +17,7 @@ import BlogPage from "./pages/Blog/BlogPage"
 import ContactsPage from "./pages/ContactsPage/ContactsPage";
 import { Catalog } from "./pages/Catalog/Catalog"
 const HeaderFooter = lazy(() => import("./pages/HeaderFooter/HeaderFooter.jsx"));
- const Header = lazy(() => import("./components/Header/Header.jsx"));
+//  const Header = lazy(() => import("./components/Header/Header.jsx"));
 // const MainPage = lazy(() => import("./pages/MainPage/MainPage.jsx"));
 // // import { Footer } from "./components/Footer/Footer";
 // const Footer = lazy(() => import("./components/Footer/Footer.jsx"));

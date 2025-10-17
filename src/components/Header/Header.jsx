@@ -130,6 +130,12 @@ const Header = ({ isLogged, onLogout }) => {
     setAdditionalNumbersVisible(false);
   };
 
+  const openCartModal = () => {
+    if (cartModalRef.current) {
+      cartModalRef.current.openModal();
+    }
+  };
+
   // Render sections
   const renderDesktopTopSection = () => (
     <div
@@ -335,7 +341,7 @@ const Header = ({ isLogged, onLogout }) => {
             data-aos-delay="350"
             data-aos-easing="ease-out-back"
           >
-            <div className={style.icon_with_badge}>
+            <div className={style.icon_with_badge} onClick={openCartModal}>
               <HiOutlineShoppingBag size={24} />
             </div>
           </div>
@@ -443,12 +449,7 @@ const Header = ({ isLogged, onLogout }) => {
             <div className={style.header__icon_container}>
               <button
                 className={style.icon_with_badge}
-                onClick={() => {
-                  // Use the correct method to open cart modal
-                  if (cartModalRef.current) {
-                    cartModalRef.current.openModal();
-                  }
-                }}
+                onClick={openCartModal}
               >
                 <HiOutlineShoppingBag className={style.cart_icon} size={24} />
               </button>
@@ -462,7 +463,6 @@ const Header = ({ isLogged, onLogout }) => {
                 <span>Logout</span>
               </button>
             </div>
-            <CartModal ref={cartModalRef} />
           </>
         )}
       </div>
@@ -751,6 +751,7 @@ const Header = ({ isLogged, onLogout }) => {
           </div>
         </div>
       )}
+      <CartModal ref={cartModalRef} />
     </header>
   );
 };

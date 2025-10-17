@@ -21,22 +21,15 @@ import "aos/dist/aos.css";
 import "./body-padding-top.css";
 import { FaHeart } from "react-icons/fa";
 import { CartModal } from "../BasketModal/BasketModal";
-import bm from "../BasketModal/BasketModal.module.scss";
 import Favorite from "../../pages/Favorite/Favorite";
 import { Login } from "./Login";
 
-const Header = ({isLogged}) => {
-
-    // console.log(isLogged);
+const Header = ({ isLogged, onLogout }) => {
   const [languageDropdownVisible, setLanguageDropdownVisible] = useState(false);
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
-  const [additionalNumbersVisible, setAdditionalNumbersVisible] =
-    useState(false);
+  const [additionalNumbersVisible, setAdditionalNumbersVisible] = useState(false);
   const [searchDropdownVisible, setSearchDropdownVisible] = useState(false);
   const [favoriteModalVisible, setFavoriteModalVisible] = useState(false);
-
-  // login
-//   const [isLogged, setIsLogged] = useState(false);
 
   const cartModalRef = useRef();
   const languageRef = useRef();
@@ -140,9 +133,7 @@ const Header = ({isLogged}) => {
   // Render sections
   const renderDesktopTopSection = () => (
     <div
-      className={[c.container, style.container, style.header__section1].join(
-        " "
-      )}
+      className={[c.container, style.container, style.header__section1].join(" ")}
       data-aos="fade-down"
       data-aos-duration="800"
       data-aos-easing="ease-out-back"
@@ -437,7 +428,7 @@ const Header = ({isLogged}) => {
       <div className={style.loginItems}>
         {!isLogged ? (
           <div className={style.header__icon_container}>
-            <Login/>
+            <Login isLogged={isLogged} />
           </div>
         ) : (
           <>
@@ -449,16 +440,28 @@ const Header = ({isLogged}) => {
                 style={{ cursor: "pointer" }}
               />
             </div>
-            <a href="#" className={style.header__icon_container}>
+            <div className={style.header__icon_container}>
               <button
                 className={style.icon_with_badge}
                 onClick={() => {
-                  CartModal.openModal();
+                  // Use the correct method to open cart modal
+                  if (cartModalRef.current) {
+                    cartModalRef.current.openModal();
+                  }
                 }}
               >
                 <HiOutlineShoppingBag className={style.cart_icon} size={24} />
               </button>
-            </a>
+            </div>
+            <div className={style.header__icon_container}>
+              <button 
+                className={`${style.logoutBtn} ${style.neutralButton}`}
+                onClick={onLogout}
+                title="Logout"
+              >
+                <span>Logout</span>
+              </button>
+            </div>
             <CartModal ref={cartModalRef} />
           </>
         )}
@@ -485,7 +488,6 @@ const Header = ({isLogged}) => {
         <NavLink
           to="/catalog"
           className={`${style.header__link} ${style.catalog_orange_btn}`}
-          href="#"
         >
           Каталог
         </NavLink>
@@ -583,8 +585,8 @@ const Header = ({isLogged}) => {
         >
           <FiTruck size={24} /> Доставка та збірка
         </Link>
-        <a
-          href="./reviews.html"
+        <Link
+          to="/reviews"
           className={style.mobile_menu_link}
           data-aos="fade-right"
           data-aos-duration="900"
@@ -593,9 +595,9 @@ const Header = ({isLogged}) => {
           data-aos-anchor=".mobile_menu_list"
         >
           <FiMessageSquare size={24} /> Відгуки
-        </a>
-        <a
-          href="./blog-page.html"
+        </Link>
+        <Link
+          to="/blog"
           className={style.mobile_menu_link}
           data-aos="fade-right"
           data-aos-duration="1000"
@@ -604,9 +606,9 @@ const Header = ({isLogged}) => {
           data-aos-anchor=".mobile_menu_list"
         >
           <FiBook size={24} /> Блог
-        </a>
-        <a
-          href="./contacts.html"
+        </Link>
+        <Link
+          to="/contacts"
           className={style.mobile_menu_link}
           data-aos="fade-right"
           data-aos-duration="1100"
@@ -615,7 +617,7 @@ const Header = ({isLogged}) => {
           data-aos-anchor=".mobile_menu_list"
         >
           <FiMail size={24} /> Контакти
-        </a>
+        </Link>
         <a
           href="#"
           className={style.mobile_menu_link}

@@ -1,9 +1,13 @@
-  import "./App.css";
+import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useState, Suspense, lazy } from 'react'
-import { MainPage } from "./pages/MainPage/MainPage"; 
+import { useState, Suspense, lazy, useEffect } from 'react'
+import { MainPage } from "./pages/MainPage/MainPage";
+// import MainPage from "./pages/MainPage/MainPage"; 
+
 import { Footer } from "./components/Footer/Footer.jsx";
-import { About } from "./components/About/About.jsx";
+// import { About } from "./components/About/About.jsx";
+import About from "./components/About/About.jsx";
+
 import { PaymentPage } from "./pages/PaymentPage/PaymentPage";
 import Delivery from "./pages/Delivery/Delivery";
 import MainReviewsPage from "./pages/MainReviews/MainReviews";
@@ -31,7 +35,7 @@ const HeaderFooter = lazy(() => import("./pages/HeaderFooter/HeaderFooter.jsx"))
 // const MainReviewsPage = lazy(() =>
   // import("./pages/MainReviews/MainReviews.jsx")
 // );
-// const BlogPage = lazy(() => import("./pages/Blog/BlogPage.jsx"));
+// const BlogPage = lazy(() import("./pages/Blog/BlogPage.jsx"));
 // // import { BlogMain } from "./pages/Blog/BlogMain/BlogMain";
 // const BlogMain = lazy(() => import("./pages/Blog/BlogMain/BlogMain.jsx"));
 // // import BlogArticle from "./pages/BlogArticle/BlogArticle";
@@ -46,14 +50,28 @@ const HeaderFooter = lazy(() => import("./pages/HeaderFooter/HeaderFooter.jsx"))
 const LoginPage = lazy(() => import("./components/Header/LoginPage"));
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(() => {
+    const savedAuth = localStorage.getItem('isLogged');
+    return savedAuth ? JSON.parse(savedAuth) : false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('isLogged', JSON.stringify(isLogged));
+  }, [isLogged]);
+
   const handleLogin = () => {
     setIsLogged(true);
   };
 
+  const handleLogout = () => {
+    setIsLogged(false);
+  };
+
   return (
     <div className="App">
-       <Header />
+       <Suspense fallback={<div>Loading...</div>}>
+        <Header isLogged={isLogged} onLogout={handleLogout} />
+      </Suspense>
        <main>
        <Suspense fallback={<div>Loading...</div>}>
         <Routes>
@@ -65,6 +83,16 @@ function App() {
           <Route path="/blog" element={<BlogPage/>}/>
           <Route path="/contacts" element={<ContactsPage/>}/>
           <Route path="/catalog" element={<Catalog/>}/>
+          <Route 
+            path="/login" 
+            element={
+              <LoginPage 
+                isLogged={isLogged}
+                setIsLogged={setIsLogged}
+                handleLogin={handleLogin}
+              />
+            }
+          />
         </Routes>
       </Suspense>
        </main>

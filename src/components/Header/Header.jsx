@@ -147,10 +147,9 @@ const Header = ({ isLogged, onLogout }) => {
     setSearchDropdownVisible(false);
   };
 
-  // Бургер: только ≥1024px, на мобильных не показывать и всегда закрывать
+  // Бургер-меню: новая логика (теперь работает и на мобилках, сбрасывает все дропдауны)
   const toggleMenu = (e) => {
     e && e.stopPropagation();
-    if (windowWidth < 1024) return; // Не показывать на мобильных
     setMobileMenuVisible(prev => !prev);
     setLanguageDropdownVisible(false);
     setAdditionalNumbersVisible(false);
@@ -292,7 +291,7 @@ const Header = ({ isLogged, onLogout }) => {
     </div>
   );
 
-  // Render mobile top section (бургер только на десктопе, на моб. не отображается)
+  // Render mobile top section (обновленный бургер-блок)
   const renderMobileTopSection = () => (
     <div
       className={style.header__mobile}
@@ -301,21 +300,17 @@ const Header = ({ isLogged, onLogout }) => {
       data-aos-easing="ease-out-cubic"
     >
       <div className={style.header__mobile_row}>
-        {/* Бургер-меню только на десктопе (1024+), показывать только если меню не видно */}
-        {windowWidth >= 1024 && !mobileMenuVisible && (
-          <div
-            ref={mobileMenuRef}
-            className={`${style.header__burger_menu}`}
-            onClick={toggleMenu}
-            data-aos="zoom-in"
-            data-aos-duration="600"
-            data-aos-delay="150"
-            data-aos-easing="ease-out-back"
-          >
-            <FiMenu size={28} strokeWidth={1} />
-          </div>
-        )
-        }
+        <div
+          ref={mobileMenuRef}
+          className={`${style.header__burger_menu} ${mobileMenuVisible ? style.active : ''}`}
+          onClick={toggleMenu}
+          data-aos="zoom-in"
+          data-aos-duration="600"
+          data-aos-delay="150"
+          data-aos-easing="ease-out-back"
+        >
+          <FiMenu size={28} strokeWidth={1} />
+        </div>
         <div
           className={style.header__logo}
           data-aos="zoom-in"
@@ -606,16 +601,16 @@ const Header = ({ isLogged, onLogout }) => {
     </div>
   );
 
-  // Render mobile menu: показывать только на десктопе (≥1024px) и если открыт бургер
+  // Render mobile menu: обновленная проверка, меню работает на всех ширинах
   const renderMobileMenu = () => (
     <>
       <div
-        className={`${style.mobile_menu_list} ${mobileMenuVisible && windowWidth >= 1024 ? style.active : ''}`}
+        className={`${style.mobile_menu_list} ${mobileMenuVisible ? style.active : ''}`}
         data-aos="fade-right"
         data-aos-duration="800"
         data-aos-easing="ease-out-cubic"
         style={{
-          display: windowWidth >= 1024 && mobileMenuVisible ? undefined : "none",
+          display: mobileMenuVisible ? 'flex' : 'none',
         }}
       >
         <Link

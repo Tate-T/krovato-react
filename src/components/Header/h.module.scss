@@ -2494,3 +2494,14 @@ $border-color-primary: rgba(229, 169, 74, 0.2);
 // =========================
 // Читабельные комментарии для разделения блоков
 // =========================
+@media screen and (max-width: 1023px) {
+  .mobile_menu_list {
+      top: 0;
+      height: 100vh;
+      padding: 20px;
+  }
+  .blur_overlay {
+      top: 0;
+      height: 100vh;
+  }
+}

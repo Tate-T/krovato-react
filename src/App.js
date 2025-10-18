@@ -1,15 +1,15 @@
-  import "./App.css";
+import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useState, Suspense, lazy } from 'react'
 import { MainPage } from "./pages/MainPage/MainPage"; 
 import { Footer } from "./components/Footer/Footer.jsx";
-import { About } from "./components/About/About.jsx";
 import { PaymentPage } from "./pages/PaymentPage/PaymentPage";
 import Delivery from "./pages/Delivery/Delivery";
 import MainReviewsPage from "./pages/MainReviews/MainReviews";
 import BlogPage from "./pages/Blog/BlogPage"
 import ContactsPage from "./pages/ContactsPage/ContactsPage";
 import { Catalog } from "./pages/Catalog/Catalog"
+import About from "./components/About/About.jsx";
 const HeaderFooter = lazy(() => import("./pages/HeaderFooter/HeaderFooter.jsx"));
  const Header = lazy(() => import("./components/Header/Header.jsx"));
 // const MainPage = lazy(() => import("./pages/MainPage/MainPage.jsx"));

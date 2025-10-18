@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { NavLink, Link } from "react-router-dom";
 import c from "../../components/Container/Container.module.scss";
-
 import style from "./h.module.scss";
+
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { FiSearch, FiPhone, FiMenu, FiChevronDown } from "react-icons/fi";
 import { BsCreditCard2Front } from "react-icons/bs";
-import { FaPercent } from "react-icons/fa";
+import { FaPercent, FaHeart } from "react-icons/fa";
 import { AiOutlineStar } from "react-icons/ai";
 import {
   FiHome,
@@ -16,28 +16,55 @@ import {
   FiBook,
   FiMail,
 } from "react-icons/fi";
+
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./body-padding-top.css";
-import { FaHeart } from "react-icons/fa";
-import { CartModal } from "../BasketModal/BasketModal";
+
+import { CartModal, addToCart } from "../BasketModal/BasketModal";
 import Favorite from "../../pages/Favorite/Favorite";
 import { Login } from "./Login";
 
 const Header = ({ isLogged, onLogout }) => {
+  // State management
   const [languageDropdownVisible, setLanguageDropdownVisible] = useState(false);
+  // mobileMenuVisible по умолчанию false, скрыт на мобильных, бургер только ≥1024
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
   const [additionalNumbersVisible, setAdditionalNumbersVisible] = useState(false);
   const [searchDropdownVisible, setSearchDropdownVisible] = useState(false);
   const [favoriteModalVisible, setFavoriteModalVisible] = useState(false);
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+  // Track window width for responsive rendering
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 1200
+  );
 
+  // Refs
   const cartModalRef = useRef();
   const languageRef = useRef();
   const mobileMenuRef = useRef();
   const additionalNumbersRef = useRef();
   const searchRef = useRef();
 
-  // Handlers
+  // Load cart count from localStorage
+  useEffect(() => {
+    const updateCartCount = () => {
+      const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+      const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+      setCartItemsCount(totalCount);
+    };
+
+    updateCartCount();
+
+    // Listen for cart updates
+    window.addEventListener('cartUpdated', updateCartCount);
+    
+    return () => {
+      window.removeEventListener('cartUpdated', updateCartCount);
+    };
+  }, []);
+
+  // Handle click outside
   const handleClickOutside = useCallback(
     (event) => {
       if (
@@ -55,16 +82,27 @@ const Header = ({ isLogged, onLogout }) => {
       ) {
         setAdditionalNumbersVisible(false);
       }
+
+      if (
+        searchDropdownVisible &&
+        searchRef.current &&
+        !searchRef.current.contains(event.target)
+      ) {
+        setSearchDropdownVisible(false);
+      }
     },
-    [languageDropdownVisible, additionalNumbersVisible]
+    [languageDropdownVisible, additionalNumbersVisible, searchDropdownVisible]
   );
 
+  // Handle window resize for AOS and windowWidth
   const handleResize = useCallback(() => {
+    setWindowWidth(window.innerWidth);
     setTimeout(() => {
       AOS.refresh();
     }, 200);
   }, []);
 
+  // Initialize AOS and event listeners, including window resize for windowWidth
   useEffect(() => {
     AOS.init({
       duration: 1200,
@@ -91,6 +129,9 @@ const Header = ({ isLogged, onLogout }) => {
     window.addEventListener("resize", handleResize);
     document.addEventListener("mousedown", handleClickOutside);
 
+    // Set initial width in case of hydration
+    setWindowWidth(window.innerWidth);
+
     return () => {
       window.removeEventListener("resize", handleResize);
       document.removeEventListener("mousedown", handleClickOutside);
@@ -106,9 +147,11 @@ const Header = ({ isLogged, onLogout }) => {
     setSearchDropdownVisible(false);
   };
 
+  // Бургер: только ≥1024px, на мобильных не показывать и всегда закрывать
   const toggleMenu = (e) => {
-    e.stopPropagation();
-    setMobileMenuVisible((prev) => !prev);
+    e && e.stopPropagation();
+    if (windowWidth < 1024) return; // Не показывать на мобильных
+    setMobileMenuVisible(prev => !prev);
     setLanguageDropdownVisible(false);
     setAdditionalNumbersVisible(false);
     setSearchDropdownVisible(false);
@@ -130,13 +173,14 @@ const Header = ({ isLogged, onLogout }) => {
     setAdditionalNumbersVisible(false);
   };
 
-  const openCartModal = () => {
+  const handleOpenCart = () => {
     if (cartModalRef.current) {
       cartModalRef.current.openModal();
     }
   };
 
-  // Render sections
+  // Render desktop+tablet top section (hidden only on mobile)
+  // Верхняя строка видна только на десктопе и планшете (≥481px), скрыта на мобильных (<481)
   const renderDesktopTopSection = () => (
     <div
       className={[c.container, style.container, style.header__section1].join(" ")}
@@ -144,6 +188,9 @@ const Header = ({ isLogged, onLogout }) => {
       data-aos-duration="800"
       data-aos-easing="ease-out-back"
       data-aos-delay="100"
+      style={{
+        display: windowWidth < 481 ? "none" : undefined,
+      }}
     >
       <ul className={style.header__list}>
         <li
@@ -245,6 +292,7 @@ const Header = ({ isLogged, onLogout }) => {
     </div>
   );
 
+  // Render mobile top section (бургер только на десктопе, на моб. не отображается)
   const renderMobileTopSection = () => (
     <div
       className={style.header__mobile}
@@ -253,19 +301,21 @@ const Header = ({ isLogged, onLogout }) => {
       data-aos-easing="ease-out-cubic"
     >
       <div className={style.header__mobile_row}>
-        <div
-          ref={mobileMenuRef}
-          className={`${style.header__burger_menu} ${
-            mobileMenuVisible ? style.active : ""
-          }`}
-          onClick={toggleMenu}
-          data-aos="zoom-in"
-          data-aos-duration="600"
-          data-aos-delay="150"
-          data-aos-easing="ease-out-back"
-        >
-          <FiMenu size={28} strokeWidth={1} />
-        </div>
+        {/* Бургер-меню только на десктопе (1024+), показывать только если меню не видно */}
+        {windowWidth >= 1024 && !mobileMenuVisible && (
+          <div
+            ref={mobileMenuRef}
+            className={`${style.header__burger_menu}`}
+            onClick={toggleMenu}
+            data-aos="zoom-in"
+            data-aos-duration="600"
+            data-aos-delay="150"
+            data-aos-easing="ease-out-back"
+          >
+            <FiMenu size={28} strokeWidth={1} />
+          </div>
+        )
+        }
         <div
           className={style.header__logo}
           data-aos="zoom-in"
@@ -336,12 +386,13 @@ const Header = ({ isLogged, onLogout }) => {
           </div>
           <div
             className={style.header__icon_btn}
+            onClick={handleOpenCart}
             data-aos="zoom-in"
             data-aos-duration="700"
             data-aos-delay="350"
             data-aos-easing="ease-out-back"
           >
-            <div className={style.icon_with_badge} onClick={openCartModal}>
+            <div className={style.icon_with_badge} data-count={cartItemsCount || ''}>
               <HiOutlineShoppingBag size={24} />
             </div>
           </div>
@@ -350,6 +401,7 @@ const Header = ({ isLogged, onLogout }) => {
     </div>
   );
 
+  // Render middle section
   const renderMiddleSection = () => (
     <div
       className={[c.container, style.container, style.header__middle].join(" ")}
@@ -383,7 +435,13 @@ const Header = ({ isLogged, onLogout }) => {
         data-aos-easing="ease-out-quart"
         data-aos-anchor=".header__list2"
       >
-        <form className={style.header__form}>
+        <form
+          className={style.header__form}
+          onSubmit={e => {
+            e.preventDefault();
+            // Поиск: ничего не делаем, предотвратить submit
+          }}
+        >
           <input
             className={style.header__find}
             type="text"
@@ -397,7 +455,7 @@ const Header = ({ isLogged, onLogout }) => {
       <div
         ref={additionalNumbersRef}
         className={style.header__item}
-        style={{ display: "flex", alignItems: "center" }}
+        style={{ display: "flex", alignItems: "center", position: "relative" }}
         data-aos="fade-up"
         data-aos-duration="900"
         data-aos-delay="300"
@@ -449,7 +507,9 @@ const Header = ({ isLogged, onLogout }) => {
             <div className={style.header__icon_container}>
               <button
                 className={style.icon_with_badge}
-                onClick={openCartModal}
+                onClick={handleOpenCart}
+                data-count={cartItemsCount || ''}
+                type="button"
               >
                 <HiOutlineShoppingBag className={style.cart_icon} size={24} />
               </button>
@@ -459,6 +519,7 @@ const Header = ({ isLogged, onLogout }) => {
                 className={`${style.logoutBtn} ${style.neutralButton}`}
                 onClick={onLogout}
                 title="Logout"
+                type="button"
               >
                 <span>Logout</span>
               </button>
@@ -469,6 +530,7 @@ const Header = ({ isLogged, onLogout }) => {
     </div>
   );
 
+  // Render bottom section
   const renderBottomSection = () => (
     <div
       className={[c.container, style.container, style.header__list3].join(" ")}
@@ -544,17 +606,22 @@ const Header = ({ isLogged, onLogout }) => {
     </div>
   );
 
+  // Render mobile menu: показывать только на десктопе (≥1024px) и если открыт бургер
   const renderMobileMenu = () => (
     <>
       <div
-        className={style.mobile_menu_list}
+        className={`${style.mobile_menu_list} ${mobileMenuVisible && windowWidth >= 1024 ? style.active : ''}`}
         data-aos="fade-right"
         data-aos-duration="800"
         data-aos-easing="ease-out-cubic"
+        style={{
+          display: windowWidth >= 1024 && mobileMenuVisible ? undefined : "none",
+        }}
       >
         <Link
           to="/aboutUs"
           className={style.mobile_menu_link}
+          onClick={toggleMenu}
           data-aos="fade-right"
           data-aos-duration="600"
           data-aos-delay="50"
@@ -566,6 +633,7 @@ const Header = ({ isLogged, onLogout }) => {
         <Link
           to="/pay"
           className={style.mobile_menu_link}
+          onClick={toggleMenu}
           data-aos="fade-right"
           data-aos-duration="700"
           data-aos-delay="100"
@@ -577,6 +645,7 @@ const Header = ({ isLogged, onLogout }) => {
         <Link
           to="/delivery"
           className={style.mobile_menu_link}
+          onClick={toggleMenu}
           data-aos="fade-right"
           data-aos-duration="800"
           data-aos-delay="150"
@@ -588,6 +657,7 @@ const Header = ({ isLogged, onLogout }) => {
         <Link
           to="/reviews"
           className={style.mobile_menu_link}
+          onClick={toggleMenu}
           data-aos="fade-right"
           data-aos-duration="900"
           data-aos-delay="200"
@@ -599,6 +669,7 @@ const Header = ({ isLogged, onLogout }) => {
         <Link
           to="/blog"
           className={style.mobile_menu_link}
+          onClick={toggleMenu}
           data-aos="fade-right"
           data-aos-duration="1000"
           data-aos-delay="250"
@@ -610,6 +681,7 @@ const Header = ({ isLogged, onLogout }) => {
         <Link
           to="/contacts"
           className={style.mobile_menu_link}
+          onClick={toggleMenu}
           data-aos="fade-right"
           data-aos-duration="1100"
           data-aos-delay="300"
@@ -675,8 +747,9 @@ const Header = ({ isLogged, onLogout }) => {
           Передзвоніть мені
         </a>
       </div>
+      {/* Блок затемнения для мобильного меню */}
       <div
-        className={style.blur_overlay}
+        className={`${style.blur_overlay} ${mobileMenuVisible ? style.active : ''}`}
         onClick={toggleMenu}
         data-aos="fade"
         data-aos-duration="400"
@@ -684,57 +757,72 @@ const Header = ({ isLogged, onLogout }) => {
     </>
   );
 
+  // Render mobile search
   const renderMobileSearch = () => (
     <>
-      <div
-        className={style.dropdown_menu}
-        data-aos="fade-down"
-        data-aos-duration="600"
-        data-aos-easing="ease-out-cubic"
-      >
-        <form className={style.header__form_mobile}>
-          <input
-            type="text"
-            className={style.header__find_mob}
-            placeholder="Я шукаю..."
-            data-aos="zoom-in"
-            data-aos-duration="800"
-            data-aos-delay="100"
-            data-aos-easing="ease-out-quart"
-            data-aos-anchor=".dropdown_menu"
-          />
-          <button
-            type="submit"
-            className={style.mobile_search_btn}
-            data-aos="zoom-in"
-            data-aos-duration="800"
-            data-aos-delay="200"
-            data-aos-easing="ease-out-back"
-            data-aos-anchor=".dropdown_menu"
+      {searchDropdownVisible && (
+        <>
+          <div
+            className={style.dropdown_menu}
+            data-aos="fade-down"
+            data-aos-duration="600"
+            data-aos-easing="ease-out-cubic"
           >
-            <FiSearch size={24} />
-          </button>
-        </form>
-      </div>
-      <div
-        className={style.blur_overlay_find}
-        onClick={toggleSearchDropdown}
-        data-aos="fade"
-        data-aos-duration="400"
-      ></div>
+            <form
+              className={style.header__form_mobile}
+              onSubmit={e => {
+                e.preventDefault();
+              }}
+            >
+              <input
+                type="text"
+                className={style.header__find_mob}
+                placeholder="Я шукаю..."
+                data-aos="zoom-in"
+                data-aos-duration="800"
+                data-aos-delay="100"
+                data-aos-easing="ease-out-quart"
+                data-aos-anchor=".dropdown_menu"
+              />
+              <button
+                type="submit"
+                className={style.mobile_search_btn}
+                data-aos="zoom-in"
+                data-aos-duration="800"
+                data-aos-delay="200"
+                data-aos-easing="ease-out-back"
+                data-aos-anchor=".dropdown_menu"
+              >
+                <FiSearch size={24} />
+              </button>
+            </form>
+          </div>
+          <div
+            className={style.blur_overlay_find}
+            onClick={toggleSearchDropdown}
+            data-aos="fade"
+            data-aos-duration="400"
+          ></div>
+        </>
+      )}
     </>
   );
 
+  // addToCart работает без перезагрузки страницы (оставить как есть)
+
   return (
     <header className={style.header}>
+      {/* Desktop/tablet sections (верхняя строка, средняя, нижняя) */}
       <div className={style.desktop_only}>
         {renderDesktopTopSection()}
         {renderMiddleSection()}
         {renderBottomSection()}
       </div>
+
       {renderMobileTopSection()}
-      {mobileMenuVisible && renderMobileMenu()}
-      {searchDropdownVisible && renderMobileSearch()}
+      {renderMobileMenu()}
+      {renderMobileSearch()}
+
       {favoriteModalVisible && (
         <div
           className={style.favorite_modal_overlay}
@@ -751,7 +839,8 @@ const Header = ({ isLogged, onLogout }) => {
           </div>
         </div>
       )}
-      <CartModal ref={cartModalRef} />
+
+      {isLogged && <CartModal ref={cartModalRef} />}
     </header>
   );
 };

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import styles from "./BasketModal.module.scss";
-import { FaTimes, FaMinus, FaPlus } from 'react-icons/fa';
+import { FaTimes, FaMinus, FaPlus, FaShoppingCart, FaTrash } from 'react-icons/fa';
 
+// Global callback для відкриття модалки
 let openModalCallback = null;
 
 export const openCartModal = () => {
@@ -10,27 +11,80 @@ export const openCartModal = () => {
   }
 };
 
+// Функція для додавання товару в кошик
+export const addToCart = (product) => {
+  const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+  
+  const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
+  
+  if (existingItemIndex !== -1) {
+    cartItems[existingItemIndex].quantity += 1;
+  } else {
+    cartItems.push({ 
+      ...product, 
+      quantity: 1,
+      inStock: product.inStock !== false
+    });
+  }
+  
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  
+  // Dispatch event
+  window.dispatchEvent(new CustomEvent('cartUpdated', { 
+    detail: { items: cartItems } 
+  }));
+  
+  // Open modal
+  openCartModal();
+};
+
 export const CartModal = forwardRef((props, ref) => {
   const [cartItems, setCartItems] = useState(() => {
-    // Load cart items from localStorage on initial render
     const savedCart = localStorage.getItem('cartItems');
     return savedCart ? JSON.parse(savedCart) : [];
   });
   
   const [isModalOpened, setIsModalOpened] = useState(false);
 
-  // Expose methods to parent via ref
+  // Expose methods to parent
   useImperativeHandle(ref, () => ({
     openModal: () => setIsModalOpened(true),
-    closeModal: () => setIsModalOpened(false)
+    closeModal: () => setIsModalOpened(false),
+    getCartItems: () => cartItems,
+    getTotalPrice: () => totalPrice,
+    getTotalItems: () => totalItems
   }));
 
-  // Save cart items to localStorage whenever they change
+  // Save to localStorage
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    
+    window.dispatchEvent(new CustomEvent('cartUpdated', { 
+      detail: { items: cartItems } 
+    }));
   }, [cartItems]);
 
-  const openModal = () => setIsModalOpened(true);
+  // Set up global callback
+  useEffect(() => {
+    openModalCallback = () => setIsModalOpened(true);
+    return () => {
+      openModalCallback = null;
+    };
+  }, []);
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isModalOpened) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isModalOpened]);
+
   const closeModal = () => setIsModalOpened(false);
 
   const handleBackdropClick = (e) => {
@@ -39,24 +93,19 @@ export const CartModal = forwardRef((props, ref) => {
     }
   };
 
-  // Cart item management functions
-  const updateQuantity = (id, newQuantity) => {
-    if (newQuantity < 1) {
-      removeItem(id);
-      return;
-    }
+  // Handle ESC key
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape' && isModalOpened) {
+        closeModal();
+      }
+    };
     
-    setCartItems(prevItems => 
-      prevItems.map(item => 
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
-    );
-  };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [isModalOpened]);
 
-  const removeItem = (id) => {
-    setCartItems(prevItems => prevItems.filter(item => item.id !== id));
-  };
-
+  // Cart management functions
   const incrementQuantity = (id) => {
     setCartItems(prevItems => 
       prevItems.map(item => 
@@ -67,31 +116,58 @@ export const CartModal = forwardRef((props, ref) => {
 
   const decrementQuantity = (id) => {
     setCartItems(prevItems => 
-      prevItems.map(item => 
-        item.id === id ? { ...item, quantity: Math.max(1, item.quantity - 1) } : item
-      )
+      prevItems.map(item => {
+        if (item.id === id) {
+          const newQuantity = item.quantity - 1;
+          return newQuantity > 0 ? { ...item, quantity: newQuantity } : item;
+        }
+        return item;
+      }).filter(item => item.quantity > 0)
     );
   };
 
-  // Calculate total price
-  const totalPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+  const removeItem = (id) => {
+    setCartItems(prevItems => prevItems.filter(item => item.id !== id));
+  };
 
-  useEffect(() => {
-    openModalCallback = openModal;
-    return () => {
-      openModalCallback = null;
-    };
-  }, []);
+  const clearCart = () => {
+    if (window.confirm('Ви впевнені, що хочете очистити кошик?')) {
+      setCartItems([]);
+    }
+  };
+
+  // Calculate totals
+  const totalPrice = cartItems.reduce((total, item) => {
+    let price = 0;
+    if (typeof item.price === 'number') {
+      price = item.price;
+    } else if (typeof item.price === 'string') {
+      price = parseFloat(item.price.replace(/[^\d.]/g, '')) || 0;
+    }
+    return total + (price * item.quantity);
+  }, 0);
+
+  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+
+  const handleCheckout = () => {
+    closeModal();
+    window.location.href = '/basket';
+  };
+
+  if (!isModalOpened) return null;
 
   return (
-    <div
-      className={`${styles.backdrop} ${!isModalOpened ? styles.none : ''}`}
-      onClick={handleBackdropClick}
-    >
-      <div className={`${styles.modal} ${!isModalOpened ? styles.none : ''}`} id="modal">
+    <div className={styles.backdrop} onClick={handleBackdropClick}>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
-          Ваш кошик <span>{cartItems.length}</span>
-          <button onClick={closeModal} className={styles.closeIcon}>
+          <h2>
+            Ваш кошик {totalItems > 0 && <span className={styles.badge}>{totalItems}</span>}
+          </h2>
+          <button 
+            onClick={closeModal} 
+            className={styles.closeIcon}
+            aria-label="Закрити"
+          >
             <FaTimes />
           </button>
         </div>
@@ -99,59 +175,139 @@ export const CartModal = forwardRef((props, ref) => {
         <div className={styles.cartContent}>
           {cartItems.length === 0 ? (
             <div className={styles.emptyCart}>
-              <p>Ваш кошик порожній</p>
-              <button className={`${styles.btn} ${styles.secondary}`} onClick={closeModal}>
+              <div className={styles.emptyCartIcon}>
+                <FaShoppingCart size={80} />
+              </div>
+              <h3>Ваш кошик порожній</h3>
+              <p>Додайте товари, щоб продовжити покупки</p>
+              <button className={styles.btnSecondary} onClick={closeModal}>
                 Продовжити покупки
               </button>
             </div>
           ) : (
             <>
-              {cartItems.map((item) => (
-                <div key={item.id} className={styles.product}>
-                  <img src="/bed.jpg" alt="Ліжко" className={styles.productImage} />
-                  <div className={styles.productInfo}>
-                    <div className={styles.size}>Розмір: 61 x 184 x 2130 мм</div>
-                    <h3 className={styles.title}>
-                      Ліжко Спарта / Sparta з підйомним механізмом
-                    </h3>
-                    <div className={styles.inStock}>✔ В наявності</div>
-                    <div className={styles.price}>
-                      {item.price.toLocaleString()} грн.
-                      {item.oldPrice && (
-                        <span className={styles.oldPrice}>
-                          {item.oldPrice.toLocaleString()} грн.
-                        </span>
-                      )}
-                    </div>
-                    <div className={styles.quantity}>
-                      <button onClick={() => decrementQuantity(item.id)}>
-                        <FaMinus />
+              <div className={styles.cartItems}>
+                {cartItems.map((item) => {
+                  const itemPrice = typeof item.price === 'number' 
+                    ? item.price 
+                    : parseFloat(item.price?.replace(/[^\d.]/g, '')) || 0;
+                  
+                  const itemTotal = itemPrice * item.quantity;
+                  
+                  return (
+                    <div key={item.id} className={styles.product}>
+                      <div className={styles.productImage}>
+                        <img 
+                          src={item.image?.src || item.image || '/placeholder.jpg'} 
+                          alt={item.alt || item.title} 
+                          onError={(e) => {
+                            e.target.src = '/placeholder.jpg';
+                          }}
+                        />
+                      </div>
+                      
+                      <div className={styles.productInfo}>
+                        <h3 className={styles.title}>{item.title}</h3>
+                        
+                        {item.size && (
+                          <div className={styles.size}>
+                            Розмір: <strong>{item.size}</strong>
+                          </div>
+                        )}
+                        
+                        <div className={styles.inStock}>
+                          {item.inStock !== false 
+                            ? <><span className={styles.checkmark}>✓</span> В наявності</> 
+                            : <><span className={styles.clock}>⏱</span> Під замовлення</>
+                          }
+                        </div>
+                        
+                        <div className={styles.priceBlock}>
+                          <div className={styles.price}>
+                            {itemPrice.toLocaleString('uk-UA')} грн.
+                          </div>
+                          {item.oldPrice && (
+                            <span className={styles.oldPrice}>
+                              {typeof item.oldPrice === 'number'
+                                ? `${item.oldPrice.toLocaleString('uk-UA')} грн.`
+                                : item.oldPrice
+                              }
+                            </span>
+                          )}
+                        </div>
+                        
+                        <div className={styles.quantityBlock}>
+                          <div className={styles.quantity}>
+                            <button 
+                              onClick={() => decrementQuantity(item.id)}
+                              aria-label="Зменшити кількість"
+                              disabled={item.quantity <= 1}
+                            >
+                              <FaMinus />
+                            </button>
+                            <span>{item.quantity}</span>
+                            <button 
+                              onClick={() => incrementQuantity(item.id)}
+                              aria-label="Збільшити кількість"
+                            >
+                              <FaPlus />
+                            </button>
+                          </div>
+                          <div className={styles.itemTotal}>
+                            {itemTotal.toLocaleString('uk-UA')} грн.
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <button 
+                        className={styles.removeBtn}
+                        onClick={() => removeItem(item.id)}
+                        aria-label="Видалити товар"
+                        title="Видалити"
+                      >
+                        <FaTrash />
                       </button>
-                      <span>{item.quantity}</span>
-                      <button onClick={() => incrementQuantity(item.id)}>
-                        <FaPlus />
-                      </button>
                     </div>
-                  </div>
-                  <button 
-                    className={styles.removeBtn}
-                    onClick={() => removeItem(item.id)}
-                  >
-                    <FaTimes />
-                  </button>
-                </div>
-              ))}
+                  );
+                })}
+              </div>
               
-              <div className={styles.total}>
-                Загальна сума: <strong>{totalPrice.toLocaleString()} грн.</strong>
+              {cartItems.length > 0 && (
+                <button 
+                  className={styles.clearCart}
+                  onClick={clearCart}
+                >
+                  <FaTrash /> Очистити кошик
+                </button>
+              )}
+
+              <div className={styles.totalSection}>
+                <div className={styles.totalRow}>
+                  <span>Товарів:</span>
+                  <span>{totalItems} шт.</span>
+                </div>
+                <div className={styles.totalRow}>
+                  <span>Загальна сума:</span>
+                  <strong className={styles.totalPrice}>
+                    {totalPrice.toLocaleString('uk-UA')} грн.
+                  </strong>
+                </div>
               </div>
 
-              <button className={`${styles.btn} ${styles.primary}`}>
-                ОФОРМИТИ ЗАМОВЛЕННЯ
-              </button>
-              <button className={`${styles.btn} ${styles.secondary}`} onClick={closeModal}>
-                Продовжити покупки
-              </button>
+              <div className={styles.actions}>
+                <button 
+                  className={styles.btnPrimary}
+                  onClick={handleCheckout}
+                >
+                  ОФОРМИТИ ЗАМОВЛЕННЯ
+                </button>
+                <button 
+                  className={styles.btnSecondary} 
+                  onClick={closeModal}
+                >
+                  Продовжити покупки
+                </button>
+              </div>
             </>
           )}
         </div>
@@ -161,3 +317,5 @@ export const CartModal = forwardRef((props, ref) => {
 });
 
 CartModal.displayName = 'CartModal';
+
+export default CartModal;

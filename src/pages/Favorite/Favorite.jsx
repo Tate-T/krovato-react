@@ -1,28 +1,19 @@
-import styleProduct from "../MainPage/Products/Products.module.scss";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { FavoriteItem } from "./FavoriteItem";
-import styleFavorite from './Favorite.module.scss'
+import style from './Favorite.module.scss';
 
 const Favorite = ({ isOpen, onClose }) => {
   const [products, setProducts] = useState([]);
+  const [isClosing, setIsClosing] = useState(false);
 
-  // Инициализация товаров при первом рендере, если модалка сразу открыта
   useEffect(() => {
     if (isOpen) {
       const currentProducts = JSON.parse(localStorage.getItem("activeProducts")) || [];
       setProducts(currentProducts);
-    }
-  }, []);
-
-  // Загружаем товары из localStorage при каждом открытии модалки
-  useEffect(() => {
-    if (isOpen) {
-      const currentProducts = JSON.parse(localStorage.getItem("activeProducts")) || [];
-      setProducts(currentProducts);
+      setIsClosing(false);
     }
   }, [isOpen]);
 
-  // Слушаем изменения localStorage (например, из других вкладок или компонентов)
   useEffect(() => {
     const handleStorage = (event) => {
       if (event.key === "activeProducts") {
@@ -34,7 +25,6 @@ const Favorite = ({ isOpen, onClose }) => {
     return () => window.removeEventListener("storage", handleStorage);
   }, []);
 
-  // Удаление товара из избранного
   const removeFromFavorite = (id) => {
     const updatedProducts = products.filter(item => item.id !== id);
     setProducts(updatedProducts);
@@ -42,49 +32,89 @@ const Favorite = ({ isOpen, onClose }) => {
     window.dispatchEvent(new Event('storage'));
   };
 
-  if (!isOpen) return null;
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+      setIsClosing(false);
+    }, 300);
+  };
 
-  if (!products || products.length === 0) {
-    return (
-      <div className={styleFavorite.Favorite}>
-        <button className={styleFavorite.closeBtn} onClick={onClose}>&#10005;</button>
-        Нет избранных товаров
-      </div>
-    );
-  }
+  if (!isOpen && !isClosing) return null;
 
   return (
-    <div className={styleFavorite.Favorite}>
-      <button className={styleFavorite.closeBtn} onClick={onClose}>&#10005;</button>
-      <ul style={{ width: '100%' }}>
-        {products.map((item, idx) => (
-          <li key={item.id || idx} style={{ position: 'relative' }}>
-            <FavoriteItem product={item} />
-            <button
-              style={{
-                position: 'absolute',
-                top: 5,
-                right: 5,
-                background: '#fff',
-                border: '1px solid #ccc',
-                borderRadius: '50%',
-                width: 28,
-                height: 28,
-                cursor: 'pointer',
-                color: '#888',
-                fontSize: 18,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}
-              title="Удалить из избранного"
-              onClick={() => removeFromFavorite(item.id)}
-            >
-              &#10005;
+    <div className={`${style.favorite} ${isClosing ? style.closing : ''}`}>
+      <div className={style.favorite_header}>
+        <h2 className={style.favorite_title}>
+          <span className={style.heart_icon}>❤️</span>
+          Обране
+          <span className={style.items_count}>({products.length})</span>
+        </h2>
+        <button 
+          className={style.close_btn}
+          onClick={handleClose}
+          aria-label="Close favorites"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div className={style.favorite_content}>
+        {!products || products.length === 0 ? (
+          <div className={style.empty_state}>
+            <div className={style.empty_animation}>
+              <div className={style.heart_container}>
+                <div className={style.floating_heart}>🤍</div>
+              </div>
+            </div>
+            <h3 className={style.empty_title}>Список обраного порожній</h3>
+            <p className={style.empty_text}>
+              Додавайте товари до обраного, натискаючи на сердечко ❤️
+            </p>
+            <button className={style.continue_shopping} onClick={handleClose}>
+              Продовжити покупки
             </button>
-          </li>
-        ))}
-      </ul>
+          </div>
+        ) : (
+          <>
+            <div className={style.products_list}>
+              {products.map((item, idx) => (
+                <div 
+                  key={item.id || idx} 
+                  className={style.product_item}
+                  style={{ animationDelay: `${idx * 0.1}s` }}
+                >
+                  <FavoriteItem product={item} />
+                  <button
+                    className={style.remove_btn}
+                    onClick={() => removeFromFavorite(item.id)}
+                    aria-label="Remove from favorites"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                  </button>
+                  <div className={style.item_overlay}></div>
+                </div>
+              ))}
+            </div>
+            
+            <div className={style.favorite_actions}>
+              <button className={style.clear_all_btn} onClick={() => {
+                setProducts([]);
+                localStorage.setItem("activeProducts", JSON.stringify([]));
+              }}>
+                Очистити все
+              </button>
+              <button className={style.continue_btn} onClick={handleClose}>
+                Продовжити
+              </button>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };

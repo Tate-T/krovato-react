@@ -4,7 +4,7 @@ import c from "../../components/Container/Container.module.scss";
 import style from "./h.module.scss";
 
 import { HiOutlineShoppingBag } from "react-icons/hi";
-import { FiSearch, FiPhone, FiMenu, FiChevronDown, FiX } from "react-icons/fi";
+import { FiSearch, FiPhone, FiMenu, FiChevronDown, FiX, FiHeart } from "react-icons/fi";
 import { BsCreditCard2Front } from "react-icons/bs";
 import { FaPercent, FaHeart } from "react-icons/fa";
 import { AiOutlineStar } from "react-icons/ai";
@@ -21,12 +21,11 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import "./body-padding-top.css";
 
-import { CartModal, addToCart } from "../BasketModal/BasketModal";
+import { CartModal } from "../BasketModal/BasketModal";
 import Favorite from "../../pages/Favorite/Favorite";
 import { Login } from "./Login";
 
 const Header = ({ isLogged, onLogout }) => {
-  // State management
   const [languageDropdownVisible, setLanguageDropdownVisible] = useState(false);
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
   const [additionalNumbersVisible, setAdditionalNumbersVisible] = useState(false);
@@ -37,14 +36,13 @@ const Header = ({ isLogged, onLogout }) => {
     typeof window !== "undefined" ? window.innerWidth : 1200
   );
 
-  // Refs
   const cartModalRef = useRef();
   const languageRef = useRef();
   const mobileMenuRef = useRef();
   const additionalNumbersRef = useRef();
   const searchRef = useRef();
+  const favoriteModalRef = useRef();
 
-  // Load cart count from localStorage
   useEffect(() => {
     const updateCartCount = () => {
       const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
@@ -60,7 +58,6 @@ const Header = ({ isLogged, onLogout }) => {
     };
   }, []);
 
-  // Handle click outside
   const handleClickOutside = useCallback(
     (event) => {
       if (
@@ -87,7 +84,6 @@ const Header = ({ isLogged, onLogout }) => {
         setSearchDropdownVisible(false);
       }
 
-      // Close mobile menu when clicking outside
       if (
         mobileMenuVisible &&
         mobileMenuRef.current &&
@@ -97,11 +93,18 @@ const Header = ({ isLogged, onLogout }) => {
         document.body.style.overflow = 'unset';
         document.documentElement.style.overflow = 'unset';
       }
+
+      if (
+        favoriteModalVisible &&
+        favoriteModalRef.current &&
+        !favoriteModalRef.current.contains(event.target)
+      ) {
+        setFavoriteModalVisible(false);
+      }
     },
-    [languageDropdownVisible, additionalNumbersVisible, searchDropdownVisible, mobileMenuVisible]
+    [languageDropdownVisible, additionalNumbersVisible, searchDropdownVisible, mobileMenuVisible, favoriteModalVisible]
   );
 
-  // Handle window resize
   const handleResize = useCallback(() => {
     setWindowWidth(window.innerWidth);
     setTimeout(() => {
@@ -109,7 +112,6 @@ const Header = ({ isLogged, onLogout }) => {
     }, 200);
   }, []);
 
-  // Initialize AOS and event listeners
   useEffect(() => {
     AOS.init({
       duration: 1200,
@@ -144,7 +146,6 @@ const Header = ({ isLogged, onLogout }) => {
     };
   }, [handleResize, handleClickOutside]);
 
-  // Toggle handlers
   const toggleLanguage = (e) => {
     e.stopPropagation();
     setLanguageDropdownVisible((prev) => !prev);
@@ -153,7 +154,6 @@ const Header = ({ isLogged, onLogout }) => {
     setSearchDropdownVisible(false);
   };
 
-  // Улучшенный toggle для мобильного меню
   const toggleMobileMenu = (e) => {
     e && e.stopPropagation();
     const newState = !mobileMenuVisible;
@@ -162,7 +162,6 @@ const Header = ({ isLogged, onLogout }) => {
     setAdditionalNumbersVisible(false);
     setSearchDropdownVisible(false);
     
-    // Блокировка скролла при открытом меню
     if (newState) {
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
@@ -194,106 +193,61 @@ const Header = ({ isLogged, onLogout }) => {
     }
   };
 
-  // Закрытие мобильного меню при переходе по ссылке
+  const handleOpenFavorite = () => {
+    setFavoriteModalVisible(true);
+  };
+
+  const handleCloseFavorite = () => {
+    setFavoriteModalVisible(false);
+  };
+
   const handleMobileLinkClick = () => {
     setMobileMenuVisible(false);
     document.body.style.overflow = 'unset';
     document.documentElement.style.overflow = 'unset';
   };
 
-  // Render desktop top section
   const renderDesktopTopSection = () => (
     <div
       className={[c.container, style.container, style.header__section1].join(" ")}
       data-aos="fade-down"
       data-aos-duration="800"
-      data-aos-easing="ease-out-back"
-      data-aos-delay="100"
       style={{
         display: windowWidth < 481 ? "none" : undefined,
       }}
     >
       <ul className={style.header__list}>
-        <li
-          className={style.header__item}
-          data-aos="fade-right"
-          data-aos-duration="600"
-          data-aos-delay="150"
-          data-aos-easing="ease-out-quart"
-          data-aos-anchor=".header__section1"
-        >
+        <li className={style.header__item} data-aos="fade-right" data-aos-duration="600" data-aos-delay="150">
           <Link to="/aboutUs">
             <FiHome size={16} strokeWidth={1} /> Про нас
           </Link>
         </li>
-        <li
-          className={style.header__item}
-          data-aos="fade-right"
-          data-aos-duration="700"
-          data-aos-delay="200"
-          data-aos-easing="ease-out-quart"
-          data-aos-anchor=".header__section1"
-        >
+        <li className={style.header__item} data-aos="fade-right" data-aos-duration="700" data-aos-delay="200">
           <Link to="/pay">
             <FiShoppingCart size={16} strokeWidth={1} /> Оплата
           </Link>
         </li>
-        <li
-          className={style.header__item}
-          data-aos="fade-right"
-          data-aos-duration="800"
-          data-aos-delay="250"
-          data-aos-easing="ease-out-quart"
-          data-aos-anchor=".header__section1"
-        >
+        <li className={style.header__item} data-aos="fade-right" data-aos-duration="800" data-aos-delay="250">
           <Link to="/delivery">
             <FiTruck size={16} strokeWidth={1} /> Доставка та збірка
           </Link>
         </li>
-        <li
-          className={style.header__item}
-          data-aos="fade-right"
-          data-aos-duration="900"
-          data-aos-delay="300"
-          data-aos-easing="ease-out-quart"
-          data-aos-anchor=".header__section1"
-        >
+        <li className={style.header__item} data-aos="fade-right" data-aos-duration="900" data-aos-delay="300">
           <Link to="/reviews">
             <FiMessageSquare size={16} strokeWidth={1} /> Відгуки
           </Link>
         </li>
-        <li
-          className={style.header__item}
-          data-aos="fade-right"
-          data-aos-duration="1000"
-          data-aos-delay="350"
-          data-aos-easing="ease-out-quart"
-          data-aos-anchor=".header__section1"
-        >
+        <li className={style.header__item} data-aos="fade-right" data-aos-duration="1000" data-aos-delay="350">
           <Link to="/blog">
             <FiBook size={16} strokeWidth={1} /> Блог
           </Link>
         </li>
-        <li
-          className={style.header__item}
-          data-aos="fade-right"
-          data-aos-duration="1100"
-          data-aos-delay="400"
-          data-aos-easing="ease-out-quart"
-          data-aos-anchor=".header__section1"
-        >
+        <li className={style.header__item} data-aos="fade-right" data-aos-duration="1100" data-aos-delay="400">
           <Link to="/contacts">
             <FiMail size={16} strokeWidth={1} /> Контакти
           </Link>
         </li>
-        <li
-          className={style["header__list-svg"]}
-          data-aos="fade-left"
-          data-aos-duration="800"
-          data-aos-delay="450"
-          data-aos-easing="ease-out-back"
-          data-aos-anchor=".header__section1"
-        >
+        <li className={style["header__list-svg"]} data-aos="fade-left" data-aos-duration="800" data-aos-delay="450">
           <div
             ref={languageRef}
             className={style.header__lang_container}
@@ -313,31 +267,29 @@ const Header = ({ isLogged, onLogout }) => {
     </div>
   );
 
-  // Render mobile top section
   const renderMobileTopSection = () => (
     <div
       className={style.header__mobile}
       data-aos="fade-down"
       data-aos-duration="800"
-      data-aos-easing="ease-out-cubic"
     >
       <div className={style.header__mobile_row}>
         <div
-          className={style.header__burger_menu}
+          className={`${style.burger_wrapper} ${mobileMenuVisible ? style.active : ''}`}
           onClick={toggleMobileMenu}
-          data-aos="zoom-in"
-          data-aos-duration="600"
-          data-aos-delay="150"
-          data-aos-easing="ease-out-back"
         >
-          <FiMenu size={28} strokeWidth={1} />
+          <div className={style.burger_icon}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
+        
         <div
           className={style.header__logo}
           data-aos="zoom-in"
           data-aos-duration="700"
           data-aos-delay="100"
-          data-aos-easing="ease-out-cubic"
         >
           <NavLink to="/">
             <img
@@ -346,6 +298,7 @@ const Header = ({ isLogged, onLogout }) => {
             />
           </NavLink>
         </div>
+        
         <div
           ref={additionalNumbersRef}
           className={style.header__phone_icon}
@@ -353,7 +306,6 @@ const Header = ({ isLogged, onLogout }) => {
           data-aos="zoom-in"
           data-aos-duration="600"
           data-aos-delay="200"
-          data-aos-easing="ease-out-back"
         >
           <FiPhone size={28} strokeWidth={1} />
           {additionalNumbersVisible && (
@@ -382,7 +334,6 @@ const Header = ({ isLogged, onLogout }) => {
           data-aos="flip-up"
           data-aos-duration="900"
           data-aos-delay="250"
-          data-aos-easing="ease-out-back"
         >
           <NavLink to="/catalog" className={style.catalog_orange_btn}>
             Каталог
@@ -396,7 +347,6 @@ const Header = ({ isLogged, onLogout }) => {
             data-aos="zoom-in"
             data-aos-duration="700"
             data-aos-delay="300"
-            data-aos-easing="ease-out-back"
           >
             <FiSearch size={24} />
           </div>
@@ -406,7 +356,6 @@ const Header = ({ isLogged, onLogout }) => {
             data-aos="zoom-in"
             data-aos-duration="700"
             data-aos-delay="350"
-            data-aos-easing="ease-out-back"
           >
             <div className={style.icon_with_badge} data-count={cartItemsCount || ''}>
               <HiOutlineShoppingBag size={24} />
@@ -417,22 +366,18 @@ const Header = ({ isLogged, onLogout }) => {
     </div>
   );
 
-  // Render middle section
   const renderMiddleSection = () => (
     <div
       className={[c.container, style.container, style.header__middle].join(" ")}
       data-aos="fade-up"
       data-aos-duration="900"
       data-aos-delay="200"
-      data-aos-easing="ease-out-quart"
     >
       <div
         className={style.header__item}
         data-aos="zoom-in"
         data-aos-duration="800"
         data-aos-delay="100"
-        data-aos-easing="ease-out-cubic"
-        data-aos-anchor=".header__list2"
       >
         <Link className={style.header__logo_link} to="/">
           <div className={style.header__logo}>
@@ -448,8 +393,6 @@ const Header = ({ isLogged, onLogout }) => {
         data-aos="fade-up"
         data-aos-duration="900"
         data-aos-delay="200"
-        data-aos-easing="ease-out-quart"
-        data-aos-anchor=".header__list2"
       >
         <form
           className={style.header__form}
@@ -474,8 +417,6 @@ const Header = ({ isLogged, onLogout }) => {
         data-aos="fade-up"
         data-aos-duration="900"
         data-aos-delay="300"
-        data-aos-easing="ease-out-quart"
-        data-aos-anchor=".header__list2"
       >
         <FiPhone className={style.phone_icon} size={24} />
         <div className={style.phone_info}>
@@ -511,15 +452,15 @@ const Header = ({ isLogged, onLogout }) => {
           </div>
         ) : (
           <div className={style.auth_section}>
-            {/* Первая строка - иконки */}
             <div className={style.icons_row}>
               <div className={style.header__icon_container}>
-                <FaHeart
-                  className={style.heart_icon}
-                  size={24}
-                  onClick={() => setFavoriteModalVisible(true)}
-                  style={{ cursor: "pointer" }}
-                />
+                <button
+                  className={style.icon_with_badge}
+                  onClick={handleOpenFavorite}
+                  type="button"
+                >
+                  <FaHeart className={style.heart_icon} size={20} />
+                </button>
               </div>
               <div className={style.header__icon_container}>
                 <button
@@ -528,11 +469,10 @@ const Header = ({ isLogged, onLogout }) => {
                   data-count={cartItemsCount || ''}
                   type="button"
                 >
-                  <HiOutlineShoppingBag className={style.cart_icon} size={24} />
+                  <HiOutlineShoppingBag className={style.cart_icon} size={20} />
                 </button>
               </div>
             </div>
-            {/* Вторая строка - логаут */}
             <div className={style.logout_row}>
               <button 
                 className={`${style.logoutBtn} ${style.neutralButton}`}
@@ -549,22 +489,18 @@ const Header = ({ isLogged, onLogout }) => {
     </div>
   );
 
-  // Render bottom section
   const renderBottomSection = () => (
     <div
       className={[c.container, style.container, style.header__list3].join(" ")}
       data-aos="fade-up"
       data-aos-duration="1000"
       data-aos-delay="200"
-      data-aos-easing="ease-in-out"
     >
       <div
         className={style.header__item}
         data-aos="zoom-in-right"
         data-aos-duration="900"
         data-aos-delay="100"
-        data-aos-easing="ease-out-back"
-        data-aos-anchor=".header__list3"
       >
         <NavLink
           to="/catalog"
@@ -578,8 +514,6 @@ const Header = ({ isLogged, onLogout }) => {
         data-aos="zoom-in-up"
         data-aos-duration="800"
         data-aos-delay="200"
-        data-aos-easing="ease-out-back"
-        data-aos-anchor=".header__list3"
       >
         <a className={style.header__link} href="#">
           <AiOutlineStar className={style.icon_promo} size={20} />
@@ -591,8 +525,6 @@ const Header = ({ isLogged, onLogout }) => {
         data-aos="zoom-in-up"
         data-aos-duration="800"
         data-aos-delay="300"
-        data-aos-easing="ease-out-back"
-        data-aos-anchor=".header__list3"
       >
         <Link className={style.header__link} to="/catalog">
           <FaPercent className={style.icon_sale} size={18} />
@@ -604,8 +536,6 @@ const Header = ({ isLogged, onLogout }) => {
         data-aos="zoom-in-up"
         data-aos-duration="800"
         data-aos-delay="400"
-        data-aos-easing="ease-out-back"
-        data-aos-anchor=".header__list3"
       >
         <a className={style.header__link} href="#">
           <BsCreditCard2Front className={style.icon_credit} size={20} />
@@ -617,143 +547,139 @@ const Header = ({ isLogged, onLogout }) => {
         data-aos="zoom-in-left"
         data-aos-duration="900"
         data-aos-delay="500"
-        data-aos-easing="ease-out-back"
-        data-aos-anchor=".header__list3"
       >
         Передзвоніть мені
       </div>
     </div>
   );
 
-  // Render mobile menu
   const renderMobileMenu = () => (
     <>
       <div 
-        className={`${style.mobile_menu_overlay} ${mobileMenuVisible ? style.active : ''}`}
+        className={`${style.menu_overlay} ${mobileMenuVisible ? style.active : ''}`}
         onClick={toggleMobileMenu}
       />
       
       <div 
-        className={`${style.mobile_menu_container} ${mobileMenuVisible ? style.active : ''}`}
+        className={`${style.modern_mobile_menu} ${mobileMenuVisible ? style.active : ''}`}
         ref={mobileMenuRef}
       >
-        <div className={style.mobile_menu_header}>
-          <div className={style.mobile_menu_logo}>
+        <div className={style.menu_header}>
+          <div className={style.menu_logo}>
             <img
               src="https://tate-t.github.io/krovato-market/assets/logo-header@2x-f83feaba.webp"
               alt="Krovato"
             />
           </div>
-          <button 
-            className={style.mobile_menu_close}
-            onClick={toggleMobileMenu}
-          >
-            <FiX size={28} />
-          </button>
+          <div className={style.menu_close_wrapper}>
+            <button 
+              className={style.menu_close}
+              onClick={toggleMobileMenu}
+            >
+              <FiX size={24} />
+            </button>
+          </div>
         </div>
 
-        <div className={style.mobile_menu_content}>
-          <Link
-            to="/aboutUs"
-            className={style.mobile_menu_link}
-            onClick={handleMobileLinkClick}
-          >
-            <FiHome size={24} /> Про нас
-          </Link>
-          <Link
-            to="/pay"
-            className={style.mobile_menu_link}
-            onClick={handleMobileLinkClick}
-          >
-            <FiShoppingCart size={24} /> Оплата
-          </Link>
-          <Link
-            to="/delivery"
-            className={style.mobile_menu_link}
-            onClick={handleMobileLinkClick}
-          >
-            <FiTruck size={24} /> Доставка та збірка
-          </Link>
-          <Link
-            to="/reviews"
-            className={style.mobile_menu_link}
-            onClick={handleMobileLinkClick}
-          >
-            <FiMessageSquare size={24} /> Відгуки
-          </Link>
-          <Link
-            to="/blog"
-            className={style.mobile_menu_link}
-            onClick={handleMobileLinkClick}
-          >
-            <FiBook size={24} /> Блог
-          </Link>
-          <Link
-            to="/contacts"
-            className={style.mobile_menu_link}
-            onClick={handleMobileLinkClick}
-          >
-            <FiMail size={24} /> Контакти
-          </Link>
-          
-          <div className={style.mobile_menu_divider}></div>
-          
-          <a
-            href="#"
-            className={style.mobile_menu_link}
-            onClick={handleMobileLinkClick}
-          >
-            <AiOutlineStar size={24} /> Акції
-          </a>
-          <a
-            href="#"
-            className={style.mobile_menu_link}
-            onClick={handleMobileLinkClick}
-          >
-            <FaPercent size={24} /> Розпродаж
-          </a>
-          <a
-            href="#"
-            className={style.mobile_menu_link}
-            onClick={handleMobileLinkClick}
-          >
-            <BsCreditCard2Front size={24} /> Купити в кредит
-          </a>
+        <div className={style.menu_content}>
+          <nav className={style.menu_nav}>
+            <Link to="/aboutUs" className={style.menu_item} onClick={handleMobileLinkClick}>
+              <div className={style.menu_icon}><FiHome size={22} /></div>
+              <span className={style.menu_text}>Про нас</span>
+              <div className={style.menu_arrow}>›</div>
+            </Link>
 
-          <div className={style.mobile_menu_divider}></div>
+            <Link to="/pay" className={style.menu_item} onClick={handleMobileLinkClick}>
+              <div className={style.menu_icon}><FiShoppingCart size={22} /></div>
+              <span className={style.menu_text}>Оплата</span>
+              <div className={style.menu_arrow}>›</div>
+            </Link>
 
-          <div className={style.mobile_menu_language}>
-            <span>Мова:</span>
-            <button className={`${style.lang_btn} ${style.active}`}>UA</button>
-            <button className={style.lang_btn}>EN</button>
-          </div>
-          
-          <div className={style.mobile_menu_contacts}>
-            <p className={style.mobile_phone_text}>Щодня з 9:00 до 18:00</p>
-            <a href="tel:+380679294545" className={style.mobile_phone_number}>
-              067 929-45-45
+            <Link to="/delivery" className={style.menu_item} onClick={handleMobileLinkClick}>
+              <div className={style.menu_icon}><FiTruck size={22} /></div>
+              <span className={style.menu_text}>Доставка та збірка</span>
+              <div className={style.menu_arrow}>›</div>
+            </Link>
+
+            <Link to="/reviews" className={style.menu_item} onClick={handleMobileLinkClick}>
+              <div className={style.menu_icon}><FiMessageSquare size={22} /></div>
+              <span className={style.menu_text}>Відгуки</span>
+              <div className={style.menu_arrow}>›</div>
+            </Link>
+
+            <Link to="/blog" className={style.menu_item} onClick={handleMobileLinkClick}>
+              <div className={style.menu_icon}><FiBook size={22} /></div>
+              <span className={style.menu_text}>Блог</span>
+              <div className={style.menu_arrow}>›</div>
+            </Link>
+
+            <Link to="/contacts" className={style.menu_item} onClick={handleMobileLinkClick}>
+              <div className={style.menu_icon}><FiMail size={22} /></div>
+              <span className={style.menu_text}>Контакти</span>
+              <div className={style.menu_arrow}>›</div>
+            </Link>
+          </nav>
+
+          <div className={style.menu_divider}></div>
+
+          <nav className={style.menu_nav}>
+            <a href="#" className={style.menu_item} onClick={handleMobileLinkClick}>
+              <div className={style.menu_icon}><AiOutlineStar size={22} /></div>
+              <span className={style.menu_text}>Акції</span>
+              <div className={style.menu_badge}>NEW</div>
             </a>
-            <a href="tel:+380501334545" className={style.mobile_phone_number}>
-              050 133-45-45
+
+            <a href="#" className={style.menu_item} onClick={handleMobileLinkClick}>
+              <div className={style.menu_icon}><FaPercent size={20} /></div>
+              <span className={style.menu_text}>Розпродаж</span>
+              <div className={style.menu_badge}>-50%</div>
             </a>
-            <a href="tel:+380931707545" className={style.mobile_phone_number}>
-              093 170-75-45
+
+            <a href="#" className={style.menu_item} onClick={handleMobileLinkClick}>
+              <div className={style.menu_icon}><BsCreditCard2Front size={20} /></div>
+              <span className={style.menu_text}>Купити в кредит</span>
             </a>
+          </nav>
+
+          <div className={style.menu_divider}></div>
+
+          <div className={style.menu_contacts}>
+            <div className={style.contact_header}>
+              <FiPhone size={18} />
+              <span>Контакти</span>
+            </div>
+            <p className={style.contact_hours}>Щодня з 9:00 до 18:00</p>
+            <div className={style.contact_phones}>
+              <a href="tel:+380679294545" className={style.contact_phone}>
+                067 929-45-45
+              </a>
+              <a href="tel:+380501334545" className={style.contact_phone}>
+                050 133-45-45
+              </a>
+              <a href="tel:+380931707545" className={style.contact_phone}>
+                093 170-75-45
+              </a>
+            </div>
           </div>
 
-          <a
-            href="#"
-            className={style.callback_btn}
-            onClick={handleMobileLinkClick}
-          >
+          <button className={style.menu_call_btn} onClick={handleMobileLinkClick}>
+            <FiPhone size={18} />
             Передзвоніть мені
-          </a>
+          </button>
+
+          <div className={style.menu_social}>
+            <span>Ми в соцмережах:</span>
+            <div className={style.social_links}>
+              <a href="#" className={style.social_link}>Instagram</a>
+              <a href="#" className={style.social_link}>Facebook</a>
+              <a href="#" className={style.social_link}>Telegram</a>
+            </div>
+          </div>
         </div>
       </div>
     </>
   );
 
-  // Render mobile search
   const renderMobileSearch = () => (
     <>
       {searchDropdownVisible && (
@@ -762,7 +688,6 @@ const Header = ({ isLogged, onLogout }) => {
             className={style.dropdown_menu}
             data-aos="fade-down"
             data-aos-duration="600"
-            data-aos-easing="ease-out-cubic"
           >
             <form
               className={style.header__form_mobile}
@@ -777,8 +702,6 @@ const Header = ({ isLogged, onLogout }) => {
                 data-aos="zoom-in"
                 data-aos-duration="800"
                 data-aos-delay="100"
-                data-aos-easing="ease-out-quart"
-                data-aos-anchor=".dropdown_menu"
               />
               <button
                 type="submit"
@@ -786,8 +709,6 @@ const Header = ({ isLogged, onLogout }) => {
                 data-aos="zoom-in"
                 data-aos-duration="800"
                 data-aos-delay="200"
-                data-aos-easing="ease-out-back"
-                data-aos-anchor=".dropdown_menu"
               >
                 <FiSearch size={24} />
               </button>
@@ -804,39 +725,46 @@ const Header = ({ isLogged, onLogout }) => {
     </>
   );
 
-  return (
-    <header className={style.header}>
-      {/* Desktop/tablet sections */}
-      <div className={style.desktop_only}>
-        {renderDesktopTopSection()}
-        {renderMiddleSection()}
-        {renderBottomSection()}
-      </div>
-
-      {/* Mobile sections */}
-      {renderMobileTopSection()}
-      {renderMobileMenu()}
-      {renderMobileSearch()}
-
+  const renderModals = () => (
+    <>
       {favoriteModalVisible && (
         <div
           className={style.favorite_modal_overlay}
-          onClick={() => setFavoriteModalVisible(false)}
+          onClick={handleCloseFavorite}
         >
           <div
-            className={style.favorite_modal}
+            ref={favoriteModalRef}
+            className={`${style.favorite_modal} ${favoriteModalVisible ? style.modal_enter : ''}`}
             onClick={(e) => e.stopPropagation()}
           >
             <Favorite
               isOpen={favoriteModalVisible}
-              onClose={() => setFavoriteModalVisible(false)}
+              onClose={handleCloseFavorite}
             />
           </div>
         </div>
       )}
 
       {isLogged && <CartModal ref={cartModalRef} />}
-    </header>
+    </>
+  );
+
+  return (
+    <>
+      <header className={style.header}>
+        <div className={style.desktop_only}>
+          {renderDesktopTopSection()}
+          {renderMiddleSection()}
+          {renderBottomSection()}
+        </div>
+
+        {renderMobileTopSection()}
+        {renderMobileMenu()}
+        {renderMobileSearch()}
+      </header>
+
+      {renderModals()}
+    </>
   );
 };
 

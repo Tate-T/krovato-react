@@ -56,3 +56,25 @@
         font-size: 19px;
     }
 }
+.List{
+    width: 100%;
+}
+.ItemList{
+    position: relative;
+}
+.DeleteItem{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    color: #888;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

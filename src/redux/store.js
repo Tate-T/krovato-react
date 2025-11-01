@@ -1,25 +1,30 @@
-import { createStore } from "redux";
-import reducerBasket from "./basket/reducer";
+// src/app/store.js
 import { configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
-import persistReducer from "redux-persist/es/persistReducer";
-import { favoriteReducer } from "./favorite/FavoriteSlice";
+import { persistReducer, persistStore } from "redux-persist";
 import { combineReducers } from "redux";
-import persistStore from "redux-persist/es/persistStore";
-const configFavorite = {
+import reducerBasket from "./basket/reducer"; 
+import { favoriteReducer } from "./favorite/FavoriteSlice";
+import loginReducer from "./login/loginSlice";
+
+const favoriteConfig = {
   key: "favorite",
   storage,
 };
-const persistedFavoriteReducer = persistReducer(
-  configFavorite,
-  favoriteReducer
-);
+
+const persistedFavorite = persistReducer(favoriteConfig, favoriteReducer);
 
 const rootReducer = combineReducers({
   basket: reducerBasket,
-  favorite: persistedFavoriteReducer,
+  favorite: persistedFavorite,
+  login: loginReducer, // now works with useSelector
 });
-const store = createStore(rootReducer);
-export const persistor = persistStore(store);
 
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
+});
+
+export const persistor = persistStore(store);
 export default store;

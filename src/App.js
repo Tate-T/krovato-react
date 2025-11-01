@@ -1,15 +1,15 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useState, Suspense, lazy } from 'react'
-import MainPage from "./pages/MainPage/MainPage"; 
+import { useState, Suspense, lazy } from "react";
+import MainPage from "./pages/MainPage/MainPage";
 import Footer from "./components/Footer/Footer.jsx";
-import  About  from "./components/About/About.jsx";
+import AboutUsPage from "./pages/AboutUs/About-us-page";
 import PaymentPage from "./pages/PaymentPage/PaymentPage";
 import Delivery from "./pages/Delivery/Delivery";
 import MainReviewsPage from "./pages/MainReviews/MainReviews";
-import BlogPage from "./pages/Blog/BlogPage"
+import BlogPage from "./pages/Blog/BlogPage";
 import ContactsPage from "./pages/ContactsPage/ContactsPage";
-import Catalog from "./pages/Catalog/Catalog"
+import Catalog from "./pages/Catalog/Catalog";
 import Header from "./components/Header/Header.jsx";
 // import About from "./components/About/About.jsx";
 // const HeaderFooter = lazy(() => import("./pages/HeaderFooter/HeaderFooter.jsx"));
@@ -22,16 +22,16 @@ import Header from "./components/Header/Header.jsx";
 // const Basket = lazy(() => import("./pages/Basket/Basket.jsx"));
 // // import { AgreeTerms } from "./pages/Basket/AgreeTerms/AgreeTerms";
 // const AgreeTerms = lazy(() =>
-  // import("./pages/Basket/AgreeTerms/AgreeTerms.jsx")
+// import("./pages/Basket/AgreeTerms/AgreeTerms.jsx")
 // );
 // // import { About } from "./components/About/About";
 // const About = lazy(() => import("./components/About/About.jsx"));
 // const PaymentPage = lazy(() => import("./pages/PaymentPage/PaymentPage.jsx"));
-// // 
+// //
 // const Delivery = lazy(() => import("./pages/Delivery/Delivery.jsx"));
-// // 
+// //
 // const MainReviewsPage = lazy(() =>
-  // import("./pages/MainReviews/MainReviews.jsx")
+// import("./pages/MainReviews/MainReviews.jsx")
 // );
 // const BlogPage = lazy(() => import("./pages/Blog/BlogPage.jsx"));
 // // import { BlogMain } from "./pages/Blog/BlogMain/BlogMain";
@@ -39,7 +39,7 @@ import Header from "./components/Header/Header.jsx";
 // // import BlogArticle from "./pages/BlogArticle/BlogArticle";
 // const BlogArticle = lazy(() => import("./pages/BlogArticle/BlogArticle.jsx"));
 // const ContactsPage = lazy(() =>
-  // import("./pages/ContactsPage/ContactsPage.jsx")
+// import("./pages/ContactsPage/ContactsPage.jsx")
 // );
 
 // const HeaderFooter = lazy(() => import('./pages/HeaderFooter/HeaderFooter.jsx'))
@@ -48,31 +48,31 @@ import Header from "./components/Header/Header.jsx";
 const LoginPage = lazy(() => import("./components/Header/LoginPage"));
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
-  const handleLogin = () => {
-    setIsLogged(true);
-  };
+	const [isLogged, setIsLogged] = useState(false);
+	const handleLogin = () => {
+		setIsLogged(true);
+	};
 
-  return (
-    <div className="App">
-       <Header />
-       <main>
-       <Suspense fallback={<div>Loading...</div>}>
-        <Routes>
-          <Route path="/" element={<MainPage/>}/>
-          {/* <Route path="/aboutUs" element={<About/>}/> */}
-          <Route path="/pay" element={<PaymentPage/>}/>
-          <Route path="/delivery" element={<Delivery/>}/> 
-          <Route path="/reviews" element={<MainReviewsPage/>}/>
-          <Route path="/blog" element={<BlogPage/>}/>
-          <Route path="/contacts" element={<ContactsPage/>}/>
-          <Route path="/catalog" element={<Catalog/>}/>
-        </Routes>
-      </Suspense>
-       </main>
-       <Footer/> 
-    </div>
-  );
+	return (
+		<div className="App">
+			<Header />
+			<main>
+				<Suspense fallback={<div>Loading...</div>}>
+					<Routes>
+						<Route path="/" element={<MainPage />} />
+						<Route path="/aboutUs" element={<AboutUsPage />} />
+						<Route path="/pay" element={<PaymentPage />} />
+						<Route path="/delivery" element={<Delivery />} />
+						<Route path="/reviews" element={<MainReviewsPage />} />
+						<Route path="/blog" element={<BlogPage />} />
+						<Route path="/contacts" element={<ContactsPage />} />
+						<Route path="/catalog" element={<Catalog />} />
+					</Routes>
+				</Suspense>
+			</main>
+			<Footer />
+		</div>
+	);
 }
 
 export default App;

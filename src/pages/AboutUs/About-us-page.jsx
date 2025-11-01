@@ -4,7 +4,7 @@ import { Benefits } from "./Benefits/Benefits";
 import { Advantages } from "../../components/Advantages/Advantages";
 import { LastReviews } from "../../components/LastReviews/LastReviews";
 
-export const AboutUsPage = () => {
+const AboutUsPage = () => {
   return (
     <>
         <Topic />
@@ -15,3 +15,5 @@ export const AboutUsPage = () => {
     </>
   );
 };
+
+export default AboutUsPage

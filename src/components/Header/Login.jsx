@@ -3,7 +3,7 @@ import "bootstrap";
 import LoginPage from "./LoginPage";
 import { Link } from "react-router-dom";
 
-export const Login = (isLogged) => {
+const Login = (isLogged) => {
   function openModal() {
     // console.log(1);
   }
@@ -11,3 +11,5 @@ export const Login = (isLogged) => {
         <Link to="/login" className="loginBtn">Login</Link>
   );
 };
+
+export default Login;

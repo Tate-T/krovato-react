@@ -51,8 +51,6 @@ export const ProductsList = () => {
           id={item.id}
           key={item.id}
           src={item.image.src}
-          mobileImage={item.image.srcSet.mobile}
-          desktopImage={item.image.srcSet.desktop}
           alt={item.image.alt}
           size={item.size}
           title={item.title}

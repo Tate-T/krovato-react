@@ -1,11 +1,10 @@
-import { createStore } from "redux";
-import reducerBasket from "./basket/reducer";
-import { configureStore } from "@reduxjs/toolkit";
+import basketReducer from "./basket/basketSlice"
+import basketListReducer from "./basket/basketListSlice"
 import storage from "redux-persist/lib/storage";
-import persistReducer from "redux-persist/es/persistReducer";
 import { favoriteReducer } from "./favorite/FavoriteSlice";
 import { combineReducers } from "redux";
-import persistStore from "redux-persist/es/persistStore";
+import { persistReducer, persistStore } from "redux-persist";
+import { configureStore } from "@reduxjs/toolkit";
 const configFavorite = {
   key: "favorite",
   storage,
@@ -16,10 +15,16 @@ const persistedFavoriteReducer = persistReducer(
 );
 
 const rootReducer = combineReducers({
-  basket: reducerBasket,
+  basket: basketReducer,
+  basketList:basketListReducer,
   favorite: persistedFavoriteReducer,
 });
-const store = createStore(rootReducer);
+export const store = configureStore({
+    reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false, 
+    }),
+})
 export const persistor = persistStore(store);
 
-export default store;

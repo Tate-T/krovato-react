@@ -18,13 +18,12 @@ const rootReducer = combineReducers({
   basket: basketReducer,
   basketList:basketListReducer,
   favorite: persistedFavoriteReducer,
+  login: loginReducer
 });
-export const store = configureStore({
-    reducer: rootReducer,
+const store = configureStore({
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false, 
-    }),
-})
+    getDefaultMiddleware({ serializableCheck: false }),
+});
 export const persistor = persistStore(store);
-
+export default store;

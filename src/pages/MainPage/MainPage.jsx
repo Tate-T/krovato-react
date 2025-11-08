@@ -7,7 +7,7 @@ import { Articles } from "./Articles/Articles";
 import About from "../../components/About/About";
 import { Advantages } from "../../components/Advantages/Advantages";
 
-export const MainPage = () => {
+const MainPage = () => {
   return (
     <>
         <Hero />
@@ -21,3 +21,5 @@ export const MainPage = () => {
     </>
   );
 };
+
+export default MainPage;

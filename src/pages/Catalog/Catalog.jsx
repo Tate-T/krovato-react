@@ -5,7 +5,7 @@ import { LastReviews } from "../../components/LastReviews/LastReviews";
 import { Questions } from "../../components/Questions/Questions";
 import { Advantages } from "../../components/Advantages/Advantages";
 
-export const Catalog = () => {
+const Catalog = () => {
   return (
     <>
       <Subcategories />
@@ -17,3 +17,5 @@ export const Catalog = () => {
     </>
   )
 };
+
+export default Catalog;

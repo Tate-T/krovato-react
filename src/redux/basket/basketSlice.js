@@ -1,100 +1,72 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-
-axios.defaults.baseURL = 'https://6907441cb1879c890ed94527.mockapi.io/api/BasketModal';
-
-export const fetchCartItems = createAsyncThunk(
-  'cart/fetchCartItems',
-  async (_, thunkAPI) => {
+import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+export const sendOrder = createAsyncThunk("basket/sendOrder", async (order, { rejectWithValue }) => {
     try {
-      const res = await axios.get('/cart');
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+        const res = await axios.post("https://68fe10e87c700772bb12b197.mockapi.io/order", order)
+        return res.data;
+    } catch (e) {
+        return rejectWithValue(e.res.data || "Помилка сервера")
     }
-  }
-);
-
-export const addToCart = createAsyncThunk(
-  'cart/addToCart',
-  async (product, thunkAPI) => {
-    try {
-      const res = await axios.post('/cart', product);
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const deleteFromCart = createAsyncThunk(
-  'cart/deleteFromCart',
-  async (id, thunkAPI) => {
-    try {
-      await axios.delete(`/cart/${id}`);
-      return id;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const updateCartQuantity = createAsyncThunk(
-  'cart/updateCartQuantity',
-  async ({ id, quantity }, thunkAPI) => {
-    try {
-      const res = await axios.patch(`/cart/${id}`, { quantity });
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-const cartSlice = createSlice({
-  name: 'cart',
-  initialState: {
-    items: [],
-    isModalOpened: false,
-    isLoading: false,
-    error: null,
-  },
-  reducers: {
-    openModal: (state) => {
-      state.isModalOpened = true;
+})
+const basketSlice = createSlice({
+    name: "basket",
+    initialState: {
+        surname: "",
+        name: "",
+        paternal: "",
+        phone: "",
+        email: "",
+        comment: "",
+        payment: "",
+        delivery: "",
+        isPerson: false,
+        status:"loading",
+         error:null
     },
-    closeModal: (state) => {
-      state.isModalOpened = false;
+    reducers: {
+        setSurname: (state, action) => {
+            state.surname = action.payload
+        },
+        setName: (state, action) => {
+            state.name = action.payload
+        },
+        setEmail: (state, action) => {
+            state.email = action.payload
+        },
+        setPaternal: (state, action) => {
+            state.paternal = action.payload
+        },
+        setPhone: (state, action) => {
+            state.phone = action.payload
+        },
+        setComment: (state, action) => {
+            state.comment = action.payload
+        },
+        setPayment: (state, action) => {
+            state.payment = action.payload
+        },
+        setDelivery: (state, action) => {
+            state.delivery = action.payload
+        },
+        setIsPerson: (state, action) => {
+            state.isPerson = action.payload
+        },
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchCartItems.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(fetchCartItems.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.items = action.payload;
-      })
-      .addCase(fetchCartItems.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-
-      .addCase(addToCart.fulfilled, (state, action) => {
-        state.items.push(action.payload);
-      })
-
-      .addCase(deleteFromCart.fulfilled, (state, action) => {
-        state.items = state.items.filter((item) => item.id !== action.payload);
-      })
-
-      .addCase(updateCartQuantity.fulfilled, (state, action) => {
-        const index = state.items.findIndex((i) => i.id === action.payload.id);
-        if (index !== -1) state.items[index] = action.payload;
-      });
-  },
-});
-
-export const { openModal, closeModal } = cartSlice.actions;
-export default cartSlice.reducer;
+    extraReducers: (builder) => {
+     builder
+     .addCase(sendOrder.pending , (state) => {
+        state.status = "loading"
+        state.error = null
+     })
+     .addCase(sendOrder.fulfilled , (state ) => {
+        state.status = "fulfilled"
+     })
+     .addCase(sendOrder.rejected , (state , action) => {
+        state.status = "rejected"
+        state.error = action.error.message
+     })
+    }
+})
+export const { setSurname, setName, setPaternal, setPhone, setComment, setEmail, setPayment, setDelivery, setIsPerson } = basketSlice.actions
+export default basketSlice.reducer

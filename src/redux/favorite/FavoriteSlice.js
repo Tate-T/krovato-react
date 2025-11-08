@@ -1,28 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getFavoriteThunk } from "../../thunk/getFivoriteThunk";
+import { addFavoriteProductThunk } from "../../thunk/addFavoriteProductThunk";
+import { deleteFavoriteProductThunk } from "../../thunk/deleteFavoriteProductThank";
 const initialState={
-    products:[]
+  favoriteProducts:[]
 }
 
 const favoriteSlice = createSlice({
     name: "favorite",
     initialState:initialState,
     reducers: {
-      setFavorites(state, action) {
-        state.products = action.payload;
-      },
-      addFavorite(state, action) {
-        if (!state.products.find(item => item.id === action.payload.id)) {
-          state.products.push(action.payload);
-        }
-      },
-      removeFavorite(state, action) {
-        state.products = state.products.filter(item => item.id !== action.payload);
-      },
-      clearFavorites(state) {
-        state.products = [];
-      },
     },
+    extraReducers:( builder ) => {
+      builder
+      .addCase(getFavoriteThunk.fulfilled,(state,action)=>{
+        state.favoriteProducts = action.payload
+      })
+      .addCase(addFavoriteProductThunk.fulfilled,(state,action) => {
+        state.favoriteProducts.push(action.payload)
+      })
+      .addCase(deleteFavoriteProductThunk.fulfilled,(state,action) => {
+        state.favoriteProducts = state.favoriteProducts.filter(item => item.id !== action.payload);
+      })
+    }
   });
-  
-  export const { setFavorites, addFavorite, removeFavorite, clearFavorites } = favoriteSlice.actions;
-  export const favoriteReducer = favoriteSlice.reducer;
+export const favoriteReducer = favoriteSlice.reducer;

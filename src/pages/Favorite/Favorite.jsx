@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFavorite } from "../../redux/favorite/FavoriteSlice";
 import styleFavorite from "./Favorite.module.scss"; 
+import { deleteFavoriteProductThunk } from "../../thunk/deleteFavoriteProductThank";
 const Favorite = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
   const products = useSelector(state => state.favorite.products);
@@ -19,7 +19,7 @@ const Favorite = ({ isOpen, onClose }) => {
         products.map(item => (
           <div key={item.id} className={styleFavorite.item}>
             <span>{item.name}</span>
-            <button onClick={() => dispatch(removeFavorite(item.id))}>Видалити</button>
+            <button onClick={() => dispatch(deleteFavoriteProductThunk(item.id))}>Видалити</button>
           </div>
         ))
       )}

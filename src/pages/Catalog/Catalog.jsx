@@ -12,7 +12,7 @@ const Catalog = () => {
       <Shop />
       <Choice />
       <LastReviews />
-      <Questions sectionId="bed-questions" />
+      {/* <Questions sectionId="bed-questions" /> */}
       <Advantages />
     </>
   )

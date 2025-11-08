@@ -6,18 +6,23 @@ import { combineReducers } from "redux";
 import reducerBasket from "./basket/reducer"; 
 import { favoriteReducer } from "./favorite/FavoriteSlice";
 import loginReducer from "./login/loginSlice";
+import { productsReducer } from "./products/ProductsSlice";
 
 const favoriteConfig = {
   key: "favorite",
   storage,
 };
-
+const productsConfig = {
+  key: "products",
+  storage,
+};
 const persistedFavorite = persistReducer(favoriteConfig, favoriteReducer);
-
+const persistedProducts = persistReducer(productsConfig,productsReducer)
 const rootReducer = combineReducers({
   basket: reducerBasket,
   favorite: persistedFavorite,
   login: loginReducer, // now works with useSelector
+  products: persistedProducts
 });
 
 const store = configureStore({

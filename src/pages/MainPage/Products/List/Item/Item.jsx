@@ -2,6 +2,7 @@ import style from "../../Products.module.scss";
 
 export const ProductsItem = ({id,src,alt,size,title,inStock,oldPrice,currentPrice,onSelect,isFavorite,}) => {
   return (
+  
     <li key={id} data-aos="zoom-in-right" data-aos-duration="1500" className={style.products__item}>
       <img src={src} alt={alt} />
       <p className={style.products__size}>Розмір: {size}</p>
@@ -23,7 +24,7 @@ export const ProductsItem = ({id,src,alt,size,title,inStock,oldPrice,currentPric
           />
         </svg>
         <p className={style.products__stockText}>
-          {inStock ? "В наявності" : "Не в наяності"}
+          {inStock ? "В наявності" : "Немає в наяності"}
         </p>
       </div>
       <p className={style.products__oldPrice}>{oldPrice}</p>
@@ -31,14 +32,14 @@ export const ProductsItem = ({id,src,alt,size,title,inStock,oldPrice,currentPric
       <div className={style.products__couple}>
         <button
           type="button"
-          onClick={() => onSelect(id)}
+          onClick={() => onSelect({id,title,alt,size,inStock,price: currentPrice,src,oldPrice,})}
           className={style.products__button}
           style={{
             background: "none",
             border: "none",
             cursor: "pointer",
           }}
-          title={isFavorite ? "Убрать из избранного" : "Добавить в избранное"}
+          title={isFavorite ? "Видалити з обраних" : "Добавити в обране"}
         >
           <svg
             className={style.products__likeIcon}

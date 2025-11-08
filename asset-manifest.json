@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/krovato-react/static/css/main.9938a71f.css",
-    "main.js": "/krovato-react/static/js/main.54594eaa.js",
+    "main.js": "/krovato-react/static/js/main.b9848b07.js",
     "static/media/divan-2.png": "/krovato-react/static/media/divan-2.1cecfcc1ee45411127a2.png",
     "static/media/divan-3.png": "/krovato-react/static/media/divan-3.9d235f92f4f5b31cfd46.png",
     "static/media/divan-4.png": "/krovato-react/static/media/divan-4.2451dd7d0797a58c2ebc.png",
@@ -83,10 +83,10 @@
     "static/media/arrow-double-up.svg": "/krovato-react/static/media/arrow-double-up.59d11eda9a2ecfadd619b9e727823b2b.svg",
     "static/media/facebook.svg": "/krovato-react/static/media/facebook.21e08f0d352d893126b8353d8ee08a2a.svg",
     "main.9938a71f.css.map": "/krovato-react/static/css/main.9938a71f.css.map",
-    "main.54594eaa.js.map": "/krovato-react/static/js/main.54594eaa.js.map"
+    "main.b9848b07.js.map": "/krovato-react/static/js/main.b9848b07.js.map"
   },
   "entrypoints": [
     "static/css/main.9938a71f.css",
-    "static/js/main.54594eaa.js"
+    "static/js/main.b9848b07.js"
   ]
 }

@@ -19,59 +19,66 @@ import btnLogo from '../../images/basket/map.svg'
 import { BasketList } from './BasketList'
 import { ContextBasketList } from './ContextBasketList'
 import { ContextModal } from './ContextModal'
-import { setSurname , setName , setPaternal , setPhone , setEmail , setComment , setPayment , setDelivery , setIsPerson} from '../../redux/basket/basketSlice'
-import { useSelector , useDispatch } from 'react-redux'
-     const cartDelivery =  [
-            {
-                text: 'Самовивіз із магазину',
-                description: 'Бесплатно',
-                img: checkCircle,
-                alt: 'check-icon',
-            },
-            {
-                text: 'Графік роботи: щодня з 9:00 до 18:00',
-                description: 'м. Київ, пров. Ізяславський 52, пов. 2',
-                img: location,
-                alt: 'location-icon',
-                map: 'На мапі',
-                mapIcon: btnLogo,
-            },
-            {
-                text: 'Доставка Нова Пошта',
-                description: '≈ від 500 грн',
-                img: novaPoshta,
-                alt: 'novaposhta-icon',
-            },
-            {
-                text: "Доставка кур'єром",
-                description: '≈ від 200 грн',
-                img: deliveryMan,
-                alt: 'deliveryman-icon',
-            },
-        ]
-	  const paymentOption = [
-		  { text: 'Готівкою при отриманні (Післясплата)' },
-            {
-                text: 'Оплата карткою на сайті',
-                pay: masterCard,
-                pay2: visaCard,
-                alt: 'mastercard-icon',
-                alt2: 'visacard-icon',
-            },
-            { text: 'Privat Pay', pay: privatPay, alt: 'privatpay-icon' },
-            { text: 'Кредит від Krovato' },
-            { text: 'Оплата частинами ПриватБанк', pay: creditLogo, alt: 'privaticon' },
-            { text: 'Оплата частинами МоноБанк', pay: monobankLogo, alt: 'monobankicon' },
-	  ]
+import { setSurname, setName, setPaternal, setPhone, setEmail, setComment, setPayment, setDelivery, setIsPerson } from '../../redux/basket/basketSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import { sendOrder } from '../../redux/basket/basketSlice'
+import { clearBasket } from '../../redux/basket/basketListSlice'
+const cartDelivery = [
+	{
+		text: 'Самовивіз із магазину',
+		description: 'Бесплатно',
+		img: checkCircle,
+		alt: 'check-icon',
+	},
+	{
+		text: 'Графік роботи: щодня з 9:00 до 18:00',
+		description: 'м. Київ, пров. Ізяславський 52, пов. 2',
+		img: location,
+		alt: 'location-icon',
+		map: 'На мапі',
+		mapIcon: btnLogo,
+	},
+	{
+		text: 'Доставка Нова Пошта',
+		description: '≈ від 500 грн',
+		img: novaPoshta,
+		alt: 'novaposhta-icon',
+	},
+	{
+		text: "Доставка кур'єром",
+		description: '≈ від 200 грн',
+		img: deliveryMan,
+		alt: 'deliveryman-icon',
+	},
+]
+const paymentOption = [
+	{ text: 'Готівкою при отриманні (Післясплата)' },
+	{
+		text: 'Оплата карткою на сайті',
+		pay: masterCard,
+		pay2: visaCard,
+		alt: 'mastercard-icon',
+		alt2: 'visacard-icon',
+	},
+	{ text: 'Privat Pay', pay: privatPay, alt: 'privatpay-icon' },
+	{ text: 'Кредит від Krovato' },
+	{ text: 'Оплата частинами ПриватБанк', pay: creditLogo, alt: 'privaticon' },
+	{ text: 'Оплата частинами МоноБанк', pay: monobankLogo, alt: 'monobankicon' },
+]
+const basketCounts = JSON.parse(localStorage.getItem("basketCounts")) || [];
 export const Basket = () => {
 	const dispatch = useDispatch()
 	const basket = useSelector((state) => state.basket)
 	const [isModal, setIsModal] = useState(false)
 	const [message, setMessage] = useState('')
-	const [selectedPayment , setSelectedPayment] = useState("")
-	const [selectedDelivery, setDeliveryValue] = useState('')
+	const [selectedPayment, setSelectedPayment] = useState("")
+	const [selectedDelivery, setDeliveryValue] = useState("")
 	useEffect(() => {
-		localStorage.setItem("basket" , JSON.stringify(basket))
+		if (basket.items?.length > 0) {
+			localStorage.setItem("basket", JSON.stringify(basket));
+		} else {
+			localStorage.removeItem("basket");
+		}
 	}, [basket])
 	const handleModalMessage = (message) => {
 		setMessage(message)
@@ -111,72 +118,65 @@ export const Basket = () => {
 		dispatch(setDelivery(text))
 	}
 	const orderButton = () => {
-		const updateSurname = [...surnames, surnameValue]
-		const updateName = [...names, nameValue]
-		const updatePaternal = [...paternals, paternalValue]
-		const updatePhone = [...phones, phoneValue]
-		const updateEmail = [...emails, emailValue]
-		const updateComment = [...comments, commentValue]
-		const activeProducts =
-			JSON.parse(localStorage.getItem('activeProducts')) || []
+		const activeProducts = JSON.parse(localStorage.getItem("activeProducts"))
 		if (activeProducts.length === 0) {
-			handleModalMessage('Кошик порожній')
-			return
+			handleModalMessage("Заповніть кошик !")
+			return;
 		}
-		if (
-			!surnameValue ||
-			!nameValue ||
-			!paternalValue ||
-			!phoneValue ||
-			!emailValue ||
-			!commentValue
-		) {
-			handleModalMessage('Заповніть поля!')
-			return
+		if (!basket.name || !basket.surname || !basket.paternal || !basket.phone || !basket.email) {
+			handleModalMessage("Заповніть всі поля !")
+			return;
 		}
-		if (!emailValue.includes('@')) {
-			handleModalMessage('Email має містити знак @')
-			return
+		if (!basket.email.includes("@")) {
+			handleModalMessage("Email має містити @ ")
+			return;
 		}
-		if (selectedPayment === '') {
-			handleModalMessage('Будь ласка, оберіть спосіб оплати')
-			return
+		if (!selectedPayment) {
+			handleModalMessage("Будь ласка , виберіть спосіб оплати")
+			return;
 		}
-		if (selectedDelivery === '') {
-			handleModalMessage('Будь ласка , оберіть спосіб доставки')
-			return
+		if (!selectedDelivery) {
+			handleModalMessage("Будь ласка ,виберіть спосіб доставки ")
+			return;
 		}
 		const infoOrder = {
-			surname: basket.surname,
 			name: basket.name,
+			surname: basket.surname,
 			paternal: basket.paternal,
 			phone: basket.phone,
 			email: basket.email,
 			comment: basket.comment,
+			isPerson: basket.isPerson,
 			methodPay: selectedPayment,
 			methodDelivery: selectedDelivery,
+			items: activeProducts.map((item, index) => ({
+				id: item.id,
+				title: item.title,
+				price: item.price,
+				count: basketCounts[index] || 1,
+			})),
+			totalItems: activeProducts.length,
 		}
-		axios
-			.post('http://localhost:3000/info', { infoOrder })
-			.then(() => handleModalMessage('Успішно'))
-			.catch((err) => console.error('Помилка надсилання:', err))
-		localStorage.setItem('surnames', JSON.stringify(updateSurname))
-		localStorage.setItem('names', JSON.stringify(updateName))
-		localStorage.setItem('paternals', JSON.stringify(updatePaternal))
-		localStorage.setItem('phones', JSON.stringify(updatePhone))
-		localStorage.setItem('emails', JSON.stringify(updateEmail))
-		localStorage.setItem('comments', JSON.stringify(updateComment))
-		setSurnameValue('')
-		setNameValue('')
-		setPaternalValue('')
-		setPhoneValue('')
-		setEmailValue('')
-		setCommentValue('')
-		setPaymentValue('')
-		setDeliveryValue('')
-		const deliveryOption = document.querySelector('.deliveryButton')
-		console.log(deliveryOption)
+		dispatch(sendOrder(infoOrder))
+			.then(() => {
+				handleModalMessage("Замовлення успішно надіслано");
+				dispatch(clearBasket())
+			})
+			.catch((err) => handleModalMessage(`Помилка надсилання : ${err}`))
+		localStorage.removeItem("activeProducts")
+		localStorage.removeItem("basketCounts")
+		dispatch(clearBasket())
+		dispatch(setName(""))
+		dispatch(setSurname(""))
+		dispatch(setEmail(""))
+		dispatch(setPhone(""))
+		dispatch(setPaternal(""))
+		dispatch(setComment(""))
+		dispatch(setIsPerson(false))
+		setSelectedPayment("")
+		setDeliveryValue("")
 	}
+	console.log(basket.isPerson)
 	return (
 		<div className={styles.mainWrapper}>
 			<ContextModal.Provider value={{ handleCloseModal, isModal, message }}>
@@ -233,7 +233,7 @@ export const Basket = () => {
 							value={basket.paternal}
 						/>
 					</label>
-					<div className={styles.titleContainer} style={{ gap: 15 }}>
+					<div className={styles.titleContainer} style={{ padding: "0 0 0 5px" }}>
 						<input
 							type='checkbox'
 							checked={basket.isPerson}
@@ -251,12 +251,11 @@ export const Basket = () => {
 					<p className={styles.titleOptions}>Вибір способу доставки</p>
 				</div>
 				<div className={styles.mainWrapperDelivery}>
-					{cardDelivery.map((elem, index) => (
+					{cartDelivery.map((elem, index) => (
 						<button
 							key={index}
-							className={`${styles.deliveryButton} ${
-								selectedDelivery === elem.text ? styles.selected : ''
-							}`}
+							className={`${styles.deliveryButton} ${selectedDelivery === elem.text ? styles.selected : ''
+								}`}
 							onClick={() => handleDelivery(elem.text)}
 						>
 							<img src={elem.img} alt={elem.alt} />

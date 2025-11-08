@@ -1,8 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFavorite } from "../features/favorite/favoriteSlice";
-import styleFavorite from "./Favorite.module.css"; // твій CSS модуль
-
+import { removeFavorite } from "../../redux/favorite/FavoriteSlice";
+import styleFavorite from "./Favorite.module.scss"; 
 const Favorite = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
   const products = useSelector(state => state.favorite.products);

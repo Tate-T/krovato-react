@@ -2,7 +2,7 @@ import { Hero } from "./Hero/Hero";
 import { KyivPayment } from "./KyivPayment/KyivPayment";
 import { PaymentTypes } from "./PaymentTypes/PaymentTypes";
 
-export const PaymentPage = () => {
+const PaymentPage = () => {
   return (
     <>
       <Hero />
@@ -12,3 +12,4 @@ export const PaymentPage = () => {
     </>
   );
 };
+export default PaymentPage;

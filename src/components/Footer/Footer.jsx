@@ -16,7 +16,7 @@ import tel from '../../images/footer/tel.svg';
 import adres from '../../images/footer/adres.svg';
 import calendar from '../../images/footer/calendar.svg';
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <section className={style.footer}>
       <div className={style.footer__mobSec}>
@@ -356,3 +356,5 @@ export const Footer = () => {
     </section>
   )
 }
+
+export default Footer;

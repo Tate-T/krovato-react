@@ -1,0 +1,526 @@
+.pay__navigation {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+}
+
+.pay__mainLink {
+  color: black;
+  font-family: "Montserrat";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  transition-property: color;
+  transition-duration: 250ms;
+}
+
+.pay__mainLink:hover {
+  color: #FFBC57;
+}
+
+.pay__icon {
+  width: 6px;
+  height: 10px;
+  fill: black;
+}
+
+.pay__payLink {
+  color: #FFBC57;
+  font-family: "Montserrat";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.reviews {
+  background-color: #f8f8f8;
+}
+.reviews__title {
+  color: black;
+  font-family: "Montserrat";
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 40px;
+  text-align: center;
+}
+@media screen and (min-width: 1200px) {
+  .reviews__title {
+    font-size: 40px;
+    line-height: 48px;
+    text-align: left;
+  }
+}
+.reviews__mob-button {
+  color: #fff;
+  text-align: center;
+  font-family: "Montserrat";
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 24px;
+  display: block;
+  padding: 8px 20px;
+  max-width: 410px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background-color: #ffbc57;
+  margin-top: 20px;
+}
+@media screen and (min-width: 1200px) {
+  .reviews__mob-button {
+    display: none;
+  }
+}
+.reviews__list {
+  display: flex;
+  margin-top: 40px;
+  gap: 30px;
+}
+.reviews__link {
+  color: black;
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  transition-property: color;
+  transition-duration: 250ms;
+}
+.reviews__link:hover {
+  color: #FFBC57;
+}
+.reviews__link::after {
+  width: 102px;
+  transition-property: border;
+  transition-property: 250ms;
+}
+.reviews__link:hover::after {
+  content: "";
+  border: 2px solid #FFBC57;
+}
+.reviews__firstLink {
+  color: #FFBC57;
+}
+.reviews__firstLink::after {
+  content: "";
+  border: 2px solid #FFBC57;
+  width: 102px;
+}
+.reviews__reviews-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+  gap: 30px;
+}
+@media screen and (min-width: 1200px) {
+  .reviews__reviews-list {
+    margin-top: 40px;
+  }
+}
+.reviews__reviews-item {
+  padding: 15px;
+  max-width: 790px;
+  border-radius: 8px;
+  border: 1px solid #e3e2e2;
+  background: #fff;
+  box-shadow: -3px 4px 15px 0px rgba(0, 0, 0, 0.06);
+}
+@media screen and (min-width: 480px) {
+  .reviews__reviews-item {
+    padding: 30px;
+  }
+}
+.reviews__reviews-box-top {
+  display: flex;
+  align-items: center;
+  padding-right: 0;
+  padding-left: auto;
+}
+.reviews__reviews-icon-box {
+  border-radius: 50%;
+  border: 1px solid #FFBC57;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 50px;
+  width: 100%;
+}
+.reviews__reviews-icon-people {
+  fill: black;
+  width: 18px;
+  height: 18px;
+}
+.reviews__reviews-mob-box {
+  display: flex;
+  margin-right: 0;
+  padding-left: auto;
+  gap: auto;
+  max-width: 850px;
+  width: 100%;
+  flex-direction: column;
+}
+@media screen and (min-width: 1200px) {
+  .reviews__reviews-mob-box {
+    flex-direction: row;
+  }
+}
+.reviews__reviews-name {
+  color: black;
+  font-family: "Montserrat";
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  margin-left: 20px;
+  margin-right: auto;
+}
+.reviews__reviews-star-list {
+  display: flex;
+  margin-left: 20px;
+  padding-right: 0;
+  gap: 4px;
+}
+@media screen and (min-width: 1200px) {
+  .reviews__reviews-star-list {
+    margin-left: auto;
+  }
+}
+.reviews__reviews-star-icon {
+  fill: #FFBC57;
+  width: 18px;
+  height: 18px;
+}
+@media screen and (min-width: 480px) {
+  .reviews__reviews-star-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+.reviews__reviews-date {
+  color: #535353;
+  text-align: right;
+  font-family: "Montserrat";
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  padding-right: 0;
+  margin-left: 20px;
+}
+.reviews__reviews-text {
+  color: grey;
+  font-family: "Montserrat";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  max-width: 790px;
+  margin-top: 30px;
+}
+.reviews__reviews-box {
+  display: flex;
+  margin-top: 30px;
+  gap: 10px;
+  align-items: center;
+}
+.reviews__reviews-icon-text-box {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  outline: 1px solid #FFBC57;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.reviews__reviews-icon {
+  fill: #FFBC57;
+}
+.reviews__reviews-img {
+  max-width: 50px;
+  max-height: 50px;
+}
+.reviews__reviews-subtext {
+  color: grey;
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px;
+  transition-property: color;
+  transition-duration: 250ms;
+}
+.reviews__reviews-subtext:hover {
+  color: #FFBC57;
+}
+.reviews__button-list {
+  display: none;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 30px;
+}
+@media screen and (min-width: 1200px) {
+  .reviews__button-list {
+    display: flex;
+  }
+}
+.reviews__button {
+  padding: 13px 22px;
+  border-radius: 8px;
+  border: 1px solid grey-light;
+  background: #fff;
+  transition-property: border color background fill;
+  transition-duration: 250ms;
+  font-family: "Montserrat";
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.reviews__button:hover {
+  background-color: #FFBC57;
+  color: white;
+  border: 1px solid transparent;
+}
+.reviews__button:hover .reviews__button-icon {
+  fill: white;
+}
+.reviews__first-button {
+  background-color: #FFBC57;
+  color: white;
+  border: 1px solid transparent;
+}
+.reviews__first-button-icon {
+  transform: rotate(180deg);
+}
+.reviews__button-icon {
+  width: 8px;
+  height: 12px;
+  fill: black;
+}
+.reviews__last-button {
+  color: #fff;
+  text-align: center;
+  font-family: "Montserrat";
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  display: flex;
+  width: 320px;
+  height: 50px;
+  padding: 8px 20px;
+  gap: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 30px;
+  border-radius: 8px;
+  background: #FFBC57;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.9);
+  transition-property: transform;
+  transition-duration: 250ms;
+}
+@media screen and (min-width: 480px) {
+  .reviews__last-button {
+    width: 410px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .reviews__last-button {
+    width: 300px;
+  }
+}
+.reviews__last-button:hover {
+  transform: scale(1);
+}
+.reviews__last-icon {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}
+.reviews__form {
+  padding-top: 60px;
+}
+@media screen and (min-width: 1200px) {
+  .reviews__form {
+    padding-top: 88px;
+  }
+}
+.reviews__form-top-box {
+  display: flex;
+  gap: 30px;
+}
+.reviews__form-icon-box {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.reviews__form-icon {
+  width: 57px;
+  height: 32px;
+  fill: #FFBC57;
+}
+.reviews__form-title {
+  color: black;
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px;
+  max-width: 300px;
+}
+.reviews__form-top-star-box {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  align-items: center;
+}
+.reviews__form-top-star-text {
+  color: #ff9900;
+  font-family: "Montserrat";
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+.reviews__form-top-star-list {
+  display: flex;
+  gap: 4px;
+}
+.reviews__reviews-top-star-icon {
+  width: 24px;
+  height: 24px;
+  fill: #ff9900;
+}
+.reviews__form-text {
+  color: grey;
+  font-family: "Montserrat";
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 22px;
+  padding-bottom: 30px;
+}
+.reviews__form-form {
+  max-width: 410px;
+  background-color: white;
+  border-radius: 8px;
+  padding-bottom: 30px;
+}
+.reviews__form-form-title {
+  color: black;
+  text-align: center;
+  font-family: "Montserrat";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 40px;
+  max-width: 350px;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.reviews__form-form-list {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  margin-top: 30px;
+}
+@media screen and (min-width: 480px) {
+  .reviews__form-form-list {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+.reviews__form-input {
+  color: grey;
+  font-family: "Montserrat";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  border-radius: 8px;
+  border: 1px solid grey-light;
+  background: #fff;
+  padding: 10px 20px;
+  display: flex;
+  max-width: 278px;
+  width: 100%;
+  transition-property: border;
+  transition-duration: 250ms;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media screen and (min-width: 480px) {
+  .reviews__form-input {
+    max-width: 310px;
+  }
+}
+.reviews__form-input:hover {
+  border: 1px solid #FFBC57;
+}
+.reviews__third-input {
+  padding-bottom: 110px;
+}
+.reviews__form-form-rating {
+  color: grey;
+  text-align: center;
+  font-family: "Montserrat";
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  margin-top: 30px;
+}
+.reviews__form-list {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 4px;
+}
+.reviews__form-star-icon {
+  width: 40px;
+  height: 40px;
+  fill: grey-light;
+}
+.reviews__form-form-button {
+  color: white;
+  text-align: center;
+  font-family: "Montserrat";
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  margin-top: 30px;
+  padding: 8px 20px;
+  width: 320px;
+  height: 50px;
+  border-radius: 8px;
+  background: #FFBC57;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  transform: scale(0.9);
+  transition-property: transform;
+  transition-duration: 250ms;
+}
+@media screen and (min-width: 480px) {
+  .reviews__form-form-button {
+    width: 390px;
+  }
+}
+.reviews__form-form-button:hover {
+  transform: scale(1);
+}

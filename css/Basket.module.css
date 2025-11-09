@@ -1,0 +1,299 @@
+@charset "UTF-8";
+.containerTitle {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.mainWrapper {
+  background: #F8F8F8;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  align-items: center;
+  gap: 68px;
+}
+
+.checkboxes {
+  width: 20px;
+  height: 20px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 1px solid #D1D5D5;
+}
+
+.checkboxes:checked {
+  background-color: #FFBC57;
+  border-color: #FFBC57;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path d='M7.629 13.233l-3.296-3.296a1 1 0 011.414-1.414l1.882 1.882 4.95-4.95a1 1 0 111.414 1.414l-6.364 6.364a1 1 0 01-1.414 0z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.mainWrapperDelivery {
+  padding-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+  .mainWrapper {
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+    align-items: flex-start;
+  }
+}
+.inputForm {
+  width: 335px;
+  height: 50px;
+  border-radius: 8px;
+  border: 1px solid #D1D5D5;
+  padding-left: 15px;
+}
+
+.inputForm:hover {
+  border: 1px solid #e6ec29;
+}
+
+.inputForm::-moz-placeholder {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.inputForm::placeholder {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.textPerson {
+  color: #535353;
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.deliveryButton {
+  width: 350px;
+  height: 142px;
+  border-radius: 8px;
+  border: 3px solid #F8F8F8;
+  background-color: #FFF;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.selected {
+  border: 3px solid #FFBC57;
+}
+
+.mainWrapperDelivery {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+.mainWrapperDelivery .deliveryButton:nth-child(2) {
+  height: 266px;
+  background: #F8F8F8;
+}
+.mainWrapperDelivery .deliveryButton:nth-child(2) .textDescription:nth-child(2) {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  text-align: center;
+  color: #2B2929;
+}
+
+.wrapperPayment {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 0px 10px 20px;
+}
+
+.formInfo {
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.basketWrapper {
+  width: 410px;
+  height: 100%;
+  background-color: #FFF;
+}
+
+.customCheckbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.customCheckbox .checkPay {
+  display: none;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  margin-right: 10px;
+  position: relative;
+  display: inline-block;
+}
+
+.checkPay:checked + .circle::after {
+  content: "✔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  color: #fff;
+  background-color: #FFBC57;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dash {
+  background: #F8F8F8;
+  width: 410px;
+  height: 5px;
+  border: none;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+}
+
+.commentInput {
+  width: 350px;
+  height: 150px;
+  border: none;
+  border-radius: 8px;
+  padding-left: 10px;
+  padding-top: 10px;
+  border: 1px solid #D1D5D5;
+}
+
+.commentInput::-moz-placeholder {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.commentInput::placeholder {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.titleOptions {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.textPay {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 24px;
+}
+
+.btnMap {
+  width: 142px;
+  height: 50px;
+  background-color: #FFBC57;
+  border-radius: 8px;
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 24px;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #FFF;
+  padding: 10px;
+}
+
+.textMap {
+  color: #FFF;
+}
+
+.textLocation {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.textDescription {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+  color: #535353;
+}
+
+@media (min-width: 1440px) {
+  .dash,
+  .basketWrapper {
+    width: 740px;
+    border-radius: 8px;
+  }
+  .formInfo {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 700px;
+    height: 285px;
+    margin: auto;
+  }
+  .mainWrapperDelivery {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .mainWrapperDelivery .deliveryButton:nth-child(2) {
+    display: flex;
+    flex-direction: row;
+    width: 680px;
+    gap: 30px;
+    height: 103px;
+    order: 99;
+  }
+  .commentInput {
+    width: 680px;
+    height: 150px;
+  }
+  .deliveryButton {
+    width: 210px;
+    height: 142px;
+  }
+}

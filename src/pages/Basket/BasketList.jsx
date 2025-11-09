@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { subtractItemCount, addItemCount, applyPromo } from '../../redux/basket/basketListSlice'
 import {
 	fetchBasket,
-	addToBasket,
 	deleteFromBasket,
 } from "../../redux/basket/basketListSlice";
 export const BasketList = () => {
@@ -26,8 +25,6 @@ export const BasketList = () => {
 		dispatch(addItemCount(index))
 		console.log(index)
 	}
-	console.log(items)
-	console.log(counts)
 	const handleMinusItem = (index) => {
 		dispatch(subtractItemCount(index))
 	}

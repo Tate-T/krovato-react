@@ -1,6 +1,5 @@
 import styles from './Basket.module.scss'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { Modal } from './Modal'
 import infoCircle from '../../images/basket/icon-info-mobile.svg'
 import iconComment from '../../images/basket/icon-comment-mobile.svg'
@@ -176,7 +175,6 @@ const basketCounts = JSON.parse(localStorage.getItem("basketCounts")) || [];
 		setSelectedPayment("")
 		setDeliveryValue("")
 	}
-	console.log(basket.isPerson)
 	return (
 		<div className={styles.mainWrapper}>
 			<ContextModal.Provider value={{ handleCloseModal, isModal, message }}>

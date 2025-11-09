@@ -1,5 +1,6 @@
 import style from "./Topic.module.scss";
 import containerStyle from "../../../components/Container/Container.module.scss";
+import image from '../../../images/about-us/phone-topic-img.png'
 
 export const Topic = () => {
   return (
@@ -15,7 +16,9 @@ export const Topic = () => {
             Ми працюємо тільки з провідними виробниками ліжок та матраців,
             такими як ЕММ, Estella, Метакам, Legko, HighFoam, ArborDrev.
           </p>
+          <img className={style.topic__img} src={image} alt="sofa idk" />
         </div>
+
       </div>
     </section>
   );

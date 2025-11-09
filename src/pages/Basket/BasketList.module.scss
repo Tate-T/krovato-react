@@ -1,11 +1,17 @@
 .wrapperBasket {
-    width: 410px;
+    width: 420px;
     background-color: #FFF;
     display: flex;
     flex-direction: column;
     gap: 15px;
     margin: auto;
     padding-bottom: 37px;
+}
+.titleBed{
+     font-family: "Proxima Nova";
+    font-size: 19px;
+    font-weight: 600;
+    text-align: left;
 }
 .checkboxes {
     width:24px;
@@ -108,7 +114,6 @@
     position: relative;
     justify-content: space-around;
     margin-left: 20px;
-    align-items: center;
 }
 
 .imgBed {
@@ -159,7 +164,7 @@
 .containerDescription {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 }
 
 .lineDotted {
@@ -273,7 +278,7 @@ li:nth-child(2) .lineDotted {
 
 @media (min-width: 768px) {
     .wrapperBasket {
-        width: 520px;
+        width: 540px;
         padding-bottom: 30px;
         padding-right: 10px;
         border-radius: 8px;
@@ -296,5 +301,8 @@ li:nth-child(2) .lineDotted {
 
     li:nth-child(2) .lineDotted {
         width: 128px;
+    }
+    .titleBed {
+        width:276px;
     }
 }

@@ -228,34 +228,52 @@ const Footer = () => {
                   <p className={style.footer__linkActive}>Категорії</p>
                 </li>
                 <li className={style.footer__categorie}>
-                  <a href="#" className={style.footer__link}>Ліжка</a>
+                  {/* <a href="#" className={style.footer__link}>Ліжка</a> */}
+                  <Link to="/catalog" className={style.footer__link}>Ліжка</Link>
                 </li>
                 <li className={style.footer__categorie}>
-                  <a href="#" className={style.footer__link}>Матраци</a>
+                  {/* <a href="#" className={style.footer__link}>Матраци</a> */}
+                  <Link to="/catalog" className={style.footer__link}>Матраци</Link>
+
                 </li>
                 <li className={style.footer__categorie}>
-                  <a href="#" className={style.footer__link}>М’які меблі</a>
+                  {/* <a href="#" className={style.footer__link}>М’які меблі</a> */}
+                  <Link to="/catalog" className={style.footer__link}>М’які меблi</Link>
+
                 </li>
                 <li className={style.footer__categorie}>
-                  <a href="#" className={style.footer__link}>Шафи</a>
+                  {/* <a href="#" className={style.footer__link}>Шафи</a> */}
+                  <Link to="/catalog" className={style.footer__link}>Шафи</Link>
+
                 </li>
                 <li className={style.footer__categorie}>
-                  <a href="#" className={style.footer__link}>Комоди</a>
+                  {/* <a href="#" className={style.footer__link}>Комоди</a> */}
+                  <Link to="/catalog" className={style.footer__link}>Комоди</Link>
+
                 </li>
                 <li className={style.footer__categorie}>
-                  <a href="#" className={style.footer__link}>Тумби</a>
+                  {/* <a href="#" className={style.footer__link}>Тумби</a> */}
+                  <Link to="/catalog" className={style.footer__link}>Тумби</Link>
+
                 </li>
                 <li className={style.footer__categorie}>
-                  <a href="#" className={style.footer__link}>Столи</a>
+                  {/* <a href="#" className={style.footer__link}>Столи</a> */}
+                  <Link to="/catalog" className={style.footer__link}>Столи</Link>
+
                 </li>
                 <li className={style.footer__categorie}>
-                  <a href="#" className={style.footer__link}>Стільці</a>
+                  {/* <a href="#" className={style.footer__link}>Стільці</a> */}
+                  <Link to="/catalog" className={style.footer__link}>Стільці</Link>
+                  
                 </li>
                 <li className={style.footer__categorie}>
-                  <a href="#" className={style.footer__link}>Меблеві стіни</a>
+                  {/* <a href="#" className={style.footer__link}>Меблеві стіни</a> */}
+                  <Link to="/catalog" className={style.footer__link}>Меблеві стіни</Link>
+
                 </li>
                 <li className={style.footer__categorie}>
-                  <a href="#" className={style.footer__link}>Кухні</a>
+                  <Link to="/catalog" className={style.footer__link}>Кухні</Link>
+                  {/* <a href="#" className={style.footer__link}>Кухні</a> */}
                 </li>
               </ul>
             </li>
@@ -265,25 +283,38 @@ const Footer = () => {
                   <p className={style.footer__linkActive}>Клієнтам</p>
                 </li>
                 <li className={style.footer__customer}>
-                  <a href="#" className={style.footer__link}>Акції</a>
+                  {/* <a href="#" className={style.footer__link}>Акції</a> */}
+                  <Link to="/catalog" className={style.footer__link}>Акції</Link>
                 </li>
                 <li className={style.footer__customer}>
-                  <a href="#" className={style.footer__link}>Розпродаж</a>
+                  {/* <a href="#" className={style.footer__link}>Розпродаж</a> */}
+                  <Link to="/catalog" className={style.footer__link}>Розпродаж</Link>
+
                 </li>
                 <li className={style.footer__customer}>
-                  <a href="#" className={style.footer__link}>Купити в кредит</a>
+                  {/* <a href="#" className={style.footer__link}>Купити в кредит</a> */}
+                  <Link to="/catalog" className={style.footer__link}>Купити в кредит</Link>
+
                 </li>
                 <li className={style.footer__customer}>
-                  <a href="#" className={style.footer__link}>Обмін і повернення товару</a>
+                  {/* <a href="#" className={style.footer__link}>Обмін і повернення товару</a> */}
+                  <Link to="/delivery" className={style.footer__link}>Обмін і повернення товару</Link>
+
                 </li>
                 <li className={style.footer__customer}>
-                  <a href="#" className={style.footer__link}>Часто задавані питання</a>
+                  {/* <a href="#" className={style.footer__link}>Часто задавані питання</a> */}
+                  <Link to="/reviews" className={style.footer__link}>Часто задавані питання</Link>
+
                 </li>
                 <li className={style.footer__customer}>
-                  <a href="#" className={style.footer__link}>Умови покупки</a>
+                  {/* <a href="#" className={style.footer__link}>Умови покупки</a> */}
+                  <Link to="/aboutUs" className={style.footer__link}>Умови покупки</Link>
+
                 </li>
                 <li className={style.footer__customer}>
-                  <a href="#" className={style.footer__link}>Політика конфіденційності</a>
+                  {/* <a href="#" className={style.footer__link}>Політика конфіденційності</a> */}
+                  <Link to="/aboutUs" className={style.footer__link}>Політика конфіденційності</Link>
+
                 </li>
               </ul>
             </li>
@@ -349,7 +380,7 @@ const Footer = () => {
         </div>
         <div className={style.footer__copyright}>
           <p className={style.footer__copyrightText}>
-            © KROVATO - Технології сну - 2022. Всі права захищені.
+            © KROVATO - Технології сну - {new Date().getFullYear()}. Всі права захищені.
           </p>
         </div>
       </div>

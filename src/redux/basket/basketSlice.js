@@ -1,4 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+export const sendOrder = createAsyncThunk("basket/sendOrder", async (order, { rejectWithValue }) => {
+    try {
+        const res = await axios.post("https://68fe10e87c700772bb12b197.mockapi.io/order", order)
+        return res.data;
+    } catch (e) {
+        return rejectWithValue(e.res.data || "Помилка сервера")
+    }
+})
 const basketSlice = createSlice({
     name: "basket",
     initialState: {
@@ -11,6 +21,8 @@ const basketSlice = createSlice({
         payment: "",
         delivery: "",
         isPerson: false,
+        status:"loading",
+         error:null
     },
     reducers: {
         setSurname: (state, action) => {
@@ -40,7 +52,20 @@ const basketSlice = createSlice({
         setIsPerson: (state, action) => {
             state.isPerson = action.payload
         },
-
+    },
+    extraReducers: (builder) => {
+     builder
+     .addCase(sendOrder.pending , (state) => {
+        state.status = "loading"
+        state.error = null
+     })
+     .addCase(sendOrder.fulfilled , (state ) => {
+        state.status = "fulfilled"
+     })
+     .addCase(sendOrder.rejected , (state , action) => {
+        state.status = "rejected"
+        state.error = action.error.message
+     })
     }
 })
 export const { setSurname, setName, setPaternal, setPhone, setComment, setEmail, setPayment, setDelivery, setIsPerson } = basketSlice.actions

@@ -3,12 +3,6 @@
     "id": "product-1",
     "image": {
       "src": "MobileSpartaBed1x",
-      "srcSet": {
-        "mobile":
-          "MobileSpartaBed1x, MobileSpartaBed2x",
-        "desktop":
-          "DesktopSpartaBed1x, DesktopSpartaBed2x"
-      },
       "alt": "Ліжко Спарта"
     },
     "alt": "sparta bed",
@@ -130,78 +124,6 @@
   },
   {
     "id": "product-8",
-    "image": {
-      "src": "DesktopMK5Bed1x",
-      "srcSet": {
-        "mobile":
-          "DesktopMK5Bed1x, DesktopMK5Bed2x",
-        "desktop":
-          "DesktopMK5Bed1x, DesktopMK5Bed2x"
-      },
-      "alt": "Ліжко Спарта"
-    },
-    "alt": "sparta bed",
-    "size": "61 x 184 x 2130 мм",
-    "title": "Ліжко МК-5",
-    "inStock": true,
-    "price": "8 775 грн."
-  },
-  {
-    "id": "product-9",
-    "image": {
-      "src": "DesktopMK5Bed1x",
-      "srcSet": {
-        "mobile":
-          "DesktopMK5Bed1x, DesktopMK5Bed2x",
-        "desktop":
-          "DesktopMK5Bed1x, DesktopMK5Bed2x"
-      },
-      "alt": "Ліжко Спарта"
-    },
-    "alt": "sparta bed",
-    "size": "61 x 184 x 2130 мм",
-    "title": "Ліжко МК-5",
-    "inStock": true,
-    "price": "8 775 грн."
-  },
-  {
-    "id": "product-10",
-    "image": {
-      "src": "DesktopMK5Bed1x",
-      "srcSet": {
-        "mobile":
-          "DesktopMK5Bed1x, DesktopMK5Bed2x",
-        "desktop":
-          "DesktopMK5Bed1x, DesktopMK5Bed2x"
-      },
-      "alt": "Ліжко Спарта"
-    },
-    "alt": "sparta bed",
-    "size": "61 x 184 x 2130 мм",
-    "title": "Ліжко МК-5",
-    "inStock": true,
-    "price": "8 775 грн."
-  },
-  {
-    "id": "product-11",
-    "image": {
-      "src": "DesktopMK5Bed1x",
-      "srcSet": {
-        "mobile":
-          "DesktopMK5Bed1x, DesktopMK5Bed2x",
-        "desktop":
-          "DesktopMK5Bed1x, DesktopMK5Bed2x"
-      },
-      "alt": "Ліжко Спарта"
-    },
-    "alt": "sparta bed",
-    "size": "61 x 184 x 2130 мм",
-    "title": "Ліжко МК-5",
-    "inStock": true,
-    "price": "8 775 грн."
-  },
-  {
-    "id": "product-12",
     "image": {
       "src": "DesktopMK5Bed1x",
       "srcSet": {

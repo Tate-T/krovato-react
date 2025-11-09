@@ -5,13 +5,18 @@ import style from "../Products.module.scss";
 import { useState, useEffect } from "react";
 
 import products from "../../../../products";
-
+import { addToBasket } from "../../../../redux/basket/basketListSlice";
+import { useDispatch } from "react-redux";
 export const ProductsList = () => {
   // Сохраняем избранные товары из localStorage
+
   const [favoriteProducts, setFavoriteProducts] = useState(() => {
     return JSON.parse(localStorage.getItem("activeProducts")) || [];
   });
-
+  const dispatch = useDispatch()
+  const handleAddToBasket = (product) => {
+    dispatch(addToBasket(product))
+  }
   // Проверка, лайкнут ли товар
   const isFavorite = (productId) => {
     return favoriteProducts.some((item) => item.id === productId);
@@ -61,6 +66,7 @@ export const ProductsList = () => {
           currentPrice={item.price}
           onSelect={toggleFavorite}
           isFavorite={isFavorite(item.id)}
+          addBasket={() => handleAddToBasket(item.id)}
         />
       ))}
     </ul>

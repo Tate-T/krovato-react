@@ -12,7 +12,8 @@ export const ProductsItem = ({
   oldPrice,
   currentPrice,
   onSelect,
-  isFavorite
+  isFavorite,
+  addBasket
 }) => {
 
   return (
@@ -88,7 +89,7 @@ export const ProductsItem = ({
           </button>
         </li>
         <li className={style.products__coupleItem}>
-          <a type="button" className={style.products__button} href="">
+          <a type="button" className={style.products__button} onClick={() => addBasket(id)} >
             <svg
               className={style.products__basketIcon}
               width="50"

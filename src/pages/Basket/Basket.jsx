@@ -66,7 +66,7 @@ const paymentOption = [
 	{ text: 'Оплата частинами МоноБанк', pay: monobankLogo, alt: 'monobankicon' },
 ]
 const basketCounts = JSON.parse(localStorage.getItem("basketCounts")) || [];
-export const Basket = () => {
+ const Basket = () => {
 	const dispatch = useDispatch()
 	const basket = useSelector((state) => state.basket)
 	const [isModal, setIsModal] = useState(false)
@@ -317,3 +317,4 @@ export const Basket = () => {
 		</div>
 	)
 }
+export default Basket;

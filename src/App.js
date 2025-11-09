@@ -1,6 +1,7 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useState, Suspense, lazy } from 'react'
+import { AboutUsPage } from "./pages/AboutUs/About-us-page.jsx";
 import MainPage from "./pages/MainPage/MainPage"; 
 import Footer from "./components/Footer/Footer.jsx";
 import  About  from "./components/About/About.jsx";
@@ -62,7 +63,7 @@ function App() {
        <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<MainPage/>}/>
-          {/* <Route path="/aboutUs" element={<About/>}/> */}
+           <Route path="/aboutUs" element={<AboutUsPage/>}/> 
           <Route path="/pay" element={<PaymentPage/>}/>
           <Route path="/delivery" element={<Delivery/>}/> 
           <Route path="/reviews" element={<MainReviewsPage/>}/>

@@ -62,7 +62,8 @@
     &:hover,
     &:focus {
       background-color: #f3ab3f;
-      outline: solid 4px #f3ab3f;
+      transform: scale(1.1);
+      // outline: solid 4px #f3ab3f;
     }
 
     @media screen and (min-width: 1290px) {

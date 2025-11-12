@@ -115,7 +115,7 @@ export const BasketList = () => {
 											<img src={deleteSvg} alt='deleteSvg' style={{ maxWidth: 24 }} />
 										</button>
 									</li>
-									<hr className={styles.dash} />
+									<hr className={`${styles.dash} ${isHidden ? styles.hiddenOnMobile : ''}`} />
 								</>
 							)
 						})}
@@ -132,6 +132,7 @@ export const BasketList = () => {
 							</button>
 						</div>
 					</ul>
+					<div className={styles.containerPromoOrder}>
 					<div className={styles.containerPromocode}>
 						<div className={styles.promocodeDecription}>
 							<img src={promoIcon} alt='promo-icon' />
@@ -153,7 +154,7 @@ export const BasketList = () => {
 					</div>
 					<p id='message'>{promoMessage}</p>
 					<hr className={styles.dash} />
-					<div style={{ marginLeft: 20 }}>
+					<div style={{ marginRight: 20 }}>
 						<p className={styles.textTogether} style={{ marginBottom: 28 }}>
 							Разом:
 						</p>
@@ -180,16 +181,16 @@ export const BasketList = () => {
 							</li>
 						</ul>
 					</div>
-					<div className={styles.containerBed}>
+					<div className={styles.containerBed} style={{alignItems:"center"}}>
 						<input type='checkbox' className={styles.checkboxes} />
-						<p style={{ textAlign: 'left' }}>
+						<p style={{ textAlign: 'left', width:"316px" }}>
 							Не передзвонюйте мені для підтвердження замовлення
 						</p>
 					</div>
 					<button className={styles.btnOrder} onClick={orderButton}>
 						ОФОРМИТИ ЗАМОВЛЕННЯ
 					</button>
-					<p>
+					<p className={styles.agreeText}>
 						Підтверджуючи замовлення, я приймаю умови{' '}
 						<span className={styles.userOkay}>
 							<Link to='/agree' style={{ color: '#FFBC57' }}>
@@ -197,6 +198,7 @@ export const BasketList = () => {
 							</Link>
 						</span>
 					</p>
+					</div>
 				</div>
 			</section>
 		</Fragment>

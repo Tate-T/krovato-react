@@ -231,7 +231,7 @@ const basketCounts = JSON.parse(localStorage.getItem("basketCounts")) || [];
 							value={basket.paternal}
 						/>
 					</label>
-					<div className={styles.titleContainer} style={{ padding: "0 0 0 5px" }}>
+					<div className={styles.titleContainer} style={{ padding: "0 0 0 40px" }}>
 						<input
 							type='checkbox'
 							checked={basket.isPerson}

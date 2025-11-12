@@ -349,7 +349,7 @@ export const Shop = () => {
             <ul className="shop__list">
               {products.map((product) => (
                 <li key={product.id} className={`shop__item`}>
-                  <img src="#" alt={product.alt} className="shop__image" />
+                  <img src={product.imageSrc} alt={product.alt} className="shop__image" />
                   <div>
                     <p className="shop__text">Розмір: {product.size}</p>
                     <h2 className="shop__suptitle">{product.title}</h2>

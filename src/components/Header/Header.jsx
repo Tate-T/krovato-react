@@ -25,8 +25,11 @@ import Favorite from "../../pages/Favorite/Favorite";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/login/loginSlice";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
+import "./noScroll.scss";
 
 const Header = () => {
+
+  
   const dispatch = useDispatch();
   const { isLoged, name } = useSelector((state) => state.login || {});
 
@@ -108,13 +111,37 @@ const Header = () => {
     setSearchDropdownVisible(false);
   };
 
+  // const toggleMenu = (e) => {
+  //   e.stopPropagation();
+  //   setMobileMenuVisible((prev) => !prev);
+  //   setLanguageDropdownVisible(false);
+  //   setAdditionalNumbersVisible(false);
+  //   setSearchDropdownVisible(false);
+  // };
+
   const toggleMenu = (e) => {
-    e.stopPropagation();
-    setMobileMenuVisible((prev) => !prev);
-    setLanguageDropdownVisible(false);
-    setAdditionalNumbersVisible(false);
-    setSearchDropdownVisible(false);
-  };
+  e.stopPropagation();
+  setMobileMenuVisible((prev) => {
+    const newState = !prev;
+    document.body.classList.toggle("no-scroll", newState);
+    return newState;
+  });
+  setLanguageDropdownVisible(false);
+  setAdditionalNumbersVisible(false);
+  setSearchDropdownVisible(false);
+};
+
+const toggleSearchDropdown = (e) => {
+  e.stopPropagation();
+  setSearchDropdownVisible((prev) => {
+    const newState = !prev;
+    document.body.classList.toggle("no-scroll", newState);
+    return newState;
+  });
+  setLanguageDropdownVisible(false);
+  setMobileMenuVisible(false);
+  setAdditionalNumbersVisible(false);
+};
 
   const toggleAdditionalNumbers = (e) => {
     e.stopPropagation();
@@ -124,13 +151,13 @@ const Header = () => {
     setSearchDropdownVisible(false);
   };
 
-  const toggleSearchDropdown = (e) => {
-    e.stopPropagation();
-    setSearchDropdownVisible((prev) => !prev);
-    setLanguageDropdownVisible(false);
-    setMobileMenuVisible(false);
-    setAdditionalNumbersVisible(false);
-  };
+  // const toggleSearchDropdown = (e) => {
+  //   e.stopPropagation();
+  //   setSearchDropdownVisible((prev) => !prev);
+  //   setLanguageDropdownVisible(false);
+  //   setMobileMenuVisible(false);
+  //   setAdditionalNumbersVisible(false);
+  // };
 
   const handleLogout = () => {
     dispatch(logout());
@@ -474,6 +501,7 @@ const Header = () => {
 </div>
     </div>
   );
+  // Render the bottom section with dropdown before recall button
   const renderBottomSection = () => (
     <div
       className={[c.container, style.container, style.header__list3].join(" ")}
@@ -537,6 +565,17 @@ const Header = () => {
           <span>Купити в кредит</span>
         </a>
       </div>
+      {/* Dropdown element placed before recall button */}
+      {/* Example: if you have a dropdown for callback options, place it here */}
+      {/* 
+      {dropdownVisible && (
+        <div className={style.header__dropdown_menu_box}>
+          <div className={style.header__dropdown_menu}>
+            ...dropdown content...
+          </div>
+        </div>
+      )}
+      */}
       <div
         className={style.header__button}
         data-aos="zoom-in-left"

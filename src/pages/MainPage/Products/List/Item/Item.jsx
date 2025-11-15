@@ -1,6 +1,6 @@
 import style from "../../Products.module.scss";
 
-export const ProductsItem = ({id,src,alt,size,title,inStock,oldPrice,currentPrice,onSelect,isFavorite,}) => {
+export const ProductsItem = ({id,src,alt,size,title,inStock,oldPrice,currentPrice,onSelect,isFavorite,addBasket}) => {
   return (
   
     <li key={id} data-aos="zoom-in-right" data-aos-duration="1500" className={style.products__item}>
@@ -64,7 +64,7 @@ export const ProductsItem = ({id,src,alt,size,title,inStock,oldPrice,currentPric
           </svg>
         </button>
         
-        <button  className={style.products__button}>
+        <button  className={style.products__button} onClick={() => addBasket(id)}>
             <svg
               className={style.products__basketIcon}
               width="50"

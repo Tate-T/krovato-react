@@ -13,6 +13,7 @@
     padding-bottom: 20px;
     align-items: center;
     gap:68px;
+    width: 480px;
   }
   .checkboxes {
     width:20px;
@@ -36,6 +37,7 @@
       justify-content: center;
       gap: 30px;
       align-items: flex-start;
+      width: 100%;
     }
   }
 
@@ -97,6 +99,7 @@
         line-height: 28px;
         text-align: center;
         color:#2B2929;
+        width: 310px;
       }
     }
 
@@ -112,7 +115,7 @@
     gap: 10px;
     flex-direction: row;
     align-items: center;
-    padding: 10px 0px 10px 20px;
+    padding: 10px 0px 10px 25px;
   }
 
   .formInfo {
@@ -126,6 +129,8 @@
     width: 410px;
     height: 100%;
     background-color: #FFF;
+    box-shadow: -3px 4px 15px 0px #0000000F;
+    border-radius: 8px;
   }
 
   .customCheckbox {
@@ -175,7 +180,7 @@
   .titleContainer {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
     padding: 20px;
   }
 

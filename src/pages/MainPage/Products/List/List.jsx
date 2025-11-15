@@ -3,16 +3,18 @@ import { ProductsItem } from "./Item/Item";
 import style from "../Products.module.scss";
 
 import {useEffect } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import productsThunk from "../../../../thunk/ProductsThunk";
 import { addFavoriteProductThunk } from "../../../../thunk/addFavoriteProductThunk";
 import { getFavoriteThunk } from "../../../../thunk/getFivoriteThunk";
+import { addToBasket } from "../../../../redux/basket/basketListSlice";
 export const ProductsList = () => {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products.products)
   const favoriteProducts = useSelector( state => state.favorite.favoriteProducts)
-
+    const handleAddToBasket = (product) => {
+    dispatch(addToBasket(product))
+  }
   const isFavorite = (productTitle) => {
    if (!Array.isArray(favoriteProducts)) return false;
     return favoriteProducts.some((item) => item.title === productTitle);
@@ -49,7 +51,8 @@ export const ProductsList = () => {
           currentPrice={item.price}
           onSelect={toggleFavorite}
           isFavorite={isFavorite(item.title)}
-         />
+          addBasket={() => handleAddToBasket(item)}
+        />
       ))}
     </ul>
   );

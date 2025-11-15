@@ -1,24 +1,60 @@
 .wrapperBasket {
     width: 420px;
-    background-color: #FFF;
     display: flex;
     flex-direction: column;
     gap: 15px;
     margin: auto;
     padding-bottom: 37px;
 }
-.titleBed{
-     font-family: "Proxima Nova";
+
+@media(min-width:768px) {
+    .wrapperBasket {
+        background-color: #FFF;
+    }
+}
+
+.titleBed {
+    font-family: "Proxima Nova";
     font-size: 19px;
     font-weight: 600;
     text-align: left;
 }
+
 .checkboxes {
-    width:24px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     appearance: none;
-    border:1px solid #D1D5D5;
-  }
+    border: 1px solid #D1D5D5;
+}
+
+.containerPromoOrder {
+    background-color: white;
+    height: 644px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-top: 20px;
+}
+.confirmPhone {
+    width: 316px;
+    align-items: center;
+    text-align: left;
+
+}
+@media(min-width:768px){
+    .containerPromoOrder{
+        height: auto;
+        gap:10px;
+        padding-top: 10px;
+    }
+    .dash{
+        width:520px;
+    }
+    .confirmPhone{
+        width:406px;
+    }
+}
 
 .buttonShowAll {
     background: none;
@@ -29,6 +65,7 @@
     cursor: pointer;
     display: flex;
     margin: auto;
+    z-index: 1;
 }
 
 .arrowIcon {
@@ -47,7 +84,7 @@
     background: #FFBC57;
     border-radius: 8px;
     color: #FFF;
-    margin: auto;
+    margin: 0;
 }
 
 .containerPromocode {
@@ -68,12 +105,20 @@
     border-radius: 8px;
     color: #FFF;
 }
+
 .dash {
-    background: #F8F8F8;
+    background: #C5C5C5;
     width: 520px;
-    height: 5px;
+    height: 2px;
     border: none;
+    opacity: 0.3;
 }
+@media(max-width:768px){
+  .dash{
+    width:410px
+  }
+}
+
 .inputPromocode {
     width: 257px;
     height: 50px;
@@ -92,6 +137,13 @@
 
 }
 
+.agreeText {
+    width: 330px;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: 17px;
+}
+
 .textBasket {
     color: #2B2929;
     font-family: 'Montserrat';
@@ -102,6 +154,7 @@
     gap: 10px;
     margin-left: 20px;
     margin-top: 20px;
+
     .textBasketNumber {
         color: #FFBC57;
     }
@@ -131,6 +184,7 @@
     justify-content: center;
     gap: 30px;
     border: 1px solid #B1B1B1;
+    border-radius: 8px;
 }
 
 .textBed {
@@ -181,7 +235,7 @@ li:nth-child(2) .lineDotted {
 .togetherSum {
     display: flex;
     align-items: center;
-    gap:10px;
+    gap: 10px;
 }
 
 .dashBed {
@@ -189,6 +243,7 @@ li:nth-child(2) .lineDotted {
     opacity: 30%;
     border: 2px solid #C5C5C5
 }
+
 
 .userOkay {
     color: #FFBC57;
@@ -225,7 +280,6 @@ li:nth-child(2) .lineDotted {
     display: flex;
     justify-content: center;
 
-
     @media (min-width: 768px) {
         display: none;
         visibility: hidden;
@@ -240,8 +294,11 @@ li:nth-child(2) .lineDotted {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 70%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.05), transparent);
+    height: 170px;
+    background: linear-gradient(180deg,
+            rgba(248, 248, 248, 0) 0%,
+            rgba(248, 248, 248, 0.8) 33.85%,
+            #f8f8f8 72.4%);
     pointer-events: none;
     z-index: 1;
 }
@@ -283,9 +340,11 @@ li:nth-child(2) .lineDotted {
         padding-right: 10px;
         border-radius: 8px;
     }
+
     .checkboxes {
-        width:20px;
+        width: 20px;
     }
+
     .containerPromocode {
         flex-direction: row;
         margin-left: 20px;
@@ -302,7 +361,8 @@ li:nth-child(2) .lineDotted {
     li:nth-child(2) .lineDotted {
         width: 128px;
     }
+
     .titleBed {
-        width:276px;
+        width: 276px;
     }
 }

@@ -74,7 +74,7 @@ export const BasketList = () => {
 									>
 										<div className={styles.containerDescription}>
 											<img
-												src={bed.image.src}
+												src={bed.imageSrc}
 												alt={bed.alt}
 												className={styles.imgBed}
 											/>
@@ -181,9 +181,9 @@ export const BasketList = () => {
 							</li>
 						</ul>
 					</div>
-					<div className={styles.containerBed} style={{alignItems:"center"}}>
+					<div className={styles.containerBed} style={{alignItems:"center" , marginLeft:"-20px"}}>
 						<input type='checkbox' className={styles.checkboxes} />
-						<p style={{ textAlign: 'left', width:"316px" }}>
+						<p className={styles.confirmPhone}>
 							Не передзвонюйте мені для підтвердження замовлення
 						</p>
 					</div>

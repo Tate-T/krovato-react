@@ -12,7 +12,7 @@ const AgreeTerms = () => {
         <ul style={{display:"flex" , gap:20 , flexDirection:"column"}}>
         {agreePoints.map((point) => (
          <li key={point.id}>
-          <p>{point.id}. {point.title}</p>
+          <p style={{color:"#FFBC57"}}>{point.id}. {point.title}</p>
           <p>{point.description}</p>
          </li>
         ))}

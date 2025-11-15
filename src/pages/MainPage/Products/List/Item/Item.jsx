@@ -1,6 +1,6 @@
 import style from "../../Products.module.scss";
 
-export const ProductsItem = ({id,src,alt,size,title,inStock,oldPrice,currentPrice,onSelect,isFavorite,  addBasket}) => {
+export const ProductsItem = ({id,src,alt,size,title,inStock,oldPrice,currentPrice,onSelect,isFavorite,addBasket}) => {
   return (
   
     <li key={id} data-aos="zoom-in-right" data-aos-duration="1500" className={style.products__item}>

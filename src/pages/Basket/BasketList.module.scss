@@ -36,7 +36,12 @@
     gap: 20px;
     padding-top: 20px;
 }
+.confirmPhone {
+    width: 316px;
+    align-items: center;
+    text-align: left;
 
+}
 @media(min-width:768px){
     .containerPromoOrder{
         height: auto;
@@ -45,6 +50,9 @@
     }
     .dash{
         width:520px;
+    }
+    .confirmPhone{
+        width:406px;
     }
 }
 
@@ -100,10 +108,15 @@
 
 .dash {
     background: #C5C5C5;
-    width: 410px;
+    width: 520px;
     height: 2px;
     border: none;
     opacity: 0.3;
+}
+@media(max-width:768px){
+  .dash{
+    width:410px
+  }
 }
 
 .inputPromocode {
@@ -230,6 +243,7 @@ li:nth-child(2) .lineDotted {
     opacity: 30%;
     border: 2px solid #C5C5C5
 }
+
 
 .userOkay {
     color: #FFBC57;

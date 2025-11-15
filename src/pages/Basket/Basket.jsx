@@ -20,7 +20,7 @@ import { ContextBasketList } from './ContextBasketList'
 import { ContextModal } from './ContextModal'
 import { setSurname, setName, setPaternal, setPhone, setEmail, setComment, setPayment, setDelivery, setIsPerson } from '../../redux/basket/basketSlice'
 import { useSelector, useDispatch } from 'react-redux'
-import { sendOrder } from '../../redux/basket/basketSlice'
+import  sendOrder  from '../../redux/basket/basketSlice'
 import { clearBasket } from '../../redux/basket/basketListSlice'
 const cartDelivery = [
 	{

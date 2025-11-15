@@ -21,13 +21,11 @@ export const ProductsList = () => {
     };
 
   function toggleFavorite({id,title, alt, width,height,length, inStock, price, src, oldPrice,}) {
-    console.log(price)
     const alreadyFavorite = isFavorite(title);
     if (alreadyFavorite) {
       alert("Товар вже додано. Щоб видалити зайдіть в ваш список")
       return
     } else {
-      console.log("Додаємо в улюблені:", title);
       return dispatch(addFavoriteProductThunk({ id, title, alt, width, height, length, inStock, price, imageSrc: src, oldPrice }));
     }
   }

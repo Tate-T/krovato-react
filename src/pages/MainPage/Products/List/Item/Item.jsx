@@ -1,11 +1,11 @@
 import style from "../../Products.module.scss";
 
-export const ProductsItem = ({id,src,alt,width,height,length,title,inStock,oldPrice,currentPrice,onSelect,isFavorite,}) => {
+export const ProductsItem = ({id,src,alt,width,height,length,title,inStock,oldPrice,currentPrice,onSelect,isFavorite,addBasket}) => {
   return (
   
     <li key={id} data-aos="zoom-in-right" data-aos-duration="1500" className={style.products__item}>
       <img src={src} alt={alt} />
-      <p className={style.products__size}>Розмір: {height}x{width}x{length}</p>
+    <p className={style.products__size}>Розмір: {height} x {width} x {length}</p>
       <a href="#" className={style.products__subtitle}>
         {title}
       </a>

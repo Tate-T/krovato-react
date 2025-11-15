@@ -1,0 +1,17 @@
+.product-card-page {
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding: 40px 0;
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 20px 0;
+  }
+}

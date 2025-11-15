@@ -1,0 +1,312 @@
+.wrapperBasket {
+  width: 420px;
+  background-color: #FFF;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: auto;
+  padding-bottom: 37px;
+}
+
+.titleBed {
+  font-family: "Proxima Nova";
+  font-size: 19px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.checkboxes {
+  width: 24px;
+  height: 20px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 1px solid #D1D5D5;
+}
+
+.buttonShowAll {
+  background: none;
+  border: none;
+  color: #FFBC57;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  margin: auto;
+}
+
+.arrowIcon {
+  transition: transform 0.3s ease;
+  margin-left: 6px;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+.btnOrder {
+  width: 350px;
+  height: 50px;
+  background: #FFBC57;
+  border-radius: 8px;
+  color: #FFF;
+  margin: auto;
+}
+
+.containerPromocode {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.buttonPromocode {
+  background: #FFBC57;
+  width: 83px;
+  height: 50px;
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 24px;
+  border-radius: 8px;
+  color: #FFF;
+}
+
+.dash {
+  background: #F8F8F8;
+  width: 520px;
+  height: 5px;
+  border: none;
+}
+
+.inputPromocode {
+  width: 257px;
+  height: 50px;
+  padding: 10px;
+  border: 1px solid #D1D5D5;
+  border-radius: 8px;
+}
+
+.inputPromocode::-moz-placeholder {
+  color: #535353;
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.inputPromocode::placeholder {
+  color: #535353;
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.textBasket {
+  color: #2B2929;
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 34px;
+  display: flex;
+  gap: 10px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.textBasket .textBasketNumber {
+  color: #FFBC57;
+}
+
+.containerBed {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+  position: relative;
+  justify-content: space-around;
+  margin-left: 20px;
+}
+
+.imgBed {
+  width: 120px;
+  height: 100px;
+  border-radius: 8px;
+}
+
+.containerCount {
+  display: flex;
+  align-items: center;
+  background-color: #F8F8F8;
+  width: 120px;
+  height: 50px;
+  justify-content: center;
+  gap: 30px;
+  border: 1px solid #B1B1B1;
+}
+
+.textBed {
+  font-family: "Montserrat";
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 22px;
+  color: #535353;
+}
+
+.textDescription {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 24px;
+  color: #2B2929;
+}
+.textDescription .textPrice {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.bedStatus {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.containerDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lineDotted {
+  width: 108px;
+  border: 1px dotted #6A6A6A;
+  height: 1px;
+}
+
+li:nth-child(2) .lineDotted {
+  width: 17px;
+}
+
+.togetherSum {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dashBed {
+  width: 520px;
+  opacity: 30%;
+  border: 2px solid #C5C5C5;
+}
+
+.userOkay {
+  color: #FFBC57;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.textSum {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+  color: #2B2929;
+}
+
+.btnMath {
+  background: none;
+}
+
+.btnDelete {
+  background: none;
+  display: flex;
+  align-items: start;
+}
+
+.shadowContainer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+@media (min-width: 768px) {
+  .shadowContainer {
+    display: none;
+    visibility: hidden;
+    pointer-events: none;
+    height: 0;
+    margin: 0;
+  }
+}
+
+.shadowFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.05), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.showMoreWrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.hiddenOnMobile {
+  display: none;
+}
+@media (min-width: 768px) {
+  .hiddenOnMobile {
+    display: flex;
+  }
+}
+
+.textTogether {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 34px;
+  text-align: left;
+}
+
+.promocodeDecription {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+@media (min-width: 768px) {
+  .wrapperBasket {
+    width: 540px;
+    padding-bottom: 30px;
+    padding-right: 10px;
+    border-radius: 8px;
+  }
+  .checkboxes {
+    width: 20px;
+  }
+  .containerPromocode {
+    flex-direction: row;
+    margin-left: 20px;
+  }
+  .inputPromocode {
+    width: 176px;
+  }
+  .lineDotted {
+    width: 218px;
+  }
+  li:nth-child(2) .lineDotted {
+    width: 128px;
+  }
+  .titleBed {
+    width: 276px;
+  }
+}

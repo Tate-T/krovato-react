@@ -1,0 +1,162 @@
+.kyiv {
+  padding-top: 50px;
+  padding-bottom: 70px;
+  background-color: #f8f8f8;
+}
+.kyiv__title {
+  color: #2B2929;
+  text-align: center;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 133%;
+  margin-bottom: 40px;
+}
+@media screen and (min-width: 768px) {
+  .kyiv__title {
+    font-size: 40px;
+    line-height: 120%;
+    text-align: left;
+    max-width: 520px;
+  }
+}
+.kyiv__list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 40px;
+  padding: 0;
+}
+.kyiv__icon {
+  width: 70px;
+  height: 70px;
+  fill: #FFBC57;
+  display: block;
+  flex-shrink: 0;
+}
+.kyiv__text {
+  color: #2B2929;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 140%;
+  max-width: 520px;
+  text-align: left;
+  margin: 0;
+}
+.kyiv__item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.kyiv__element {
+  color: #2B2929;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 140%;
+  margin-bottom: 40px;
+  max-width: 520px;
+}
+@media screen and (min-width: 1290px) {
+  .kyiv__container {
+    display: flex;
+    gap: 30px;
+  }
+}
+.kyiv__container {
+  position: relative;
+}
+.kyiv__square {
+  position: absolute;
+  top: 80%;
+  right: 40%;
+  width: 420px;
+  height: 420px;
+  border-radius: 420px;
+  background-color: #FFBC57;
+  overflow: hidden;
+  border: 3px solid #F8F8F8;
+}
+@media screen and (max-width: 420px) {
+  .kyiv__square {
+    width: 200px;
+    height: 200px;
+    top: 84%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .kyiv__square {
+    top: 72%;
+    left: 0;
+    width: 420px;
+  }
+}
+@media screen and (min-width: 1290px) {
+  .kyiv__square {
+    top: 33%;
+    left: 40%;
+  }
+}
+.kyiv__squareBox {
+  padding: 57px 25px;
+}
+@media screen and (max-width: 420px) {
+  .kyiv__squareBox {
+    padding: 27px 20px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .kyiv__squareBox {
+    padding: 107px 40px;
+  }
+}
+@media screen and (min-width: 1290px) {
+  .kyiv__squareBox {
+    padding: 107px 40px;
+  }
+}
+.kyiv__squareTitle {
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 113%;
+  margin-bottom: 10px;
+  max-width: 200px;
+  margin: 0 0 20px 0;
+}
+@media screen and (max-width: 420px) {
+  .kyiv__squareTitle {
+    font-size: 15px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .kyiv__squareTitle {
+    font-size: 26px;
+    line-height: 131%;
+    margin-bottom: 20px;
+    max-width: -moz-max-content;
+    max-width: max-content;
+  }
+}
+.kyiv__squareText {
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 129%;
+  max-width: 200px;
+  margin: 0;
+}
+@media screen and (max-width: 420px) {
+  .kyiv__squareText {
+    font-size: 10px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .kyiv__squareText {
+    font-size: 20px;
+    line-height: 140%;
+    max-width: -moz-max-content;
+    max-width: max-content;
+  }
+}

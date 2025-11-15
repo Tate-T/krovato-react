@@ -1,0 +1,234 @@
+.reviews__reviewsList {
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+  gap: 30px;
+}
+@media screen and (min-width: 1200px) {
+  .reviews__reviewsList {
+    margin-top: 40px;
+  }
+}
+.reviews__reviewsItem {
+  padding: 15px;
+  max-width: 790px;
+  border-radius: 8px;
+  border: 1px solid #e3e2e2;
+  background: #fff;
+  box-shadow: -3px 4px 15px 0px rgba(0, 0, 0, 0.06);
+}
+@media screen and (min-width: 480px) {
+  .reviews__reviewsItem {
+    padding: 30px;
+  }
+}
+.reviews__reviewsBoxTop {
+  display: flex;
+  align-items: center;
+  padding-right: 0;
+  padding-left: auto;
+}
+.reviews__reviewsIconBox {
+  border-radius: 50%;
+  border: 1px solid #FFBC57;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 50px;
+  width: 100%;
+}
+.reviews__reviewsIconPeople {
+  fill: black;
+  width: 18px;
+  height: 18px;
+}
+.reviews__reviewsMobBox {
+  display: flex;
+  margin-right: 0;
+  padding-left: auto;
+  gap: auto;
+  max-width: 850px;
+  width: 100%;
+  flex-direction: column;
+}
+@media screen and (min-width: 1200px) {
+  .reviews__reviewsMobBox {
+    flex-direction: row;
+  }
+}
+.reviews__reviewsName {
+  color: black;
+  font-family: "Montserrat";
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  margin-left: 20px;
+  margin-right: auto;
+}
+.reviews__reviewsStarList {
+  display: flex;
+  margin-left: 20px;
+  padding-right: 0;
+  gap: 4px;
+}
+@media screen and (min-width: 1200px) {
+  .reviews__reviewsStarList {
+    margin-left: auto;
+  }
+}
+.reviews__reviewsStarIcon {
+  fill: #FFBC57;
+  width: 18px;
+  height: 18px;
+}
+@media screen and (min-width: 480px) {
+  .reviews__reviewsStarIcon {
+    width: 24px;
+    height: 24px;
+  }
+}
+.reviews__reviewsDate {
+  color: #535353;
+  text-align: right;
+  font-family: "Montserrat";
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  padding-right: 0;
+  margin-left: 20px;
+}
+.reviews__reviewsText {
+  color: grey;
+  font-family: "Montserrat";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  max-width: 790px;
+  margin-top: 30px;
+}
+.reviews__reviewsBox {
+  display: flex;
+  margin-top: 30px;
+  gap: 10px;
+  align-items: center;
+}
+.reviews__reviewsIconTextBox {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  outline: 1px solid #FFBC57;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.reviews__reviewsIcon {
+  fill: #FFBC57;
+}
+.reviews__reviewsImg {
+  max-width: 50px;
+  max-height: 50px;
+}
+.reviews__reviewsSubtext {
+  color: grey;
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px;
+  transition-property: color;
+  transition-duration: 250ms;
+}
+.reviews__reviewsSubtext:hover {
+  color: #FFBC57;
+}
+.reviews__buttonList {
+  display: none;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 30px;
+}
+@media screen and (min-width: 1200px) {
+  .reviews__buttonList {
+    display: flex;
+  }
+}
+.reviews__button {
+  padding: 13px 22px;
+  border-radius: 8px;
+  border: 1px solid grey-light;
+  background: #fff;
+  transition-property: border color background fill;
+  transition-duration: 250ms;
+  font-family: "Montserrat";
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.reviews__button:hover {
+  background-color: #FFBC57;
+  color: white;
+  border: 1px solid transparent;
+}
+.reviews__button:hover .reviews__buttonIcon {
+  fill: white;
+}
+.reviews__firstButton {
+  background-color: #FFBC57;
+  color: white;
+  border: 1px solid transparent;
+}
+.reviews__firstButtonIcon {
+  transform: rotate(180deg);
+}
+.reviews__buttonIcon {
+  width: 8px;
+  height: 12px;
+  fill: black;
+}
+.reviews__lastButton {
+  color: #fff;
+  text-align: center;
+  font-family: "Montserrat";
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  display: flex;
+  width: 320px;
+  height: 50px;
+  padding: 8px 20px;
+  gap: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 30px;
+  border-radius: 8px;
+  background: #FFBC57;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.9);
+  transition-property: transform;
+  transition-duration: 250ms;
+}
+@media screen and (min-width: 480px) {
+  .reviews__lastButton {
+    width: 410px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .reviews__lastButton {
+    width: 300px;
+  }
+}
+.reviews__lastButton:hover {
+  transform: scale(1);
+}
+.reviews__lastIcon {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}

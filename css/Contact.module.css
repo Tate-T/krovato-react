@@ -1,0 +1,137 @@
+@font-face {
+  font-family: "Montserrat";
+}
+.contact {
+  padding-top: 75px;
+  background-color: whitesmoke;
+  max-height: 1660px;
+}
+.contact__container {
+  overflow: visible;
+}
+.contact__list {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 76px;
+  padding-top: 40px;
+}
+.contact__textContent {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+.contact__textContent h3 {
+  margin-right: 23px;
+  margin-bottom: 10px;
+}
+.contact__itemMap {
+  display: flex;
+  flex-direction: column;
+}
+.contact__map {
+  display: block;
+  width: 100%;
+  width: 320px;
+  height: 410px;
+}
+.contact__img {
+  display: block;
+  width: 100%;
+  width: 320px;
+}
+.contact__link {
+  color: var(--Theme-Dark, #2B2929);
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+}
+.contact__text {
+  color: var(--Theme-Dark, #2B2929);
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+}
+.contact__name {
+  color: var(--Theme-Grey-light, #B1B1B1);
+  font-family: "Montserrat";
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 24px;
+  height: 24px;
+}
+.contact__boxSvg {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.contact__boxLink {
+  display: flex;
+  gap: 10px;
+  padding-left: 65px;
+  padding-top: 20px;
+}
+.contact__boxText {
+  display: flex;
+  flex-direction: column;
+}
+.contact__item {
+  width: 350px;
+}
+.contact__svg {
+  width: 50px;
+  height: 50px;
+  padding-right: 15px;
+}
+.contact__title {
+  color: var(--Theme-Dark, #2B2929);
+  text-align: center;
+  font-family: "Montserrat";
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 48px;
+}
+@media screen and (max-width: 400px) {
+  .contact .contact__boxSvg {
+    max-width: 300px;
+  }
+  .contact .contact__item {
+    width: 100%;
+  }
+  .contact .contact__img {
+    width: 100%;
+  }
+  .contact .contact__map {
+    height: 410px;
+    width: 100%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .contact .contact__list {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 50px;
+  }
+  .contact .contact__item {
+    text-align: start;
+  }
+  .contact .contact__itemMap {
+    display: flex;
+    flex-direction: row;
+  }
+  .contact .contact__map {
+    width: 660px;
+    height: 650px;
+  }
+  .contact .contact__img {
+    width: 100%;
+    max-width: 650px;
+    height: 650px;
+  }
+}

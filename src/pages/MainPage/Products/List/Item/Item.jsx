@@ -1,11 +1,11 @@
 import style from "../../Products.module.scss";
 
-export const ProductsItem = ({id,src,alt,size,title,inStock,oldPrice,currentPrice,onSelect,isFavorite,addBasket}) => {
+export const ProductsItem = ({id,src,alt,width,height,length,title,inStock,oldPrice,currentPrice,onSelect,isFavorite,addBasket}) => {
   return (
   
     <li key={id} data-aos="zoom-in-right" data-aos-duration="1500" className={style.products__item}>
       <img src={src} alt={alt} />
-      <p className={style.products__size}>Розмір: {size}</p>
+    <p className={style.products__size}>Розмір: {height} x {width} x {length}</p>
       <a href="#" className={style.products__subtitle}>
         {title}
       </a>
@@ -27,12 +27,12 @@ export const ProductsItem = ({id,src,alt,size,title,inStock,oldPrice,currentPric
           {inStock ? "В наявності" : "Немає в наяності"}
         </p>
       </div>
-      <p className={style.products__oldPrice}>{oldPrice}</p>
-      <p className={style.products__price}>{currentPrice}</p>
+      <p className={style.products__oldPrice}>{oldPrice} </p>
+      <p className={style.products__price}>{currentPrice} грн</p>
       <div className={style.products__couple}>
         <button
           type="button"
-          onClick={() => onSelect({id,title,alt,size,inStock,price: currentPrice,src,oldPrice,})}
+          onClick={() => onSelect({id,title,alt,width,height,length,inStock,price: currentPrice,src,oldPrice,})}
           className={style.products__button}
           style={{
             background: "none",

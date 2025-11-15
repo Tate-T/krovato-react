@@ -19,16 +19,14 @@ export const ProductsList = () => {
    if (!Array.isArray(favoriteProducts)) return false;
     return favoriteProducts.some((item) => item.title === productTitle);
     };
-  // Добавление/удаление товара из избранного
-  function toggleFavorite({id,title, alt, size, inStock, price, src, oldPrice,}) {
-    console.log(price)
+
+  function toggleFavorite({id,title, alt, width,height,length, inStock, price, src, oldPrice,}) {
     const alreadyFavorite = isFavorite(title);
     if (alreadyFavorite) {
       alert("Товар вже додано. Щоб видалити зайдіть в ваш список")
       return
     } else {
-      console.log("Додаємо в улюблені:", title);
-      return dispatch(addFavoriteProductThunk({ id, title, alt, size, inStock, price, imageSrc: src, oldPrice }));
+      return dispatch(addFavoriteProductThunk({ id, title, alt, width, height, length, inStock, price, imageSrc: src, oldPrice }));
     }
   }
   
@@ -44,7 +42,9 @@ export const ProductsList = () => {
           key={item.id}
           src={item.imageSrc}
           alt={item.alt}
-          size={item.size}
+          height={item.size.height}
+          width={item.size.width}
+          length={item.size.length}
           title={item.title}
           inStock={item.inStock}
           oldPrice={item.oldPrice}

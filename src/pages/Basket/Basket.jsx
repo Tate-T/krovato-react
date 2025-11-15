@@ -1,6 +1,5 @@
 import styles from './Basket.module.scss'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { Modal } from './Modal'
 import infoCircle from '../../images/basket/icon-info-mobile.svg'
 import iconComment from '../../images/basket/icon-comment-mobile.svg'
@@ -66,7 +65,7 @@ const paymentOption = [
 	{ text: 'Оплата частинами МоноБанк', pay: monobankLogo, alt: 'monobankicon' },
 ]
 const basketCounts = JSON.parse(localStorage.getItem("basketCounts")) || [];
-export const Basket = () => {
+ const Basket = () => {
 	const dispatch = useDispatch()
 	const basket = useSelector((state) => state.basket)
 	const [isModal, setIsModal] = useState(false)
@@ -176,7 +175,6 @@ export const Basket = () => {
 		setSelectedPayment("")
 		setDeliveryValue("")
 	}
-	console.log(basket.isPerson)
 	return (
 		<div className={styles.mainWrapper}>
 			<ContextModal.Provider value={{ handleCloseModal, isModal, message }}>
@@ -233,7 +231,7 @@ export const Basket = () => {
 							value={basket.paternal}
 						/>
 					</label>
-					<div className={styles.titleContainer} style={{ padding: "0 0 0 5px" }}>
+					<div className={styles.titleContainer} style={{ padding: "0 0 0 40px" }}>
 						<input
 							type='checkbox'
 							checked={basket.isPerson}
@@ -317,3 +315,4 @@ export const Basket = () => {
 		</div>
 	)
 }
+export default Basket;

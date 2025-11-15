@@ -64,7 +64,7 @@ export const ProductsItem = ({id,src,alt,width,height,length,title,inStock,oldPr
           </svg>
         </button>
         
-        <button  className={style.products__button}>
+        <button  className={style.products__button} onClick={() => addBasket(id)}>
             <svg
               className={style.products__basketIcon}
               width="50"

@@ -13,6 +13,8 @@ import ContactsPage from "./pages/ContactsPage/ContactsPage";
 import Catalog from "./pages/Catalog/Catalog"
 import Header from "./components/Header/Header.jsx";
 import Login from "./components/Header/Login.jsx";
+import Basket from "./pages/Basket/Basket.jsx"
+import AgreeTerms from "./pages/Basket/AgreeTerms/AgreeTerms.jsx";
 import LoginPage from "./components/Header/LoginPage.jsx";
 // import About from "./components/About/About.jsx";
 // const HeaderFooter = lazy(() => import("./pages/HeaderFooter/HeaderFooter.jsx"));
@@ -65,6 +67,8 @@ function App() {
           <Route path="/" element={<MainPage/>}/>
           <Route path="/aboutUs" element={<AboutUsPage/>}/> 
           <Route path="/pay" element={<PaymentPage/>}/>
+          <Route path="/basket" element={<Basket />} />
+          <Route path="/agree" element={<AgreeTerms />}/>
           <Route path="/delivery" element={<Delivery/>}/> 
           <Route path="/reviews" element={<MainReviewsPage/>}/>
           <Route path="/blog" element={<BlogPage/>}/>

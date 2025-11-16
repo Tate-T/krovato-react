@@ -1,11 +1,13 @@
+import { getProductItem } from "../../../../../redux/productItem/productItemSlice";
 import style from "../../Products.module.scss";
-
+import { useDispatch } from "react-redux";
 export const ProductsItem = ({id,src,alt,width,height,length,title,inStock,oldPrice,currentPrice,onSelect,isFavorite,addBasket}) => {
+  const dispatch = useDispatch()
   return (
   
-    <li key={id} data-aos="zoom-in-right" data-aos-duration="1500" className={style.products__item}>
+    <li key={id} data-aos="zoom-in-right" data-aos-duration="1500" className={style.products__item} onClick={() => {dispatch(getProductItem({src,alt,width,height,length,title,oldPrice,currentPrice,id,isFavorite}))}}>
       <img src={src} alt={alt} />
-    <p className={style.products__size}>Розмір: {height} x {width} x {length}</p>
+      <p className={style.products__size}>Розмір: {height} x {width} x {length}</p>
       <a href="#" className={style.products__subtitle}>
         {title}
       </a>
@@ -32,7 +34,7 @@ export const ProductsItem = ({id,src,alt,width,height,length,title,inStock,oldPr
       <div className={style.products__couple}>
         <button
           type="button"
-          onClick={() => onSelect({id,title,alt,width,height,length,inStock,price: currentPrice,src,oldPrice,})}
+          onClick={(e) => {e.stopPropagation(); onSelect({id,title,alt,width,height,length,inStock,price: currentPrice,src,oldPrice,})}}
           className={style.products__button}
           style={{
             background: "none",
@@ -50,10 +52,10 @@ export const ProductsItem = ({id,src,alt,width,height,length,title,inStock,oldPr
             xmlns="http://www.w3.org/2000/svg"
           >
             <g clipPath="url(#clip0_5568_1179)">
-              <circle cx="25" cy="25" r="25" fill="#F8F8F8" />
+              <circle cx="25" cy="25" r="25" fill={isFavorite ? "#FFBC57" : "#F8F8F8"}/>
               <path
                 d="M35.5632 16.4365C34.1886 15.0584 32.3666 14.2173 30.4262 14.0651C28.4857 13.913 26.5549 14.4597 24.9823 15.6067C23.3325 14.3795 21.279 13.8231 19.2353 14.0494C17.1917 14.2757 15.3097 15.268 13.9683 16.8263C12.6269 18.3847 11.9259 20.3934 12.0062 22.4479C12.0866 24.5025 12.9424 26.4503 14.4014 27.8991L22.4538 35.9645C23.1281 36.6281 24.0362 37 24.9823 37C25.9284 37 26.8365 36.6281 27.5108 35.9645L35.5632 27.8991C37.0771 26.3759 37.9269 24.3155 37.9269 22.1678C37.9269 20.0202 37.0771 17.9598 35.5632 16.4365ZM33.7348 26.1097L25.6825 34.1621C25.5909 34.2546 25.4818 34.3281 25.3616 34.3782C25.2414 34.4283 25.1125 34.4541 24.9823 34.4541C24.8521 34.4541 24.7232 34.4283 24.603 34.3782C24.4828 34.3281 24.3737 34.2546 24.2821 34.1621L16.2297 26.0708C15.2128 25.0313 14.6434 23.635 14.6434 22.1808C14.6434 20.7266 15.2128 19.3303 16.2297 18.2908C17.266 17.2677 18.6636 16.694 20.1198 16.694C21.576 16.694 22.9735 17.2677 24.0098 18.2908C24.1303 18.4123 24.2737 18.5088 24.4318 18.5746C24.5898 18.6405 24.7593 18.6743 24.9304 18.6743C25.1016 18.6743 25.2711 18.6405 25.4291 18.5746C25.5871 18.5088 25.7305 18.4123 25.8511 18.2908C26.8873 17.2677 28.2849 16.694 29.7411 16.694C31.1973 16.694 32.5949 17.2677 33.6311 18.2908C34.662 19.3167 35.2501 20.7054 35.2695 22.1597C35.2889 23.6139 34.738 25.0178 33.7348 26.0708V26.1097Z"
-                fill={isFavorite ? "#FFBC57" : "#B1B1B1"}
+                fill={isFavorite ? "#ffffff" : "#B1B1B1"}
               />
             </g>
             <defs>
@@ -64,7 +66,7 @@ export const ProductsItem = ({id,src,alt,width,height,length,title,inStock,oldPr
           </svg>
         </button>
         
-        <button  className={style.products__button} onClick={() => addBasket(id)}>
+        <button  className={style.products__button} onClick={(e) => { e.stopPropagation(); addBasket(id)}}>
             <svg
               className={style.products__basketIcon}
               width="50"

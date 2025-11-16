@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/krovato-react/static/css/main.b0cba7d7.css",
-    "main.js": "/krovato-react/static/js/main.57f74ea6.js",
+    "main.css": "/krovato-react/static/css/main.d4854209.css",
+    "main.js": "/krovato-react/static/js/main.575e898e.js",
     "static/media/divan-2.png": "/krovato-react/static/media/divan-2.1cecfcc1ee45411127a2.png",
     "static/media/phone-topic-img.png": "/krovato-react/static/media/phone-topic-img.066b785c36aeb462721e.png",
     "static/media/topic-img.png": "/krovato-react/static/media/topic-img.60ca0415be1440bb1825.png",
@@ -85,11 +85,11 @@
     "static/media/privaty-credit-logo.svg": "/krovato-react/static/media/privaty-credit-logo.6a25ef4d2d815ab00f52472535523327.svg",
     "static/media/facebook.svg": "/krovato-react/static/media/facebook.21e08f0d352d893126b8353d8ee08a2a.svg",
     "static/media/close.svg": "/krovato-react/static/media/close.0f18a6275225af082284b70440502502.svg",
-    "main.b0cba7d7.css.map": "/krovato-react/static/css/main.b0cba7d7.css.map",
-    "main.57f74ea6.js.map": "/krovato-react/static/js/main.57f74ea6.js.map"
+    "main.d4854209.css.map": "/krovato-react/static/css/main.d4854209.css.map",
+    "main.575e898e.js.map": "/krovato-react/static/js/main.575e898e.js.map"
   },
   "entrypoints": [
-    "static/css/main.b0cba7d7.css",
-    "static/js/main.57f74ea6.js"
+    "static/css/main.d4854209.css",
+    "static/js/main.575e898e.js"
   ]
 }

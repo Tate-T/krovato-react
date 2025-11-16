@@ -6,21 +6,29 @@
   padding-top: 50px;
   padding-bottom: 70px;
   background-color: #f8f8f8;
+  text-align: center;
 
   &__title {
     color: $dark-color;
     text-align: center;
-    font-size: 30px;
-    font-style: normal;
+    font-size: 25px;
     font-weight: 600;
     line-height: 133%;
-    margin-bottom: 40px;
+    margin: 0 auto 40px;
+
+    @media screen and (min-width: 420px) {
+      font-size: 30px;
+      line-height: 133%;
+    }
 
     @media screen and (min-width: 768px) {
-      font-size: 40px;
       line-height: 120%;
-      text-align: left;
       max-width: 520px;
+    }
+
+    @media screen and (min-width: 1290px) {
+      text-align: left;
+      font-size: 40px;
     }
   }
 
@@ -42,18 +50,32 @@
 
   &__text {
     color: $dark-color;
-    font-size: 20px;
+    font-size: 13px;
     font-weight: 600;
     line-height: 140%;
     max-width: 520px;
     text-align: left;
     margin: 0;
+
+    @media screen and (min-width: 420px) {
+      font-size: 15px;
+    }
+
+    @media screen and (min-width: 768px) {
+      justify-content: left;
+      font-size: 20px;
+    }
   }
 
   &__item {
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 20px;
+
+    @media screen and (min-width: 1290px) {
+      justify-content: left;
+    }
   }
 
   &__element {
@@ -80,23 +102,22 @@
     position: absolute;
     top: 80%;
     right: 40%;
-    width: 420px;
-    height: 420px;
+    width: 180px;
+    height: 180px;
     border-radius: 420px;
     background-color: $yellow-color;
     overflow: hidden;
     border: 3px solid $light-color;
 
-    @media screen and (max-width: 420px) {
-      width: 200px;
-      height: 200px;
-      top: 84%;
+    @media screen and (min-width: 420px) {
+      width: 220px;
+      height: 220px;
     }
 
     @media screen and (min-width: 768px) {
       top: 72%;
-      left: 0;
       width: 420px;
+      height: 420px;
     }
 
     @media screen and (min-width: 1290px) {
@@ -106,10 +127,10 @@
   }
 
   &__squareBox {
-    padding: 57px 25px;
+    padding: 40px 20px;
 
-    @media screen and (max-width: 420px) {
-      padding: 27px 20px;
+    @media screen and (min-width: 420px) {
+      padding: 50px 20px;
     }
 
     @media screen and (min-width: 768px) {
@@ -124,15 +145,15 @@
   &__squareTitle {
     color: #fff;
     text-align: center;
-    font-size: 16px;
+    font-size: 10px;
     font-weight: 600;
     line-height: 113%;
     margin-bottom: 10px;
     max-width: 200px;
     margin: 0 0 20px 0;
 
-    @media screen and (max-width: 420px) {
-      font-size: 15px;
+    @media screen and (min-width: 420px) {
+      font-size: 12px;
     }
     
     @media screen and (min-width: 768px) {
@@ -146,14 +167,14 @@
   &__squareText {
     color: #fff;
     text-align: center;
-    font-size: 14px;
+    font-size: 9px;
     font-weight: 600;
     line-height: 129%;
     max-width: 200px;
     margin: 0;
 
-    @media screen and (max-width: 420px) {
-      font-size: 10px;
+    @media screen and (min-width: 420px) {
+      font-size: 11px;
     }
 
     @media screen and (min-width: 768px) {
@@ -162,4 +183,8 @@
       max-width: max-content;
     }
   }
+}
+
+img {
+  margin: 0 auto;
 }

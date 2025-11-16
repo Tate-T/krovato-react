@@ -1,321 +1,332 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import "./shop.scss";
 import containerStyles from "../../../components/Container/Container.module.scss";
 import { getProductsAPI } from "../../../api/getProductsAPI";
 
 export const Shop = () => {
   const [products, setProducts] = useState([]);
-  const [filter, setFilter] = useState("");
+  const [allProducts, setAllProducts] = useState([]);
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get("search") || "";
 
   useEffect(() => {
     getProductsAPI().then((data) => {
-      console.log(data);
+      setAllProducts(data);
       setProducts(data);
     });
   }, []);
 
-  const sizeFilters = Array.from(document.querySelectorAll(".aside__item-filter"));
-
-  const handleFiltersShow = (e) => {
-    for (let i = 0; i < sizeFilters.length; i++) {
-      sizeFilters[i].style.display = "flex";
+  useEffect(() => {
+    if (searchQuery.trim()) {
+      const filtered = allProducts.filter((product) => {
+        const searchLower = searchQuery.toLowerCase();
+        const sizeString = typeof product.size === "object"
+          ? `${product.size.width} x ${product.size.height} x ${product.size.length}`
+          : String(product.size || "");
+        return (
+          (product.title?.toLowerCase() || "").includes(searchLower) ||
+          (product.alt?.toLowerCase() || "").includes(searchLower) ||
+          sizeString.toLowerCase().includes(searchLower)
+        );
+      });
+      setProducts(filtered);
+    } else {
+      setProducts(allProducts);
     }
-
-    e.currentTarget.classList.add("hidden");
-  };
+  }, [searchQuery, allProducts]);
 
   const handleFilterClear = () => {
     getProductsAPI().then((data) => setProducts(data));
 
-    const filtersCheckboxes = document.querySelectorAll(".aside__checkbox");
-
-    filtersCheckboxes.forEach(checkbox => {
-      checkbox.checked = false;
+  const handleFilterPrice = () => {
+    const filteredProducts = products.slice(0).filter((product, index) => {
+      const productPrice = parseInt(
+        product.price.split(" грн.").join("").split(" ").join("")
+      );
+      return productPrice >= 1195 && productPrice <= 9566;
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.currentTarget;
+  // const memoizedHandleFilterPrice = useMemo((products) => {
+  //   if (!products) return [];
+  //   const filteredProducts = products.slice(0).filter((product, index) => {
+  //     const productPrice = parseInt(
+  //       product.price.split(" грн.").join("").split(" ").join("")
+  //     );
+  //     return productPrice >= 1195 && productPrice <= 9566;
+  //   });
+  //   setProducts(filteredProducts);
+  // }, [products]);
 
-    const min = Number.parseInt(form.elements.min.value);
-    const max = Number.parseInt(form.elements.max.value);
-
-    handleFilterPrice(min, max);
+  const handleFilterIsInStock = () => {
+    const filteredProducts = products
+      .slice(0)
+      .filter((product) => product.inStock);
+    setProducts(filteredProducts);
   };
 
-  const handleFilterPrice = (min, max) => {
-    if (filter !== "min_max" && !isNaN(min) && !isNaN(max)) {
-      const filteredProducts = products.filter((product) => product.price >= min && product.price <= max);
-
-      setProducts(filteredProducts);
-      setFilter("min_max");
-    } else {
-      getProductsAPI().then((data) => setProducts(data));
-      setFilter("");
-    }
+  const handleFilterCorners = () => {
+    const filteredProducts = products
+      .slice(0)
+      .filter((product) => product.title.toLowerCase().includes("corners"));
+    setProducts(filteredProducts);
   };
 
-  const handleFilterIsInStock = async () => {
-    if (filter !== "in_stock") {
-      const data = await getProductsAPI();
-
-      const filteredProducts = data.filter((product) => product.inStock);
-
-      await setFilter("in_stock");
-      await setProducts(filteredProducts);
-    } else {
-      getProductsAPI().then((data) => setProducts(data));
-      setFilter("");
-    }
-  };
-
-  const handleFilterNotInStock = async () => {
-    if (filter !== "not_in_stock") {
-      const data = await getProductsAPI();
-
-      const filteredProducts = data.filter((product) => !product.inStock);
-
-      await setFilter("not_in_stock");
-      await setProducts(filteredProducts);
-    } else {
-      getProductsAPI().then((data) => setProducts(data));
-      setFilter("");
-    }
-  };
-
-  const handleFilterSize = async (width, length) => {
-    // const filteredProducts = products
-    //     .slice(0)
-    //     .filter((product) => product.size.toLowerCase().includes("200 x 210"));
-    //
-    // setProducts(filteredProducts);
-
-    if (filter !== "by_size") {
-      const data = await getProductsAPI();
-
-      const filteredProducts = data.filter((product) => product.size.width >= width && product.size.length >= length);
-
-      setProducts(filteredProducts);
-    } else {
-      getProductsAPI().then((data) => setProducts(data));
-      setFilter("");
-    }
+  const handleFilterSize = () => {
+    const filteredProducts = products
+      .slice(0)
+      .filter((product) => {
+        const sizeString = typeof product.size === "object"
+          ? `${product.size.width} x ${product.size.height} x ${product.size.length}`
+          : String(product.size || "");
+        return sizeString.toLowerCase().includes("200 x 210");
+      });
+    setProducts(filteredProducts);
   };
 
   return (
-      <>
-        <section className="shop">
-          <div
-              className={ [containerStyles.container, "shop__container"].join(" ") }
-          >
-            <aside className="aside">
-              <div className="aside__box">
-                <svg className="aside__icon">
+    <>
+      <section className="shop">
+        <div className={[containerStyles.container, "shop__container"].join(" ")}>
+          <aside className="aside">
+            <div className="aside__box">
+              <svg className="aside__icon">
+                <use href="#"></use>
+              </svg>
+              <p className="aside__filter">Фільтр пошуку</p>
+            </div>
+
+            <ul className="aside__list">
+              <li className="aside__item">
+                <div className="aside__box2">
+                  <p className="aside__suptitle">Ціна, грн</p>
+                  <svg className="aside__close">
+                    <use href="#"></use>
+                  </svg>
+                </div>
+                <div className="aside__raaar">
+                  <form action="" className="aside__form">
+                    <input
+                      type="text"
+                      placeholder="1195"
+                      className="aside__input"
+                    />
+                    <input
+                      type="text"
+                      placeholder="9566"
+                      className="aside__input"
+                    />
+                    <button type="submit" className="aside__button">
+                      ОК
+                    </button>
+                  </form>
+                  <svg className="aside__scroll">
+                    <use href="#"></use>
+                  </svg>
+                </div>
+              </li>
+              <li className="aside__item">
+                <div className="aside__box2">
+                  <p className="aside__suptitle">Наявність</p>
+                  <svg className="aside__close">
+                    <use href="#"></use>
+                  </svg>
+                </div>
+                <ul className="aside__item-list">
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">В наявності</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">Під замовлення</p>
+                  </li>
+                </ul>
+              </li>
+              <li className="aside__item">
+                <div className="aside__box2">
+                  <p className="aside__suptitle">Виробник</p>
+                  <svg className="aside__close">
+                    <use href="#"></use>
+                  </svg>
+                </div>
+                <ul className="aside__item-list">
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">Corners</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">Estella</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">Green Line</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">Legko</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">MiroMark</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">Novelty</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">Soft-line</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">Venger</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">Арбор Древ</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">Городок мебель</p>
+                  </li>
+                </ul>
+                <p className="aside__show">Показати всі</p>
+              </li>
+              <li className="aside__item">
+                <div className="aside__box2">
+                  <p className="aside__suptitle">Тип ліжка</p>
+                  <svg className="aside__close">
+                    <use href="#"></use>
+                  </svg>
+                </div>
+                <ul className="aside__item-list">
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">Без узголов'я</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">З узголів'ям</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">Двоярусні</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">Розкладачки</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">Шафи</p>
+                  </li>
+                </ul>
+              </li>
+              <li className="aside__item">
+                <div className="aside__box2">
+                  <p className="aside__suptitle">Розмір спального місця</p>
+                  <svg className="aside__close">
+                    <use href="#"></use>
+                  </svg>
+                </div>
+                <ul className="aside__item-list">
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">200x210 см</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">200x200 см</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">180x200 см</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">160x200 см</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">110x190 см</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">160x190 см</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">150x200 см</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">140x200 см</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">140x190 см</p>
+                  </li>
+                  <li className="aside__item-item">
+                    <input type="checkbox" className="aside__checkbox" />
+                    <p className="aside__text">120x200 см</p>
+                  </li>
+                </ul>
+                <p className="aside__show">Показати всі</p>
+              </li>
+              <li className="aside__flex">
+                <p className="aside__suptitle">Ширина спального місця</p>
+                <svg className="aside__more">
+                  <use href="#"></use>
+                </svg>
+              </li>
+              <li className="aside__flex">
+                <p className="aside__suptitle">Довжина спального місця</p>
+                <svg className="aside__more">
+                  <use href="#"></use>
+                </svg>
+              </li>
+              <li className="aside__flex">
+                <p className="aside__suptitle">Форма</p>
+                <svg className="aside__more">
+                  <use href="#"></use>
+                </svg>
+              </li>
+              <li className="aside__flex">
+                <p className="aside__suptitle">Матеріал корпусу</p>
+                <svg className="aside__more">
+                  <use href="#"></use>
+                </svg>
+              </li>
+              <li className="aside__flex">
+                <p className="aside__suptitle">Основа для матраца</p>
+                <svg className="aside__more">
                   <use href="#"></use>
                 </svg>
                 <p className="aside__filter">Фільтр пошуку</p>
               </div>
 
-              <ul className="aside__list">
-                <li className="aside__item">
-                  <div className="aside__box2">
-                    <p className="aside__suptitle">Ціна, грн</p>
-                    <svg className="aside__close">
-                      <use href="#"></use>
-                    </svg>
-                  </div>
-                  <div className="aside__raaar">
-                    <form action="" className="aside__form" onSubmit={ handleSubmit }>
-                      <input
-                          type="text"
-                          placeholder="1195"
-                          className="aside__input"
-                          name="min"
-                      />
-                      <input
-                          type="text"
-                          placeholder="9566"
-                          className="aside__input"
-                          name="max"
-                      />
-                      <button type="submit" className="aside__button">
-                        ОК
-                      </button>
-                    </form>
-                    <svg className="aside__scroll">
-                      <use href="#"></use>
-                    </svg>
-                  </div>
-                </li>
-                <li className="aside__item">
-                  <div className="aside__box2">
-                    <p className="aside__suptitle">Наявність</p>
-                    <svg className="aside__close">
-                      <use href="#"></use>
-                    </svg>
-                  </div>
-                  <ul className="aside__item-list">
-                    <li className="aside__item-item">
-                      <input type="radio" className="aside__checkbox aside__checkbox--in-stock"
-                             onChange={ handleFilterIsInStock } name="in-stock"/>
-                      <p className="aside__text">В наявності</p>
-                    </li>
-                    <li className="aside__item-item">
-                      <input type="radio" className="aside__checkbox aside__checkbox--not-in-stock"
-                             onChange={ handleFilterNotInStock } name="in-stock"/>
-                      <p className="aside__text">Під замовлення</p>
-                    </li>
-                  </ul>
-                </li>
-                <li className="aside__item" hidden>
-                  <div className="aside__box2">
-                    <p className="aside__suptitle">Виробник</p>
-                    <svg className="aside__close">
-                      <use href="#"></use>
-                    </svg>
-                  </div>
-
-                  <ul className="aside__item-list">
-                    <li className="aside__item-item">
-                      <input type="checkbox" className="aside__checkbox"/>
-                      <p className="aside__text">Corners</p>
-                    </li>
-                    <li className="aside__item-item">
-                      <input type="checkbox" className="aside__checkbox"/>
-                      <p className="aside__text">Estella</p>
-                    </li>
-                    <li className="aside__item-item">
-                      <input type="checkbox" className="aside__checkbox"/>
-                      <p className="aside__text">Green Line</p>
-                    </li>
-                    <li className="aside__item-item">
-                      <input type="checkbox" className="aside__checkbox"/>
-                      <p className="aside__text">Legko</p>
-                    </li>
-                    <li className="aside__item-item">
-                      <input type="checkbox" className="aside__checkbox"/>
-                      <p className="aside__text">MiroMark</p>
-                    </li>
-                    <li className="aside__item-item">
-                      <input type="checkbox" className="aside__checkbox"/>
-                      <p className="aside__text">Novelty</p>
-                    </li>
-                    <li className="aside__item-item">
-                      <input type="checkbox" className="aside__checkbox"/>
-                      <p className="aside__text">Soft-line</p>
-                    </li>
-                    <li className="aside__item-item">
-                      <input type="checkbox" className="aside__checkbox"/>
-                      <p className="aside__text">Venger</p>
-                    </li>
-                    <li className="aside__item-item">
-                      <input type="checkbox" className="aside__checkbox"/>
-                      <p className="aside__text">Арбор Древ</p>
-                    </li>
-                    <li className="aside__item-item">
-                      <input type="checkbox" className="aside__checkbox"/>
-                      <p className="aside__text">Городок мебель</p>
-                    </li>
-                  </ul>
-                  <p className="aside__show">Показати всі</p>
-                </li>
-                <li className="aside__item" hidden>
-                  <div className="aside__box2">
-                    <p className="aside__suptitle">Тип ліжка</p>
-                    <svg className="aside__close">
-                      <use href="#"></use>
-                    </svg>
-                  </div>
-
-                  <ul className="aside__item-list">
-                    <li className="aside__item-item">
-                      <input type="checkbox" className="aside__checkbox"/>
-                      <p className="aside__text">Без узголов'я</p>
-                    </li>
-                    <li className="aside__item-item">
-                      <input type="checkbox" className="aside__checkbox"/>
-                      <p className="aside__text">З узголів'ям</p>
-                    </li>
-                    <li className="aside__item-item">
-                      <input type="checkbox" className="aside__checkbox"/>
-                      <p className="aside__text">Двоярусні</p>
-                    </li>
-                    <li className="aside__item-item">
-                      <input type="checkbox" className="aside__checkbox"/>
-                      <p className="aside__text">Розкладачки</p>
-                    </li>
-                    <li className="aside__item-item">
-                      <input type="checkbox" className="aside__checkbox"/>
-                      <p className="aside__text">Шафи</p>
-                    </li>
-                  </ul>
-                </li>
-                <li className="aside__item">
-                  <div className="aside__box2">
-                    <p className="aside__suptitle">Розмір спального місця</p>
-                    <svg className="aside__close">
-                      <use href="#"></use>
-                    </svg>
-                  </div>
-
-                  <ul className="aside__item-list">
-                    <li className="aside__item-item aside__item-filter">
-                      <input type="radio" className="aside__checkbox" name="size-filter"
-                             onChange={ () => handleFilterSize(200, 210) }/>
-                      <p className="aside__text">200x210 см</p>
-                    </li>
-                    <li className="aside__item-item aside__item-filter">
-                      <input type="radio" className="aside__checkbox" name="size-filter"
-                             onChange={ () => handleFilterSize(200, 200) }/>
-                      <p className="aside__text">200x200 см</p>
-                    </li>
-                    <li className="aside__item-item aside__item-filter">
-                      <input type="radio" className="aside__checkbox" name="size-filter"
-                             onChange={ () => handleFilterSize(180, 200) }/>
-                      <p className="aside__text">180x200 см</p>
-                    </li>
-                    <li className="aside__item-item aside__item-filter">
-                      <input type="radio" className="aside__checkbox" name="size-filter"
-                             onChange={ () => handleFilterSize(160, 210) }/>
-                      <p className="aside__text">160x200 см</p>
-                    </li>
-                    <li className="aside__item-item aside__item-filter">
-                      <input type="radio" className="aside__checkbox" name="size-filter"
-                             onChange={ () => handleFilterSize(110, 190) }/>
-                      <p className="aside__text">110x190 см</p>
-                    </li>
-                    <li className="aside__item-item aside__item-filter">
-                      <input type="radio" className="aside__checkbox" name="size-filter"
-                             onChange={ () => handleFilterSize(160, 190) }/>
-                      <p className="aside__text">160x190 см</p>
-                    </li>
-                    <li className="aside__item-item aside__item-filter">
-                      <input type="radio" className="aside__checkbox" name="size-filter"
-                             onChange={ () => handleFilterSize(150, 200) }/>
-                      <p className="aside__text">150x200 см</p>
-                    </li>
-                    <li className="aside__item-item aside__item-filter">
-                      <input type="radio" className="aside__checkbox" name="size-filter"
-                             onChange={ () => handleFilterSize(140, 200) }/>
-                      <p className="aside__text">140x200 см</p>
-                    </li>
-                    <li className="aside__item-item aside__item-filter">
-                      <input type="radio" className="aside__checkbox" name="size-filter"
-                             onChange={ () => handleFilterSize(140, 190) }/>
-                      <p className="aside__text">140x190 см</p>
-                    </li>
-                    <li className="aside__item-item aside__item-filter">
-                      <input type="radio" className="aside__checkbox" name="size-filter"
-                             onChange={ () => handleFilterSize(120, 200) }/>
-                      <p className="aside__text">120x200 см</p>
-                    </li>
-                  </ul>
-                  <button className="aside__show" onClick={ handleFiltersShow }>Показати всі</button>
-                </li>
-                <li className="aside__flex hidden">
-                  <p className="aside__suptitle">Ширина спального місця</p>
-                  <svg className="aside__more">
+          <div>
+            <div className="choose">
+              <div className="choose__box">
+                <h3 className="choose__title">Ви вибрали:</h3>
+                <div className="choose__container">
+                  <svg className="choose__filter">
+                    <use href="#"></use>
+                  </svg>
+                  <p className="choose__sorting">Сортування:</p>
+                  <p className="choose__option">За зростанням ціни</p>
+                  <svg className="choose__hide">
+                    <use href="#"></use>
+                  </svg>
+                </div>
+              </div>
+              <ul className="choose__list">
+                <li className="choose__item" onClick={handleFilterClear}>
+                  <p className="choose__text">Очистити</p>
+                  <svg className="choose__close">
                     <use href="#"></use>
                   </svg>
                 </li>
@@ -344,22 +355,28 @@ export const Shop = () => {
                   </svg>
                 </li>
               </ul>
-            </aside>
-
-            <div>
-              <div className="choose">
-                <div className="choose__box">
-                  <h3 className="choose__title">Ви вибрали:</h3>
-
-                  <div className="choose__container">
-                    <svg className="choose__filter">
-                      <use href="#"></use>
-                    </svg>
-                    <p className="choose__sorting">Сортування:</p>
-                    <p className="choose__option">За зростанням ціни</p>
-                    <svg className="choose__hide">
-                      <use href="#"></use>
-                    </svg>
+            </div>
+            <ul className="shop__list">
+              {products.map((product) => (
+                <li key={product.id} className={`shop__item`}>
+                  <img src={product.imageSrc} alt={product.alt} className="shop__image" />
+                  <div>
+                    <p className="shop__text">
+                      Розмір: {
+                        typeof product.size === "object"
+                          ? `${product.size.width} x ${product.size.height} x ${product.size.length}`
+                          : product.size
+                      }
+                    </p>
+                    <h2 className="shop__suptitle">{product.title}</h2>
+                    <div className="shop__pashalka">
+                      <svg className="shop__icon">
+                        <use href="#"></use>
+                      </svg>
+                      <p className="shop__instock">
+                        {product.inStock ? "В наявності" : "Під замовлення"}
+                      </p>
+                    </div>
                   </div>
                 </div>
                 <ul className="choose__list">

@@ -1,14 +1,40 @@
 import { useEffect, useState, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import "./shop.scss";
 import containerStyles from "../../../components/Container/Container.module.scss";
 import { getProductsAPI } from "../../../api/getProductsAPI";
 
 export const Shop = () => {
   const [products, setProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get("search") || "";
 
   useEffect(() => {
-    getProductsAPI().then((data) => setProducts(data));
+    getProductsAPI().then((data) => {
+      setAllProducts(data);
+      setProducts(data);
+    });
   }, []);
+
+  useEffect(() => {
+    if (searchQuery.trim()) {
+      const filtered = allProducts.filter((product) => {
+        const searchLower = searchQuery.toLowerCase();
+        const sizeString = typeof product.size === "object"
+          ? `${product.size.width} x ${product.size.height} x ${product.size.length}`
+          : String(product.size || "");
+        return (
+          (product.title?.toLowerCase() || "").includes(searchLower) ||
+          (product.alt?.toLowerCase() || "").includes(searchLower) ||
+          sizeString.toLowerCase().includes(searchLower)
+        );
+      });
+      setProducts(filtered);
+    } else {
+      setProducts(allProducts);
+    }
+  }, [searchQuery, allProducts]);
 
   const handleFilterClear = () => {
     getProductsAPI().then((data) => setProducts(data));
@@ -19,7 +45,6 @@ export const Shop = () => {
       const productPrice = parseInt(
         product.price.split(" грн.").join("").split(" ").join("")
       );
-
       return productPrice >= 1195 && productPrice <= 9566;
     });
 
@@ -28,15 +53,12 @@ export const Shop = () => {
 
   // const memoizedHandleFilterPrice = useMemo((products) => {
   //   if (!products) return [];
-    
   //   const filteredProducts = products.slice(0).filter((product, index) => {
   //     const productPrice = parseInt(
   //       product.price.split(" грн.").join("").split(" ").join("")
   //     );
-
   //     return productPrice >= 1195 && productPrice <= 9566;
   //   });
-
   //   setProducts(filteredProducts);
   // }, [products]);
 
@@ -44,7 +66,6 @@ export const Shop = () => {
     const filteredProducts = products
       .slice(0)
       .filter((product) => product.inStock);
-
     setProducts(filteredProducts);
   };
 
@@ -52,24 +73,25 @@ export const Shop = () => {
     const filteredProducts = products
       .slice(0)
       .filter((product) => product.title.toLowerCase().includes("corners"));
-
     setProducts(filteredProducts);
   };
 
   const handleFilterSize = () => {
     const filteredProducts = products
       .slice(0)
-      .filter((product) => product.size.toLowerCase().includes("200 x 210"));
-
+      .filter((product) => {
+        const sizeString = typeof product.size === "object"
+          ? `${product.size.width} x ${product.size.height} x ${product.size.length}`
+          : String(product.size || "");
+        return sizeString.toLowerCase().includes("200 x 210");
+      });
     setProducts(filteredProducts);
   };
 
   return (
     <>
       <section className="shop">
-        <div
-          className={[containerStyles.container, "shop__container"].join(" ")}
-        >
+        <div className={[containerStyles.container, "shop__container"].join(" ")}>
           <aside className="aside">
             <div className="aside__box">
               <svg className="aside__icon">
@@ -132,7 +154,6 @@ export const Shop = () => {
                     <use href="#"></use>
                   </svg>
                 </div>
-
                 <ul className="aside__item-list">
                   <li className="aside__item-item">
                     <input type="checkbox" className="aside__checkbox" />
@@ -184,7 +205,6 @@ export const Shop = () => {
                     <use href="#"></use>
                   </svg>
                 </div>
-
                 <ul className="aside__item-list">
                   <li className="aside__item-item">
                     <input type="checkbox" className="aside__checkbox" />
@@ -215,7 +235,6 @@ export const Shop = () => {
                     <use href="#"></use>
                   </svg>
                 </div>
-
                 <ul className="aside__item-list">
                   <li className="aside__item-item">
                     <input type="checkbox" className="aside__checkbox" />
@@ -297,7 +316,6 @@ export const Shop = () => {
             <div className="choose">
               <div className="choose__box">
                 <h3 className="choose__title">Ви вибрали:</h3>
-
                 <div className="choose__container">
                   <svg className="choose__filter">
                     <use href="#"></use>
@@ -351,7 +369,13 @@ export const Shop = () => {
                 <li key={product.id} className={`shop__item`}>
                   <img src={product.imageSrc} alt={product.alt} className="shop__image" />
                   <div>
-                    <p className="shop__text">Розмір: {product.size}</p>
+                    <p className="shop__text">
+                      Розмір: {
+                        typeof product.size === "object"
+                          ? `${product.size.width} x ${product.size.height} x ${product.size.length}`
+                          : product.size
+                      }
+                    </p>
                     <h2 className="shop__suptitle">{product.title}</h2>
                     <div className="shop__pashalka">
                       <svg className="shop__icon">

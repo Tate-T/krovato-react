@@ -95,7 +95,7 @@ export const BasketList = () => {
 											</div>
 										</div>
 										<div className={styles.containerDescription}>
-											<p className={styles.textBed}>{bed.size}</p>
+											<p className={styles.textBed}>{`${bed.size.width} × ${bed.size.height} × ${bed.size.length} мм`}</p>
 											<p className={styles.titleBed}>{bed.title}</p>
 											<p className={styles.textDescription}>
 												{bed.description}
@@ -106,7 +106,7 @@ export const BasketList = () => {
 													{bed.isStock ? 'Не в наявності' : 'В наявності'}
 												</p>
 											</div>
-											<p className={styles.textPrice}>{bed.price}</p>
+											<p className={styles.textPrice}>{bed.price} грн</p>
 										</div>
 										<button
 											className={styles.btnDelete}

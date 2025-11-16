@@ -28,23 +28,22 @@ import { FiLogIn, FiLogOut } from "react-icons/fi";
 import "./noScroll.scss";
 
 const Header = () => {
-
-  
   const dispatch = useDispatch();
   const { isLoged, name } = useSelector((state) => state.login || {});
 
   const [languageDropdownVisible, setLanguageDropdownVisible] = useState(false);
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
-  const [additionalNumbersVisible, setAdditionalNumbersVisible] =
-    useState(false);
+  const [additionalNumbersVisible, setAdditionalNumbersVisible] = useState(false);
   const [searchDropdownVisible, setSearchDropdownVisible] = useState(false);
   const [favoriteModalVisible, setFavoriteModalVisible] = useState(false);
+  const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
 
   const cartModalRef = useRef();
   const languageRef = useRef();
   const mobileMenuRef = useRef();
   const additionalNumbersRef = useRef();
   const searchRef = useRef();
+  const phoneIconRef = useRef();
 
   // Handlers
   const handleClickOutside = useCallback(
@@ -111,53 +110,47 @@ const Header = () => {
     setSearchDropdownVisible(false);
   };
 
-  // const toggleMenu = (e) => {
-  //   e.stopPropagation();
-  //   setMobileMenuVisible((prev) => !prev);
-  //   setLanguageDropdownVisible(false);
-  //   setAdditionalNumbersVisible(false);
-  //   setSearchDropdownVisible(false);
-  // };
-
   const toggleMenu = (e) => {
-  e.stopPropagation();
-  setMobileMenuVisible((prev) => {
-    const newState = !prev;
-    document.body.classList.toggle("no-scroll", newState);
-    return newState;
-  });
-  setLanguageDropdownVisible(false);
-  setAdditionalNumbersVisible(false);
-  setSearchDropdownVisible(false);
-};
+    e.stopPropagation();
+    setMobileMenuVisible((prev) => {
+      const newState = !prev;
+      document.body.classList.toggle("no-scroll", newState);
+      return newState;
+    });
+    setLanguageDropdownVisible(false);
+    setAdditionalNumbersVisible(false);
+    setSearchDropdownVisible(false);
+  };
 
-const toggleSearchDropdown = (e) => {
-  e.stopPropagation();
-  setSearchDropdownVisible((prev) => {
-    const newState = !prev;
-    document.body.classList.toggle("no-scroll", newState);
-    return newState;
-  });
-  setLanguageDropdownVisible(false);
-  setMobileMenuVisible(false);
-  setAdditionalNumbersVisible(false);
-};
+  const toggleSearchDropdown = (e) => {
+    e.stopPropagation();
+    setSearchDropdownVisible((prev) => {
+      const newState = !prev;
+      document.body.classList.toggle("no-scroll", newState);
+      return newState;
+    });
+    setLanguageDropdownVisible(false);
+    setMobileMenuVisible(false);
+    setAdditionalNumbersVisible(false);
+  };
 
   const toggleAdditionalNumbers = (e) => {
     e.stopPropagation();
+    
+    // Получаем позицию элемента
+    if (phoneIconRef.current) {
+      const rect = phoneIconRef.current.getBoundingClientRect();
+      setDropdownPosition({
+        top: rect.bottom + 10,
+        left: rect.left - 200, // Сдвигаем влево, чтобы выровнять
+      });
+    }
+    
     setAdditionalNumbersVisible((prev) => !prev);
     setLanguageDropdownVisible(false);
     setMobileMenuVisible(false);
     setSearchDropdownVisible(false);
   };
-
-  // const toggleSearchDropdown = (e) => {
-  //   e.stopPropagation();
-  //   setSearchDropdownVisible((prev) => !prev);
-  //   setLanguageDropdownVisible(false);
-  //   setMobileMenuVisible(false);
-  //   setAdditionalNumbersVisible(false);
-  // };
 
   const handleLogout = () => {
     dispatch(logout());
@@ -166,9 +159,7 @@ const toggleSearchDropdown = (e) => {
   // Render sections
   const renderDesktopTopSection = () => (
     <div
-      className={[c.container, style.container, style.header__section1].join(
-        " "
-      )}
+      className={[c.container, style.container, style.header__section1].join(" ")}
       data-aos="fade-down"
       data-aos-duration="800"
       data-aos-easing="ease-out-back"
@@ -423,9 +414,9 @@ const toggleSearchDropdown = (e) => {
         </form>
       </div>
       <div
-        ref={additionalNumbersRef}
+        ref={phoneIconRef}
         className={style.header__item}
-        style={{ display: "flex", alignItems: "center" }}
+        style={{ display: "flex", alignItems: "center", position: "relative" }}
         data-aos="fade-up"
         data-aos-duration="900"
         data-aos-delay="300"
@@ -442,66 +433,44 @@ const toggleSearchDropdown = (e) => {
           onClick={toggleAdditionalNumbers}
           size={24}
         />
-        {additionalNumbersVisible && (
-          <div className={style.header__dropdown_menu_box}>
-            <div className={style.header__dropdown_menu}>
-              <p className={style.header__paragraph_drop}>
-                Щодня з 9:00 до 18:00
-              </p>
-              <p className={style.header__number_drop}>067 929-45-45</p>
-              <p className={style.header__number_drop}>050 133-45-45</p>
-              <p className={style.header__number_drop}>093 170-75-45</p>
-              <a href="#" className={style.header__link_drop}>
-                Передзвоніть мені
-              </a>
-            </div>
-          </div>
-        )}
       </div>
       <div className={style.loginItems}>
-  {!isLoged ? (
-    <div className={style.header__icon_container}>
-      <NavLink to="/login">
-        <FiLogIn size={24} className={style.login_icon} />
-      </NavLink>
-    </div>
-  ) : (
-    <>
-      {/* Favorite */}
-      <div className={style.header__icon_container}>
-        <FaHeart
-          className={style.heart_icon}
-          size={24}
-          onClick={() => setFavoriteModalVisible(true)}
-          style={{ cursor: "pointer" }}
-        />
+        {!isLoged ? (
+          <div className={style.header__icon_container}>
+            <NavLink to="/login">
+              <FiLogIn size={24} className={style.login_icon} />
+            </NavLink>
+          </div>
+        ) : (
+          <>
+            <div className={style.header__icon_container}>
+              <FaHeart
+                className={style.heart_icon}
+                size={24}
+                onClick={() => setFavoriteModalVisible(true)}
+                style={{ cursor: "pointer" }}
+              />
+            </div>
+            <a href="#" className={style.header__icon_container}>
+              <button
+                className={style.icon_with_badge}
+                onClick={() => CartModal.openModal()}
+              >
+                <HiOutlineShoppingBag className={style.cart_icon} size={24} />
+              </button>
+            </a>
+            <div className={style.header__icon_container}>
+              <NavLink to="/" onClick={handleLogout}>
+                <FiLogOut size={24} className={style.logout_icon} />
+              </NavLink>
+            </div>
+            <CartModal ref={cartModalRef} />
+          </>
+        )}
       </div>
-
-      {/* Cart */}
-      <a href="#" className={style.header__icon_container}>
-        <button
-          className={style.icon_with_badge}
-          onClick={() => CartModal.openModal()}
-        >
-          <HiOutlineShoppingBag className={style.cart_icon} size={24} />
-        </button>
-      </a>
-
-      {/* Logout */}
-      <div className={style.header__icon_container}>
-        <NavLink to="/" onClick={handleLogout}>
-          <FiLogOut size={24} className={style.logout_icon} />
-        </NavLink>
-      </div>
-
-      {/* Cart modal */}
-      <CartModal ref={cartModalRef} />
-    </>
-  )}
-</div>
     </div>
   );
-  // Render the bottom section with dropdown before recall button
+
   const renderBottomSection = () => (
     <div
       className={[c.container, style.container, style.header__list3].join(" ")}
@@ -565,17 +534,6 @@ const toggleSearchDropdown = (e) => {
           <span>Купити в кредит</span>
         </a>
       </div>
-      {/* Dropdown element placed before recall button */}
-      {/* Example: if you have a dropdown for callback options, place it here */}
-      {/* 
-      {dropdownVisible && (
-        <div className={style.header__dropdown_menu_box}>
-          <div className={style.header__dropdown_menu}>
-            ...dropdown content...
-          </div>
-        </div>
-      )}
-      */}
       <div
         className={style.header__button}
         data-aos="zoom-in-left"
@@ -780,6 +738,28 @@ const toggleSearchDropdown = (e) => {
       {renderMobileTopSection()}
       {mobileMenuVisible && renderMobileMenu()}
       {searchDropdownVisible && renderMobileSearch()}
+      
+      {/* Fixed dropdown для телефонов в десктопе */}
+      {additionalNumbersVisible && window.innerWidth >= 1024 && (
+        <div
+          className={style.header__dropdown_menu}
+          style={{
+            position: 'fixed',
+            top: `${dropdownPosition.top}px`,
+            left: `${dropdownPosition.left}px`,
+            zIndex: 9999,
+          }}
+        >
+          <p className={style.header__paragraph_drop}>Щодня з 9:00 до 18:00</p>
+          <p className={style.header__number_drop}>067 929-45-45</p>
+          <p className={style.header__number_drop}>050 133-45-45</p>
+          <p className={style.header__number_drop}>093 170-75-45</p>
+          <a href="#" className={style.header__link_drop}>
+            Передзвоніть мені
+          </a>
+        </div>
+      )}
+      
       {favoriteModalVisible && (
         <div
           className={style.favorite_modal_overlay}

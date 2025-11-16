@@ -2204,3 +2204,129 @@ body {
     justify-content: center;
   }
 }
+
+
+// Четкая иерархия z-index для всех элементов
+.header {
+  &__section1 {
+    position: relative;
+    z-index: 100;
+  }
+
+  &__list2,
+  &__middle {
+    position: relative;
+    z-index: 200;
+  }
+
+  &__list3 {
+    position: relative;
+    z-index: 300;
+  }
+
+  &__dropdown_menu {
+    z-index: 1200;
+  }
+
+  .mobile_phone_dropdown {
+    z-index: 1200;
+  }
+
+  &__dropdown_menu_box {
+    z-index: 1200;
+  }
+
+  &__phone_icon {
+    z-index: 400;
+  }
+
+  &__lang_container {
+    z-index: 400;
+  }
+
+  &__item {
+    position: relative;
+  }
+
+  // Четкая иерархия z-index для всех элементов
+  &__section1 {
+    position: relative;
+    z-index: 100;
+  }
+
+  &__list2,
+  &__middle {
+    position: relative;
+    z-index: 200;
+  }
+
+  &__list3 {
+    position: relative;
+    z-index: 300;
+  }
+
+  &__dropdown_menu {
+    z-index: 1200;
+  }
+
+  .mobile_phone_dropdown {
+    z-index: 1200;
+  }
+
+  &__dropdown_menu_box {
+    z-index: 1200;
+  }
+
+  &__phone_icon {
+    z-index: 400;
+  }
+
+  &__lang_container {
+    z-index: 400;
+  }
+
+  &__item {
+    position: relative;
+  }
+
+  // Четкая иерархия z-index для всех элементов
+  &__section1 {
+    position: relative;
+    z-index: 100;
+  }
+
+  &__list2,
+  &__middle {
+    position: relative;
+    z-index: 200;
+  }
+
+  &__list3 {
+    position: relative;
+    z-index: 300;
+  }
+
+  &__dropdown_menu {
+    z-index: 1200;
+  }
+
+  .mobile_phone_dropdown {
+    z-index: 1200;
+  }
+
+  &__dropdown_menu_box {
+    z-index: 1200;
+  }
+
+  &__phone_icon {
+    z-index: 400;
+  }
+
+  &__lang_container {
+    z-index: 400;
+  }
+
+  &__item {
+    position: relative;
+  }
+}

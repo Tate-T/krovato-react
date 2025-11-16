@@ -1,6 +1,5 @@
 import styles from './Basket.module.scss'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { Modal } from './Modal'
 import infoCircle from '../../images/basket/icon-info-mobile.svg'
 import iconComment from '../../images/basket/icon-comment-mobile.svg'
@@ -19,8 +18,38 @@ import btnLogo from '../../images/basket/map.svg'
 import { BasketList } from './BasketList'
 import { ContextBasketList } from './ContextBasketList'
 import { ContextModal } from './ContextModal'
-import { useSelector } from 'react-redux'
-const cardDelivery = useSelector(state => state.cartDelivery)
+import { setSurname, setName, setPaternal, setPhone, setEmail, setComment, setPayment, setDelivery, setIsPerson } from '../../redux/basket/basketSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import  sendOrder  from '../../redux/basket/basketSlice'
+import { clearBasket } from '../../redux/basket/basketListSlice'
+const cartDelivery = [
+	{
+		text: 'Самовивіз із магазину',
+		description: 'Бесплатно',
+		img: checkCircle,
+		alt: 'check-icon',
+	},
+	{
+		text: 'Графік роботи: щодня з 9:00 до 18:00',
+		description: 'м. Київ, пров. Ізяславський 52, пов. 2',
+		img: location,
+		alt: 'location-icon',
+		map: 'На мапі',
+		mapIcon: btnLogo,
+	},
+	{
+		text: 'Доставка Нова Пошта',
+		description: '≈ від 500 грн',
+		img: novaPoshta,
+		alt: 'novaposhta-icon',
+	},
+	{
+		text: "Доставка кур'єром",
+		description: '≈ від 200 грн',
+		img: deliveryMan,
+		alt: 'deliveryman-icon',
+	},
+]
 const paymentOption = [
 	{ text: 'Готівкою при отриманні (Післясплата)' },
 	{
@@ -35,54 +64,21 @@ const paymentOption = [
 	{ text: 'Оплата частинами ПриватБанк', pay: creditLogo, alt: 'privaticon' },
 	{ text: 'Оплата частинами МоноБанк', pay: monobankLogo, alt: 'monobankicon' },
 ]
-export const Basket = () => {
-	const [surnames, setSurname] = useState(() => {
-		const savedSurname = localStorage.getItem('surnames')
-		return savedSurname ? JSON.parse(savedSurname) : []
-	})
-	const [surnameValue, setSurnameValue] = useState('')
-	const [names, setNames] = useState(() => {
-		const savedNames = localStorage.getItem('names')
-		return savedNames ? JSON.parse(savedNames) : []
-	})
-	const [nameValue, setNameValue] = useState('')
-	const [paternals, setPaternals] = useState(() => {
-		const savedPaternals = localStorage.getItem('paternals')
-		return savedPaternals ? JSON.parse(savedPaternals) : []
-	})
-	const [paternalValue, setPaternalValue] = useState('')
-	const [phones, setPhones] = useState(() => {
-		const savedPhones = localStorage.getItem('phones')
-		return savedPhones ? JSON.parse(savedPhones) : []
-	})
-	const [phoneValue, setPhoneValue] = useState('')
-	const [emails, setEmails] = useState(() => {
-		const savedEmails = localStorage.getItem('emails')
-		return savedEmails ? JSON.parse(savedEmails) : []
-	})
-	const [emailValue, setEmailValue] = useState('')
-	const [isPerson, setIsPerson] = useState(() => {
-		const saved = localStorage.getItem('isPerson')
-		return saved ? JSON.parse(saved) : false
-	})
-	const [comments, setComments] = useState(() => {
-		const savedComments = localStorage.getItem('comments')
-		return savedComments ? JSON.parse(savedComments) : []
-	})
-	const [commentValue, setCommentValue] = useState('')
-	const [selectedPayment, setPaymentValue] = useState('')
+const basketCounts = JSON.parse(localStorage.getItem("basketCounts")) || [];
+ const Basket = () => {
+	const dispatch = useDispatch()
+	const basket = useSelector((state) => state.basket)
 	const [isModal, setIsModal] = useState(false)
 	const [message, setMessage] = useState('')
-	const [selectedDelivery, setDeliveryValue] = useState('')
+	const [selectedPayment, setSelectedPayment] = useState("")
+	const [selectedDelivery, setDeliveryValue] = useState("")
 	useEffect(() => {
-		localStorage.setItem('surnames', JSON.stringify(surnames))
-		localStorage.setItem('names', JSON.stringify(names))
-		localStorage.setItem('paternals', JSON.stringify(paternals))
-		localStorage.setItem('phones', JSON.stringify(phones))
-		localStorage.setItem('emails', JSON.stringify(emails))
-		localStorage.setItem('isPerson', JSON.stringify(isPerson))
-		localStorage.setItem('comments', JSON.stringify(comments))
-	}, [surnames, names, paternals, phones, emails, isPerson, comments])
+		if (basket.items?.length > 0) {
+			localStorage.setItem("basket", JSON.stringify(basket));
+		} else {
+			localStorage.removeItem("basket");
+		}
+	}, [basket])
 	const handleModalMessage = (message) => {
 		setMessage(message)
 		setIsModal(true)
@@ -91,99 +87,93 @@ export const Basket = () => {
 		setMessage('')
 		setIsModal(false)
 	}
-	const handleSurname = ({ target: { value } }) => {
-		setSurnameValue(value)
+	const handleSurname = (e) => {
+		dispatch(setSurname(e.target.value))
 	}
-	const handleName = ({ target: { value } }) => {
-		setNameValue(value)
+	const handleName = (e) => {
+		dispatch(setName(e.target.value))
 	}
-	const handlePaternal = ({ target: { value } }) => {
-		setPaternalValue(value)
+	const handlePaternal = (e) => {
+		dispatch(setPaternal(e.target.value))
 	}
-	const handlePhone = ({ target: { value } }) => {
-		setPhoneValue(value)
+	const handlePhone = (e) => {
+		dispatch(setPhone(e.target.value))
 	}
-	const handleEmail = ({ target: { value } }) => {
-		setEmailValue(value)
+	const handleEmail = (e) => {
+		dispatch(setEmail(e.target.value))
 	}
-	const handleChecked = ({ target: { checked } }) => {
-		setIsPerson(checked)
+	const handleChecked = (e) => {
+		dispatch(setIsPerson(e.target.checked))
 	}
-	const handleComment = ({ target: { value } }) => {
-		setCommentValue(value)
+	const handleComment = (e) => {
+		dispatch(setComment(e.target.value))
 	}
 	const handlePay = (text) => {
-		setPaymentValue(text)
+		setSelectedPayment(text)
+		dispatch(setPayment(text))
 	}
 	const handleDelivery = (text) => {
 		setDeliveryValue(text)
+		dispatch(setDelivery(text))
 	}
 	const orderButton = () => {
-		const updateSurname = [...surnames, surnameValue]
-		const updateName = [...names, nameValue]
-		const updatePaternal = [...paternals, paternalValue]
-		const updatePhone = [...phones, phoneValue]
-		const updateEmail = [...emails, emailValue]
-		const updateComment = [...comments, commentValue]
-		const activeProducts =
-			JSON.parse(localStorage.getItem('activeProducts')) || []
+		const activeProducts = JSON.parse(localStorage.getItem("activeProducts"))
 		if (activeProducts.length === 0) {
-			handleModalMessage('Кошик порожній')
-			return
+			handleModalMessage("Заповніть кошик !")
+			return;
 		}
-		if (
-			!surnameValue ||
-			!nameValue ||
-			!paternalValue ||
-			!phoneValue ||
-			!emailValue ||
-			!commentValue
-		) {
-			handleModalMessage('Заповніть поля!')
-			return
+		if (!basket.name || !basket.surname || !basket.paternal || !basket.phone || !basket.email) {
+			handleModalMessage("Заповніть всі поля !")
+			return;
 		}
-		if (!emailValue.includes('@')) {
-			handleModalMessage('Email має містити знак @')
-			return
+		if (!basket.email.includes("@")) {
+			handleModalMessage("Email має містити @ ")
+			return;
 		}
-		if (selectedPayment === '') {
-			handleModalMessage('Будь ласка, оберіть спосіб оплати')
-			return
+		if (!selectedPayment) {
+			handleModalMessage("Будь ласка , виберіть спосіб оплати")
+			return;
 		}
-		if (selectedDelivery === '') {
-			handleModalMessage('Будь ласка , оберіть спосіб доставки')
-			return
+		if (!selectedDelivery) {
+			handleModalMessage("Будь ласка ,виберіть спосіб доставки ")
+			return;
 		}
 		const infoOrder = {
-			surname: surnameValue,
-			name: nameValue,
-			paternal: paternalValue,
-			phone: phoneValue,
-			email: emailValue,
-			comment: commentValue,
+			name: basket.name,
+			surname: basket.surname,
+			paternal: basket.paternal,
+			phone: basket.phone,
+			email: basket.email,
+			comment: basket.comment,
+			isPerson: basket.isPerson,
 			methodPay: selectedPayment,
 			methodDelivery: selectedDelivery,
+			items: activeProducts.map((item, index) => ({
+				id: item.id,
+				title: item.title,
+				price: item.price,
+				count: basketCounts[index] || 1,
+			})),
+			totalItems: activeProducts.length,
 		}
-		axios
-			.post('http://localhost:3000/info', { infoOrder })
-			.then(() => handleModalMessage('Успішно'))
-			.catch((err) => console.error('Помилка надсилання:', err))
-		localStorage.setItem('surnames', JSON.stringify(updateSurname))
-		localStorage.setItem('names', JSON.stringify(updateName))
-		localStorage.setItem('paternals', JSON.stringify(updatePaternal))
-		localStorage.setItem('phones', JSON.stringify(updatePhone))
-		localStorage.setItem('emails', JSON.stringify(updateEmail))
-		localStorage.setItem('comments', JSON.stringify(updateComment))
-		setSurnameValue('')
-		setNameValue('')
-		setPaternalValue('')
-		setPhoneValue('')
-		setEmailValue('')
-		setCommentValue('')
-		setPaymentValue('')
-		setDeliveryValue('')
-		const deliveryOption = document.querySelector('.deliveryButton')
-		console.log(deliveryOption)
+		dispatch(sendOrder(infoOrder))
+			.then(() => {
+				handleModalMessage("Замовлення успішно надіслано");
+				dispatch(clearBasket())
+			})
+			.catch((err) => handleModalMessage(`Помилка надсилання : ${err}`))
+		localStorage.removeItem("activeProducts")
+		localStorage.removeItem("basketCounts")
+		dispatch(clearBasket())
+		dispatch(setName(""))
+		dispatch(setSurname(""))
+		dispatch(setEmail(""))
+		dispatch(setPhone(""))
+		dispatch(setPaternal(""))
+		dispatch(setComment(""))
+		dispatch(setIsPerson(false))
+		setSelectedPayment("")
+		setDeliveryValue("")
 	}
 	return (
 		<div className={styles.mainWrapper}>
@@ -202,7 +192,7 @@ export const Basket = () => {
 							placeholder='Прізвище'
 							className={styles.inputForm}
 							onChange={handleSurname}
-							value={surnameValue}
+							value={basket.surname}
 						/>
 					</label>
 					<label>
@@ -211,7 +201,7 @@ export const Basket = () => {
 							placeholder='Контактний телефон'
 							className={styles.inputForm}
 							onChange={handlePhone}
-							value={phoneValue}
+							value={basket.phone}
 						/>
 					</label>
 					<label>
@@ -220,7 +210,7 @@ export const Basket = () => {
 							placeholder="Ім'я"
 							className={styles.inputForm}
 							onChange={handleName}
-							value={nameValue}
+							value={basket.name}
 						/>
 					</label>
 					<label>
@@ -229,7 +219,7 @@ export const Basket = () => {
 							placeholder='E-mail'
 							className={styles.inputForm}
 							onChange={handleEmail}
-							value={emailValue}
+							value={basket.email}
 						/>
 					</label>
 					<label>
@@ -238,13 +228,13 @@ export const Basket = () => {
 							placeholder='По батькові'
 							className={styles.inputForm}
 							onChange={handlePaternal}
-							value={paternalValue}
+							value={basket.paternal}
 						/>
 					</label>
-					<div className={styles.titleContainer} style={{ gap: 15 }}>
+					<div className={styles.titleContainer} style={{ padding: "0 0 0 40px" }}>
 						<input
 							type='checkbox'
-							checked={isPerson}
+							checked={basket.isPerson}
 							onChange={handleChecked}
 							className={styles.checkboxes}
 						/>
@@ -259,12 +249,11 @@ export const Basket = () => {
 					<p className={styles.titleOptions}>Вибір способу доставки</p>
 				</div>
 				<div className={styles.mainWrapperDelivery}>
-					{cardDelivery.map((elem, index) => (
+					{cartDelivery.map((elem, index) => (
 						<button
 							key={index}
-							className={`${styles.deliveryButton} ${
-								selectedDelivery === elem.text ? styles.selected : ''
-							}`}
+							className={`${styles.deliveryButton} ${selectedDelivery === elem.text ? styles.selected : ''
+								}`}
 							onClick={() => handleDelivery(elem.text)}
 						>
 							<img src={elem.img} alt={elem.alt} />
@@ -316,7 +305,7 @@ export const Basket = () => {
 						placeholder='Ваш коментар'
 						className={styles.commentInput}
 						onChange={handleComment}
-						value={commentValue}
+						value={basket.comment}
 					></textarea>
 				</div>
 			</div>
@@ -326,3 +315,4 @@ export const Basket = () => {
 		</div>
 	)
 }
+export default Basket;

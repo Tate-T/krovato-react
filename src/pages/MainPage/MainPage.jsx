@@ -8,18 +8,20 @@ import About from "../../components/About/About";
 import { Advantages } from "../../components/Advantages/Advantages";
 import { CartModal } from "../../components/BasketModal/BasketModal"
 
-export const MainPage = () => {
-  return (
-    <>
-        <Hero />
-        <CartModal />
-        <Categories />
-        <Products />
-        <Promotions />
-        <LastReviews />
-        <Articles />
-        <About />
-        <Advantages />  
-    </>
-  );
+const MainPage = () => {
+	return (
+		<>
+			<Hero />
+      <CartModal />
+			<Categories />
+			<Products />
+			<Promotions />
+			<LastReviews />
+			<Articles />
+			<About />
+			<Advantages />
+		</>
+	);
 };
+
+export default MainPage;

@@ -7,103 +7,33 @@ import { useState, useEffect, useContext } from 'react'
 import styles from './BasketList.module.scss'
 import { ContextBasketList } from './ContextBasketList'
 import { Link } from 'react-router-dom'
-const validPromoCodes = {
-	DISCOUNT10: 10,
-	SPRING20: 20,
-	FREESHIP: 0,
-}
+import { useDispatch, useSelector } from 'react-redux'
+import { subtractItemCount, addItemCount, applyPromo } from '../../redux/basket/basketListSlice'
+import {
+	fetchBasket,
+	deleteFromBasket,
+} from "../../redux/basket/basketListSlice";
 export const BasketList = () => {
 	const [showAll, setShowAll] = useState(false)
-	const [discountPercent, setDiscountPercent] = useState(0)
-	const [promoMessage, setPromoMessage] = useState('')
 	const [promoInputValue, setPromoInputValue] = useState('')
-
-	const [counts, setCounts] = useState([])
-
-	const [items, setItems] = useState(() => {
-		const saved = localStorage.getItem('activeProducts')
-		return saved ? JSON.parse(saved) : []
-	})
-	useEffect(() => {
-		const savedCounts = localStorage.getItem('basketCounts')
-		if (savedCounts) {
-			setCounts(JSON.parse(savedCounts))
-		} else {
-			setCounts(items.map(() => 1))
-		}
-	}, [items])
-
-	useEffect(() => {
-		localStorage.setItem('basketCounts', JSON.stringify(counts))
-	}, [counts])
-
-	useEffect(() => {
-		setCounts(items.map(() => 1))
-	}, [items])
-	useEffect(() => {
-		localStorage.setItem('activeProducts', JSON.stringify(items))
-	}, [items])
-
-	useEffect(() => {
-		const savedDiscount = localStorage.getItem('discountPercent')
-		if (savedDiscount) {
-			setDiscountPercent(JSON.parse(savedDiscount))
-		}
-	}, [])
-
-	useEffect(() => {
-		localStorage.setItem('discountPercent', JSON.stringify(discountPercent))
-	}, [discountPercent])
+	const dispatch = useDispatch()
+	const items = useSelector(state => state.basketList.items)
+	const counts = useSelector(state => state.basketList.counts)
+	const discountPercent = useSelector(state => state.basketList.discount)
+	const promoMessage = useSelector(state => state.basketList.promoMessage)
 	const handleAddItem = (index) => {
-		const updated = [...counts]
-		updated[index]++
-		setCounts(updated)
+		dispatch(addItemCount(index))
+		console.log(index)
 	}
 	const handleMinusItem = (index) => {
-		const updated = [...counts]
-		if (updated[index] > 1) {
-			updated[index]--
-			setCounts(updated)
-		}
-	}
-	const handleDeleteItem = (index) => {
-		const updatedItems = [...items]
-		const updatedCounts = [...counts]
-		updatedItems.splice(index, 1)
-		updatedCounts.splice(index, 1)
-		setItems(updatedItems)
-		setCounts(updatedCounts)
-		localStorage.setItem('activeProducts', JSON.stringify(updatedItems))
+		dispatch(subtractItemCount(index))
 	}
 	const toggleShowAll = () => {
 		setShowAll((prev) => !prev)
 	}
-	const applyPromo = () => {
-		if (items.length === 0) {
-			setDiscountPercent(0)
-			setPromoMessage('Товарів немає')
-			return
-		}
-		const input = promoInputValue.trim().toUpperCase()
-		if (validPromoCodes.hasOwnProperty(input)) {
-			const discount = validPromoCodes[input]
-			setDiscountPercent(discount)
-			setPromoMessage(
-				discount > 0
-					? `Промокод застосовано! Знижка ${discount}%`
-					: `Промокод застосовано! Безкоштовна доставка`
-			)
-		} else if (!input.trim('')) {
-			setPromoMessage('Порожнє поле промокоду')
-		} else {
-			setDiscountPercent(0)
-			setPromoMessage('Недійсний промокод')
-		}
-	}
-
 	const getTotalPrice = () => {
 		const total = items.reduce((acc, item, index) => {
-			const price = Number(item.price?.replace(/\D/g, '')) || 0
+			const price = Number(String(item.price).replace(/\D/g, '')) || 0
 			return acc + price * (counts[index] || 1)
 		}, 0)
 
@@ -113,6 +43,14 @@ export const BasketList = () => {
 
 		return total
 	}
+	useEffect(() => {
+		dispatch(fetchBasket());
+	}, [dispatch]);
+	useEffect(() => {
+		localStorage.setItem("activeProducts", JSON.stringify(items));
+		localStorage.setItem("basketCounts", JSON.stringify(counts));
+	}, [items, counts]);
+
 	const { orderButton } = useContext(ContextBasketList)
 	return (
 		<Fragment>
@@ -131,13 +69,12 @@ export const BasketList = () => {
 								<>
 									<li
 										key={index}
-										className={`${styles.containerBed} ${
-											isHidden ? styles.hiddenOnMobile : ''
-										}`}
+										className={`${styles.containerBed} ${isHidden ? styles.hiddenOnMobile : ''
+											}`}
 									>
 										<div className={styles.containerDescription}>
 											<img
-												src={bed.image.src}
+												src={bed.imageSrc}
 												alt={bed.alt}
 												className={styles.imgBed}
 											/>
@@ -148,7 +85,7 @@ export const BasketList = () => {
 												>
 													-
 												</button>
-												<p>{counts[index]}</p>
+												<p>{counts[index] || 1}</p>
 												<button
 													onClick={() => handleAddItem(index)}
 													className={styles.btnMath}
@@ -159,6 +96,7 @@ export const BasketList = () => {
 										</div>
 										<div className={styles.containerDescription}>
 											<p className={styles.textBed}>{bed.size}</p>
+											<p className={styles.titleBed}>{bed.title}</p>
 											<p className={styles.textDescription}>
 												{bed.description}
 											</p>
@@ -172,12 +110,12 @@ export const BasketList = () => {
 										</div>
 										<button
 											className={styles.btnDelete}
-											onClick={() => handleDeleteItem(index)}
+											onClick={() => dispatch(deleteFromBasket(bed.id))}
 										>
-											<img src={deleteSvg} alt='deleteSvg' />
+											<img src={deleteSvg} alt='deleteSvg' style={{ maxWidth: 24 }} />
 										</button>
 									</li>
-									<hr className={styles.dash} />
+									<hr className={`${styles.dash} ${isHidden ? styles.hiddenOnMobile : ''}`} />
 								</>
 							)
 						})}
@@ -188,13 +126,13 @@ export const BasketList = () => {
 								<img
 									src={arrowShow}
 									alt='arrow-show'
-									className={`${styles.arrowIcon} ${
-										showAll ? styles.rotated : ''
-									}`}
+									className={`${styles.arrowIcon} ${showAll ? styles.rotated : ''
+										}`}
 								/>
 							</button>
 						</div>
 					</ul>
+					<div className={styles.containerPromoOrder}>
 					<div className={styles.containerPromocode}>
 						<div className={styles.promocodeDecription}>
 							<img src={promoIcon} alt='promo-icon' />
@@ -209,14 +147,14 @@ export const BasketList = () => {
 								disabled={items.length === 0}
 								onChange={(e) => setPromoInputValue(e.target.value)}
 							/>
-							<button className={styles.buttonPromocode} onClick={applyPromo}>
+							<button className={styles.buttonPromocode} onClick={() => dispatch(applyPromo(promoInputValue))}>
 								Ок
 							</button>
 						</div>
 					</div>
 					<p id='message'>{promoMessage}</p>
 					<hr className={styles.dash} />
-					<div style={{ marginLeft: 20 }}>
+					<div style={{ marginRight: 20 }}>
 						<p className={styles.textTogether} style={{ marginBottom: 28 }}>
 							Разом:
 						</p>
@@ -243,16 +181,16 @@ export const BasketList = () => {
 							</li>
 						</ul>
 					</div>
-					<div className={styles.containerBed}>
+					<div className={styles.containerBed} style={{alignItems:"center" , marginLeft:"-20px"}}>
 						<input type='checkbox' className={styles.checkboxes} />
-						<p style={{ textAlign: 'left' }}>
+						<p className={styles.confirmPhone}>
 							Не передзвонюйте мені для підтвердження замовлення
 						</p>
 					</div>
 					<button className={styles.btnOrder} onClick={orderButton}>
 						ОФОРМИТИ ЗАМОВЛЕННЯ
 					</button>
-					<p>
+					<p className={styles.agreeText}>
 						Підтверджуючи замовлення, я приймаю умови{' '}
 						<span className={styles.userOkay}>
 							<Link to='/agree' style={{ color: '#FFBC57' }}>
@@ -260,6 +198,7 @@ export const BasketList = () => {
 							</Link>
 						</span>
 					</p>
+					</div>
 				</div>
 			</section>
 		</Fragment>

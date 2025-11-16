@@ -9,7 +9,7 @@ export const AboutUsPage = () => {
     <>
         <Topic />
         <Benefits />
-        <LastReviews />
+        {/* <LastReviews /> */}
         <ShowRoom />
         <Advantages />
     </>

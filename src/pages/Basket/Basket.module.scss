@@ -13,6 +13,7 @@
     padding-bottom: 20px;
     align-items: center;
     gap:68px;
+    width: 480px;
   }
   .checkboxes {
     width:20px;
@@ -20,6 +21,13 @@
     appearance: none;
     border:1px solid #D1D5D5;
   }
+  .checkboxes:checked {
+  background-color: #FFBC57; 
+  border-color: #FFBC57;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path d='M7.629 13.233l-3.296-3.296a1 1 0 011.414-1.414l1.882 1.882 4.95-4.95a1 1 0 111.414 1.414l-6.364 6.364a1 1 0 01-1.414 0z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+}
   .mainWrapperDelivery {
     padding-bottom: 30px;
   }
@@ -29,6 +37,7 @@
       justify-content: center;
       gap: 30px;
       align-items: flex-start;
+      width: 100%;
     }
   }
 
@@ -90,6 +99,7 @@
         line-height: 28px;
         text-align: center;
         color:#2B2929;
+        width: 310px;
       }
     }
 
@@ -102,25 +112,25 @@
 
   .wrapperPayment {
     display: flex;
-    gap: 20px;
+    gap: 10px;
     flex-direction: row;
     align-items: center;
-    padding: 10px;
-
-    margin-left: 20px;
+    padding: 10px 0px 10px 25px;
   }
 
   .formInfo {
     height: 450px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
   }
 
   .basketWrapper {
     width: 410px;
     height: 100%;
     background-color: #FFF;
+    box-shadow: -3px 4px 15px 0px #0000000F;
+    border-radius: 8px;
   }
 
   .customCheckbox {
@@ -170,7 +180,7 @@
   .titleContainer {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
     padding: 20px;
   }
 

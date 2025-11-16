@@ -3,18 +3,13 @@
     flex-direction: column-reverse;
     align-items: center;
     padding: 10px 0 10px 0;
-    // background: #edededa2;
     background: #ededede1;
     border-radius: 15px;
-
     row-gap: 10px;
-    
     position: fixed;
     bottom: 30px;
     right: 30px;
-
     z-index: 1000000000000000001;
-
     max-height: 500px;
     overflow: auto;
 }
@@ -46,6 +41,7 @@
     flex-direction: column;
     align-items: center;
     width: 220PX;
+    position: relative;
     &_image{
         width: 160px;
         height: 120px;
@@ -55,4 +51,26 @@
         font-weight: 600;
         font-size: 19px;
     }
+}
+.List{
+    width: 100%;
+}
+.ItemList{
+    position: relative;
+}
+.DeleteItem{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    color: #888;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

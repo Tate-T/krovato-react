@@ -2,18 +2,60 @@ import Container from "../Container/Container";
 import "./Login.scss";
 import "bootstrap";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setName, setPassword, login, logout } from "../../redux/login/loginSlice"; 
 
-const LoginPage = ({isLogged, setIsLogged, handleLogin}) => {
-    //const [isLogged, setIsLogged] = useState(false);
+const LoginPage = () => {
+  const dispatch = useDispatch();
+  const { name, password, isLoged } = useSelector((state) => state.login || {}); // safe
 
+  const [localName, setLocalName] = useState(name || "");
+  const [localPassword, setLocalPassword] = useState(password || "");
+
+  const handleLogin = () => {
+    if (localName && localPassword) {
+      dispatch(setName(localName));
+      dispatch(setPassword(localPassword));
+      dispatch(login());
+    }
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    setLocalName("");
+    setLocalPassword("");
+  };
 
   return (
     <Container>
       <div className="loginPage">
-        <h2>Login Page</h2>
-        <input className="loginInp" type="text" placeholder="Username" />
-        <input className="loginInp" type="password" placeholder="Password" />
-        <button className="loginBtn" onClick={handleLogin}>Login</button>
+        <h2>{isLoged ? `Welcome, ${name}!` : "Login Page"}</h2>
+
+        {!isLoged ? (
+          <>
+            <input
+              className="loginInp"
+              type="text"
+              placeholder="Username"
+              value={localName}
+              onChange={(e) => setLocalName(e.target.value)}
+            />
+            <input
+              className="loginInp"
+              type="password"
+              placeholder="Password"
+              value={localPassword}
+              onChange={(e) => setLocalPassword(e.target.value)}
+            />
+            <button className="loginBtn" onClick={handleLogin}>
+              Login
+            </button>
+          </>
+        ) : (
+          <button className="loginBtn logout" onClick={handleLogout}>
+            Logout
+          </button>
+        )}
       </div>
     </Container>
   );

@@ -2,65 +2,56 @@ import { ProductsItem } from "./Item/Item";
 
 import style from "../Products.module.scss";
 
-import { useState, useEffect } from "react";
-
-import products from "../../../../products";
-
+import {useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import productsThunk from "../../../../thunk/ProductsThunk";
+import { addFavoriteProductThunk } from "../../../../thunk/addFavoriteProductThunk";
+import { getFavoriteThunk } from "../../../../thunk/getFivoriteThunk";
+import { addToBasket } from "../../../../redux/basket/basketListSlice";
 export const ProductsList = () => {
-  // Сохраняем избранные товары из localStorage
-  const [favoriteProducts, setFavoriteProducts] = useState(() => {
-    return JSON.parse(localStorage.getItem("activeProducts")) || [];
-  });
-
-  // Проверка, лайкнут ли товар
-  const isFavorite = (productId) => {
-    return favoriteProducts.some((item) => item.id === productId);
-  };
-
-  // Добавление/удаление товара из избранного
-  function toggleFavorite(productId) {
-    let updatedFavorites;
-    if (isFavorite(productId)) {
-      updatedFavorites = favoriteProducts.filter((item) => item.id !== productId);
-    } else {
-      const productToAdd = products.find((item) => item.id === productId);
-      if (!productToAdd) return;
-      updatedFavorites = [...favoriteProducts, productToAdd];
-    }
-    setFavoriteProducts(updatedFavorites);
-    localStorage.setItem("activeProducts", JSON.stringify(updatedFavorites));
-    window.dispatchEvent(new Event('storage'));
+  const dispatch = useDispatch()
+  const products = useSelector(state => state.products.products)
+  const favoriteProducts = useSelector( state => state.favorite.favoriteProducts)
+    const handleAddToBasket = (product) => {
+    dispatch(addToBasket(product))
   }
-
-  // Слушаем изменения localStorage (например, если лайкнули в другой вкладке)
-  useEffect(() => {
-    const handleStorage = (event) => {
-      if (event.key === "activeProducts") {
-        const newFavorites = JSON.parse(event.newValue) || [];
-        setFavoriteProducts(newFavorites);
-      }
+  const isFavorite = (productTitle) => {
+   if (!Array.isArray(favoriteProducts)) return false;
+    return favoriteProducts.some((item) => item.title === productTitle);
     };
-    window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
-  }, []);
 
+  function toggleFavorite({id,title, alt, width,height,length, inStock, price, src, oldPrice,}) {
+    const alreadyFavorite = isFavorite(title);
+    if (alreadyFavorite) {
+      alert("Товар вже додано. Щоб видалити зайдіть в ваш список")
+      return
+    } else {
+      return dispatch(addFavoriteProductThunk({ id, title, alt, width, height, length, inStock, price, imageSrc: src, oldPrice }));
+    }
+  }
+  
+  useEffect(() => {
+    dispatch(productsThunk())
+    dispatch(getFavoriteThunk())
+  },[])
   return (
     <ul className={style.products__list}>
       {products.map((item) => (
-        <ProductsItem
+         <ProductsItem
           id={item.id}
           key={item.id}
-          src={item.image.src}
-          mobileImage={item.image.srcSet.mobile}
-          desktopImage={item.image.srcSet.desktop}
-          alt={item.image.alt}
-          size={item.size}
+          src={item.imageSrc}
+          alt={item.alt}
+          height={item.size.height}
+          width={item.size.width}
+          length={item.size.length}
           title={item.title}
           inStock={item.inStock}
           oldPrice={item.oldPrice}
           currentPrice={item.price}
           onSelect={toggleFavorite}
-          isFavorite={isFavorite(item.id)}
+          isFavorite={isFavorite(item.title)}
+          addBasket={() => handleAddToBasket(item)}
         />
       ))}
     </ul>

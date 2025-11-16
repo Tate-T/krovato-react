@@ -5,15 +5,17 @@ import { LastReviews } from "../../components/LastReviews/LastReviews";
 import { Questions } from "../../components/Questions/Questions";
 import { Advantages } from "../../components/Advantages/Advantages";
 
-export const Catalog = () => {
+const Catalog = () => {
   return (
     <>
       <Subcategories />
       <Shop />
       <Choice />
       <LastReviews />
-      <Questions sectionId="bed-questions" />
+      <Questions sectionId="bed-questions" /> 
       <Advantages />
     </>
   )
 };
+
+export default Catalog;

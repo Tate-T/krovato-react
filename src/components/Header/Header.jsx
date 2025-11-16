@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { NavLink, Link } from "react-router-dom";
 import c from "../../components/Container/Container.module.scss";
-
 import style from "./h.module.scss";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { FiSearch, FiPhone, FiMenu, FiChevronDown } from "react-icons/fi";
@@ -23,20 +22,23 @@ import { FaHeart } from "react-icons/fa";
 import { CartModal } from "../BasketModal/BasketModal";
 import bm from "../BasketModal/BasketModal.module.scss";
 import Favorite from "../../pages/Favorite/Favorite";
-import { Login } from "./Login";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../redux/login/loginSlice";
+import { FiLogIn, FiLogOut } from "react-icons/fi";
+import "./noScroll.scss";
 
-const Header = ({isLogged}) => {
+const Header = () => {
 
-    // console.log(isLogged);
+  
+  const dispatch = useDispatch();
+  const { isLoged, name } = useSelector((state) => state.login || {});
+
   const [languageDropdownVisible, setLanguageDropdownVisible] = useState(false);
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
   const [additionalNumbersVisible, setAdditionalNumbersVisible] =
     useState(false);
   const [searchDropdownVisible, setSearchDropdownVisible] = useState(false);
   const [favoriteModalVisible, setFavoriteModalVisible] = useState(false);
-
-  // login
-//   const [isLogged, setIsLogged] = useState(false);
 
   const cartModalRef = useRef();
   const languageRef = useRef();
@@ -54,7 +56,6 @@ const Header = ({isLogged}) => {
       ) {
         setLanguageDropdownVisible(false);
       }
-
       if (
         additionalNumbersVisible &&
         additionalNumbersRef.current &&
@@ -90,14 +91,11 @@ const Header = ({isLogged}) => {
       initClassName: "aos-init",
       animatedClassName: "aos-animate",
     });
-
     window.addEventListener("load", () => {
       AOS.refresh();
     });
-
     window.addEventListener("resize", handleResize);
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       window.removeEventListener("resize", handleResize);
       document.removeEventListener("mousedown", handleClickOutside);
@@ -113,13 +111,37 @@ const Header = ({isLogged}) => {
     setSearchDropdownVisible(false);
   };
 
+  // const toggleMenu = (e) => {
+  //   e.stopPropagation();
+  //   setMobileMenuVisible((prev) => !prev);
+  //   setLanguageDropdownVisible(false);
+  //   setAdditionalNumbersVisible(false);
+  //   setSearchDropdownVisible(false);
+  // };
+
   const toggleMenu = (e) => {
-    e.stopPropagation();
-    setMobileMenuVisible((prev) => !prev);
-    setLanguageDropdownVisible(false);
-    setAdditionalNumbersVisible(false);
-    setSearchDropdownVisible(false);
-  };
+  e.stopPropagation();
+  setMobileMenuVisible((prev) => {
+    const newState = !prev;
+    document.body.classList.toggle("no-scroll", newState);
+    return newState;
+  });
+  setLanguageDropdownVisible(false);
+  setAdditionalNumbersVisible(false);
+  setSearchDropdownVisible(false);
+};
+
+const toggleSearchDropdown = (e) => {
+  e.stopPropagation();
+  setSearchDropdownVisible((prev) => {
+    const newState = !prev;
+    document.body.classList.toggle("no-scroll", newState);
+    return newState;
+  });
+  setLanguageDropdownVisible(false);
+  setMobileMenuVisible(false);
+  setAdditionalNumbersVisible(false);
+};
 
   const toggleAdditionalNumbers = (e) => {
     e.stopPropagation();
@@ -129,12 +151,16 @@ const Header = ({isLogged}) => {
     setSearchDropdownVisible(false);
   };
 
-  const toggleSearchDropdown = (e) => {
-    e.stopPropagation();
-    setSearchDropdownVisible((prev) => !prev);
-    setLanguageDropdownVisible(false);
-    setMobileMenuVisible(false);
-    setAdditionalNumbersVisible(false);
+  // const toggleSearchDropdown = (e) => {
+  //   e.stopPropagation();
+  //   setSearchDropdownVisible((prev) => !prev);
+  //   setLanguageDropdownVisible(false);
+  //   setMobileMenuVisible(false);
+  //   setAdditionalNumbersVisible(false);
+  // };
+
+  const handleLogout = () => {
+    dispatch(logout());
   };
 
   // Render sections
@@ -312,7 +338,6 @@ const Header = ({isLogged}) => {
           )}
         </div>
       </div>
-
       <div className={style.header__mobile_row}>
         <div
           className={style.header__catalog_btn}
@@ -433,39 +458,50 @@ const Header = ({isLogged}) => {
           </div>
         )}
       </div>
-
       <div className={style.loginItems}>
-        {!isLogged ? (
-          <div className={style.header__icon_container}>
-            <Login/>
-          </div>
-        ) : (
-          <>
-            <div className={style.header__icon_container}>
-              <FaHeart
-                className={style.heart_icon}
-                size={24}
-                onClick={() => setFavoriteModalVisible(true)}
-                style={{ cursor: "pointer" }}
-              />
-            </div>
-            <a href="#" className={style.header__icon_container}>
-              <button
-                className={style.icon_with_badge}
-                onClick={() => {
-                  CartModal.openModal();
-                }}
-              >
-                <HiOutlineShoppingBag className={style.cart_icon} size={24} />
-              </button>
-            </a>
-            <CartModal ref={cartModalRef} />
-          </>
-        )}
+  {!isLoged ? (
+    <div className={style.header__icon_container}>
+      <NavLink to="/login">
+        <FiLogIn size={24} className={style.login_icon} />
+      </NavLink>
+    </div>
+  ) : (
+    <>
+      {/* Favorite */}
+      <div className={style.header__icon_container}>
+        <FaHeart
+          className={style.heart_icon}
+          size={24}
+          onClick={() => setFavoriteModalVisible(true)}
+          style={{ cursor: "pointer" }}
+        />
       </div>
+
+      {/* Cart */}
+      <a href="#" className={style.header__icon_container}>
+        <button
+          className={style.icon_with_badge}
+          onClick={() => CartModal.openModal()}
+        >
+          <HiOutlineShoppingBag className={style.cart_icon} size={24} />
+        </button>
+      </a>
+
+      {/* Logout */}
+      <div className={style.header__icon_container}>
+        <NavLink to="/" onClick={handleLogout}>
+          <FiLogOut size={24} className={style.logout_icon} />
+        </NavLink>
+      </div>
+
+      {/* Cart modal */}
+      <CartModal ref={cartModalRef} />
+    </>
+  )}
+</div>
     </div>
   );
-
+  // Render the bottom section with dropdown before recall button
   const renderBottomSection = () => (
     <div
       className={[c.container, style.container, style.header__list3].join(" ")}
@@ -529,6 +565,17 @@ const Header = ({isLogged}) => {
           <span>Купити в кредит</span>
         </a>
       </div>
+      {/* Dropdown element placed before recall button */}
+      {/* Example: if you have a dropdown for callback options, place it here */}
+      {/* 
+      {dropdownVisible && (
+        <div className={style.header__dropdown_menu_box}>
+          <div className={style.header__dropdown_menu}>
+            ...dropdown content...
+          </div>
+        </div>
+      )}
+      */}
       <div
         className={style.header__button}
         data-aos="zoom-in-left"

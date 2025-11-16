@@ -8,14 +8,14 @@
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { closeModal, fetchCartItems, deleteFromCart, updateCartQuantity } from '../../redux/basket/basketSlice';
+import { closeModal, fetchCartItems, deleteFromCart, updateCartQuantity } from '../../redux/basketModal/basketModalSlice';
 import styles from './BasketModal.module.scss';
 import { FaTimes, FaMinus, FaPlus } from 'react-icons/fa';
 
 export const CartModal = () => {
   const dispatch = useDispatch();
   const { items, isModalOpened, isLoading } = useSelector((state) => state.cart);
-
+  console.log(items)
   useEffect(() => {
     dispatch(fetchCartItems());
   }, [dispatch]);

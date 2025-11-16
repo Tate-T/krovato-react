@@ -38,6 +38,7 @@ export const Shop = () => {
 
   const handleFilterClear = () => {
     getProductsAPI().then((data) => setProducts(data));
+  };
 
   const handleFilterPrice = () => {
     const filteredProducts = products.slice(0).filter((product, index) => {
@@ -46,18 +47,8 @@ export const Shop = () => {
       );
       return productPrice >= 1195 && productPrice <= 9566;
     });
+    setProducts(filteredProducts);
   };
-
-  // const memoizedHandleFilterPrice = useMemo((products) => {
-  //   if (!products) return [];
-  //   const filteredProducts = products.slice(0).filter((product, index) => {
-  //     const productPrice = parseInt(
-  //       product.price.split(" грн.").join("").split(" ").join("")
-  //     );
-  //     return productPrice >= 1195 && productPrice <= 9566;
-  //   });
-  //   setProducts(filteredProducts);
-  // }, [products]);
 
   const handleFilterIsInStock = () => {
     const filteredProducts = products
@@ -305,8 +296,9 @@ export const Shop = () => {
                 <svg className="aside__more">
                   <use href="#"></use>
                 </svg>
-                <p className="aside__filter">Фільтр пошуку</p>
-              </div>
+              </li>
+            </ul>
+          </aside>
 
           <div>
             <div className="choose">
@@ -330,27 +322,27 @@ export const Shop = () => {
                     <use href="#"></use>
                   </svg>
                 </li>
-                <li className="aside__flex hidden">
-                  <p className="aside__suptitle">Довжина спального місця</p>
-                  <svg className="aside__more">
+                <li className="choose__item" onClick={handleFilterPrice}>
+                  <p className="choose__text">Ціна: 1195-9566</p>
+                  <svg className="choose__close">
                     <use href="#"></use>
                   </svg>
                 </li>
-                <li className="aside__flex hidden">
-                  <p className="aside__suptitle">Форма</p>
-                  <svg className="aside__more">
+                <li className="choose__item" onClick={handleFilterIsInStock}>
+                  <p className="choose__text">В наявності</p>
+                  <svg className="choose__close">
                     <use href="#"></use>
                   </svg>
                 </li>
-                <li className="aside__flex hidden">
-                  <p className="aside__suptitle">Матеріал корпусу</p>
-                  <svg className="aside__more">
+                <li className="choose__item" onClick={handleFilterCorners}>
+                  <p className="choose__text">Виробник: Corners</p>
+                  <svg className="choose__close">
                     <use href="#"></use>
                   </svg>
                 </li>
-                <li className="aside__flex hidden">
-                  <p className="aside__suptitle">Основа для матраца</p>
-                  <svg className="aside__more">
+                <li className="choose__item" onClick={handleFilterSize}>
+                  <p className="choose__text">200x210 см</p>
+                  <svg className="choose__close">
                     <use href="#"></use>
                   </svg>
                 </li>
@@ -358,7 +350,7 @@ export const Shop = () => {
             </div>
             <ul className="shop__list">
               {products.map((product) => (
-                <li key={product.id} className={`shop__item`}>
+                <li key={product.id} className="shop__item">
                   <img src={product.imageSrc} alt={product.alt} className="shop__image" />
                   <div>
                     <p className="shop__text">
@@ -366,7 +358,7 @@ export const Shop = () => {
                         typeof product.size === "object"
                           ? `${product.size.width} x ${product.size.height} x ${product.size.length}`
                           : product.size
-                      }
+                      } мм
                     </p>
                     <h2 className="shop__suptitle">{product.title}</h2>
                     <div className="shop__pashalka">
@@ -378,84 +370,30 @@ export const Shop = () => {
                       </p>
                     </div>
                   </div>
-                </div>
-                <ul className="choose__list">
-                  <li className="choose__item" onClick={ handleFilterClear }>
-                    <p className="choose__text">Очистити</p>
-                    <svg className="choose__close">
-                      <use href="#"></use>
-                    </svg>
-                  </li>
-                  <li className="choose__item" /* onClick={handleFilterPrice} */  >
-                    <p className="choose__text">Ціна: 1195-9566</p>
-                    <svg className="choose__close">
-                      <use href="#"></use>
-                    </svg>
-                  </li>
-                  <li className="choose__item" onClick={ handleFilterIsInStock }>
-                    <p className="choose__text">В наявності</p>
-                    <svg className="choose__close">
-                      <use href="#"></use>
-                    </svg>
-                  </li>
-                  <li className="choose__item">
-                    <p className="choose__text" /* onClick={handleFilterCorners} */>
-                      Виробник: Corners
-                    </p>
-                    <svg className="choose__close">
-                      <use href="#"></use>
-                    </svg>
-                  </li>
-                  <li className="choose__item">
-                    <p className="choose__text" onClick={ handleFilterSize }>
-                      200x210 см
-                    </p>
-                    <svg className="choose__close">
-                      <use href="#"></use>
-                    </svg>
-                  </li>
-                </ul>
-              </div>
-              <ul className="shop__list">
-                { products.map((product) => (
-                    <li key={ product.id } className={ `shop__item` }>
-                      <img src={ product.imageSrc } alt={ product.alt } className="shop__image"/>
-                      <div>
-                        <p className="shop__text">Розмір: { product.size.width } x { product.size.height } x { product.size.length } мм</p>
-                        <h2 className="shop__suptitle">{ product.title }</h2>
-                        <div className="shop__pashalka">
-                          <svg className="shop__icon">
-                            <use href="#"></use>
-                          </svg>
-                          <p className="shop__instock">
-                            { product.inStock ? "В наявності" : "Під замовлення" }
-                          </p>
-                        </div>
+                  <div className="shop__item-element">
+                    {product.oldPrice ? (
+                      <div className="shop__promo">
+                        <p className="shop__old">{product.oldPrice} грн.</p>
+                        <p className="shop__price">{product.price} грн.</p>
                       </div>
-                      <div className="shop__item-element">
-                        { product.oldPrice ? (
-                            <div className="shop__promo">
-                              <p className="shop__old">{ product.oldPrice } грн.</p>
-                              <p className="shop__price">{ product.price } грн.</p>
-                            </div>
-                        ) : (
-                            <p className="shop__price">{ product.price } грн.</p>
-                        ) }
-                        <div className="shop__icons">
-                          <svg className="shop__heart">
-                            <use href="#"></use>
-                          </svg>
-                          <svg className="shop__basket">
-                            <use href="#"></use>
-                          </svg>
-                        </div>
-                      </div>
-                    </li>
-                )) }
-              </ul>
-            </div>
+                    ) : (
+                      <p className="shop__price">{product.price} грн.</p>
+                    )}
+                    <div className="shop__icons">
+                      <svg className="shop__heart">
+                        <use href="#"></use>
+                      </svg>
+                      <svg className="shop__basket">
+                        <use href="#"></use>
+                      </svg>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
-        </section>
-      </>
+        </div>
+      </section>
+    </>
   );
 };

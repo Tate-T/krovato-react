@@ -5,7 +5,7 @@ export const ProductsItem = ({id,src,alt,width,height,length,title,inStock,oldPr
   const dispatch = useDispatch()
   return (
   
-    <li key={id} data-aos="zoom-in-right" data-aos-duration="1500" className={style.products__item} onClick={() => {dispatch(getProductItem({src,alt,width,height,length,title,oldPrice,currentPrice,id,isFavorite}))}}>
+    <li key={id} className={style.products__item} onClick={() => {dispatch(getProductItem({src,alt,width,height,length,title,oldPrice,currentPrice,id,isFavorite}))}}>
       <img src={src} alt={alt} />
       <p className={style.products__size}>Розмір: {height} x {width} x {length}</p>
       <a href="#" className={style.products__subtitle}>

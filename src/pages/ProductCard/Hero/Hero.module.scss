@@ -573,10 +573,11 @@ line-height: 1.41;
     }
   }
 
-  &__clothImg {
+  &__clothBtn {
     width: 60px;
     height: 60px;
-
+    border-radius: 50%;
+    background-size: cover;
     @media screen and (min-width: 1290px) {
       width: 70px;
       height: 70px;

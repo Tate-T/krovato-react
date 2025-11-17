@@ -420,27 +420,15 @@ const Hero = () => {
               </div>
               <ul className={style.heroBox__cloths}>
                 <li className={style.heroBox__cloth}>
-                  <img
-                    className={style.heroBox__clothImg}
-                    src={cloth1}
-                    alt="тканина"
-                  />
+                  <button className={style.heroBox__clothBtn } style={{backgroundImage:`url(${cloth1})`}}></button>
                 </li>
                 <li className={style.heroBox__cloth}>
-                  <img
-                    className={style.heroBox__clothImg}
-                    src={cloth2}
-                    alt="тканина"
-                  />
+                  <button className={style.heroBox__clothBtn } style={{backgroundImage:`url(${cloth2})`}}></button>
                 </li>
                 <li
                   className={`${style.heroBox__cloth} ${style.heroBox__clothCurrent}`}
                 >
-                  <img
-                    className={style.heroBox__clothImg}
-                    src={cloth3}
-                    alt="тканина"
-                  />
+                  <button className={style.heroBox__clothBtn } style={{backgroundImage:`url(${cloth3})`}}></button>
                   <svg
                     className={style.heroBox__clothImgCheckMark}
                     xmlns="http://www.w3.org/2000/svg"
@@ -456,27 +444,15 @@ const Hero = () => {
                   </svg>
                 </li>
                 <li className={style.heroBox__cloth}>
-                  <img
-                    className={style.heroBox__clothImg}
-                    src={cloth4}
-                    alt="тканина"
-                  />
+                <button className={style.heroBox__clothBtn } style={{backgroundImage:`url(${cloth4})`}}></button>
                 </li>
                 <li className={style.heroBox__cloth}>
-                  <img
-                    className={style.heroBox__clothImg}
-                    src={cloth5}
-                    alt="тканина"
-                  />
+                <button className={style.heroBox__clothBtn } style={{backgroundImage:`url(${cloth5})`}}></button>
                 </li>
                 <li
                   className={`${style.heroBox__cloth} ${style.heroBox__clothGreen}`}
                 >
-                  <img
-                    className={style.heroBox__clothImg}
-                    src={cloth6}
-                    alt="тканина"
-                  />
+                  <button className={style.heroBox__clothBtn } style={{backgroundImage:`url(${cloth6})`}}></button>
                 </li>
               </ul>
               <a href="#" className={style.heroBox__moreLink}>

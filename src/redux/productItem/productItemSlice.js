@@ -4,7 +4,8 @@ const initialState = {
     currentProduct: {},
     count: 1,
     totalCurrentSum: 0,
-    totalOldSum: 0
+    totalOldSum: 0,
+    smallImg :[]
 }
 const ProductItemSlice = createSlice({
     name:"ProductItem",
@@ -12,9 +13,9 @@ const ProductItemSlice = createSlice({
     reducers:{
         getProductItem(state,action) {
             state.currentProduct = action.payload;
-            console.log(action.payload)
             state.totalOldSum = action.payload.oldPrice
             state.totalCurrentSum = action.payload.currentPrice
+            state.smallImg = action.payload.smallBedImage
         },
         AddToCount(state,action){
             state.count += action.payload;

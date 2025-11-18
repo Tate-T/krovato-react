@@ -1,16 +1,15 @@
 import { getProductItem } from "../../../../../redux/productItem/productItemSlice";
 import style from "../../Products.module.scss";
 import { useDispatch } from "react-redux";
-export const ProductsItem = ({id,src,alt,width,height,length,title,inStock,oldPrice,currentPrice,onSelect,isFavorite,addBasket}) => {
+export const ProductsItem = ({id,src,alt,width,height,length,title,inStock,oldPrice,currentPrice,onSelect,isFavorite,addBasket,smallBedImage}) => {
   const dispatch = useDispatch()
   return (
-  
-    <li key={id} className={style.products__item} onClick={() => {dispatch(getProductItem({src,alt,width,height,length,title,oldPrice,currentPrice,id,isFavorite}))}}>
+    <li key={id} className={style.products__item} onClick={() => {dispatch(getProductItem({src,alt,width,height,length,title,oldPrice,currentPrice,id,isFavorite,smallBedImage}))}}>
       <img src={src} alt={alt} />
       <p className={style.products__size}>Розмір: {height} x {width} x {length}</p>
-      <a href="#" className={style.products__subtitle}>
+      <p className={style.products__subtitle}>
         {title}
-      </a>
+      </p>
       <div className={style.products__stock}>
         <svg
           className={style.products__stockArrow}

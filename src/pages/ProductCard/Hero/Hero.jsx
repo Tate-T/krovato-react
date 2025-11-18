@@ -29,16 +29,17 @@ import { DeleteFromCount } from "../../../redux/productItem/productItemSlice";
 const Hero = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
-   const handleClick = () => {
-     navigate('/basket');  
-   };
-   const beds = [miniBed0,miniBed2,miniBed3,miniBed4,miniBed5]
+  const handleClick = () => {
+    navigate('/basket');  
+  };
+  const beds = [miniBed0,miniBed2,miniBed3,miniBed4,miniBed5]
    
-   const item = useSelector(state => state.itemProduct.currentProduct)
-   const count = useSelector(state => state.itemProduct.count);
-   const TotalOldSum = useSelector(state => state.itemProduct.totalOldSum)
-   const totalCurrentSum = useSelector(state => state.itemProduct.totalCurrentSum)
-   console.log(totalCurrentSum)
+  const item = useSelector(state => state.itemProduct.currentProduct)
+  const count = useSelector(state => state.itemProduct.count);
+  const TotalOldSum = useSelector(state => state.itemProduct.totalOldSum)
+  const totalCurrentSum = useSelector(state => state.itemProduct.totalCurrentSum)
+  const miniimg = useSelector(state => state.itemProduct.smallImg)
+  console.log(miniimg)
   return (
     <section className={style.hero}>
       <div className={containerStyle.container}>
@@ -99,9 +100,7 @@ const Hero = () => {
           <a href="#" className={style.hero__activeLinkMob}>Двоспальне ліжко з підйомним механі ...</a>
         </nav>
         <div className={style.hero__container}>
-          <h2 className={style.hero__titleMob}>
-            prob
-          </h2>
+          <h2 className={style.hero__titleMob}> {totalCurrentSum} грн</h2>
           <div className={style.hero__frameMob}>
             <div className={style.hero__activeBoxMob}>
               <svg
@@ -160,7 +159,7 @@ const Hero = () => {
               Модель: 62003836
             </p>
           </div>
-          <div className={style.hero__container1}>
+          <div className={style.hero__container1} >
             <img
               className={style.hero__img}
               src= {item.src}
@@ -185,7 +184,6 @@ const Hero = () => {
             </ul>
             <button
               className={style.hero__buttonLeft}
-              onClick={console.log("21`")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -219,42 +217,15 @@ const Hero = () => {
               </svg>
             </button>
             <ul className={style.hero__images}>
-                
+              {miniimg.map((img) => (
                 <li className={style.hero__item}>
                   <img
                     className={`${style.hero__image}`}
-                    src= "https://i.ibb.co/nNX94Gcb/tokio-small-1.jpg"
+                    src= {img}
                     alt="bed"
                   />
-              </li>
-              <li className={style.hero__item}>
-                  <img
-                    className={`${style.hero__image}`}
-                    src= "https://i.ibb.co/k6qQX7zc/tokio-1.jpg"
-                    alt="bed"
-                  />
-              </li>
-              <li className={style.hero__item}>
-                  <img
-                    className={`${style.hero__image}`}
-                    src= "https://i.ibb.co/sdk67cn0/tokio-2.jpg"
-                    alt="bed"
-                  />
-              </li>
-              <li className={style.hero__item}>
-                  <img
-                    className={`${style.hero__image}`}
-                    src= "https://i.ibb.co/5WW4BTVv/tokio-3.jpg"
-                    alt="bed"
-                  />
-              </li>
-              <li className={style.hero__item}>
-                  <img
-                    className={`${style.hero__image}`}
-                    src= "https://i.ibb.co/rRXNBdx1/tokio-4.jpg"
-                    alt="bed"
-                  />
-              </li>
+                </li>
+            ))}
             </ul>
           </div>
           <div className={style.hero__container2}>

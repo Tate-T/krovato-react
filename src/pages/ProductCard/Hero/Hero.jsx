@@ -16,7 +16,6 @@ import cloth6 from "../../../images/product-card/hero-cloth/cloth6.png";
 
 import korzina from "../../../images/product-card/korzina.svg";
 import credit from "../../../images/product-card/credit.svg";
-import { Component } from "react";
 import telegram from "../../../images/product-card/telegram.svg";
 import viber from "../../../images/product-card/viber.svg";
 import whatsapp from "../../../images/product-card/whatsapp.svg";

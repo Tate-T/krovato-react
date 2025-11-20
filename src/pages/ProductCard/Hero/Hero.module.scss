@@ -377,7 +377,9 @@ line-height: 1.41;
   padding: 20px 20px 30px 20px;
   border-radius: 8px 8px 0 0;
   background: #fff;
-
+  &__korzina {
+    margin: 0;
+  }
   &__header {
     display: flex;
     justify-content: center;

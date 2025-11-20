@@ -95,7 +95,7 @@ export const BasketList = () => {
 											</div>
 										</div>
 										<div className={styles.containerDescription}>
-											<p className={styles.textBed}>{bed.size}</p>
+											<p className={styles.textBed}>Розмір: {bed.size.width} x {bed.size.length} x {bed.size.height} мм</p>
 											<p className={styles.titleBed}>{bed.title}</p>
 											<p className={styles.textDescription}>
 												{bed.description}

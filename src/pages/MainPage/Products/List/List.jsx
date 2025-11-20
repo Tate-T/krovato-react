@@ -37,22 +37,23 @@ export const ProductsList = () => {
   return (
     <ul className={style.products__list}>
       {products.map((item) => (
-         <ProductsItem
-          id={item.id}
-          key={item.id}
-          src={item.imageSrc}
-          alt={item.alt}
-          height={item.size.height}
-          width={item.size.width}
-          length={item.size.length}
-          title={item.title}
-          inStock={item.inStock}
-          oldPrice={item.oldPrice}
-          currentPrice={item.price}
-          onSelect={toggleFavorite}
-          isFavorite={isFavorite(item.title)}
-          addBasket={() => handleAddToBasket(item)}
-        />
+           <ProductsItem
+            id={item.id}
+            key={item.id}
+            src={item.imageSrc}
+            alt={item.alt}
+            height={item.size.height}
+            width={item.size.width}
+            length={item.size.length}
+            title={item.title}
+            inStock={item.inStock}
+            oldPrice={item.oldPrice}
+            currentPrice={item.price}
+            onSelect={toggleFavorite}
+            isFavorite={isFavorite(item.title)}
+            addBasket={() => handleAddToBasket(item)}
+            smallBedImage = {item.smallBadImage}
+          />
       ))}
     </ul>
   );

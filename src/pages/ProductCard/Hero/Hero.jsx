@@ -38,7 +38,6 @@ const Hero = () => {
   const TotalOldSum = useSelector(state => state.itemProduct.totalOldSum)
   const totalCurrentSum = useSelector(state => state.itemProduct.totalCurrentSum)
   const miniimg = useSelector(state => state.itemProduct.smallImg)
-  console.log(miniimg)
   return (
     <section className={style.hero}>
       <div className={containerStyle.container}>

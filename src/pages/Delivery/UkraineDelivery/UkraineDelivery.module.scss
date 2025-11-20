@@ -3,15 +3,19 @@
 @import "../../../styles/vars.scss";
 
 .ukraine {
-  @media screen and (min-width: 768px) {
-    padding-bottom: 70px;
-  }
-
   &__container {
     position: relative;
     display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
     gap: 30px;
-    margin: 70px auto 0;
+    margin: 70px auto;
+
+    @media screen and (min-width: 1290px) {
+      display: flex;
+      flex-direction: row;
+    }
   }
 
   & ul {
@@ -23,16 +27,25 @@
   &__title {
     color: $dark-color;
     text-align: center;
-    font-size: 30px;
-    font-style: normal;
+    font-size: 25px;
     font-weight: 600;
     line-height: 133%;
-    margin-bottom: 40px;
+    margin: 0 auto 40px;
+
+    @media screen and (min-width: 420px) {
+      font-size: 30px;
+      line-height: 133%;
+    }
 
     @media screen and (min-width: 768px) {
+      line-height: 120%;
+      max-width: 520px;
+    }
+
+    @media screen and (min-width: 1290px) {
+      text-align: left;
       font-size: 40px;
       line-height: 120%;
-      text-align: left;
       max-width: 520px;
     }
   }
@@ -41,7 +54,7 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
-    margin-bottom: 40px;
+    margin: 0 auto 40px;
   }
 
   &__item {
@@ -60,22 +73,40 @@
 
   &__text {
     color: $dark-color;
-    font-size: 20px;
+    font-size: 13px;
     font-weight: 600;
     line-height: 140%;
-    max-width: 430px;
+    max-width: 520px;
     text-align: left;
-    margin: 0; 
+    margin: 0 auto;
+
+    @media screen and (min-width: 420px) {
+      font-size: 15px;
+    }
+
+    @media screen and (min-width: 768px) {
+      justify-content: left;
+      font-size: 20px;
+    }
   }
 
   &__element {
     color: $dark-color;
-    font-size: 20px;
+    font-size: 13px;
     font-weight: 600;
     line-height: 140%;
-    margin: 20px 0;
     max-width: 520px;
     text-align: left;
+    margin: 30px auto;
+
+    @media screen and (min-width: 420px) {
+      font-size: 15px;
+    }
+
+    @media screen and (min-width: 768px) {
+      justify-content: left;
+      font-size: 20px;
+    }
   }
 
   &__element:last-child {
@@ -84,88 +115,71 @@
 
   &__square {
     position: absolute;
-    top: 80%;
-    right: 40%;
-    width: 250px;
-    height: 250px;
+    top: 73%;
+    right: 33%;
+    width: 180px;
+    height: 180px;
     border-radius: 420px;
     background-color: $yellow-color;
     overflow: hidden;
     border: 3px solid $light-color;
 
-    @media screen and (max-width: 420px) {
-      width: 200px;
-      height: 200px;
-      top: 84%;
+    @media screen and (min-width: 420px) {
+      width: 220px;
+      height: 220px;
     }
 
     @media screen and (min-width: 768px) {
       top: 72%;
-      left: 0;
+      right: 30%;
       width: 420px;
       height: 420px;
     }
 
     @media screen and (min-width: 1290px) {
-      top: 39%;
-      left: 40%;
+      top: 40%;
+      left: 50%;
     }
   }
 
   &__squareTitle {
     color: #fff;
     text-align: center;
-    font-size: 16px;
+    font-size: 10px;
     font-weight: 600;
     line-height: 113%;
     margin-bottom: 10px;
-    max-width: 200px;
-    padding: 60px 25px;
+    margin: 0 0 20px 0;
+    padding: 50px 20px;
 
-    @media screen and (max-width: 420px) {
-      font-size: 15px;
-      padding: 35px 25px;
+    @media screen and (min-width: 420px) {
+      font-size: 12px;
+      padding: 75px 20px;
     }
-
+    
     @media screen and (min-width: 768px) {
       font-size: 26px;
       line-height: 131%;
       margin-bottom: 20px;
       max-width: max-content;
-      margin: 0;
-      padding: 100px 40px;
-    }
-  }
-
-  &__squareText {
-    color: #fff;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 129%;
-    max-width: 200px;
-
-    @media screen and (max-width: 420px) {
-      font-size: 10px;
-    }
-
-    @media screen and (min-width: 768px) {
-      font-size: 20px;
-      line-height: 140%;
-      max-width: max-content;
+      padding: 107px 40px;
     }
   }
 
   &__warning {
     color: $dark-color;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 400;
     line-height: 188%;
     text-align: left;
     margin: 0 0 20px 0;
-  }
 
-  &__warning:last-child {
-    margin-bottom: 0;
+    @media screen and (min-width: 420px) {
+      font-size: 15px;
+    }
+
+    @media screen and (min-width: 768px) {
+      font-size: 16px;
+    }
   }
 }

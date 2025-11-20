@@ -4,6 +4,7 @@ import { UkraineDelivery } from "./UkraineDelivery/UkraineDelivery";
 import { Shares } from "./Shares/Shares";
 import { Price } from "./Price/Price";
 import { Questions } from "../../components/Questions/Questions";
+import { Advantages } from "../../components/Advantages/Advantages";
 
 export const Delivery = () => {
   return (
@@ -15,8 +16,10 @@ export const Delivery = () => {
         <Shares />
         <Price />
         <Questions sectionId="return-questions" />
+        <Advantages />
       </main>
     </>
   );
 };
-export default Delivery
+
+export default Delivery;

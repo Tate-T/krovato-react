@@ -3,8 +3,13 @@
 @import "../../../styles/vars.scss";
 
 .price {
+  display: none;
   padding-top: 70px;
   padding-bottom: 70px;
+
+  @media screen and (min-width: 1290px) {
+    display: block;
+  }
 
   &__title {
     @include font($dark-color, 133%, 30px, 600);

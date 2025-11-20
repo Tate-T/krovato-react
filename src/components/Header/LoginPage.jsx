@@ -1,16 +1,25 @@
 import Container from "../Container/Container";
 import "./Login.scss";
 import "bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { setName, setPassword, login, logout } from "../../redux/login/loginSlice"; 
 
 const LoginPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { name, password, isLoged } = useSelector((state) => state.login || {}); // safe
 
   const [localName, setLocalName] = useState(name || "");
   const [localPassword, setLocalPassword] = useState(password || "");
+
+  // Навигация на главную страницу после успешного логина
+  useEffect(() => {
+    if (isLoged) {
+      navigate("/");
+    }
+  }, [isLoged, navigate]);
 
   const handleLogin = () => {
     if (localName && localPassword) {

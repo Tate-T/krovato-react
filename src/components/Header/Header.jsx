@@ -26,7 +26,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/login/loginSlice";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
 import "./noScroll.scss";
-
+import { openModal } from "../../redux/basketModal/basketModalSlice";
 const Header = () => {
 
   
@@ -481,7 +481,7 @@ const toggleSearchDropdown = (e) => {
       <a href="#" className={style.header__icon_container}>
         <button
           className={style.icon_with_badge}
-          onClick={() => CartModal.openModal()}
+          onClick={() => dispatch(openModal())}
         >
           <HiOutlineShoppingBag className={style.cart_icon} size={24} />
         </button>

@@ -7,13 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import productsThunk from "../../../../thunk/ProductsThunk";
 import { addFavoriteProductThunk } from "../../../../thunk/addFavoriteProductThunk";
 import { getFavoriteThunk } from "../../../../thunk/getFivoriteThunk";
-import { addToBasket } from "../../../../redux/basket/basketListSlice";
+import { addToCart } from "../../../../redux/basketModal/basketModalSlice";
 export const ProductsList = () => {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products.products)
   const favoriteProducts = useSelector( state => state.favorite.favoriteProducts)
     const handleAddToBasket = (product) => {
-    dispatch(addToBasket(product))
+    dispatch(addToCart(product))
+    console.log(product)
   }
   const isFavorite = (productTitle) => {
    if (!Array.isArray(favoriteProducts)) return false;

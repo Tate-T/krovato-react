@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://6907441cb1879c890ed94527.mockapi.io/api/BasketModal';
+axios.defaults.baseURL = 'https://691f311abb52a1db22c0d9b5.mockapi.io';
 
 export const fetchCartItems = createAsyncThunk(
   'cart/fetchCartItems',
@@ -19,7 +19,10 @@ export const addToCart = createAsyncThunk(
   'cart/addToCart',
   async (product, thunkAPI) => {
     try {
-      const res = await axios.post('/cart', product);
+      const res = await axios.post('/cart', {
+        ...product,
+        quantity: 1
+      });
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -43,7 +46,7 @@ export const updateCartQuantity = createAsyncThunk(
   'cart/updateCartQuantity',
   async ({ id, quantity }, thunkAPI) => {
     try {
-      const res = await axios.patch(`/cart/${id}`, { quantity });
+      const res = await axios.put(`/cart/${id}`, { quantity });
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -83,6 +86,7 @@ const cartSlice = createSlice({
 
       .addCase(addToCart.fulfilled, (state, action) => {
         state.items.push(action.payload);
+        console.log(state.items)
       })
 
       .addCase(deleteFromCart.fulfilled, (state, action) => {
@@ -90,8 +94,11 @@ const cartSlice = createSlice({
       })
 
       .addCase(updateCartQuantity.fulfilled, (state, action) => {
-        const index = state.items.findIndex((i) => i.id === action.payload.id);
-        if (index !== -1) state.items[index] = action.payload;
+        const updatedItems = action.payload
+        const index = state.items.findIndex((i) => i.id.toString() === updatedItems.id.toString());
+        if (index !== -1) {
+          state.items[index] = updatedItems
+        }
       });
   },
 });

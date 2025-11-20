@@ -11,26 +11,30 @@ import { useSelector, useDispatch } from 'react-redux';
 import { closeModal, fetchCartItems, deleteFromCart, updateCartQuantity } from '../../redux/basketModal/basketModalSlice';
 import styles from './BasketModal.module.scss';
 import { FaTimes, FaMinus, FaPlus } from 'react-icons/fa';
-
+import { useNavigate } from 'react-router-dom';
 export const CartModal = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const { items, isModalOpened, isLoading } = useSelector((state) => state.cart);
   console.log(items)
   useEffect(() => {
     dispatch(fetchCartItems());
   }, [dispatch]);
-
+  useEffect(() => {
+    console.log('Updated items:', items);
+  }, [items]);
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) dispatch(closeModal());
   };
 
   const handleIncrease = (item) => {
-    dispatch(updateCartQuantity({ id: item.id, quantity: item.quantity + 1 }));
+    dispatch(updateCartQuantity({ id: item.id, quantity: Number(item.quantity) + 1 }));
+    console.log(item.quantity)
   };
 
   const handleDecrease = (item) => {
     if (item.quantity > 1)
-      dispatch(updateCartQuantity({ id: item.id, quantity: item.quantity - 1 }));
+      dispatch(updateCartQuantity({ id: item.id, quantity: Number(item.quantity) - 1 }));
   };
 
   const handleRemove = (id) => {
@@ -43,7 +47,7 @@ export const CartModal = () => {
     <div className={styles.backdrop} onClick={handleBackdropClick}>
       <div className={styles.modal}>
         <div className={styles.header}>
-          Ваш кошик <span>{items.length}</span>
+          Ваш кошик <span>{items.reduce((total, item) => total + item.quantity, 0)}</span>
           <button onClick={() => dispatch(closeModal())} className={styles.closeIcon}>
             <FaTimes />
           </button>
@@ -54,11 +58,13 @@ export const CartModal = () => {
         ) : (
           items.map((item) => (
             <div key={item.id} className={styles.product}>
-              <img src="/bed.jpg" alt="Ліжко" className={styles.productImage} />
+               {console.log(item)}
+              <img src={item.imageSrc} alt="Ліжко" className={styles.productImage} />
               <div className={styles.productInfo}>
-                <div className={styles.size}>Розмір: 61 x 184 x 2130 мм</div>
+                <div className={styles.size}>  Розмір: {item.size.height} x {item.size.width} x {item.size.length} мм
+</div>
                 <h3 className={styles.title}>
-                  Ліжко Спарта / Sparta з підйомним механізмом
+                  {item.title}
                 </h3>
                 <div className={styles.inStock}>✔ В наявності</div>
                 <div className={styles.price}>
@@ -86,7 +92,7 @@ export const CartModal = () => {
           ))
         )}
 
-        <button className={`${styles.btn} ${styles.primary}`}>
+        <button className={`${styles.btn} ${styles.primary}`} onClick={() => navigate("/basket")}>
           ОФОРМИТИ ЗАМОВЛЕННЯ
         </button>
         <button

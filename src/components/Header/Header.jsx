@@ -26,7 +26,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/login/loginSlice";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
 import "./noScroll.scss";
-
+import { openModal } from "../../redux/basketModal/basketModalSlice";
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -565,6 +565,14 @@ const Header = () => {
           size={24}
         />
       </div>
+        <a href="#" className={style.header__icon_container}>
+        <button
+          className={style.icon_with_badge}
+          onClick={() => dispatch(openModal())}
+        >
+          <HiOutlineShoppingBag className={style.cart_icon} size={24} />
+        </button>
+      </a>
       <div className={style.loginItems}>
         {!isLoged ? (
           <div className={style.header__icon_container}>
@@ -585,7 +593,7 @@ const Header = () => {
             <div className={style.header__icon_container}>
               <button
                 className={style.icon_with_badge}
-                onClick={() => CartModal.openModal()}
+                onClick={() => dispatch(openModal())}
               >
                 <HiOutlineShoppingBag className={style.cart_icon} size={24} />
               </button>
@@ -595,12 +603,28 @@ const Header = () => {
                 <FiLogOut size={24} className={style.logout_icon} />
               </NavLink>
             </div>
-            <CartModal ref={cartModalRef} />
           </>
         )}
       </div>
-    </div>
-  );
+
+      {/* Logout */}
+      <div className={style.header__icon_container}>
+        <NavLink to="/" onClick={handleLogout}>
+          <FiLogOut size={24} className={style.logout_icon} />
+        </NavLink>
+      </div>
+      
+     {/* Cart modal */}
+      </div>
+  )
+
+      
+
+
+
+
+
+  
 
   const renderBottomSection = () => (
     <div
@@ -981,6 +1005,6 @@ const Header = () => {
       )}
     </header>
   );
-};
+}
 
 export default Header;

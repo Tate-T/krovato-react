@@ -25,6 +25,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux"
 import { AddToCount } from "../../../redux/productItem/productItemSlice";
 import { DeleteFromCount } from "../../../redux/productItem/productItemSlice";
+import { ProductDescription } from "../ProductDescription/ProductDescription";
+import {Сharacteristic} from "../Сharacteristic/Сharacteristic"
 const Hero = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
@@ -525,6 +527,8 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      <ProductDescription />
+    <Сharacteristic />
     </section>
   );
 };

@@ -565,14 +565,6 @@ const Header = () => {
           size={24}
         />
       </div>
-        <a href="#" className={style.header__icon_container}>
-        <button
-          className={style.icon_with_badge}
-          onClick={() => dispatch(openModal())}
-        >
-          <HiOutlineShoppingBag className={style.cart_icon} size={24} />
-        </button>
-      </a>
       <div className={style.loginItems}>
         {!isLoged ? (
           <div className={style.header__icon_container}>
@@ -606,26 +598,10 @@ const Header = () => {
           </>
         )}
       </div>
-
-      {/* Logout */}
-      <div className={style.header__icon_container}>
-        <NavLink to="/" onClick={handleLogout}>
-          <FiLogOut size={24} className={style.logout_icon} />
-        </NavLink>
-      </div>
       
      {/* Cart modal */}
       </div>
   )
-
-      
-
-
-
-
-
-  
-
   const renderBottomSection = () => (
     <div
       className={[c.container, style.header__list3].join(" ")}

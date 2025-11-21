@@ -10,6 +10,7 @@ import loginReducer from "./login/loginSlice";
 import { productsReducer } from "./products/ProductsSlice";
 import cartSlice from "../redux/basketModal/basketModalSlice";
 import { ProductItemReducer } from "./productItem/productItemSlice";
+import productDescriptionReducer from "./productDescription/productDescriptionSlice";
 import { AdditionAPIReducer } from "./Addition/AdditionSlice";
 import { recommendedProductReducer } from "./recomme/recommendedSlice";
 
@@ -50,6 +51,8 @@ const rootReducer = combineReducers({
   itemProduct : persistedProductsItem,
   addition : persistedAddition,
   reccomendetion: persistedRecommended
+  productDescription:productDescriptionReducer,
+  itemProduct : persistedProductsItem
 });
 const store = configureStore({
   reducer: rootReducer,

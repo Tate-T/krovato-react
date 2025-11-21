@@ -9,7 +9,7 @@ export const FavoriteItem = ({ product,deleteId }) => {
         className={style.Item_image}
       />
       <h5>{product.title}</h5>
-      <p>{product.price}</p>
+      <p>{product.price} грн</p>
       <button onClick={() => deleteId(product.id)} className={styleFavorite.DeleteItem}>&#10005;</button>
     </li>
   );

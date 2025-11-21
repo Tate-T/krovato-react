@@ -521,8 +521,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <ProductDescription />
-    <Сharacteristic />
     </section>
   );
 };

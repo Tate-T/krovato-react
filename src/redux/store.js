@@ -13,7 +13,6 @@ import { ProductItemReducer } from "./productItem/productItemSlice";
 import productDescriptionReducer from "./productDescription/productDescriptionSlice";
 import { AdditionAPIReducer } from "./Addition/AdditionSlice";
 import { recommendedProductReducer } from "./recomme/recommendedSlice";
-import productDescriptionReducer from "./productDescription/productDescriptionSlice";
 const favoriteConfig = {
   key: "favorite",
   storage,

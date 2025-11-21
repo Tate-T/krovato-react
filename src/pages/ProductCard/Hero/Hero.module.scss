@@ -845,6 +845,9 @@ line-height: 1.41;
       transform: scale(1.05);
     }
   }
+  &__active{
+    border: 5px solid #ffbc57;
+  }
 }
 
 .heroConsultation {

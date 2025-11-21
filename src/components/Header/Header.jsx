@@ -598,10 +598,21 @@ const Header = () => {
           </>
         )}
       </div>
-      
+
+      {/* Logout */}
+     
      {/* Cart modal */}
       </div>
   )
+
+      
+
+
+
+
+
+  
+
   const renderBottomSection = () => (
     <div
       className={[c.container, style.header__list3].join(" ")}

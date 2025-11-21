@@ -10,7 +10,7 @@ import loginReducer from "./login/loginSlice";
 import { productsReducer } from "./products/ProductsSlice";
 import cartSlice from "../redux/basketModal/basketModalSlice";
 import { ProductItemReducer } from "./productItem/productItemSlice";
-
+import productDescriptionReducer from "./productDescription/productDescriptionSlice";
 const favoriteConfig = {
   key: "favorite",
   storage,
@@ -34,6 +34,7 @@ const rootReducer = combineReducers({
   login: loginReducer, // now works with useSelector
   products: persistedProducts, 
   cart: cartSlice,
+  productDescription:productDescriptionReducer,
   itemProduct : persistedProductsItem
 });
 const store = configureStore({

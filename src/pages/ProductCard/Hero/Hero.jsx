@@ -22,27 +22,39 @@ import whatsapp from "../../../images/product-card/whatsapp.svg";
 import Basket from "../../Basket/Basket";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux"
+import { useDispatch } from "react-redux";
 import { AddToCount } from "../../../redux/productItem/productItemSlice";
 import { DeleteFromCount } from "../../../redux/productItem/productItemSlice";
+import { useState } from "react";
+import selected from "../../../images/product-card/Vector.svg"
 const Hero = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleClick = () => {
-    navigate('/basket');  
+    navigate("/basket");
   };
-  const beds = [miniBed0,miniBed2,miniBed3,miniBed4,miniBed5]
-   
-  const item = useSelector(state => state.itemProduct.currentProduct)
-  const count = useSelector(state => state.itemProduct.count);
-  const TotalOldSum = useSelector(state => state.itemProduct.totalOldSum)
-  const totalCurrentSum = useSelector(state => state.itemProduct.totalCurrentSum)
-  const miniimg = useSelector(state => state.itemProduct.smallImg)
+  const beds = [miniBed0, miniBed2, miniBed3, miniBed4, miniBed5];
+
+  const item = useSelector((state) => state.itemProduct.currentProduct);
+  const count = useSelector((state) => state.itemProduct.count);
+  const TotalOldSum = useSelector((state) => state.itemProduct.totalOldSum);
+  const totalCurrentSum = useSelector(
+    (state) => state.itemProduct.totalCurrentSum
+  );
+  const miniimg = useSelector((state) => state.itemProduct.smallImg);
+  const [selectedCloth, setSelectedCloth] = useState(null);
+
+  const cloths = [cloth1, cloth2, cloth3, cloth4, cloth5, cloth6];
   return (
     <section className={style.hero}>
       <div className={containerStyle.container}>
         <nav className={style.hero__nav}>
-          <a href="./index.html" className={style.hero__link + " " + style.hero__linkMobBug}>Головна</a>
+          <a
+            href="./index.html"
+            className={style.hero__link + " " + style.hero__linkMobBug}
+          >
+            Головна
+          </a>
           <div className={style.hero__arrowBox + " " + style.hero__arrowMobBug}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -94,8 +106,12 @@ const Hero = () => {
               />
             </svg>
           </div>
-          <a href="#" className={style.hero__activeLinkDesk}>Двоспальне ліжко з підйомним механізмом Сіті</a>
-          <a href="#" className={style.hero__activeLinkMob}>Двоспальне ліжко з підйомним механі ...</a>
+          <a href="#" className={style.hero__activeLinkDesk}>
+            Двоспальне ліжко з підйомним механізмом Сіті
+          </a>
+          <a href="#" className={style.hero__activeLinkMob}>
+            Двоспальне ліжко з підйомним механі ...
+          </a>
         </nav>
         <div className={style.hero__container}>
           <h2 className={style.hero__titleMob}> {totalCurrentSum} грн</h2>
@@ -118,24 +134,22 @@ const Hero = () => {
             </div>
             <div className={style.hero__starBox}>
               <ul className={style.hero__starList}>
-                {Array.from({ length: 5 }).map(
-                  (_, i) => (
-                    <li key={i}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <path
-                          d="M22 10.1C22.1 9.6 21.7 9 21.2 9L15.5 8.2L12.9 3C12.8 2.8 12.7 2.7 12.5 2.6C12 2.3 11.4 2.5 11.1 3L8.6 8.2L2.9 9C2.6 9 2.4 9.1 2.3 9.3C1.9 9.7 1.9 10.3 2.3 10.7L6.4 14.7L5.4 20.4C5.4 20.6 5.4 20.8 5.5 21C5.8 21.5 6.4 21.7 6.9 21.4L12 18.7L17.1 21.4C17.2 21.5 17.4 21.5 17.6 21.5C17.7 21.5 17.7 21.5 17.8 21.5C18.3 21.4 18.7 20.9 18.6 20.3L17.6 14.6L21.7 10.6C21.9 10.5 22 10.3 22 10.1Z"
-                          fill="#FFBC57"
-                        />
-                      </svg>
-                    </li>
-                  )
-                )}
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <li key={i}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        d="M22 10.1C22.1 9.6 21.7 9 21.2 9L15.5 8.2L12.9 3C12.8 2.8 12.7 2.7 12.5 2.6C12 2.3 11.4 2.5 11.1 3L8.6 8.2L2.9 9C2.6 9 2.4 9.1 2.3 9.3C1.9 9.7 1.9 10.3 2.3 10.7L6.4 14.7L5.4 20.4C5.4 20.6 5.4 20.8 5.5 21C5.8 21.5 6.4 21.7 6.9 21.4L12 18.7L17.1 21.4C17.2 21.5 17.4 21.5 17.6 21.5C17.7 21.5 17.7 21.5 17.8 21.5C18.3 21.4 18.7 20.9 18.6 20.3L17.6 14.6L21.7 10.6C21.9 10.5 22 10.3 22 10.1Z"
+                        fill="#FFBC57"
+                      />
+                    </svg>
+                  </li>
+                ))}
               </ul>
               <div className={style.hero__commentBox}>
                 <svg
@@ -157,32 +171,20 @@ const Hero = () => {
               Модель: 62003836
             </p>
           </div>
-          <div className={style.hero__container1} >
-            <img
-              className={style.hero__img}
-              src= {item.src}
-              alt={item.alt}
-            />
+          <div className={style.hero__container1}>
+            <img className={style.hero__img} src={item.src} alt={item.alt} />
             <ul className={style.hero__buttonsMob}>
               {beds.map((_, index) => (
                 <li key={index} className={style.hero__buttonItemMob}>
-                  <button
-                    className={style.hero__buttonMob}
-                  >
-                    <div
-                      className={`${style.hero__buttonBorderMob}`}
-                    >
-                      <div
-                        className={`${style.hero__buttonBcMob} `}
-                      ></div>
+                  <button className={style.hero__buttonMob}>
+                    <div className={`${style.hero__buttonBorderMob}`}>
+                      <div className={`${style.hero__buttonBcMob} `}></div>
                     </div>
                   </button>
                 </li>
               ))}
             </ul>
-            <button
-              className={style.hero__buttonLeft}
-            >
+            <button className={style.hero__buttonLeft}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="12"
@@ -196,9 +198,7 @@ const Hero = () => {
                 />
               </svg>
             </button>
-            <button
-              className={style.hero__buttonRight}
-            >
+            <button className={style.hero__buttonRight}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="12"
@@ -217,19 +217,13 @@ const Hero = () => {
             <ul className={style.hero__images}>
               {miniimg.map((img) => (
                 <li className={style.hero__item}>
-                  <img
-                    className={`${style.hero__image}`}
-                    src= {img}
-                    alt="bed"
-                  />
+                  <img className={`${style.hero__image}`} src={img} alt="bed" />
                 </li>
-            ))}
+              ))}
             </ul>
           </div>
           <div className={style.hero__container2}>
-            <h2 className={style.hero__titleDesk}>
-              {item.title}
-            </h2>
+            <h2 className={style.hero__titleDesk}>{item.title}</h2>
             <div className={style.hero__frameDesk}>
               <div className={style.hero__activeBox}>
                 <svg
@@ -249,24 +243,22 @@ const Hero = () => {
               </div>
               <div className={style.hero__starBox}>
                 <ul className={style.hero__starList}>
-                  {Array.from({ length: 5 }).map(
-                    (_, i) => (
-                      <li key={i}>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                        >
-                          <path
-                            d="M22 10.1C22.1 9.6 21.7 9 21.2 9L15.5 8.2L12.9 3C12.8 2.8 12.7 2.7 12.5 2.6C12 2.3 11.4 2.5 11.1 3L8.6 8.2L2.9 9C2.6 9 2.4 9.1 2.3 9.3C1.9 9.7 1.9 10.3 2.3 10.7L6.4 14.7L5.4 20.4C5.4 20.6 5.4 20.8 5.5 21C5.8 21.5 6.4 21.7 6.9 21.4L12 18.7L17.1 21.4C17.2 21.5 17.4 21.5 17.6 21.5C17.7 21.5 17.7 21.5 17.8 21.5C18.3 21.4 18.7 20.9 18.6 20.3L17.6 14.6L21.7 10.6C21.9 10.5 22 10.3 22 10.1Z"
-                            fill="#FFBC57"
-                          />
-                        </svg>
-                      </li>
-                    )
-                  )}
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <li key={i}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M22 10.1C22.1 9.6 21.7 9 21.2 9L15.5 8.2L12.9 3C12.8 2.8 12.7 2.7 12.5 2.6C12 2.3 11.4 2.5 11.1 3L8.6 8.2L2.9 9C2.6 9 2.4 9.1 2.3 9.3C1.9 9.7 1.9 10.3 2.3 10.7L6.4 14.7L5.4 20.4C5.4 20.6 5.4 20.8 5.5 21C5.8 21.5 6.4 21.7 6.9 21.4L12 18.7L17.1 21.4C17.2 21.5 17.4 21.5 17.6 21.5C17.7 21.5 17.7 21.5 17.8 21.5C18.3 21.4 18.7 20.9 18.6 20.3L17.6 14.6L21.7 10.6C21.9 10.5 22 10.3 22 10.1Z"
+                          fill="#FFBC57"
+                        />
+                      </svg>
+                    </li>
+                  ))}
                 </ul>
                 <div className={style.hero__commentBox}>
                   <svg
@@ -290,11 +282,9 @@ const Hero = () => {
             <div className={style.heroBox}>
               <div className={style.heroBox__header}>
                 <div className={style.heroBox__costBox}>
-                  <p className={style.heroBox__cost}>
-                    {totalCurrentSum} грн
-                  </p>
+                  <p className={style.heroBox__cost}>{totalCurrentSum} грн</p>
                   <p className={style.heroBox__nonCost}>
-                  {item.oldPrice ? `${TotalOldSum} грн` : ''}
+                    {item.oldPrice ? `${TotalOldSum} грн` : ""}
                   </p>
                 </div>
                 <div className={style.heroBox__favoritesBox}>
@@ -311,7 +301,12 @@ const Hero = () => {
                       fill="none"
                     >
                       <g clipPath="url(#clip0_6599_4794)">
-                        <circle cx="25" cy="25" r="25" fill={item.isFavorite ? "#FFBC57" : "#F8F8F8"} />
+                        <circle
+                          cx="25"
+                          cy="25"
+                          r="25"
+                          fill={item.isFavorite ? "#FFBC57" : "#F8F8F8"}
+                        />
                         <path
                           d="M35.5632 16.4365C34.1886 15.0584 32.3666 14.2173 30.4262 14.0651C28.4857 13.913 26.5549 14.4597 24.9823 15.6067C23.3325 14.3795 21.279 13.8231 19.2353 14.0494C17.1917 14.2757 15.3097 15.268 13.9683 16.8263C12.6269 18.3847 11.9259 20.3934 12.0062 22.4479C12.0866 24.5025 12.9424 26.4503 14.4014 27.8991L22.4538 35.9645C23.1281 36.6281 24.0362 37 24.9823 37C25.9284 37 26.8365 36.6281 27.5108 35.9645L35.5632 27.8991C37.0771 26.3759 37.9269 24.3155 37.9269 22.1678C37.9269 20.0202 37.0771 17.9598 35.5632 16.4365ZM33.7348 26.1097L25.6825 34.1621C25.5909 34.2546 25.4818 34.3281 25.3616 34.3782C25.2414 34.4283 25.1125 34.4541 24.9823 34.4541C24.8521 34.4541 24.7232 34.4283 24.603 34.3782C24.4828 34.3281 24.3737 34.2546 24.2821 34.1621L16.2297 26.0708C15.2128 25.0313 14.6434 23.635 14.6434 22.1808C14.6434 20.7266 15.2128 19.3303 16.2297 18.2908C17.266 17.2677 18.6636 16.694 20.1198 16.694C21.576 16.694 22.9735 17.2677 24.0098 18.2908C24.1303 18.4123 24.2737 18.5088 24.4318 18.5746C24.5898 18.6405 24.7593 18.6743 24.9304 18.6743C25.1016 18.6743 25.2711 18.6405 25.4291 18.5746C25.5871 18.5088 25.7305 18.4123 25.8511 18.2908C26.8873 17.2677 28.2849 16.694 29.7411 16.694C31.1973 16.694 32.5949 17.2677 33.6311 18.2908C34.662 19.3167 35.2501 20.7054 35.2695 22.1597C35.2889 23.6139 34.738 25.0178 33.7348 26.0708V26.1097Z"
                           fill={item.isFavorite ? "#ffffff" : "#B1B1B1"}
@@ -324,7 +319,9 @@ const Hero = () => {
                       </defs>
                     </svg>
                   </button>
-                  <p className={style.heroBox__favorites}>{item.isFavorite ? "В обраному" : "В обране"}</p>
+                  <p className={style.heroBox__favorites}>
+                    {item.isFavorite ? "В обраному" : "В обране"}
+                  </p>
                 </div>
               </div>
               <div className={style.heroBox__line}></div>
@@ -345,10 +342,16 @@ const Hero = () => {
                     </svg>
                     <p className={style.heroBox__text}>Розмір</p>
                   </div>
-                    <select name="size" id={item.id} className={style.heroBox__choiceText}>
-                        <option value="">Виберіть</option>
-                        <option value="">{item.height} x {item.width} x {item.length}</option>
-                    </select>
+                  <select
+                    name="size"
+                    id={item.id}
+                    className={style.heroBox__choiceText}
+                  >
+                    <option value="">Виберіть</option>
+                    <option value="">
+                      {item.height} x {item.width} x {item.length}
+                    </option>
+                  </select>
                 </li>
                 <li className={style.heroBox__item}>
                   <div className={style.heroBox__itemFlex}>
@@ -388,41 +391,26 @@ const Hero = () => {
                 <p className={style.heroBox__cooseCloth}>Виберіть тканину:</p>
               </div>
               <ul className={style.heroBox__cloths}>
-                <li className={style.heroBox__cloth}>
-                  <button className={style.heroBox__clothBtn } style={{backgroundImage:`url(${cloth1})`}}></button>
-                </li>
-                <li className={style.heroBox__cloth}>
-                  <button className={style.heroBox__clothBtn } style={{backgroundImage:`url(${cloth2})`}}></button>
-                </li>
-                <li
-                  className={`${style.heroBox__cloth} ${style.heroBox__clothCurrent}`}
-                >
-                  <button className={style.heroBox__clothBtn } style={{backgroundImage:`url(${cloth3})`}}></button>
-                  <svg
-                    className={style.heroBox__clothImgCheckMark}
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="40"
-                    height="40"
-                    viewBox="0 0 40 40"
-                    fill="none"
+                {cloths.map((img, index) => (
+                  <li
+                    key={index}
+                    className={style.heroBox__cloth}
+                    onClick={() => setSelectedCloth(index)}
                   >
-                    <path
-                      d="M31.1834 12.0167C31.0285 11.8605 30.8441 11.7365 30.641 11.6519C30.4379 11.5672 30.2201 11.5237 30.0001 11.5237C29.7801 11.5237 29.5622 11.5672 29.3591 11.6519C29.156 11.7365 28.9717 11.8605 28.8167 12.0167L16.4001 24.45L11.1834 19.2167C11.0225 19.0613 10.8326 18.9391 10.6245 18.8571C10.4165 18.7751 10.1943 18.7349 9.97062 18.7387C9.74698 18.7426 9.5263 18.7905 9.32117 18.8796C9.11604 18.9688 8.93048 19.0975 8.77508 19.2583C8.61968 19.4192 8.49749 19.6091 8.41548 19.8172C8.33348 20.0253 8.29326 20.2475 8.29713 20.4711C8.301 20.6948 8.34888 20.9155 8.43803 21.1206C8.52719 21.3257 8.65588 21.5113 8.81675 21.6667L15.2167 28.0667C15.3717 28.2229 15.556 28.3469 15.7591 28.4315C15.9622 28.5161 16.1801 28.5597 16.4001 28.5597C16.6201 28.5597 16.8379 28.5161 17.041 28.4315C17.2441 28.3469 17.4285 28.2229 17.5834 28.0667L31.1834 14.4667C31.3526 14.3106 31.4876 14.1212 31.5799 13.9104C31.6723 13.6995 31.72 13.4718 31.72 13.2417C31.72 13.0115 31.6723 12.7838 31.5799 12.573C31.4876 12.3622 31.3526 12.1727 31.1834 12.0167Z"
-                      fill="#FFBC57"
-                    />
-                  </svg>
-                </li>
-                <li className={style.heroBox__cloth}>
-                <button className={style.heroBox__clothBtn } style={{backgroundImage:`url(${cloth4})`}}></button>
-                </li>
-                <li className={style.heroBox__cloth}>
-                <button className={style.heroBox__clothBtn } style={{backgroundImage:`url(${cloth5})`}}></button>
-                </li>
-                <li
-                  className={`${style.heroBox__cloth} ${style.heroBox__clothGreen}`}
-                >
-                  <button className={style.heroBox__clothBtn } style={{backgroundImage:`url(${cloth6})`}}></button>
-                </li>
+                    <button
+                      className={`${style.heroBox__clothBtn} ${
+                        selectedCloth === index
+                          ? style.heroBox__active
+                          : ""
+                      }`}
+                      style={{ backgroundImage: `url(${img})` }}
+                    >
+                    {selectedCloth === index && (
+                      <img src={selected}/>
+                    )}
+                    </button>
+                  </li>
+                ))}
               </ul>
               <a href="#" className={style.heroBox__moreLink}>
                 <p className={style.heroBox__moreText}>Показати всі</p>
@@ -441,15 +429,21 @@ const Hero = () => {
               </a>
               <div className={style.heroBox__buttons}>
                 <div className={style.heroBox__kolVo}>
-                  <button className={style.heroBox__btnMinus} onClick={() => dispatch(DeleteFromCount(1))}>
+                  <button
+                    className={style.heroBox__btnMinus}
+                    onClick={() => dispatch(DeleteFromCount(1))}
+                  >
                     -
                   </button>
                   <p className={style.heroBox__number}>{count}</p>
-                  <button className={style.heroBox__btnPlus} onClick={() => dispatch(AddToCount(1))}>
+                  <button
+                    className={style.heroBox__btnPlus}
+                    onClick={() => dispatch(AddToCount(1))}
+                  >
                     +
                   </button>
                 </div>
-                <button className={style.heroBox__buyBtn} onClick = {handleClick}>
+                <button className={style.heroBox__buyBtn} onClick={handleClick}>
                   <img
                     className={style.heroBox__korzina}
                     src={korzina}
@@ -543,7 +537,7 @@ export default Hero;
 //         },
 //         currentImageIndex: 0
 //     }
-    
+
 //     // handlePrevImage = () => {
 //     //     this.setState(prevState => ({
 //     //         currentImageIndex: prevState.currentImageIndex === 0
@@ -558,8 +552,6 @@ export default Hero;
 //     //     }));
 //     // }
 
-
-    
 //     // handleNextImage = () => {
 //     //     this.setState(prevState => ({
 //     //         currentImageIndex: prevState.currentImageIndex === prevState.currentProduct.beds.length - 1

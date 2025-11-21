@@ -11,7 +11,7 @@ export const Conditions = () => {
         <section className={style.conditions}>
             <div className={containerStyle.container}>
                 <ul className={style.conditions__list}>
-                    <li className={style.conditions__item} data-aos="fade-right" data-aos-duration="2000">
+                    <li className={style.conditions__item}>
                         <div className={style.conditions__iconBc}>
                             <img src={dostavkaImg} alt="Доставка" />
                         </div>
@@ -24,7 +24,7 @@ export const Conditions = () => {
                             </a>
                         </div>
                     </li>
-                    <li className={style.conditions__item} data-aos="fade-right" data-aos-duration="1000">
+                    <li className={style.conditions__item}>
                         <div className={style.conditions__iconBc}>
                             <img src={oplata} alt="Оплата" />
                         </div>
@@ -37,7 +37,7 @@ export const Conditions = () => {
                             </a>
                         </div>
                     </li>
-                    <li className={style.conditions__item} data-aos="fade-left" data-aos-duration="1000">
+                    <li className={style.conditions__item}>
                         <div className={style.conditions__iconBc}>
                             <img src={garant} alt="Гарантія" />
                         </div>
@@ -50,7 +50,7 @@ export const Conditions = () => {
                             </a>
                         </div>
                     </li>
-                    <li className={style.conditions__item} data-aos="fade-left" data-aos-duration="2000">
+                    <li className={style.conditions__item}>
                         <div className={style.conditions__iconBc}>
                             <img src={support} alt="Підтримка" />
                         </div>

@@ -27,6 +27,7 @@ import { AddToCount } from "../../../redux/productItem/productItemSlice";
 import { DeleteFromCount } from "../../../redux/productItem/productItemSlice";
 import { ProductDescription } from "../ProductDescription/ProductDescription";
 import {Сharacteristic} from "../Сharacteristic/Сharacteristic"
+import { nextImage , prevImage , selectImage } from "../../../redux/productItem/productItemSlice";
 const Hero = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
@@ -40,6 +41,7 @@ const Hero = () => {
   const TotalOldSum = useSelector(state => state.itemProduct.totalOldSum)
   const totalCurrentSum = useSelector(state => state.itemProduct.totalCurrentSum)
   const miniimg = useSelector(state => state.itemProduct.smallImg)
+  const {currentImageIndex } =  useSelector(state => state.itemProduct)
   console.log(miniimg)
   return (
     <section className={style.hero}>
@@ -163,7 +165,7 @@ const Hero = () => {
           <div className={style.hero__container1} >
             <img
               className={style.hero__img}
-              src= {item.src}
+              src= {miniimg[currentImageIndex]}
               alt={item.alt}
             />
             <ul className={style.hero__buttonsMob}>
@@ -185,6 +187,7 @@ const Hero = () => {
             </ul>
             <button
               className={style.hero__buttonLeft}
+              onClick={() => dispatch(prevImage())}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -201,6 +204,7 @@ const Hero = () => {
             </button>
             <button
               className={style.hero__buttonRight}
+              onClick={() => dispatch(nextImage())}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -218,12 +222,18 @@ const Hero = () => {
               </svg>
             </button>
             <ul className={style.hero__images}>
-              {miniimg.map((img) => (
-                <li className={style.hero__item}>
+              {miniimg.map((img, index) => (
+                <li className={style.hero__item}
+                key={index}
+                onClick={() => dispatch(selectImage(index))}
+                >
                   <img
                     className={`${style.hero__image}`}
                     src= {img}
                     alt="bed"
+                    style={{
+                      border: index === currentImageIndex ? "2px solid #FFBC57" : "none"
+                    }}
                   />
                 </li>
             ))}

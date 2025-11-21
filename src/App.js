@@ -77,11 +77,11 @@ function App() {
           <Route path="/contacts" element={<ContactsPage/>}/>
           <Route path="/catalog" element={<Catalog/>}/>
           <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
+          <Route path="/product/:id" element={<ProductCardPage/>}/>
         </Routes>
       </Suspense>
        </main>
        <Footer/> 
-       <ProductCardPage/>
     </div>
   );
 }

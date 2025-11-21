@@ -1,10 +1,15 @@
 import { getProductItem } from "../../../../../redux/productItem/productItemSlice";
 import style from "../../Products.module.scss";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 export const ProductsItem = ({id,src,alt,width,height,length,title,inStock,oldPrice,currentPrice,onSelect,isFavorite,addBasket,smallBedImage}) => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const transferToProductCardItem = (id) => {
+    navigate(`/product/${id}`)
+  }
   return (
-    <li key={id} className={style.products__item} onClick={() => {dispatch(getProductItem({src,alt,width,height,length,title,oldPrice,currentPrice,id,isFavorite,smallBedImage}))}}>
+    <li key={id} className={style.products__item} onClick={() => {dispatch(getProductItem({src,alt,width,height,length,title,oldPrice,currentPrice,id,isFavorite,smallBedImage})); transferToProductCardItem(id)}}>
       <img src={src} alt={alt} />
       <p className={style.products__size}>Розмір: {height} x {width} x {length}</p>
       <p className={style.products__subtitle}>

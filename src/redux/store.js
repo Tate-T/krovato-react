@@ -50,7 +50,7 @@ const rootReducer = combineReducers({
   cart: cartSlice,
   itemProduct : persistedProductsItem,
   addition : persistedAddition,
-  reccomendetion: persistedRecommended
+  reccomendetion: persistedRecommended,
   productDescription:productDescriptionReducer,
   itemProduct : persistedProductsItem
 });

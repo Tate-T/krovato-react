@@ -1,4 +1,8 @@
 import containerStyle from "../../../components/Container/Container.module.scss";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
 import style from "./Hero.module.scss";
 import miniBed0 from "../../../images/product-card/hero-bed.png";
 
@@ -26,7 +30,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { AddToCount } from "../../../redux/productItem/productItemSlice";
 import { DeleteFromCount } from "../../../redux/productItem/productItemSlice";
-import { useState } from "react";
+import { useState  } from "react";
 import selected from "../../../images/product-card/Vector.svg"
 import { nextImage , prevImage , selectImage } from "../../../redux/productItem/productItemSlice";
 const Hero = () => {
@@ -188,19 +192,46 @@ const Hero = () => {
               Модель: 62003836
             </p>
           </div>
+          
           <div className={style.hero__container1}>
-            <img className={style.hero__img} src={miniimg[currentImageIndex]} alt={item.alt} />
+           <div className={style.hero__mobileSwiper}>
+           <Swiper
+    modules={[Pagination]}
+    spaceBetween={10}
+    slidesPerView={1}
+    onSlideChange={(swiper) => dispatch(selectImage(swiper.activeIndex))}
+  >
+    {beds.map((_, index) => (
+      <SwiperSlide key={index}>
+        <img
+          className={style.hero__mobileImg}
+          src={miniimg[index]}
+          alt={item.alt}
+        />
+      </SwiperSlide>
+    ))}
+  </Swiper>
+            </div>
             <ul className={style.hero__buttonsMob}>
               {beds.map((_, index) => (
                 <li key={index} className={style.hero__buttonItemMob}>
-                  <button className={style.hero__buttonMob}>
+                  <button className={style.hero__buttonMob}   onClick={() => {
+            dispatch(selectImage(index));
+          }}>
                     <div className={`${style.hero__buttonBorderMob}`}>
-                      <div className={`${style.hero__buttonBcMob} `}></div>
+                      <div         className={`${style.hero__buttonBcMob} ${
+              currentImageIndex === index ? style.hero__buttonBcMobActive : ""
+            }`}></div>
                     </div>
                   </button>
                 </li>
               ))}
             </ul>
+            <img
+    className={style.hero__img}
+    src={miniimg[currentImageIndex]}
+    alt={item.alt}
+  />
             <button className={style.hero__buttonLeft} onClick={() => dispatch(prevImage())}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

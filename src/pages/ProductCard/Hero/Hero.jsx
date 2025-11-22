@@ -20,6 +20,7 @@ import telegram from "../../../images/product-card/telegram.svg";
 import viber from "../../../images/product-card/viber.svg";
 import whatsapp from "../../../images/product-card/whatsapp.svg";
 import Basket from "../../Basket/Basket";
+import { addToBasket } from "../../../redux/basket/basketListSlice";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -31,7 +32,21 @@ import { nextImage , prevImage , selectImage } from "../../../redux/productItem/
 const Hero = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const handleClick = () => {
+  const counts = useSelector(state => state.basketList.counts);
+  const handleClick = (index) => {
+    const productToAdd = {
+      ...item,
+      price:item.currentPrice,
+      imageSrc:item.src,
+      size: {
+        width: item.width,
+        height: item.height,
+        length: item.length
+      },
+      count: count
+    }
+    dispatch(addToBasket(productToAdd));
+    console.log(productToAdd)
     navigate("/basket");
   };
   const beds = [miniBed0, miniBed2, miniBed3, miniBed4, miniBed5];

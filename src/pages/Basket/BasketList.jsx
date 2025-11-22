@@ -127,7 +127,7 @@ export const BasketList = () => {
 													{bed.isStock ? 'Не в наявності' : 'В наявності'}
 												</p>
 											</div>
-											<p className={styles.textPrice}>{bed.price}</p>
+											<p className={styles.textPrice}>{bed.price} грн</p>
 										</div>
 										<button
 											className={styles.btnDelete}

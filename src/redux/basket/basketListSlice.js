@@ -86,7 +86,18 @@ const basketListSlice = createSlice({
       state.counts = []
       localStorage.removeItem("activeProducts");
       localStorage.removeItem("basketCounts");
-    }
+    },
+    syncBasket: (state, action) => {
+      state.items = action.payload;
+      state.counts = action.payload.map(item => Number(item.quantity) || 1);
+  
+      localStorage.setItem("activeProducts", JSON.stringify(state.items));
+      localStorage.setItem("basketCounts", JSON.stringify(state.counts));
+    }, 
+    loadFromStorage(state, action) {
+      state.items = action.payload.items || [];
+      state.counts = action.payload.counts || [];
+  }
   },
   extraReducers: (builder) => {
     builder
@@ -126,5 +137,5 @@ const basketListSlice = createSlice({
   }
 
 })
-export const { addItemCount, subtractItemCount, applyPromo , clearBasket } = basketListSlice.actions
+export const { addItemCount, subtractItemCount, applyPromo , clearBasket , syncBasket , loadFromStorage } = basketListSlice.actions
 export default basketListSlice.reducer

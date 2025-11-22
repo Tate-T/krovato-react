@@ -11,15 +11,35 @@ import style from "./Questions.module.scss";
 
 export const Questions = ({ sectionId }) => {
   const [ sections, setSections ] = useState([]);
+  const [ loading, setLoading ] = useState(true);
 
   useEffect(() => {
-    getQuestionsAPI().then(response => setSections(response));
+    getQuestionsAPI()
+      .then(response => {
+        // Проверяем, что response является массивом
+        if (Array.isArray(response)) {
+          setSections(response);
+        } else {
+          console.warn("Questions API returned non-array response:", response);
+          setSections([]);
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching questions:", error);
+        setSections([]);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
-  const currentSection = sections.find(section => section.id === sectionId);
 
-  if (!currentSection) {
-    return;
+  const currentSection = Array.isArray(sections) 
+    ? sections.find(section => section.id === sectionId)
+    : null;
+
+  if (loading || !currentSection) {
+    return null;
   }
 
   return (
@@ -28,7 +48,7 @@ export const Questions = ({ sectionId }) => {
         <h2 className={style.questions__title}>{currentSection.title}</h2>
       </div>
       <ul className={style.questions__list}>
-        {currentSection.questions.map((item) => (
+        {Array.isArray(currentSection.questions) && currentSection.questions.map((item) => (
           <QuestionItem
             key={item.id}
             id={item.id}

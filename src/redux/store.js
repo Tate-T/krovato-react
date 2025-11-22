@@ -7,7 +7,13 @@ import basketListReducer from "./basket/basketListSlice"
 import { favoriteReducer } from "./favorite/FavoriteSlice";
 import loginReducer from "./login/loginSlice";
 import { productsReducer } from "./products/ProductsSlice";
+
 import { reviewsReducer } from "./reviews/reviewsSlice";
+import cartSlice from "../redux/basketModal/basketModalSlice";
+import { ProductItemReducer } from "./productItem/productItemSlice";
+import productDescriptionReducer from "./productDescription/productDescriptionSlice";
+import { AdditionAPIReducer } from "./Addition/AdditionSlice";
+import { recommendedProductReducer } from "./recomme/recommendedSlice";
 
 const favoriteConfig = {
   key: "favorite",
@@ -17,15 +23,37 @@ const productsConfig = {
   key: "products",
   storage,
 };
+const productItemConfig = {
+  key: "ProductItem",
+  storage
+}
+const AdditionConfig = {
+  key: "Addition",
+  storage
+}
+
+const recommendedProductConfig = {
+  key: "recommendedProduct",
+  storage
+}
+
 const persistedFavorite = persistReducer(favoriteConfig, favoriteReducer);
 const persistedProducts = persistReducer(productsConfig,productsReducer)
+const persistedProductsItem = persistReducer(productItemConfig,ProductItemReducer)
+const persistedAddition = persistReducer(AdditionConfig,AdditionAPIReducer)
+const persistedRecommended = persistReducer(recommendedProductConfig,recommendedProductReducer)
 const rootReducer = combineReducers({
   basket: basketReducer,
   basketList:basketListReducer,
   favorite: persistedFavorite,
+  reviews: reviewsReducer,
   login: loginReducer,
-  products: persistedProducts,
-  reviews: reviewsReducer
+  products: persistedProducts, 
+  cart: cartSlice,
+  itemProduct : persistedProductsItem,
+  addition : persistedAddition,
+  reccomendetion: persistedRecommended,
+  productDescription:productDescriptionReducer,
 });
 const store = configureStore({
   reducer: rootReducer,

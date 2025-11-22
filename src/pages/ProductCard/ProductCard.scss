@@ -5,32 +5,10 @@
   flex-direction: column;
 }
 
-main {
-  flex: 1;
-  padding: 40px 0;
-}
-
-// .container {
-//   max-width: 1200px;
-//   margin: 0 auto;
-//   padding: 0 20px;
-//   display: flex;
-//   flex-direction: column;
-//   gap: 40px;
-// }
 
 @media (max-width: 768px) {
   main {
     padding: 20px 0;
   }
 
-  // .container {
-  //   gap: 20px;
-  // }
 }
-
-// @media (prefers-color-scheme: dark) {
-//   .product-card-page {
-//     background-color: #1a1a1a;
-//   }
-// }

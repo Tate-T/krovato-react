@@ -6,11 +6,13 @@ import { LastReviews } from "../../components/LastReviews/LastReviews";
 import { Articles } from "./Articles/Articles";
 import About from "../../components/About/About";
 import { Advantages } from "../../components/Advantages/Advantages";
+import { CartModal } from "../../components/BasketModal/BasketModal"
 
 const MainPage = () => {
 	return (
 		<>
 			<Hero />
+      <CartModal />
 			<Categories />
 			<Products />
 			<Promotions />

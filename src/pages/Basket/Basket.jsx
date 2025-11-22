@@ -20,7 +20,7 @@ import { ContextBasketList } from './ContextBasketList'
 import { ContextModal } from './ContextModal'
 import { setSurname, setName, setPaternal, setPhone, setEmail, setComment, setPayment, setDelivery, setIsPerson } from '../../redux/basket/basketSlice'
 import { useSelector, useDispatch } from 'react-redux'
-import  sendOrder  from '../../redux/basket/basketSlice'
+import  {sendOrder}  from '../../redux/basket/basketSlice'
 import { clearBasket } from '../../redux/basket/basketListSlice'
 const cartDelivery = [
 	{
@@ -182,11 +182,11 @@ const basketCounts = JSON.parse(localStorage.getItem("basketCounts")) || [];
 			</ContextModal.Provider>
 			<div className={styles.basketWrapper}>
 				<div className={styles.titleContainer}>
-					<img src={infoCircle} alt='icon-info' />
+					<img src={infoCircle} alt='icon-info' style={{margin:"0"}}/>
 					<p className={styles.titleOptions}>Інформація про покупця</p>
 				</div>
 				<form className={styles.formInfo}>
-					<label>
+					<label style={{height:"0"}}>
 						<input
 							type='text'
 							placeholder='Прізвище'
@@ -195,7 +195,7 @@ const basketCounts = JSON.parse(localStorage.getItem("basketCounts")) || [];
 							value={basket.surname}
 						/>
 					</label>
-					<label>
+					<label style={{height:"0"}}>
 						<input
 							type='tel'
 							placeholder='Контактний телефон'
@@ -204,7 +204,7 @@ const basketCounts = JSON.parse(localStorage.getItem("basketCounts")) || [];
 							value={basket.phone}
 						/>
 					</label>
-					<label>
+					<label style={{height:"0"}}>
 						<input
 							type='text'
 							placeholder="Ім'я"
@@ -213,7 +213,7 @@ const basketCounts = JSON.parse(localStorage.getItem("basketCounts")) || [];
 							value={basket.name}
 						/>
 					</label>
-					<label>
+					<label style={{height:"0"}}>
 						<input
 							type='email'
 							placeholder='E-mail'
@@ -222,7 +222,7 @@ const basketCounts = JSON.parse(localStorage.getItem("basketCounts")) || [];
 							value={basket.email}
 						/>
 					</label>
-					<label>
+					<label style={{height:"0"}}>
 						<input
 							type='text'
 							placeholder='По батькові'
@@ -231,7 +231,8 @@ const basketCounts = JSON.parse(localStorage.getItem("basketCounts")) || [];
 							value={basket.paternal}
 						/>
 					</label>
-					<div className={styles.titleContainer} style={{ padding: "0 0 0 40px" }}>
+				</form>
+				<div className={styles.titleContainer} style={{marginLeft:"10px"}}>
 						<input
 							type='checkbox'
 							checked={basket.isPerson}
@@ -242,10 +243,9 @@ const basketCounts = JSON.parse(localStorage.getItem("basketCounts")) || [];
 							Отримуватиме замовлення інша людина
 						</p>
 					</div>
-				</form>
 				<hr className={styles.dash} />
 				<div className={styles.titleContainer}>
-					<img src={iconDelivery} alt='icon-delivery' />
+				<img src={iconDelivery} alt='icon-delivery' style={{margin:"0"}}/>
 					<p className={styles.titleOptions}>Вибір способу доставки</p>
 				</div>
 				<div className={styles.mainWrapperDelivery}>
@@ -256,7 +256,7 @@ const basketCounts = JSON.parse(localStorage.getItem("basketCounts")) || [];
 								}`}
 							onClick={() => handleDelivery(elem.text)}
 						>
-							<img src={elem.img} alt={elem.alt} />
+							<img src={elem.img} alt={elem.alt} style={{margin:"0"}}/>
 							<div>
 								<p className={styles.textLocation}>{elem.text}</p>
 								<p className={styles.textDescription}>{elem.description}</p>
@@ -275,7 +275,7 @@ const basketCounts = JSON.parse(localStorage.getItem("basketCounts")) || [];
 				<hr className={styles.dash} />
 				<ul style={{ paddingBottom: 30 }}>
 					<div className={styles.titleContainer}>
-						<img src={iconPay} alt='icon-pay' />
+						<img src={iconPay} alt='icon-pay'  style={{margin:"0"}}/>
 						<p className={styles.titleOptions}>Вибір способу оплати</p>
 					</div>
 					{paymentOption.map((elem, index) => (
@@ -290,15 +290,15 @@ const basketCounts = JSON.parse(localStorage.getItem("basketCounts")) || [];
 								<span className={styles.circle}></span>
 								<p className={styles.textPay}>{elem.text}</p>
 							</label>
-							<img src={elem.pay} alt={elem.alt} />
-							<img src={elem.pay2} alt={elem.alt2} />
+							<img src={elem.pay} alt={elem.alt} style={{margin:"0"}}/>
+							<img src={elem.pay2} alt={elem.alt2} style={{margin:"0"}}/>
 						</li>
 					))}
 				</ul>
 				<hr className={styles.dash} />
 				<div style={{ paddingBottom: 30 }}>
 					<div className={styles.titleContainer}>
-						<img src={iconComment} alt='icon-comment' />
+						<img src={iconComment} alt='icon-comment' style={{margin:"0"}}/>
 						<p className={styles.titleOptions}>Коментар до замовлення</p>
 					</div>
 					<textarea

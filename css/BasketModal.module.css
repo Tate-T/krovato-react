@@ -1,0 +1,134 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1000;
+}
+
+.modal {
+  width: 400px;
+  background: white;
+  border-radius: 10px 0 0 10px;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 100vh;
+  z-index: 1000000000;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.header span {
+  color: orange;
+  margin-left: 5px;
+}
+
+.closeIcon {
+  cursor: pointer;
+}
+
+.product {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.productImage {
+  width: 80px;
+  height: 80px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+
+.productInfo {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.size {
+  font-size: 12px;
+  color: #888;
+}
+
+.title {
+  font-size: 14px;
+  margin: 0;
+}
+
+.inStock {
+  color: green;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.price {
+  font-weight: bold;
+  margin-top: 5px;
+}
+.price .oldPrice {
+  color: red;
+  text-decoration: line-through;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+.quantity button {
+  background: #f0f0f0;
+  border: none;
+  padding: 5px 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.quantity span {
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+.removeBtn {
+  background: none;
+  border: none;
+  color: orange;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  font-weight: bold;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+}
+.btn.primary {
+  background: orange;
+  color: white;
+}
+.btn.secondary {
+  background: white;
+  color: orange;
+  border: 2px solid orange;
+}
+
+.none {
+  display: none;
+  color: red;
+}

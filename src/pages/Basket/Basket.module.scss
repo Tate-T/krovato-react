@@ -119,10 +119,10 @@
   }
 
   .formInfo {
-    height: 450px;
+    height: 330px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 70px;
   }
 
   .basketWrapper {
@@ -261,8 +261,9 @@
       flex-direction: row;
       flex-wrap: wrap;
       width: 700px;
-      height: 285px;
+      height: 205px;
       margin:auto;
+      gap:30px;
     }
     .mainWrapperDelivery{
       flex-direction: row;

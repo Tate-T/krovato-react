@@ -21,15 +21,17 @@ $red: red;
   overflow-y: auto;
   max-height: 100vh;
   z-index: 1000000000;
-
+  top: 20px;
   position: fixed;
   right: 20px;
   bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .header {
   display: flex;
-  justify-content: space-between;
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 15px;
@@ -48,7 +50,7 @@ $red: red;
   display: flex;
   margin-bottom: 20px;
   border-bottom: 1px solid #eee;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 .productImage {
@@ -60,7 +62,11 @@ $red: red;
 
 .productInfo {
   flex: 1;
-  margin-left: 10px;
+  margin-left: 20px;
+  text-align: left;
+  gap: 7px;
+  display: flex;
+  flex-direction: column;
 }
 
 .size {
@@ -95,9 +101,10 @@ $red: red;
   display: flex;
   align-items: center;
   margin-top: 10px;
-
+  background: #F8F8F8;
+  border: 1px solid #B1B1B1;
+  border-radius: 8px;
   button {
-    background: $light-gray;
     border: none;
     padding: 5px 8px;
     font-size: 16px;
@@ -121,7 +128,6 @@ $red: red;
 .btn {
   width: 100%;
   padding: 12px;
-  margin-top: 10px;
   font-weight: bold;
   border-radius: 8px;
   font-size: 16px;

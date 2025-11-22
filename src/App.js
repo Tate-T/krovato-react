@@ -13,6 +13,7 @@ import Catalog from "./pages/Catalog/Catalog"
 import Header from "./components/Header/Header.jsx";
 import Login from "./components/Header/Login.jsx";
 import LoginPage from "./components/Header/LoginPage.jsx";
+import BlogArticle from "./pages/BlogArticle/BlogArticle";
 // import About from "./components/About/About.jsx";
 // const HeaderFooter = lazy(() => import("./pages/HeaderFooter/HeaderFooter.jsx"));
 //  const Header = lazy(() => import("./components/Header/Header.jsx"));
@@ -70,6 +71,7 @@ function App() {
           <Route path="/contacts" element={<ContactsPage/>}/>
           <Route path="/catalog" element={<Catalog/>}/>
           <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
+          <Route path="/blog-article" element={<BlogArticle/>}/>
         </Routes>
       </Suspense>
        </main>

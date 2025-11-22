@@ -66,7 +66,7 @@
     gap: 15px;
 
     @media screen and (min-width: 1290px) {
-      justify-content: center;
+      justify-content: start;
     }
 
     &::before {
@@ -80,15 +80,16 @@
   }
 
   &__paragraph {
-    width: 80%;
+    width: 100%;
     @include font($dark-color, 1.87, 16px, 400);
+    text-align: start;
 
     @media screen and (min-width: 480px) {
       max-width: 363px;
     }
 
     @media screen and (min-width: 1290px) {
-      max-width: 1023px;
+      max-width: 1070px;
     }
   }
 
@@ -108,29 +109,21 @@
     }
   }
 
-  &__button {
-    &:nth-child(1) > .article__btn {
-      padding: 13px 51px;
-    }
-
-    &:nth-child(2) > .article__btn {
-      padding: 13px 60px;
-    }
-  }
-
   &__btn {
     @extend %flex-center2;
+    padding: 13px 51px;
     width: 100%;
     gap: 15px;
     border-radius: 8px;
 
     background-color: $yellow-color;
 
-    transition: background-color 250ms ease-in;
+    transition: all 250ms ease-in;
 
     &:hover,
     &:focus {
       background-color: #f3ab3f;
+      transform: translateY(-25%) rotate(-02deg);
     }
 
     @media screen and (min-width: 480px) {

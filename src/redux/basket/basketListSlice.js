@@ -120,7 +120,7 @@ const basketListSlice = createSlice({
       })
       .addCase(addToBasket.fulfilled, (state, action) => {
         state.items.push(action.payload);
-        state.counts.push(1);
+        state.counts.push(action.payload.count || 1)
         localStorage.setItem("activeProducts", JSON.stringify(state.items));
         localStorage.setItem("basketCounts", JSON.stringify(state.counts));
       })

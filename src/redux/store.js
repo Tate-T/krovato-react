@@ -1,4 +1,3 @@
-// src/app/store.js
 import { configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
@@ -8,11 +7,14 @@ import basketListReducer from "./basket/basketListSlice"
 import { favoriteReducer } from "./favorite/FavoriteSlice";
 import loginReducer from "./login/loginSlice";
 import { productsReducer } from "./products/ProductsSlice";
+
+import { reviewsReducer } from "./reviews/reviewsSlice";
 import cartSlice from "../redux/basketModal/basketModalSlice";
 import { ProductItemReducer } from "./productItem/productItemSlice";
 import productDescriptionReducer from "./productDescription/productDescriptionSlice";
 import { AdditionAPIReducer } from "./Addition/AdditionSlice";
 import { recommendedProductReducer } from "./recomme/recommendedSlice";
+
 const favoriteConfig = {
   key: "favorite",
   storage,
@@ -44,7 +46,8 @@ const rootReducer = combineReducers({
   basket: basketReducer,
   basketList:basketListReducer,
   favorite: persistedFavorite,
-  login: loginReducer, // now works with useSelector
+  reviews: reviewsReducer,
+  login: loginReducer,
   products: persistedProducts, 
   cart: cartSlice,
   itemProduct : persistedProductsItem,

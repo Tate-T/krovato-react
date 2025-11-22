@@ -1,0 +1,279 @@
+.about {
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+.about h2 {
+  font-size: clamp(20px, 5vw, 28px);
+  margin-bottom: clamp(20px, 5vw, 40px);
+  font-weight: 600;
+  color: #333;
+}
+.about p {
+  text-align: left;
+  font-size: clamp(14px, 3vw, 16px);
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+.content {
+  margin-bottom: 30px;
+  position: relative;
+  overflow: visible;
+  transition: all 0.5s ease;
+}
+.content p {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+.content p:last-child {
+  margin-bottom: 0;
+}
+
+.expandableContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+  opacity: 0;
+}
+.expandableContent p {
+  transform: translateY(20px);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+}
+
+.expanded {
+  max-height: 1000px; /* Adjust based on your content */
+  opacity: 1;
+}
+.expanded p {
+  transform: translateY(0);
+  opacity: 1;
+}
+.expanded p:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.expanded p:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.content p:nth-child(2) {
+  animation: slideDown 0.6s ease forwards;
+}
+
+.content p:nth-child(3) {
+  animation: slideDown 0.8s ease forwards;
+}
+
+.fadeOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0s 0.5s;
+}
+
+.iconContainer, .bedButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 5;
+}
+.iconContainer:hover, .bedButtonContainer:hover {
+  transform: scale(1.05);
+}
+
+.bedButtonContainer {
+  margin-top: 30px;
+  perspective: 800px;
+  display: flex;
+  justify-content: center;
+}
+
+.bedButton {
+  position: relative;
+  width: 80px;
+  height: 50px;
+  transition: all 0.5s ease;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+.bedButton:hover {
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
+  transform: scale(1.05);
+}
+
+.bedFrame {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background: linear-gradient(90deg, #6D4C41, #8D6E63);
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.bedFrame::before, .bedFrame::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 15px;
+  background: linear-gradient(180deg, #5D4037, #6D4C41);
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.bedFrame::before {
+  left: 5px;
+  bottom: 0;
+}
+.bedFrame::after {
+  right: 5px;
+  bottom: 0;
+}
+
+.bedHeadboard {
+  position: absolute;
+  bottom: 12px;
+  left: 5px;
+  width: 70px;
+  height: 18px;
+  background: linear-gradient(90deg, #795548, #8D6E63);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.bedHeadboard::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  right: 5px;
+  height: 12px;
+  background: linear-gradient(90deg, #8D6E63, #A1887F);
+  border-radius: 2px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.bedMattress {
+  position: absolute;
+  bottom: 12px;
+  left: 8px;
+  width: 64px;
+  height: 8px;
+  background: linear-gradient(180deg, #EEEEEE, #E0E0E0);
+  border-radius: 3px;
+  transition: all 0.5s ease;
+  transform-origin: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+.bedMattress::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #E0E0E0, #F5F5F5);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.bedPillow {
+  position: absolute;
+  bottom: 20px;
+  left: 12px;
+  width: 16px;
+  height: 6px;
+  background: linear-gradient(180deg, #FFFFFF, #F5F5F5);
+  border-radius: 2px;
+  transition: all 0.5s ease;
+  transform-origin: left;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.bedBlanket {
+  position: absolute;
+  bottom: 20px;
+  right: 12px;
+  width: 40px;
+  height: 8px;
+  background: linear-gradient(90deg, #FFA726, #FF9800);
+  border-radius: 2px;
+  transition: all 0.5s ease;
+  transform-origin: right;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+.bedBlanket::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #FFB74D, #FFA726);
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.bedOpen .bedMattress {
+  transform: translateY(-6px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+.bedOpen .bedPillow {
+  transform: translateY(-6px) translateX(3px) rotate(-5deg);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+.bedOpen .bedBlanket {
+  transform: translateY(-12px) translateX(-5px) rotate(-15deg);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+  .about {
+    padding: 30px 15px;
+  }
+  .fadeOverlay {
+    height: 80px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .about {
+    padding: 20px 10px;
+  }
+  .fadeOverlay {
+    height: 60px;
+  }
+  .iconContainer {
+    margin-top: 15px;
+  }
+}

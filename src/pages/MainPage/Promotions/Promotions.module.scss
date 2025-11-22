@@ -197,4 +197,47 @@
     background-color: #fff;
     @include block-model(0, 2px solid $grey-light-color, 50%, 0);
   }
+  
+.promotions__sliderWrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
 }
+
+.promotions__list {
+  display: flex;
+  transition: transform 0.5s ease;
+  touch-action: pan-y; /* щоб свайп працював плавно */
+}
+
+.promotions__item {
+  flex: 0 0 100%;
+  padding: 5px;
+
+  @media screen and (min-width: 768px) {
+    flex: 0 0 50%;
+  }
+
+  @media screen and (min-width: 1200px) {
+    flex: 0 0 33.333%;
+  }
+}
+
+.promotions__roundActive {
+  background-color: #ffbc57 !important;
+  border: 3px solid #fff !important;
+}
+
+.promotions__button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+}
+

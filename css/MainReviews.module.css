@@ -1,0 +1,12 @@
+.reviews__reviewsFormBox {
+  display: flex;
+  gap: 30px;
+  padding-top: 40px;
+  flex-direction: column;
+  background-color: #F8F8F8;
+}
+@media screen and (min-width: 1200px) {
+  .reviews__reviewsFormBox {
+    flex-direction: row;
+  }
+}

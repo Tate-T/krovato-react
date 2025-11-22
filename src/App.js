@@ -1,6 +1,7 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useState, Suspense, lazy } from 'react'
+import { AboutUsPage } from "./pages/AboutUs/About-us-page.jsx";
 import MainPage from "./pages/MainPage/MainPage"; 
 import Footer from "./components/Footer/Footer.jsx";
 import  About  from "./components/About/About.jsx";
@@ -12,8 +13,12 @@ import ContactsPage from "./pages/ContactsPage/ContactsPage";
 import Catalog from "./pages/Catalog/Catalog"
 import Header from "./components/Header/Header.jsx";
 import Login from "./components/Header/Login.jsx";
+import Basket from "./pages/Basket/Basket.jsx"
+import AgreeTerms from "./pages/Basket/AgreeTerms/AgreeTerms.jsx";
 import LoginPage from "./components/Header/LoginPage.jsx";
 import BlogArticle from "./pages/BlogArticle/BlogArticle";
+import Hero from "./pages/ProductCard/Hero/Hero.jsx";
+import { ProductCardPage } from "./pages/ProductCard/ProductCardPage.jsx";
 // import About from "./components/About/About.jsx";
 // const HeaderFooter = lazy(() => import("./pages/HeaderFooter/HeaderFooter.jsx"));
 //  const Header = lazy(() => import("./components/Header/Header.jsx"));
@@ -63,15 +68,18 @@ function App() {
        <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<MainPage/>}/>
-          <Route path="/aboutUs" element={<About/>}/>
+          <Route path="/aboutUs" element={<AboutUsPage/>}/> 
           <Route path="/pay" element={<PaymentPage/>}/>
+          <Route path="/basket" element={<Basket />} />
+          <Route path="/agree" element={<AgreeTerms />}/>
           <Route path="/delivery" element={<Delivery/>}/> 
           <Route path="/reviews" element={<MainReviewsPage/>}/>
           <Route path="/blog" element={<BlogPage/>}/>
+          <Route path="/blog-article" element={<BlogArticle/>}/>
           <Route path="/contacts" element={<ContactsPage/>}/>
           <Route path="/catalog" element={<Catalog/>}/>
           <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
-          <Route path="/blog-article" element={<BlogArticle/>}/>
+          <Route path="/product/:id" element={<ProductCardPage/>}/>
         </Routes>
       </Suspense>
        </main>

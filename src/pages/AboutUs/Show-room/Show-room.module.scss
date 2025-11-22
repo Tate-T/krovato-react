@@ -5,8 +5,12 @@
   background-color:#F8F8F8;
 
   &__container {
+    outline: red solid;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     @media screen and (min-width: 1290px) {
-      display: flex;
+      flex-direction: row;
       justify-content: center;
     }
   }
@@ -62,7 +66,8 @@
     &:hover,
     &:focus {
       background-color: #f3ab3f;
-      outline: solid 4px #f3ab3f;
+      transform: scale(1.1);
+      // outline: solid 4px #f3ab3f;
     }
 
     @media screen and (min-width: 1290px) {

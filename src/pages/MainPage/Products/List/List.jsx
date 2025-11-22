@@ -2,66 +2,58 @@ import { ProductsItem } from "./Item/Item";
 
 import style from "../Products.module.scss";
 
-import { useState, useEffect } from "react";
-
-import products from "../../../../products";
-
+import {useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import productsThunk from "../../../../thunk/ProductsThunk";
+import { addFavoriteProductThunk } from "../../../../thunk/addFavoriteProductThunk";
+import { getFavoriteThunk } from "../../../../thunk/getFivoriteThunk";
+import { addToCart } from "../../../../redux/basketModal/basketModalSlice";
 export const ProductsList = () => {
-  // Сохраняем избранные товары из localStorage
-  const [favoriteProducts, setFavoriteProducts] = useState(() => {
-    return JSON.parse(localStorage.getItem("activeProducts")) || [];
-  });
-
-  // Проверка, лайкнут ли товар
-  const isFavorite = (productId) => {
-    return favoriteProducts.some((item) => item.id === productId);
+  const dispatch = useDispatch()
+  const products = useSelector(state => state.products.products)
+  const favoriteProducts = useSelector( state => state.favorite.favoriteProducts)
+    const handleAddToBasket = (product) => {
+    dispatch(addToCart(product))
+  }
+  const isFavorite = (productTitle) => {
+   if (!Array.isArray(favoriteProducts)) return false;
+    return favoriteProducts.some((item) => item.title === productTitle);
   };
 
-  // Добавление/удаление товара из избранного
-  function toggleFavorite(productId) {
-    let updatedFavorites;
-    if (isFavorite(productId)) {
-      updatedFavorites = favoriteProducts.filter((item) => item.id !== productId);
+  function toggleFavorite({id,title, alt, width,height,length, inStock, price, src, oldPrice,}) {
+    const alreadyFavorite = isFavorite(title);
+    if (alreadyFavorite) {
+      alert("Товар вже додано. Щоб видалити зайдіть в ваш список")
+      return
     } else {
-      const productToAdd = products.find((item) => item.id === productId);
-      if (!productToAdd) return;
-      updatedFavorites = [...favoriteProducts, productToAdd];
+      return dispatch(addFavoriteProductThunk({ id, title, alt, width, height, length, inStock, price, imageSrc: src, oldPrice }));
     }
-    setFavoriteProducts(updatedFavorites);
-    localStorage.setItem("activeProducts", JSON.stringify(updatedFavorites));
-    window.dispatchEvent(new Event('storage'));
   }
-
-  // Слушаем изменения localStorage (например, если лайкнули в другой вкладке)
+  
   useEffect(() => {
-    const handleStorage = (event) => {
-      if (event.key === "activeProducts") {
-        const newFavorites = JSON.parse(event.newValue) || [];
-        setFavoriteProducts(newFavorites);
-      }
-    };
-    window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
-  }, []);
-
+    dispatch(productsThunk())
+    dispatch(getFavoriteThunk())
+  },[])
   return (
     <ul className={style.products__list}>
       {products.map((item) => (
-        <ProductsItem
-          id={item.id}
-          key={item.id}
-          src={item.image.src}
-          mobileImage={item.image.srcSet.mobile}
-          desktopImage={item.image.srcSet.desktop}
-          alt={item.image.alt}
-          size={item.size}
-          title={item.title}
-          inStock={item.inStock}
-          oldPrice={item.oldPrice}
-          currentPrice={item.price}
-          onSelect={toggleFavorite}
-          isFavorite={isFavorite(item.id)}
-        />
+           <ProductsItem
+            id={item.id}
+            key={item.id}
+            src={item.imageSrc}
+            alt={item.alt}
+            height={item.size.height}
+            width={item.size.width}
+            length={item.size.length}
+            title={item.title}
+            inStock={item.inStock}
+            oldPrice={item.oldPrice}
+            currentPrice={item.price}
+            onSelect={toggleFavorite}
+            isFavorite={isFavorite(item.title)}
+            addBasket={() => handleAddToBasket(item)}
+            smallBedImage = {item.smallBadImage}
+          />
       ))}
     </ul>
   );

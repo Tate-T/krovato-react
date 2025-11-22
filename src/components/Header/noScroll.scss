@@ -1,0 +1,22 @@
+/* Блокировка скролла при открытом меню */
+.no-scroll {
+  overflow: hidden !important;
+  height: 100vh !important;
+  position: fixed !important;
+  width: 100% !important;
+  touch-action: none !important;
+  -webkit-overflow-scrolling: none !important;
+}
+
+/* Для iOS Safari */
+.no-scroll body {
+  position: fixed !important;
+  overflow: hidden !important;
+  width: 100% !important;
+}
+
+/* Предотвращаем скролл на тачскринах */
+.no-scroll {
+  -ms-touch-action: none !important;
+  touch-action: none !important;
+}

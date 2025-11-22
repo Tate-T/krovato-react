@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { deleteFromCart } from "../basketModal/basketModalSlice";
 import axios from "axios"
 const API_URL = "https://68fe10e87c700772bb12b197.mockapi.io/goods"
 const validPromoCodes = {
@@ -26,6 +27,13 @@ export const addToBasket = createAsyncThunk(
     } catch (err) {
       return thunkAPI.rejectWithValue("Не вдалося додати товар");
     }
+  }
+);
+export const removeProductEverywhere = createAsyncThunk(
+  "basket/removeProductEverywhere",
+  async (id, thunkAPI) => {
+    await thunkAPI.dispatch(deleteFromCart(id));
+    return id; 
   }
 );
 export const deleteFromBasket = createAsyncThunk(
@@ -86,7 +94,18 @@ const basketListSlice = createSlice({
       state.counts = []
       localStorage.removeItem("activeProducts");
       localStorage.removeItem("basketCounts");
-    }
+    },
+    syncBasket: (state, action) => {
+      state.items = action.payload;
+      state.counts = action.payload.map(item => Number(item.quantity) || 1);
+  
+      localStorage.setItem("activeProducts", JSON.stringify(state.items));
+      localStorage.setItem("basketCounts", JSON.stringify(state.counts));
+    }, 
+    loadFromStorage(state, action) {
+      state.items = action.payload.items || [];
+      state.counts = action.payload.counts || [];
+  }
   },
   extraReducers: (builder) => {
     builder
@@ -109,7 +128,7 @@ const basketListSlice = createSlice({
       })
       .addCase(addToBasket.fulfilled, (state, action) => {
         state.items.push(action.payload);
-        state.counts.push(1);
+        state.counts.push(action.payload.count || 1)
         localStorage.setItem("activeProducts", JSON.stringify(state.items));
         localStorage.setItem("basketCounts", JSON.stringify(state.counts));
       })
@@ -122,9 +141,21 @@ const basketListSlice = createSlice({
           localStorage.setItem("activeProducts", JSON.stringify(state.items))
           localStorage.setItem("basketCounts", JSON.stringify(state.counts))
         }
-      });
+      })
+       .addCase(removeProductEverywhere.fulfilled, (state, action) => {
+        const id = action.payload;
+      
+        const index = state.items.findIndex((i) => i.id === id);
+        if (index !== -1) {
+          state.items.splice(index, 1);
+          state.counts.splice(index, 1);
+      
+          localStorage.setItem("activeProducts", JSON.stringify(state.items));
+          localStorage.setItem("basketCounts", JSON.stringify(state.counts));
+        }
+      })
   }
 
 })
-export const { addItemCount, subtractItemCount, applyPromo , clearBasket } = basketListSlice.actions
+export const { addItemCount, subtractItemCount, applyPromo , clearBasket , syncBasket , loadFromStorage } = basketListSlice.actions
 export default basketListSlice.reducer

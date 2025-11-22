@@ -1,51 +1,76 @@
-.Favorite{
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    padding: 10px 0 10px 0;
-    // background: #edededa2;
-    background: #ededede1;
-    border-radius: 15px;
+@keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+}
 
-    row-gap: 10px;
-    
+.background{
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-
-    z-index: 1000000000000000001;
-
-    max-height: 500px;
-    overflow: auto;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(2px);
+    z-index: 900;
+    animation: fadeIn 0.25s ease;
+}
+.Favorite{
+    position: fixed;
+    top: 0;
+    right: 0;
+  
+    width: 340px;
+    height: 100vh;
+  
+    background: #ffffff;
+    border-left: 3px solid #ff8800;
+  
+    padding: 20px;
+    overflow-y: auto;
+  
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+  
+    transform: translateX(100%);
+    animation: slideIn 0.3s forwards;
+    row-gap: 10px;
 }
 .closeBtn {
-    position: fixed;
-    top: 40px;
-    right: 40px;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-    font-size: 28px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: transparent;
+    border: none;
+    font-size: 24px;
     cursor: pointer;
-    color: #888;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    z-index: 1000000002;
-    transition: background 0.2s, color 0.2s;
+    color: #ff8800;
+    transition: 0.2s ease;
+    position: absolute;
+    top: 12px;
+    right: 12px;
 }
 .closeBtn:hover {
-    background: #f5f5f5;
-    color: #222;
+    transform: scale(1.2);
+    color: #ff5500;
 }
 .Item{
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 220PX;
+    position: relative;
+    row-gap: 10px;
     &_image{
         width: 160px;
         height: 120px;
@@ -64,8 +89,8 @@
 }
 .DeleteItem{
     position: absolute;
-    top: 5px;
-    right: 5px;
+    bottom: 85%;
+    right: 16px;
     background: #fff;
     border: 1px solid #ccc;
     border-radius: 50%;
@@ -77,4 +102,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    &:hover{
+        background: orange;
+        color: white;
+    }
 }

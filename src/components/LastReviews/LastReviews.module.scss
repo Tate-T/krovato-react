@@ -19,6 +19,8 @@
 
   &__content {
     flex: 1;
+    overflow: hidden;
+    position: relative;
   }
 
   &__content:nth-child(1) {
@@ -52,6 +54,12 @@
     align-items: center;
     justify-content: center;
     position: absolute;
+    overflow: visible;
+  }
+
+  &__logoSofaSvg {
+    width: 100%;
+    height: 100%;
   }
 
   &__name {
@@ -63,6 +71,9 @@
     line-height: 28px;
     padding-left: 20px;
     text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 250px;
   }
 
   &__date {
@@ -85,6 +96,13 @@
     line-height: 30px;
     width: 370px;
     height: 150px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    -webkit-box-orient: vertical;
 
     a {
       color: var(--Theme-Yellow, #ffbc57);
@@ -230,9 +248,9 @@
     display: flex;
     flex-direction: row;
     gap: 30px;
-    overflow: hidden;
-    width: 100%;
+    width: max-content;
     transition: transform 0.3s ease;
+    will-change: transform;
   }
 
   &__item {
@@ -253,22 +271,22 @@
 
     &:hover {
       transform: scale(1.01) translateY(-20px);
-      box-shadow: 0 4px 15px -5px rgba(0,0,0,0.3);
-      -webkit-box-shadow: 0 4px 15px -5px rgba(0,0,0,0.3);
-      -moz-box-shadow: 0 4px 15px -5px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 15px -5px rgba(0, 0, 0, 0.3);
+      -webkit-box-shadow: 0 4px 15px -5px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0 4px 15px -5px rgba(0, 0, 0, 0.3);
       border-radius: 10px;
     }
 
-    & > div:nth-child(1) {
+    &>div:nth-child(1) {
       display: flex;
       flex-direction: row;
     }
 
-    & > div > div:nth-child(1) {
+    &>div>div:nth-child(1) {
       border-color: #ffbc57;
-      width: 50px;
-      height: 50px;
-      border-radius: 40px;
+      width: 70px;
+      height: 55px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -338,14 +356,14 @@
   }
 
   &__empty {
-    & > svg {
+    &>svg {
       width: 15px;
       height: 15px;
       border: 2px solid #b1b1b1;
       border-radius: 100%;
     }
 
-    &:nth-child(3) > svg {
+    &:nth-child(3)>svg {
       border-color: white;
     }
   }
@@ -374,9 +392,10 @@
       width: 60px;
       height: 60px;
       background-color: white;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M17.647 14.235l-13.551-13.527c-0.223-0.224-0.487-0.403-0.779-0.524s-0.605-0.184-0.921-0.184c-0.316 0-0.629 0.063-0.921 0.184s-0.557 0.3-0.779 0.524c-0.446 0.449-0.696 1.055-0.696 1.688s0.25 1.239 0.696 1.688l11.851 11.971-11.851 11.851c-0.446 0.449-0.696 1.055-0.696 1.688s0.25 1.239 0.696 1.688c0.222 0.226 0.486 0.406 0.778 0.529s0.605 0.188 0.922 0.189c0.317-0.001 0.63-0.065 0.922-0.189s0.556-0.303 0.778-0.529l13.551-13.527c0.243-0.224 0.437-0.496 0.57-0.799s0.201-0.63 0.201-0.961-0.068-0.658-0.201-0.961c-0.133-0.303-0.327-0.575-0.57-0.799z' fill='%23535353'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: center;
-      background-size: 45%;
+      background-size: 30%;
       border-radius: 50%;
       cursor: pointer;
       transform: translateY(0);
@@ -387,6 +406,10 @@
       width: 60px;
       height: 60px;
       background-color: white;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M17.647 14.235l-13.551-13.527c-0.223-0.224-0.487-0.403-0.779-0.524s-0.605-0.184-0.921-0.184c-0.316 0-0.629 0.063-0.921 0.184s-0.557 0.3-0.779 0.524c-0.446 0.449-0.696 1.055-0.696 1.688s0.25 1.239 0.696 1.688l11.851 11.971-11.851 11.851c-0.446 0.449-0.696 1.055-0.696 1.688s0.25 1.239 0.696 1.688c0.222 0.226 0.486 0.406 0.778 0.529s0.605 0.188 0.922 0.189c0.317-0.001 0.63-0.065 0.922-0.189s0.556-0.303 0.778-0.529l13.551-13.527c0.243-0.224 0.437-0.496 0.57-0.799s0.201-0.63 0.201-0.961-0.068-0.658-0.201-0.961c-0.133-0.303-0.327-0.575-0.57-0.799z' fill='%23535353'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 30%;
       border: 0;
       border-radius: 50%;
       cursor: pointer;
@@ -493,7 +516,7 @@
       display: none;
     }
 
-    &__empty > svg {
+    &__empty>svg {
       width: 15px;
       height: 15px;
       border: 2px solid #b1b1b1;
@@ -507,7 +530,7 @@
       margin-top: 20px;
     }
 
-    &__empty:nth-child(3) > svg {
+    &__empty:nth-child(3)>svg {
       border-color: white;
     }
   }
@@ -552,7 +575,7 @@
       display: none;
     }
 
-    &__empty > svg {
+    &__empty>svg {
       width: 15px;
       height: 15px;
       border: 2px solid #b1b1b1;
@@ -566,7 +589,7 @@
       margin-top: 20px;
     }
 
-    &__empty:nth-child(3) > svg {
+    &__empty:nth-child(3)>svg {
       border-color: white;
     }
   }
@@ -584,7 +607,7 @@
 
     &__list {
       flex-direction: row;
-      width: 1500px;
+      width: max-content;
     }
 
     &__item {
@@ -604,7 +627,7 @@
       display: none;
     }
 
-    &__empty:nth-child(3) > svg {
+    &__empty:nth-child(3)>svg {
       border-color: white;
     }
   }

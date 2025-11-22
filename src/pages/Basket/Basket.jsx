@@ -1,6 +1,5 @@
 import styles from './Basket.module.scss'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { Modal } from './Modal'
 import infoCircle from '../../images/basket/icon-info-mobile.svg'
 import iconComment from '../../images/basket/icon-comment-mobile.svg'
@@ -21,7 +20,7 @@ import { ContextBasketList } from './ContextBasketList'
 import { ContextModal } from './ContextModal'
 import { setSurname, setName, setPaternal, setPhone, setEmail, setComment, setPayment, setDelivery, setIsPerson } from '../../redux/basket/basketSlice'
 import { useSelector, useDispatch } from 'react-redux'
-import { sendOrder } from '../../redux/basket/basketSlice'
+import  {sendOrder}  from '../../redux/basket/basketSlice'
 import { clearBasket } from '../../redux/basket/basketListSlice'
 const cartDelivery = [
 	{
@@ -66,7 +65,7 @@ const paymentOption = [
 	{ text: 'Оплата частинами МоноБанк', pay: monobankLogo, alt: 'monobankicon' },
 ]
 const basketCounts = JSON.parse(localStorage.getItem("basketCounts")) || [];
-export const Basket = () => {
+ const Basket = () => {
 	const dispatch = useDispatch()
 	const basket = useSelector((state) => state.basket)
 	const [isModal, setIsModal] = useState(false)
@@ -176,7 +175,6 @@ export const Basket = () => {
 		setSelectedPayment("")
 		setDeliveryValue("")
 	}
-	console.log(basket.isPerson)
 	return (
 		<div className={styles.mainWrapper}>
 			<ContextModal.Provider value={{ handleCloseModal, isModal, message }}>
@@ -184,11 +182,11 @@ export const Basket = () => {
 			</ContextModal.Provider>
 			<div className={styles.basketWrapper}>
 				<div className={styles.titleContainer}>
-					<img src={infoCircle} alt='icon-info' />
+					<img src={infoCircle} alt='icon-info' style={{margin:"0"}}/>
 					<p className={styles.titleOptions}>Інформація про покупця</p>
 				</div>
 				<form className={styles.formInfo}>
-					<label>
+					<label style={{height:"0"}}>
 						<input
 							type='text'
 							placeholder='Прізвище'
@@ -197,7 +195,7 @@ export const Basket = () => {
 							value={basket.surname}
 						/>
 					</label>
-					<label>
+					<label style={{height:"0"}}>
 						<input
 							type='tel'
 							placeholder='Контактний телефон'
@@ -206,7 +204,7 @@ export const Basket = () => {
 							value={basket.phone}
 						/>
 					</label>
-					<label>
+					<label style={{height:"0"}}>
 						<input
 							type='text'
 							placeholder="Ім'я"
@@ -215,7 +213,7 @@ export const Basket = () => {
 							value={basket.name}
 						/>
 					</label>
-					<label>
+					<label style={{height:"0"}}>
 						<input
 							type='email'
 							placeholder='E-mail'
@@ -224,7 +222,7 @@ export const Basket = () => {
 							value={basket.email}
 						/>
 					</label>
-					<label>
+					<label style={{height:"0"}}>
 						<input
 							type='text'
 							placeholder='По батькові'
@@ -233,7 +231,8 @@ export const Basket = () => {
 							value={basket.paternal}
 						/>
 					</label>
-					<div className={styles.titleContainer} style={{ padding: "0 0 0 5px" }}>
+				</form>
+				<div className={styles.titleContainer} style={{marginLeft:"10px"}}>
 						<input
 							type='checkbox'
 							checked={basket.isPerson}
@@ -244,10 +243,9 @@ export const Basket = () => {
 							Отримуватиме замовлення інша людина
 						</p>
 					</div>
-				</form>
 				<hr className={styles.dash} />
 				<div className={styles.titleContainer}>
-					<img src={iconDelivery} alt='icon-delivery' />
+				<img src={iconDelivery} alt='icon-delivery' style={{margin:"0"}}/>
 					<p className={styles.titleOptions}>Вибір способу доставки</p>
 				</div>
 				<div className={styles.mainWrapperDelivery}>
@@ -258,7 +256,7 @@ export const Basket = () => {
 								}`}
 							onClick={() => handleDelivery(elem.text)}
 						>
-							<img src={elem.img} alt={elem.alt} />
+							<img src={elem.img} alt={elem.alt} style={{margin:"0"}}/>
 							<div>
 								<p className={styles.textLocation}>{elem.text}</p>
 								<p className={styles.textDescription}>{elem.description}</p>
@@ -277,7 +275,7 @@ export const Basket = () => {
 				<hr className={styles.dash} />
 				<ul style={{ paddingBottom: 30 }}>
 					<div className={styles.titleContainer}>
-						<img src={iconPay} alt='icon-pay' />
+						<img src={iconPay} alt='icon-pay'  style={{margin:"0"}}/>
 						<p className={styles.titleOptions}>Вибір способу оплати</p>
 					</div>
 					{paymentOption.map((elem, index) => (
@@ -292,15 +290,15 @@ export const Basket = () => {
 								<span className={styles.circle}></span>
 								<p className={styles.textPay}>{elem.text}</p>
 							</label>
-							<img src={elem.pay} alt={elem.alt} />
-							<img src={elem.pay2} alt={elem.alt2} />
+							<img src={elem.pay} alt={elem.alt} style={{margin:"0"}}/>
+							<img src={elem.pay2} alt={elem.alt2} style={{margin:"0"}}/>
 						</li>
 					))}
 				</ul>
 				<hr className={styles.dash} />
 				<div style={{ paddingBottom: 30 }}>
 					<div className={styles.titleContainer}>
-						<img src={iconComment} alt='icon-comment' />
+						<img src={iconComment} alt='icon-comment' style={{margin:"0"}}/>
 						<p className={styles.titleOptions}>Коментар до замовлення</p>
 					</div>
 					<textarea
@@ -317,3 +315,4 @@ export const Basket = () => {
 		</div>
 	)
 }
+export default Basket;

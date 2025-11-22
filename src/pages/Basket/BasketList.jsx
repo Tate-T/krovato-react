@@ -8,10 +8,10 @@ import styles from './BasketList.module.scss'
 import { ContextBasketList } from './ContextBasketList'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { subtractItemCount, addItemCount, applyPromo } from '../../redux/basket/basketListSlice'
+import { removeProductEverywhere } from '../../redux/basket/basketListSlice'
+import { subtractItemCount, addItemCount, applyPromo , syncBasket , loadFromStorage } from '../../redux/basket/basketListSlice'
 import {
 	fetchBasket,
-	addToBasket,
 	deleteFromBasket,
 } from "../../redux/basket/basketListSlice";
 export const BasketList = () => {
@@ -22,12 +22,11 @@ export const BasketList = () => {
 	const counts = useSelector(state => state.basketList.counts)
 	const discountPercent = useSelector(state => state.basketList.discount)
 	const promoMessage = useSelector(state => state.basketList.promoMessage)
+	const cartItems = useSelector(state => state.cart.items);
 	const handleAddItem = (index) => {
 		dispatch(addItemCount(index))
 		console.log(index)
 	}
-	console.log(items)
-	console.log(counts)
 	const handleMinusItem = (index) => {
 		dispatch(subtractItemCount(index))
 	}
@@ -47,12 +46,32 @@ export const BasketList = () => {
 		return total
 	}
 	useEffect(() => {
+		if (Array.isArray(cartItems) && cartItems.length > 0) {
+		  const syncedItems = cartItems.map(item => ({
+			...item,
+			quantity: item.quantity ? Number(item.quantity) : 1
+		  }));
+		  dispatch(syncBasket(syncedItems));
+		}
+	  }, [cartItems, dispatch]);
+	useEffect(() => {
 		dispatch(fetchBasket());
-	}, [dispatch]);
+	  }, [dispatch]);
+	  useEffect(() => {
+		const savedItems = JSON.parse(localStorage.getItem('activeProducts'));
+		const savedCounts = JSON.parse(localStorage.getItem('basketCounts'));
+		const savedDiscount = Number(localStorage.getItem('discountPercent')) || 0;
+	
+		if (savedItems && savedCounts) {
+		  dispatch(loadFromStorage({ items: savedItems, counts: savedCounts, discount: savedDiscount }));
+		}
+	  }, [dispatch]);
+
 	useEffect(() => {
 		localStorage.setItem("activeProducts", JSON.stringify(items));
 		localStorage.setItem("basketCounts", JSON.stringify(counts));
-	}, [items, counts]);
+		localStorage.setItem('discountPercent', discountPercent);
+	}, [items, counts, discountPercent]);
 
 	const { orderButton } = useContext(ContextBasketList)
 	return (
@@ -77,7 +96,7 @@ export const BasketList = () => {
 									>
 										<div className={styles.containerDescription}>
 											<img
-												src={bed.image.src}
+												src={bed.imageSrc}
 												alt={bed.alt}
 												className={styles.imgBed}
 											/>
@@ -98,27 +117,27 @@ export const BasketList = () => {
 											</div>
 										</div>
 										<div className={styles.containerDescription}>
-											<p className={styles.textBed}>{bed.size}</p>
+											<p className={styles.textBed}>Розмір: {bed.size.width} x {bed.size.length} x {bed.size.height} мм</p>
 											<p className={styles.titleBed}>{bed.title}</p>
 											<p className={styles.textDescription}>
 												{bed.description}
 											</p>
 											<div className={styles.bedStatus}>
-												<img src={bed.svg || checkIcon} alt='icon-check' />
+												<img src={bed.svg || checkIcon} alt='icon-check' style={{margin:"0"}}/>
 												<p className={styles.textBed}>
 													{bed.isStock ? 'Не в наявності' : 'В наявності'}
 												</p>
 											</div>
-											<p className={styles.textPrice}>{bed.price}</p>
+											<p className={styles.textPrice}>{bed.price} грн</p>
 										</div>
 										<button
 											className={styles.btnDelete}
-											onClick={() => dispatch(deleteFromBasket(bed.id))}
+											onClick={() => dispatch(removeProductEverywhere(bed.id))}
 										>
 											<img src={deleteSvg} alt='deleteSvg' style={{ maxWidth: 24 }} />
 										</button>
 									</li>
-									<hr className={styles.dash} />
+									<hr className={`${styles.dash} ${isHidden ? styles.hiddenOnMobile : ''}`} />
 								</>
 							)
 						})}
@@ -135,9 +154,10 @@ export const BasketList = () => {
 							</button>
 						</div>
 					</ul>
+					<div className={styles.containerPromoOrder}>
 					<div className={styles.containerPromocode}>
 						<div className={styles.promocodeDecription}>
-							<img src={promoIcon} alt='promo-icon' />
+							<img src={promoIcon} alt='promo-icon' style={{margin:"0"}}/>
 							<p>Є промокод?</p>
 						</div>
 						<div className={styles.promocodeDecription}>
@@ -156,7 +176,7 @@ export const BasketList = () => {
 					</div>
 					<p id='message'>{promoMessage}</p>
 					<hr className={styles.dash} />
-					<div style={{ marginLeft: 20 }}>
+					<div style={{ marginRight: 20 }}>
 						<p className={styles.textTogether} style={{ marginBottom: 28 }}>
 							Разом:
 						</p>
@@ -183,16 +203,16 @@ export const BasketList = () => {
 							</li>
 						</ul>
 					</div>
-					<div className={styles.containerBed}>
+					<div className={styles.containerBed} style={{alignItems:"center" , marginLeft:"-20px"}}>
 						<input type='checkbox' className={styles.checkboxes} />
-						<p style={{ textAlign: 'left' }}>
+						<p className={styles.confirmPhone}>
 							Не передзвонюйте мені для підтвердження замовлення
 						</p>
 					</div>
 					<button className={styles.btnOrder} onClick={orderButton}>
 						ОФОРМИТИ ЗАМОВЛЕННЯ
 					</button>
-					<p>
+					<p className={styles.agreeText}>
 						Підтверджуючи замовлення, я приймаю умови{' '}
 						<span className={styles.userOkay}>
 							<Link to='/agree' style={{ color: '#FFBC57' }}>
@@ -200,6 +220,7 @@ export const BasketList = () => {
 							</Link>
 						</span>
 					</p>
+					</div>
 				</div>
 			</section>
 		</Fragment>

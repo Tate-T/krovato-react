@@ -71,6 +71,7 @@ export const Modal = ({ isOpen, onClose, onSubmit }) => {
               value={reviewData.product}
               onChange={handleInputChange}
               required
+              maxLength={15}
             />
           </div>
           <div className={styles.formGroup}>
@@ -81,6 +82,7 @@ export const Modal = ({ isOpen, onClose, onSubmit }) => {
               value={reviewData.text}
               onChange={handleInputChange}
               required
+              maxLength={200}
             />
           </div>
           <div className={styles.formGroup}>

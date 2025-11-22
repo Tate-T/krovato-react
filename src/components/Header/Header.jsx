@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import c from "../../components/Container/Container.module.scss";
 import style from "./h.module.scss";
 import { HiOutlineShoppingBag } from "react-icons/hi";
@@ -25,27 +25,34 @@ import Favorite from "../../pages/Favorite/Favorite";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/login/loginSlice";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
-
+import "./noScroll.scss";
+import { openModal } from "../../redux/basketModal/basketModalSlice";
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isLoged, name } = useSelector((state) => state.login || {});
 
   const [languageDropdownVisible, setLanguageDropdownVisible] = useState(false);
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
-  const [additionalNumbersVisible, setAdditionalNumbersVisible] =
-    useState(false);
+  const [additionalNumbersVisible, setAdditionalNumbersVisible] = useState(false);
   const [searchDropdownVisible, setSearchDropdownVisible] = useState(false);
   const [favoriteModalVisible, setFavoriteModalVisible] = useState(false);
+  const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
+  const [searchQuery, setSearchQuery] = useState("");
+  const [mobileSearchQuery, setMobileSearchQuery] = useState("");
 
   const cartModalRef = useRef();
   const languageRef = useRef();
   const mobileMenuRef = useRef();
   const additionalNumbersRef = useRef();
   const searchRef = useRef();
+  const phoneIconRef = useRef();
+  const mobilePhoneDropdownRef = useRef();
 
   // Handlers
   const handleClickOutside = useCallback(
     (event) => {
+      // Закрываем языковое меню
       if (
         languageDropdownVisible &&
         languageRef.current &&
@@ -53,12 +60,17 @@ const Header = () => {
       ) {
         setLanguageDropdownVisible(false);
       }
-      if (
-        additionalNumbersVisible &&
-        additionalNumbersRef.current &&
-        !additionalNumbersRef.current.contains(event.target)
-      ) {
-        setAdditionalNumbersVisible(false);
+      
+      // Закрываем dropdown телефонов
+      if (additionalNumbersVisible) {
+        const isClickInsidePhoneIcon = phoneIconRef.current?.contains(event.target);
+        const isClickInsideMobileDropdown = mobilePhoneDropdownRef.current?.contains(event.target);
+        const isClickInsideAdditionalNumbers = additionalNumbersRef.current?.contains(event.target);
+        
+        // Закрываем только если клик был вне всех элементов dropdown
+        if (!isClickInsidePhoneIcon && !isClickInsideMobileDropdown && !isClickInsideAdditionalNumbers) {
+          setAdditionalNumbersVisible(false);
+        }
       }
     },
     [languageDropdownVisible, additionalNumbersVisible]
@@ -68,7 +80,12 @@ const Header = () => {
     setTimeout(() => {
       AOS.refresh();
     }, 200);
-  }, []);
+    
+    // Закрываем dropdown при изменении размера окна
+    if (additionalNumbersVisible) {
+      setAdditionalNumbersVisible(false);
+    }
+  }, [additionalNumbersVisible]);
 
   useEffect(() => {
     AOS.init({
@@ -93,11 +110,21 @@ const Header = () => {
     });
     window.addEventListener("resize", handleResize);
     document.addEventListener("mousedown", handleClickOutside);
+    
+    // Закрываем dropdown при скролле
+    const handleScroll = () => {
+      if (additionalNumbersVisible) {
+        setAdditionalNumbersVisible(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll, true);
+    
     return () => {
       window.removeEventListener("resize", handleResize);
       document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll, true);
     };
-  }, [handleResize, handleClickOutside]);
+  }, [handleResize, handleClickOutside, additionalNumbersVisible]);
 
   // Toggle handlers
   const toggleLanguage = (e) => {
@@ -110,25 +137,61 @@ const Header = () => {
 
   const toggleMenu = (e) => {
     e.stopPropagation();
-    setMobileMenuVisible((prev) => !prev);
+    setMobileMenuVisible((prev) => {
+      const newState = !prev;
+      document.body.classList.toggle("no-scroll", newState);
+      return newState;
+    });
     setLanguageDropdownVisible(false);
     setAdditionalNumbersVisible(false);
     setSearchDropdownVisible(false);
   };
 
+  const toggleSearchDropdown = (e) => {
+    e.stopPropagation();
+    setSearchDropdownVisible((prev) => {
+      const newState = !prev;
+      document.body.classList.toggle("no-scroll", newState);
+      return newState;
+    });
+    setLanguageDropdownVisible(false);
+    setMobileMenuVisible(false);
+    setAdditionalNumbersVisible(false);
+  };
+
   const toggleAdditionalNumbers = (e) => {
     e.stopPropagation();
+    
+    // Получаем позицию элемента для десктопной версии
+    if (phoneIconRef.current && window.innerWidth >= 1024) {
+      const rect = phoneIconRef.current.getBoundingClientRect();
+      const dropdownWidth = 220;
+      let left = rect.left;
+      
+      // Проверяем, не выходит ли dropdown за правую границу экрана
+      if (left + dropdownWidth > window.innerWidth) {
+        left = window.innerWidth - dropdownWidth - 10;
+      }
+      
+      // Проверяем, не выходит ли dropdown за левую границу экрана
+      if (left < 10) {
+        left = 10;
+      }
+      
+      setDropdownPosition({
+        top: rect.bottom + 10,
+        left: left,
+      });
+    }
+    
     setAdditionalNumbersVisible((prev) => !prev);
     setLanguageDropdownVisible(false);
     setMobileMenuVisible(false);
     setSearchDropdownVisible(false);
   };
 
-  const toggleSearchDropdown = (e) => {
-    e.stopPropagation();
-    setSearchDropdownVisible((prev) => !prev);
-    setLanguageDropdownVisible(false);
-    setMobileMenuVisible(false);
+  const handlePhoneLinkClick = () => {
+    // Закрываем dropdown после клика на номер телефона
     setAdditionalNumbersVisible(false);
   };
 
@@ -136,12 +199,64 @@ const Header = () => {
     dispatch(logout());
   };
 
+  // Обработчик поиска для десктопной версии
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const query = searchQuery.trim();
+    if (query) {
+      navigate(`/catalog?search=${encodeURIComponent(query)}`);
+      setSearchQuery("");
+    }
+  };
+
+  // Обработчик поиска для мобильной версии
+  const handleMobileSearchSubmit = (e) => {
+    e.preventDefault();
+    const query = mobileSearchQuery.trim();
+    if (query) {
+      navigate(`/catalog?search=${encodeURIComponent(query)}`);
+      setMobileSearchQuery("");
+      setSearchDropdownVisible(false);
+      document.body.classList.remove("no-scroll");
+    }
+  };
+
+  // Обработчик кнопки "Передзвоніть мені"
+  const handleCallback = (e) => {
+    e.preventDefault();
+    // Можно добавить модальное окно или форму обратной связи
+    alert("Дякуємо за ваш запит! Ми зв'яжемося з вами найближчим часом.");
+  };
+
+  // Обработчик кнопки "Акції"
+  const handlePromotions = (e) => {
+    e.preventDefault();
+    navigate("/catalog?promotions=true");
+  };
+
+  // Обработчик кнопки "Купити в кредит"
+  const handleCredit = (e) => {
+    e.preventDefault();
+    // Можно добавить навигацию на специальную страницу или модальное окно
+    alert("Для оформлення кредиту зв'яжіться з нашими менеджерами за телефонами, вказаними на сайті.");
+  };
+
+  // Обработчик смены языка
+  const handleLanguageChange = (lang) => {
+    setLanguageDropdownVisible(false);
+    // Здесь можно добавить логику смены языка
+    console.log(`Language changed to: ${lang}`);
+  };
+
+  // Обработчик корзины в мобильной версии
+  const handleMobileCart = () => {
+    CartModal.openModal();
+  };
+
   // Render sections
   const renderDesktopTopSection = () => (
     <div
-      className={[c.container, style.container, style.header__section1].join(
-        " "
-      )}
+      className={[c.container, style.header__section1].join(" ")}
       data-aos="fade-down"
       data-aos-duration="800"
       data-aos-easing="ease-out-back"
@@ -237,8 +352,8 @@ const Header = () => {
             <FiChevronDown size={16} strokeWidth={1} />
             {languageDropdownVisible && (
               <div className={style.header__dropdown_menu}>
-                <div>EN</div>
-                <div>UA</div>
+                <div onClick={() => handleLanguageChange("EN")}>EN</div>
+                <div onClick={() => handleLanguageChange("UA")}>UA</div>
               </div>
             )}
           </div>
@@ -284,7 +399,9 @@ const Header = () => {
         </div>
         <div
           ref={additionalNumbersRef}
-          className={style.header__phone_icon}
+          className={`${style.header__phone_icon} ${
+            additionalNumbersVisible ? style.active : ""
+          }`}
           onClick={toggleAdditionalNumbers}
           data-aos="zoom-in"
           data-aos-duration="600"
@@ -292,19 +409,43 @@ const Header = () => {
           data-aos-easing="ease-out-back"
         >
           <FiPhone size={28} strokeWidth={1} />
-          {additionalNumbersVisible && (
-            <div className={style.mobile_phone_dropdown}>
+          {additionalNumbersVisible && window.innerWidth < 1024 && (
+            <div 
+              ref={mobilePhoneDropdownRef}
+              className={style.mobile_phone_dropdown}
+              onClick={(e) => e.stopPropagation()}
+            >
               <p className={style.mobile_phone_text}>Щодня з 9:00 до 18:00</p>
-              <a href="tel:+380679294545" className={style.mobile_phone_number}>
+              <a 
+                href="tel:+380679294545" 
+                className={style.mobile_phone_number}
+                onClick={handlePhoneLinkClick}
+              >
                 067 929-45-45
               </a>
-              <a href="tel:+380501334545" className={style.mobile_phone_number}>
+              <a 
+                href="tel:+380501334545" 
+                className={style.mobile_phone_number}
+                onClick={handlePhoneLinkClick}
+              >
                 050 133-45-45
               </a>
-              <a href="tel:+380931707545" className={style.mobile_phone_number}>
+              <a 
+                href="tel:+380931707545" 
+                className={style.mobile_phone_number}
+                onClick={handlePhoneLinkClick}
+              >
                 093 170-75-45
               </a>
-              <a href="#" className={style.callback_link}>
+              <a 
+                href="#callback" 
+                className={style.callback_link}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleCallback(e);
+                  handlePhoneLinkClick();
+                }}
+              >
                 Передзвоніть мені
               </a>
             </div>
@@ -337,6 +478,7 @@ const Header = () => {
           </div>
           <div
             className={style.header__icon_btn}
+            onClick={handleMobileCart}
             data-aos="zoom-in"
             data-aos-duration="700"
             data-aos-delay="350"
@@ -353,7 +495,7 @@ const Header = () => {
 
   const renderMiddleSection = () => (
     <div
-      className={[c.container, style.container, style.header__middle].join(" ")}
+      className={[c.container, style.header__middle].join(" ")}
       data-aos="fade-up"
       data-aos-duration="900"
       data-aos-delay="200"
@@ -384,21 +526,28 @@ const Header = () => {
         data-aos-easing="ease-out-quart"
         data-aos-anchor=".header__list2"
       >
-        <form className={style.header__form}>
+        <form className={style.header__form} onSubmit={handleSearchSubmit}>
           <input
             className={style.header__find}
             type="text"
             placeholder="Я шукаю..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearchSubmit(e);
+              }
+            }}
           />
-          <button type="submit" className={style.search_button}>
+          <button type="submit" className={style.search_button} onClick={handleSearchSubmit}>
             <FiSearch className={style.search__svg} size={24} />
           </button>
         </form>
       </div>
       <div
-        ref={additionalNumbersRef}
+        ref={phoneIconRef}
         className={style.header__item}
-        style={{ display: "flex", alignItems: "center" }}
+        style={{ display: "flex", alignItems: "center", position: "relative" }}
         data-aos="fade-up"
         data-aos-duration="900"
         data-aos-delay="300"
@@ -415,68 +564,58 @@ const Header = () => {
           onClick={toggleAdditionalNumbers}
           size={24}
         />
-        {additionalNumbersVisible && (
-          <div className={style.header__dropdown_menu_box}>
-            <div className={style.header__dropdown_menu}>
-              <p className={style.header__paragraph_drop}>
-                Щодня з 9:00 до 18:00
-              </p>
-              <p className={style.header__number_drop}>067 929-45-45</p>
-              <p className={style.header__number_drop}>050 133-45-45</p>
-              <p className={style.header__number_drop}>093 170-75-45</p>
-              <a href="#" className={style.header__link_drop}>
-                Передзвоніть мені
-              </a>
-            </div>
-          </div>
-        )}
       </div>
       <div className={style.loginItems}>
-  {!isLoged ? (
-    <div className={style.header__icon_container}>
-      <NavLink to="/login">
-        <FiLogIn size={24} className={style.login_icon} />
-      </NavLink>
-    </div>
-  ) : (
-    <>
-      {/* Favorite */}
-      <div className={style.header__icon_container}>
-        <FaHeart
-          className={style.heart_icon}
-          size={24}
-          onClick={() => setFavoriteModalVisible(true)}
-          style={{ cursor: "pointer" }}
-        />
+        {!isLoged ? (
+          <div className={style.header__icon_container}>
+            <NavLink to="/login">
+              <FiLogIn size={24} className={style.login_icon} />
+            </NavLink>
+          </div>
+        ) : (
+          <>
+            <div className={style.header__icon_container}>
+              <FaHeart
+                className={style.heart_icon}
+                size={24}
+                onClick={() => setFavoriteModalVisible(true)}
+                style={{ cursor: "pointer" }}
+              />
+            </div>
+            <div className={style.header__icon_container}>
+              <button
+                className={style.icon_with_badge}
+                onClick={() => dispatch(openModal())}
+              >
+                <HiOutlineShoppingBag className={style.cart_icon} size={24} />
+              </button>
+            </div>
+            <div className={style.header__icon_container}>
+              <NavLink to="/" onClick={handleLogout}>
+                <FiLogOut size={24} className={style.logout_icon} />
+              </NavLink>
+            </div>
+          </>
+        )}
       </div>
-
-      {/* Cart */}
-      <a href="#" className={style.header__icon_container}>
-        <button
-          className={style.icon_with_badge}
-          onClick={() => CartModal.openModal()}
-        >
-          <HiOutlineShoppingBag className={style.cart_icon} size={24} />
-        </button>
-      </a>
 
       {/* Logout */}
-      <div className={style.header__icon_container}>
-        <NavLink to="/" onClick={handleLogout}>
-          <FiLogOut size={24} className={style.logout_icon} />
-        </NavLink>
+     
+     {/* Cart modal */}
       </div>
+  )
 
-      {/* Cart modal */}
-      <CartModal ref={cartModalRef} />
-    </>
-  )}
-</div>
-    </div>
-  );
+      
+
+
+
+
+
+  
+
   const renderBottomSection = () => (
     <div
-      className={[c.container, style.container, style.header__list3].join(" ")}
+      className={[c.container, style.header__list3].join(" ")}
       data-aos="fade-up"
       data-aos-duration="1000"
       data-aos-delay="200"
@@ -493,7 +632,6 @@ const Header = () => {
         <NavLink
           to="/catalog"
           className={`${style.header__link} ${style.catalog_orange_btn}`}
-          href="#"
         >
           Каталог
         </NavLink>
@@ -506,7 +644,11 @@ const Header = () => {
         data-aos-easing="ease-out-back"
         data-aos-anchor=".header__list3"
       >
-        <a className={style.header__link} href="#">
+        <a 
+          className={style.header__link} 
+          href="#" 
+          onClick={handlePromotions}
+        >
           <AiOutlineStar className={style.icon_promo} size={20} />
           <span>Акції</span>
         </a>
@@ -532,13 +674,18 @@ const Header = () => {
         data-aos-easing="ease-out-back"
         data-aos-anchor=".header__list3"
       >
-        <a className={style.header__link} href="#">
+        <a 
+          className={style.header__link} 
+          href="#" 
+          onClick={handleCredit}
+        >
           <BsCreditCard2Front className={style.icon_credit} size={20} />
           <span>Купити в кредит</span>
         </a>
       </div>
       <div
         className={style.header__button}
+        onClick={handleCallback}
         data-aos="zoom-in-left"
         data-aos-duration="900"
         data-aos-delay="500"
@@ -591,9 +738,10 @@ const Header = () => {
         >
           <FiTruck size={24} /> Доставка та збірка
         </Link>
-        <a
-          href="./reviews.html"
+        <Link
+          to="/reviews"
           className={style.mobile_menu_link}
+          onClick={() => setMobileMenuVisible(false)}
           data-aos="fade-right"
           data-aos-duration="900"
           data-aos-delay="200"
@@ -601,10 +749,11 @@ const Header = () => {
           data-aos-anchor=".mobile_menu_list"
         >
           <FiMessageSquare size={24} /> Відгуки
-        </a>
-        <a
-          href="./blog-page.html"
+        </Link>
+        <Link
+          to="/blog"
           className={style.mobile_menu_link}
+          onClick={() => setMobileMenuVisible(false)}
           data-aos="fade-right"
           data-aos-duration="1000"
           data-aos-delay="250"
@@ -612,10 +761,11 @@ const Header = () => {
           data-aos-anchor=".mobile_menu_list"
         >
           <FiBook size={24} /> Блог
-        </a>
-        <a
-          href="./contacts.html"
+        </Link>
+        <Link
+          to="/contacts"
           className={style.mobile_menu_link}
+          onClick={() => setMobileMenuVisible(false)}
           data-aos="fade-right"
           data-aos-duration="1100"
           data-aos-delay="300"
@@ -623,10 +773,15 @@ const Header = () => {
           data-aos-anchor=".mobile_menu_list"
         >
           <FiMail size={24} /> Контакти
-        </a>
+        </Link>
         <a
           href="#"
           className={style.mobile_menu_link}
+          onClick={(e) => {
+            e.preventDefault();
+            setMobileMenuVisible(false);
+            handlePromotions(e);
+          }}
           data-aos="fade-right"
           data-aos-duration="1200"
           data-aos-delay="350"
@@ -635,9 +790,10 @@ const Header = () => {
         >
           <AiOutlineStar size={24} /> Акції
         </a>
-        <a
-          href="#"
+        <Link
+          to="/catalog"
           className={style.mobile_menu_link}
+          onClick={() => setMobileMenuVisible(false)}
           data-aos="fade-right"
           data-aos-duration="1300"
           data-aos-delay="400"
@@ -645,10 +801,15 @@ const Header = () => {
           data-aos-anchor=".mobile_menu_list"
         >
           <FaPercent size={24} /> Розпродаж
-        </a>
+        </Link>
         <a
           href="#"
           className={style.mobile_menu_link}
+          onClick={(e) => {
+            e.preventDefault();
+            setMobileMenuVisible(false);
+            handleCredit(e);
+          }}
           data-aos="fade-right"
           data-aos-duration="1400"
           data-aos-delay="450"
@@ -666,12 +827,27 @@ const Header = () => {
           data-aos-anchor=".mobile_menu_list"
         >
           <span>Мова:</span>
-          <button className={`${style.lang_btn} ${style.active}`}>UA</button>
-          <button className={style.lang_btn}>EN</button>
+          <button 
+            className={`${style.lang_btn} ${style.active}`}
+            onClick={() => handleLanguageChange("UA")}
+          >
+            UA
+          </button>
+          <button 
+            className={style.lang_btn}
+            onClick={() => handleLanguageChange("EN")}
+          >
+            EN
+          </button>
         </div>
         <a
           href="#"
           className={style.callback_btn}
+          onClick={(e) => {
+            e.preventDefault();
+            setMobileMenuVisible(false);
+            handleCallback(e);
+          }}
           data-aos="zoom-in"
           data-aos-duration="1000"
           data-aos-delay="550"
@@ -698,11 +874,18 @@ const Header = () => {
         data-aos-duration="600"
         data-aos-easing="ease-out-cubic"
       >
-        <form className={style.header__form_mobile}>
+        <form className={style.header__form_mobile} onSubmit={handleMobileSearchSubmit}>
           <input
             type="text"
             className={style.header__find_mob}
             placeholder="Я шукаю..."
+            value={mobileSearchQuery}
+            onChange={(e) => setMobileSearchQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleMobileSearchSubmit(e);
+              }
+            }}
             data-aos="zoom-in"
             data-aos-duration="800"
             data-aos-delay="100"
@@ -741,6 +924,56 @@ const Header = () => {
       {renderMobileTopSection()}
       {mobileMenuVisible && renderMobileMenu()}
       {searchDropdownVisible && renderMobileSearch()}
+      
+      {/* Fixed dropdown для телефонов в десктопе */}
+      {additionalNumbersVisible && window.innerWidth >= 1024 && (
+        <div
+          ref={mobilePhoneDropdownRef}
+          className={style.header__dropdown_menu_phone}
+          style={{
+            position: 'fixed',
+            top: `${dropdownPosition.top}px`,
+            left: `${dropdownPosition.left}px`,
+            zIndex: 10001,
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <p className={style.header__paragraph_drop}>Щодня з 9:00 до 18:00</p>
+          <a 
+            href="tel:+380679294545" 
+            className={style.header__number_drop}
+            onClick={handlePhoneLinkClick}
+          >
+            067 929-45-45
+          </a>
+          <a 
+            href="tel:+380501334545" 
+            className={style.header__number_drop}
+            onClick={handlePhoneLinkClick}
+          >
+            050 133-45-45
+          </a>
+          <a 
+            href="tel:+380931707545" 
+            className={style.header__number_drop}
+            onClick={handlePhoneLinkClick}
+          >
+            093 170-75-45
+          </a>
+          <a 
+            href="#callback" 
+            className={style.header__link_drop}
+            onClick={(e) => {
+              e.preventDefault();
+              handleCallback(e);
+              handlePhoneLinkClick();
+            }}
+          >
+            Передзвоніть мені
+          </a>
+        </div>
+      )}
+      
       {favoriteModalVisible && (
         <div
           className={style.favorite_modal_overlay}
@@ -759,6 +992,6 @@ const Header = () => {
       )}
     </header>
   );
-};
+}
 
 export default Header;

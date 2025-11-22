@@ -16,6 +16,7 @@ import Login from "./components/Header/Login.jsx";
 import Basket from "./pages/Basket/Basket.jsx"
 import AgreeTerms from "./pages/Basket/AgreeTerms/AgreeTerms.jsx";
 import LoginPage from "./components/Header/LoginPage.jsx";
+import BlogArticle from "./pages/BlogArticle/BlogArticle";
 import Hero from "./pages/ProductCard/Hero/Hero.jsx";
 import { ProductCardPage } from "./pages/ProductCard/ProductCardPage.jsx";
 // import About from "./components/About/About.jsx";
@@ -74,6 +75,7 @@ function App() {
           <Route path="/delivery" element={<Delivery/>}/> 
           <Route path="/reviews" element={<MainReviewsPage/>}/>
           <Route path="/blog" element={<BlogPage/>}/>
+          <Route path="/blog-article" element={<BlogArticle/>}/>
           <Route path="/contacts" element={<ContactsPage/>}/>
           <Route path="/catalog" element={<Catalog/>}/>
           <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />

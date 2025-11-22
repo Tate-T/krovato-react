@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/krovato-react/static/css/main.66912080.css",
-    "main.js": "/krovato-react/static/js/main.5c4e8b80.js",
+    "main.css": "/krovato-react/static/css/main.698eb206.css",
+    "main.js": "/krovato-react/static/js/main.c354a521.js",
     "static/media/lunar-mustard.png": "/krovato-react/static/media/lunar-mustard.42312f6d51d392452348.png",
     "static/media/lunar-chocolate.png": "/krovato-react/static/media/lunar-chocolate.da80a967ce35d3ba875d.png",
     "static/media/lunar-beige.png": "/krovato-react/static/media/lunar-beige.09a474d2553c5b9a8698.png",
@@ -21,6 +21,7 @@
     "static/media/lunar-ash.png": "/krovato-react/static/media/lunar-ash.ce00d53e4892572c3f76.png",
     "static/media/show-room.png": "/krovato-react/static/media/show-room.c3c756825231815b983f.png",
     "static/media/divan-4.png": "/krovato-react/static/media/divan-4.2451dd7d0797a58c2ebc.png",
+    "static/media/article.jpg": "/krovato-react/static/media/article.710d3e0f60372de2b0d6.jpg",
     "static/media/divan-1.png": "/krovato-react/static/media/divan-1.dd710ce59c848238c874.png",
     "static/media/payment-hero.png": "/krovato-react/static/media/payment-hero.80d92a2bd066113d408c.png",
     "static/media/kyiv@2x.webp": "/krovato-react/static/media/kyiv@2x.b32766d43c8c9174ba72.webp",
@@ -85,6 +86,7 @@
     "static/media/location-mobile.svg": "/krovato-react/static/media/location-mobile.b6644d71f62a31e8ab1b543bf4cc3bc6.svg",
     "static/media/icon-info-mobile.svg": "/krovato-react/static/media/icon-info-mobile.8b35835ed58d17242354881932f5259e.svg",
     "static/media/icon-comment-mobile.svg": "/krovato-react/static/media/icon-comment-mobile.dfb3403bf30466b57067f0b5318e581b.svg",
+    "static/media/mark.svg": "/krovato-react/static/media/mark.489e58d8c1299d7d344b.svg",
     "static/media/whatsapp.svg": "/krovato-react/static/media/whatsapp.6dd6c346589bc8eae463223c143e6bbf.svg",
     "static/media/arrow.svg": "/krovato-react/static/media/arrow.e639f6d079ed57a50c4db8cf43445b62.svg",
     "static/media/check.svg": "/krovato-react/static/media/check.597857a4c54e01ae04fad5be1e48acf2.svg",
@@ -96,6 +98,8 @@
     "static/media/closeModal.svg": "/krovato-react/static/media/closeModal.747dfbd9dda3a913b9cabc5ffc1206ff.svg",
     "index.html": "/krovato-react/index.html",
     "static/media/Vector.svg": "/krovato-react/static/media/Vector.4e877e08f406d1bb9406c17d6f7efd60.svg",
+    "static/media/arrowLeft.svg": "/krovato-react/static/media/arrowLeft.3c606bb5ccdd76494e3c0e91880df568.svg",
+    "static/media/arrowRight.svg": "/krovato-react/static/media/arrowRight.a8cde6cba5fc29c7c586b231c139db19.svg",
     "static/media/telegram.svg": "/krovato-react/static/media/telegram.39982db0be86f69b43933b01bb84ef73.svg",
     "static/media/deliveryman.svg": "/krovato-react/static/media/deliveryman.2c484340b0e7fd151c3b812664650283.svg",
     "static/media/map.svg": "/krovato-react/static/media/map.da78c645e8bc3b9bc75719c03258cccc.svg",
@@ -108,11 +112,11 @@
     "static/media/credit.svg": "/krovato-react/static/media/credit.1aadf07c986520f61859222b13b46cc9.svg",
     "static/media/facebook.svg": "/krovato-react/static/media/facebook.b89b52126b444b7d111d7fccc36e2f80.svg",
     "static/media/close.svg": "/krovato-react/static/media/close.c520a6289b318389788c7386cd2c8072.svg",
-    "main.66912080.css.map": "/krovato-react/static/css/main.66912080.css.map",
-    "main.5c4e8b80.js.map": "/krovato-react/static/js/main.5c4e8b80.js.map"
+    "main.698eb206.css.map": "/krovato-react/static/css/main.698eb206.css.map",
+    "main.c354a521.js.map": "/krovato-react/static/js/main.c354a521.js.map"
   },
   "entrypoints": [
-    "static/css/main.66912080.css",
-    "static/js/main.5c4e8b80.js"
+    "static/css/main.698eb206.css",
+    "static/js/main.c354a521.js"
   ]
 }

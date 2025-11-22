@@ -14,12 +14,11 @@ export const ProductsList = () => {
   const favoriteProducts = useSelector( state => state.favorite.favoriteProducts)
     const handleAddToBasket = (product) => {
     dispatch(addToCart(product))
-    console.log(product)
   }
   const isFavorite = (productTitle) => {
    if (!Array.isArray(favoriteProducts)) return false;
     return favoriteProducts.some((item) => item.title === productTitle);
-    };
+  };
 
   function toggleFavorite({id,title, alt, width,height,length, inStock, price, src, oldPrice,}) {
     const alreadyFavorite = isFavorite(title);

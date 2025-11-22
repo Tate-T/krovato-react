@@ -38,13 +38,13 @@ const Review = () => {
       const response = await fetch(`${API_URL}?page=${page}&limit=${limit}`);
       
       if (!response.ok) {
-        throw new Error(`Ошибка при загрузке отзывов: ${response.status}`);
+        throw new Error(`Помилка при завантаженні відгуків: ${response.status}`);
       }
 
       const data = await response.json();
 
       if (!Array.isArray(data)) {
-        throw new Error('Полученные данные не являются массивом');
+        throw new Error('Дані не є масивом');
       }
 
       const sortedData = data
@@ -114,7 +114,7 @@ const Review = () => {
         });
 
         if (!response.ok) {
-          throw new Error('Ошибка при отправке ответа');
+          throw new Error('Помилка при відправці відповіді');
         }
 
         setReview(updatedReview);

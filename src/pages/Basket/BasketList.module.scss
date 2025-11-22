@@ -26,6 +26,13 @@
     appearance: none;
     border: 1px solid #D1D5D5;
 }
+.checkboxes:checked{
+    background-color: #FFBC57;
+    border-color: #FFBC57;
+    background-image: url("data:image/svg+xml;utf8,<svg fill=%27white%27 viewBox=%270 0 20 20%27 xmlns=%27http://www.w3.org/2000/svg%27><path d=%27M7.629 13.233l-3.296-3.296a1 1 0 011.414-1.414l1.882 1.882 4.95-4.95a1 1 0 111.414 1.414l-6.364 6.364a1 1 0 01-1.414 0z%27/></svg>");
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 .containerPromoOrder {
     background-color: white;
@@ -211,7 +218,7 @@
 
 .bedStatus {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     gap: 10px;
 }
 
@@ -219,6 +226,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    text-align: left;
 }
 
 .lineDotted {

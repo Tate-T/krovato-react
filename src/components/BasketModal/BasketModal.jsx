@@ -1,16 +1,9 @@
-// import React from "react";
-// import { Component } from "react";
-// import styles from "./BasketModal.module.scss";
-// import BasketList from '../../pages/Basket/BasketList'
-// import { useState, useEffect } from 'react';
-// import { FaTimes, FaMinus, FaPlus } from 'react-icons/fa';
-// import styles from './BasketModal.module.scss';
-
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { closeModal, fetchCartItems, deleteFromCart, updateCartQuantity } from '../../redux/basketModal/basketModalSlice';
 import styles from './BasketModal.module.scss';
-import { FaTimes, FaMinus, FaPlus } from 'react-icons/fa';
+import deleteItemSvg from "../../images/basketModal/delete.svg";
+import closeModalSvg from "../../images/basketModal/closeModal.svg"
 import { useNavigate } from 'react-router-dom';
 export const CartModal = () => {
   const dispatch = useDispatch();
@@ -48,8 +41,8 @@ export const CartModal = () => {
       <div className={styles.modal}>
         <div className={styles.header}>
           Ваш кошик <span>{items.reduce((total, item) => total + item.quantity, 0)}</span>
-          <button onClick={() => dispatch(closeModal())} className={styles.closeIcon}>
-            <FaTimes />
+          <button onClick={() => dispatch(closeModal())} className={styles.closeIcon} style={{position:"absolute" , top:"21px" , right:"20px"}}>
+            <img src={closeModalSvg} alt="close-modal" />
           </button>
         </div>
 
@@ -58,10 +51,20 @@ export const CartModal = () => {
         ) : (
           items.map((item) => (
             <div key={item.id} className={styles.product}>
-               {console.log(item)}
+              <div>
               <img src={item.imageSrc} alt="Ліжко" className={styles.productImage} />
+              <div className={styles.quantity}>
+                  <button onClick={() => handleDecrease(item)}>
+                    -
+                  </button>
+                  <span>{item.quantity}</span>
+                  <button onClick={() => handleIncrease(item)}>
+                    +
+                  </button>
+                </div>
+                </div>
               <div className={styles.productInfo}>
-                <div className={styles.size}>  Розмір: {item.size.height} x {item.size.width} x {item.size.length} мм
+                <div className={styles.size}>  Розмір: {item.size?.height} x {item.size?.width} x {item.size?.length} мм
 </div>
                 <h3 className={styles.title}>
                   {item.title}
@@ -75,18 +78,9 @@ export const CartModal = () => {
                     </span>
                   )}
                 </div>
-                <div className={styles.quantity}>
-                  <button onClick={() => handleDecrease(item)}>
-                    <FaMinus />
-                  </button>
-                  <span>{item.quantity}</span>
-                  <button onClick={() => handleIncrease(item)}>
-                    <FaPlus />
-                  </button>
-                </div>
               </div>
               <button className={styles.removeBtn} onClick={() => handleRemove(item.id)}>
-                <FaTimes />
+                <img src={deleteItemSvg} alr="delete-item"/>
               </button>
             </div>
           ))

@@ -845,6 +845,9 @@ line-height: 1.41;
       transform: scale(1.05);
     }
   }
+  &__active{
+    border: 5px solid #ffbc57;
+  }
 }
 
 .heroConsultation {
@@ -904,5 +907,35 @@ line-height: 1.41;
     height: 39px;
     background-color: #fff;
     border-radius: 50%;
+  }
+}
+.hero__buttonBcMob {
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+.hero__buttonBcMobActive {
+  background-color: #ffbc57;
+}
+
+.hero__mobileSwiper {
+  display: block;
+
+  @media screen and (min-width: 1290px) {
+    display: none;
+  }
+}
+.hero__mobileImg {
+  width: 410px;
+  height: 410px;
+}
+.hero__img {
+  display: none;
+
+  @media screen and (min-width: 1290px) {
+    display: block;
+    width: 630px;
+    height: 538px;
   }
 }

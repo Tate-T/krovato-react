@@ -17,6 +17,7 @@ import Basket from "./pages/Basket/Basket.jsx"
 import AgreeTerms from "./pages/Basket/AgreeTerms/AgreeTerms.jsx";
 import LoginPage from "./components/Header/LoginPage.jsx";
 import Hero from "./pages/ProductCard/Hero/Hero.jsx";
+import { ProductCardPage } from "./pages/ProductCard/ProductCardPage.jsx";
 // import About from "./components/About/About.jsx";
 // const HeaderFooter = lazy(() => import("./pages/HeaderFooter/HeaderFooter.jsx"));
 //  const Header = lazy(() => import("./components/Header/Header.jsx"));
@@ -76,11 +77,11 @@ function App() {
           <Route path="/contacts" element={<ContactsPage/>}/>
           <Route path="/catalog" element={<Catalog/>}/>
           <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
+          <Route path="/product/:id" element={<ProductCardPage/>}/>
         </Routes>
       </Suspense>
        </main>
        <Footer/> 
-       <Hero/>
     </div>
   );
 }

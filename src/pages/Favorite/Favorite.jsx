@@ -20,7 +20,8 @@ const Favorite = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className={styleFavorite.Favorite}>
+    <div className={styleFavorite.background}>
+      <div className={styleFavorite.Favorite}>
       <button className={styleFavorite.closeBtn} onClick={onClose}>
         &#10005;
       </button>
@@ -34,6 +35,7 @@ const Favorite = ({ isOpen, onClose }) => {
         ))}
         </ul>
       )}
+    </div>
     </div>
   );
 };

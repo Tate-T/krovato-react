@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { deleteFromCart } from "../basketModal/basketModalSlice";
 import axios from "axios"
 const API_URL = "https://68fe10e87c700772bb12b197.mockapi.io/goods"
 const validPromoCodes = {
@@ -26,6 +27,13 @@ export const addToBasket = createAsyncThunk(
     } catch (err) {
       return thunkAPI.rejectWithValue("Не вдалося додати товар");
     }
+  }
+);
+export const removeProductEverywhere = createAsyncThunk(
+  "basket/removeProductEverywhere",
+  async (id, thunkAPI) => {
+    await thunkAPI.dispatch(deleteFromCart(id));
+    return id; 
   }
 );
 export const deleteFromBasket = createAsyncThunk(
@@ -133,7 +141,19 @@ const basketListSlice = createSlice({
           localStorage.setItem("activeProducts", JSON.stringify(state.items))
           localStorage.setItem("basketCounts", JSON.stringify(state.counts))
         }
-      });
+      })
+       .addCase(removeProductEverywhere.fulfilled, (state, action) => {
+        const id = action.payload;
+      
+        const index = state.items.findIndex((i) => i.id === id);
+        if (index !== -1) {
+          state.items.splice(index, 1);
+          state.counts.splice(index, 1);
+      
+          localStorage.setItem("activeProducts", JSON.stringify(state.items));
+          localStorage.setItem("basketCounts", JSON.stringify(state.counts));
+        }
+      })
   }
 
 })

@@ -8,6 +8,7 @@ import styles from './BasketList.module.scss'
 import { ContextBasketList } from './ContextBasketList'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { removeProductEverywhere } from '../../redux/basket/basketListSlice'
 import { subtractItemCount, addItemCount, applyPromo , syncBasket , loadFromStorage } from '../../redux/basket/basketListSlice'
 import {
 	fetchBasket,
@@ -131,7 +132,7 @@ export const BasketList = () => {
 										</div>
 										<button
 											className={styles.btnDelete}
-											onClick={() => dispatch(deleteFromBasket(bed.id))}
+											onClick={() => dispatch(removeProductEverywhere(bed.id))}
 										>
 											<img src={deleteSvg} alt='deleteSvg' style={{ maxWidth: 24 }} />
 										</button>

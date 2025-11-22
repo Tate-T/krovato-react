@@ -19,21 +19,11 @@ export const KyivDelivery = () => {
           </h3>
           <KyivList />
         </div>
-        <picture>
-          <source
-            srcSet={`${DesktopKyiv1x}, ${DesktopKyiv2x}`}
-            media="(min-width: 768px)"
-          />
-          <source
-            srcSet={`${MobileKyiv1x}, ${MobileKyiv2x}`}
-            media="(min-width: 320px)"
-          />
           <img
             src={DesktopKyiv1x}
             alt="map of kyiv"
             className={style.kyiv__image}
           />
-        </picture>
         <div className={style.kyiv__square}>
           <div className={style.kyiv__squareBox}>
             <h4 className={style.kyiv__squareTitle}>

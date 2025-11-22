@@ -33,22 +33,11 @@ export const UkraineDelivery = () => {
             </li>
           </ul>
         </div>
-
-        <picture>
-          <source
-            srcSet={`${DesktopUkraine1x}, ${DesktopUkraine2x}`}
-            media="(min-width: 768px)"
-          />
-          <source
-            srcSet={`${MobileUkraine1x}, ${MobileUkraine2x}`}
-            media="(min-width: 320px)"
-          />
           <img
             src={DesktopUkraine1x}
             alt="map of ukraine"
             className={style.ukraine__image}
           />
-        </picture>
         <div className={style.ukraine__square}>
           <h4
             className={`${style.ukraine__squareTitle} ${style.ukraine__title}`}

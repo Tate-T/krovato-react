@@ -11,8 +11,8 @@ export const ArticlesItem = ({
 
   return (
     <li
-      data-aos="fade-up"
-      data-aos-duration="2000"
+      // data-aos="fade-up"
+      // data-aos-duration="2000"
       className={style.articles__item}
       style={{right: (activeSlide - 1) * 107.4 + '%'}}
     >

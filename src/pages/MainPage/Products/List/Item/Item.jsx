@@ -10,7 +10,7 @@ export const ProductsItem = ({id,src,alt,width,height,length,title,inStock,oldPr
   }
   return (
     <li key={id} className={style.products__item} onClick={() => {dispatch(getProductItem({src,alt,width,height,length,title,oldPrice,currentPrice,id,isFavorite,smallBedImage})); transferToProductCardItem(id)}}>
-      <img src={src} alt={alt} />
+      <img src={src} alt={alt} className={style.products__item__img} />
       <p className={style.products__size}>Розмір: {height} x {width} x {length}</p>
       <p className={style.products__subtitle}>
         {title}

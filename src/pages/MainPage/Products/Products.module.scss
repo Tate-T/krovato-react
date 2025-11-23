@@ -131,7 +131,6 @@
   &__subtitle {
     margin: 10px 0 0 0;
     text-align: left;
-    display: none;
     align-items: center;
     @include size(260px, 52px);
     @include font($dark-color, 1.26, 17px, 600);
@@ -164,7 +163,7 @@
     text-decoration: line-through;
 
     @media screen and (min-width: 1290px) {
-      bottom: 40px;
+      bottom: 80px;
     }
   }
 
@@ -185,10 +184,8 @@
   }
 
   &__button {
-    background-color: transparent;
     border: none;
     cursor: pointer;
-
     @extend %animation-of-button;
   }
 

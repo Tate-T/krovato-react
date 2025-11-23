@@ -98,6 +98,10 @@
     position: relative;
   }
 
+  &__image {
+    margin: 0 auto;
+  }
+
   &__square {
     position: absolute;
     top: 80%;
@@ -183,8 +187,4 @@
       max-width: max-content;
     }
   }
-}
-
-img {
-  margin: 0 auto;
 }

@@ -29,8 +29,8 @@ export const Articles = () => {
       <Container>
         <div className={style.articles__titleBox}>
           <h2
-            data-aos="zoom-out-right"
-            data-aos-duration="1500"
+            // data-aos="zoom-out-right"
+            // data-aos-duration="1500"
             className={style.articles__title}
           >
             Свіжі статті та останні новини
@@ -57,8 +57,8 @@ export const Articles = () => {
           </a>
           <ul className={style.articles__couple}>
             <li
-              data-aos="zoom-in-right"
-              data-aos-duration="1500"
+              // data-aos="zoom-in-right"
+              // data-aos-duration="1500"
               className={style.articles__couplePart}
             >
               <button disabled={slide === 1} onClick={dicrement} type="button" className={style.articles__button}>
@@ -89,8 +89,8 @@ export const Articles = () => {
               </button>
             </li>
             <li
-              data-aos="zoom-in-left"
-              data-aos-duration="1500"
+              // data-aos="zoom-in-left"
+              // data-aos-duration="1500"
               className={style.articles__couplePart}
             >
               <button disabled={slide === 6} onClick={increment} type="button" className={style.articles__button}>
@@ -119,8 +119,8 @@ export const Articles = () => {
         </div>
         <ArticlesList activeSlide={slide} />
         <button
-          data-aos="zoom-in"
-          data-aos-duration="2000"
+          // data-aos="zoom-in"
+          // data-aos-duration="2000"
           type="button"
           className={style.articles__mainButton}
         >

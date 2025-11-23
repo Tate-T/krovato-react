@@ -14,6 +14,7 @@ import { ProductItemReducer } from "./productItem/productItemSlice";
 import productDescriptionReducer from "./productDescription/productDescriptionSlice";
 import { AdditionAPIReducer } from "./Addition/AdditionSlice";
 import { recommendedProductReducer } from "./recomme/recommendedSlice";
+import { catalogReducer } from "./catalog/catalogSlice";
 
 const favoriteConfig = {
   key: "favorite",
@@ -54,6 +55,7 @@ const rootReducer = combineReducers({
   addition : persistedAddition,
   reccomendetion: persistedRecommended,
   productDescription:productDescriptionReducer,
+  catalog: catalogReducer,
 });
 const store = configureStore({
   reducer: rootReducer,

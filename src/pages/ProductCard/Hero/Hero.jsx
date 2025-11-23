@@ -34,6 +34,20 @@ import { useState  } from "react";
 import selected from "../../../images/product-card/Vector.svg"
 import { nextImage , prevImage , selectImage } from "../../../redux/productItem/productItemSlice";
 import { addFavoriteProductThunk } from "../../../thunk/addFavoriteProductThunk";
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
+
+const StyledLink=styled(NavLink)`
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    &:hover{
+        color:#ffbc57;
+    }
+    &.active {
+        color: #ffbc57;
+    }
+`
 const Hero = () => {
   const favoriteProducts = useSelector( state => state.favorite.favoriteProducts)
   const isFavorite = (productTitle) => {
@@ -87,12 +101,9 @@ const Hero = () => {
     <section className={style.hero}>
       <div className={containerStyle.container}>
         <nav className={style.hero__nav}>
-          <a
-            href="./index.html"
-            className={style.hero__link + " " + style.hero__linkMobBug}
-          >
+          <StyledLink to="/" className={style.hero__link + " " + style.hero__linkMobBug}>
             Головна
-          </a>
+          </StyledLink>
           <div className={style.hero__arrowBox + " " + style.hero__arrowMobBug}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -107,12 +118,7 @@ const Hero = () => {
               />
             </svg>
           </div>
-          <a
-            href="./catalog.html"
-            className={style.hero__link + " " + style.hero__linkMobBug}
-          >
-            Ліжка
-          </a>
+          <StyledLink to="/catalog" className={style.hero__link + " " + style.hero__linkMobBug}>Ліжка</StyledLink>
           <div className={style.hero__arrowBox + " " + style.hero__arrowMobBug}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -127,9 +133,9 @@ const Hero = () => {
               />
             </svg>
           </div>
-          <a href="./catalog.html" className={style.hero__link}>
+          <StyledLink to="/catalog" className={style.hero__link}>
             М'які ліжка
-          </a>
+          </StyledLink>
           <div className={style.hero__arrowBox}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -144,9 +150,9 @@ const Hero = () => {
               />
             </svg>
           </div>
-          <a href="#" className={style.hero__activeLinkDesk}>
+          <StyledLink to="#" end>
             Двоспальне ліжко з підйомним механізмом Сіті
-          </a>
+          </StyledLink>
           <a href="#" className={style.hero__activeLinkMob}>
             Двоспальне ліжко з підйомним механі ...
           </a>

@@ -39,8 +39,8 @@ import { NavLink } from "react-router-dom";
 
 const StyledLink=styled(NavLink)`
     text-decoration: none;
-    color: black;
     font-weight: 500;
+    line-height: 1.87;
     &:hover{
         color:#ffbc57;
     }

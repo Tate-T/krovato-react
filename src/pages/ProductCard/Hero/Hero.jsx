@@ -40,7 +40,6 @@ import { NavLink } from "react-router-dom";
 const StyledLink=styled(NavLink)`
     text-decoration: none;
     font-weight: 500;
-    line-height: 1.87;
     &:hover{
         color:#ffbc57;
     }
@@ -150,7 +149,7 @@ const Hero = () => {
               />
             </svg>
           </div>
-          <StyledLink to="#" end>
+          <StyledLink to="#" end className={style.hero__activeLinkDesk}>
             Двоспальне ліжко з підйомним механізмом Сіті
           </StyledLink>
           <a href="#" className={style.hero__activeLinkMob}>
@@ -158,7 +157,7 @@ const Hero = () => {
           </a>
         </nav>
         <div className={style.hero__container}>
-          <h2 className={style.hero__titleMob}> {totalCurrentSum} грн</h2>
+          <h2 className={style.hero__titleMob}> {item.title}</h2>
           <div className={style.hero__frameMob}>
             <div className={style.hero__activeBoxMob}>
               <svg

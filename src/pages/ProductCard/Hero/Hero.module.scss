@@ -780,7 +780,6 @@ line-height: 1.41;
   }
 
   &__footer {
-    background: #fff;
     display: flex;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -938,5 +937,17 @@ line-height: 1.41;
     display: block;
     width: 630px;
     height: 538px;
+  }
+}
+.callNumberBox {
+  border: none;
+  font-size: 20px;
+  color: #B1B1B1;
+  background: none;
+  &:active::placeholder {
+    color: green;
+  }
+  &:not(:placeholder-shown) {
+    color: black;
   }
 }

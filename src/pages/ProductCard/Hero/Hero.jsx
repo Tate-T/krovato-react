@@ -23,10 +23,11 @@ import credit from "../../../images/product-card/credit.svg";
 import telegram from "../../../images/product-card/telegram.svg";
 import viber from "../../../images/product-card/viber.svg";
 import whatsapp from "../../../images/product-card/whatsapp.svg";
-import Basket from "../../Basket/Basket";
 import { addToBasket } from "../../../redux/basket/basketListSlice";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useContext } from "react";
+import { ContextModal } from "../../Basket/ContextModal";
 import { useDispatch } from "react-redux";
 import { AddToCount } from "../../../redux/productItem/productItemSlice";
 import { DeleteFromCount } from "../../../redux/productItem/productItemSlice";
@@ -36,7 +37,7 @@ import { nextImage , prevImage , selectImage } from "../../../redux/productItem/
 import { addFavoriteProductThunk } from "../../../thunk/addFavoriteProductThunk";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-
+import { Modal } from "../../Basket/Modal";
 const StyledLink=styled(NavLink)`
     text-decoration: none;
     font-weight: 500;
@@ -49,6 +50,8 @@ const StyledLink=styled(NavLink)`
 `
 const Hero = () => {
   const favoriteProducts = useSelector( state => state.favorite.favoriteProducts)
+  const [isModal, setIsModal] = useState(false);
+  const [message, setMessage] = useState("");
   const isFavorite = (productTitle) => {
     if (!Array.isArray(favoriteProducts)) return false;
       return favoriteProducts.some((item) => item.title === productTitle);
@@ -56,7 +59,7 @@ const Hero = () => {
   function toggleFavorite({id,title, alt, width,height,length, inStock, price, src, oldPrice,}) {
     const alreadyFavorite = isFavorite(title);
     if (alreadyFavorite) {
-      alert("Товар вже додано. Щоб видалити зайдіть в ваш список")
+      handleModalMessage("Товар вже додано. Щоб видалити зайдіть в ваш список")
       return
     } else {
       return dispatch(addFavoriteProductThunk({ id, title, alt, width, height, length, inStock, price, imageSrc: src, oldPrice }));
@@ -64,7 +67,6 @@ const Hero = () => {
   }
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const counts = useSelector(state => state.basketList.counts);
   const handleClick = (index) => {
     const productToAdd = {
       ...item,
@@ -78,8 +80,16 @@ const Hero = () => {
       count: count
     }
     dispatch(addToBasket(productToAdd));
-    console.log(productToAdd)
+    handleModalMessage("Товар додано в кошик!")
     navigate("/basket");
+  };
+  const handleModalMessage = (msg) => {
+    setMessage(msg);
+    setIsModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModal(false);
   };
   const beds = [miniBed0, miniBed2, miniBed3, miniBed4, miniBed5];
 
@@ -96,8 +106,24 @@ const Hero = () => {
   const [selectedCloth, setSelectedCloth] = useState(null);
 
   const cloths = [cloth1, cloth2, cloth3, cloth4, cloth5, cloth6];
+  const handlePhoneInput = (e) => {
+    let value = e.target.value.replace(/\D/g, "");
+    if (!value.startsWith("380")) {
+      value = "380" + value;
+    }
+    let formatted = "+";
+    if (value.length > 0) formatted += value.slice(0, 3);
+    if (value.length > 3) formatted += " " + value.slice(3, 5);
+    if (value.length > 5) formatted += " " + value.slice(5, 8);
+    if (value.length > 8) formatted += " " + value.slice(8, 10);
+    if (value.length > 10) formatted += " " + value.slice(10, 12);
+  
+    e.target.value = formatted;
+  }
   return (
+    <ContextModal.Provider value={{ handleCloseModal, isModal, message, handleModalMessage }}>
     <section className={style.hero}>
+    <Modal />
       <div className={containerStyle.container}>
         <nav className={style.hero__nav}>
           <StyledLink to="/" className={style.hero__link + " " + style.hero__linkMobBug}>
@@ -573,7 +599,12 @@ const Hero = () => {
                   fill="#B1B1B1"
                 />
               </svg>
-              <p className={style.heroBox__callNumber}>+380 -- --- -- -- </p>
+              <input
+                type="tel"
+                className={style.callNumberBox}
+                placeholder="+380 __ ___ __ __"
+                onChange={(e) => handlePhoneInput(e)}
+                 />
               <button className={style.heroBox__btnClick}>
                 Купити в 1 клік
               </button>
@@ -596,6 +627,7 @@ const Hero = () => {
         </div>
       </div>
     </section>
+    </ContextModal.Provider>
   );
 };
 export default Hero;

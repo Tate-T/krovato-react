@@ -28,9 +28,8 @@ const Favorite = ({ isOpen, onClose }) => {
       {products.length == 0 ? (
         <p>немає вибраних товарів</p>
       ) : (
-        <ul>
+        <ul className={styleFavorite.containerFavouriteList}>
           {products.map(item => (
-          
           <FavoriteItem product={item} deleteId={idToDelete}/>
         ))}
         </ul>

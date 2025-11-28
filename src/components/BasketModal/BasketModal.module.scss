@@ -181,7 +181,7 @@ $red: #d9534f;
 
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   font-size: 22px;
   font-weight: 700;
@@ -267,18 +267,22 @@ $red: #d9534f;
 
 .quantity {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   margin-top: 12px;
   gap: 10px;
+  background: #f8f8f8;
+  border: 1px solid #B1B1B1;
+  border-radius: 8px;
+  justify-content: space-evenly;
 
   button {
     width: 36px;
     height: 36px;
-    background: #fff;
+    background: none;
     border: 1px solid #dcdcdc;
     border-radius: 8px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     margin-top: 10px;
     background: #F8F8F8;

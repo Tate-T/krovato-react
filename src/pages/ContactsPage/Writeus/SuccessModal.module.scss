@@ -1,0 +1,116 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    animation: slideUp 0.3s ease-out;
+
+    @media screen and (min-width: 768px) {
+        padding: 50px;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.closeButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    @media screen and (min-width: 768px) {
+        top: 20px;
+        right: 20px;
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+
+    h2 {
+        color: #2b2929;
+        font-family: "Montserrat", sans-serif;
+        font-size: 24px;
+        font-weight: 600;
+        margin: 0;
+
+        @media screen and (min-width: 768px) {
+            font-size: 28px;
+        }
+    }
+
+    p {
+        color: #535353;
+        font-family: "Montserrat", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        margin: 0;
+        line-height: 1.5;
+
+        @media screen and (min-width: 768px) {
+            font-size: 20px;
+        }
+    }
+}
+
+.successIcon {
+    width: 60px;
+    height: 60px;
+
+    @media screen and (min-width: 768px) {
+        width: 80px;
+        height: 80px;
+    }
+}

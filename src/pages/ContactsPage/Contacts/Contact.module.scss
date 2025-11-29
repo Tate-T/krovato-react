@@ -3,7 +3,6 @@
 .contact {
     padding-top: 75px;
     background-color: whitesmoke;
-    max-height: 1660px;
 
     &__container {
         overflow: visible;
@@ -25,10 +24,11 @@
         margin-left: 15px;
     }
 
-    &__textContent h3{
+    &__textContent h3 {
         margin-right: 23px;
         margin-bottom: 10px;
     }
+
     &__itemMap {
         display: flex;
         flex-direction: column;

@@ -9,11 +9,7 @@ export const ShowRoom = () => {
 
   return (
     <>
-      {isModalOpen ? (
-        <Modal toggleModal={() => changeModalState(!isModalOpen)} />
-      ) : (
-        <></>
-      )}
+      {isModalOpen ? <Modal toggleModal={() => changeModalState(!isModalOpen)} /> : <></> } 
       <section className={style.showRoom}>
         <div className={containerStyle.container}>
           <div className={style.showRoom__container}>

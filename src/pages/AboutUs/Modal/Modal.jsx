@@ -1,6 +1,6 @@
 import styles from "./Modal.module.scss";
 
-export const Modal = (toggleModal) => {
+export const Modal = ({toggleModal}) => {
   return (
     <div className={styles.modal} id="modal">
       <div className={styles.modalContent} id="modalContent">

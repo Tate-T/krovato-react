@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 
-let userData = {}
+// let userData = {}
 let baseUrl = "https://connections-api.goit.global"
 
 const loadState = () => {
@@ -14,11 +14,11 @@ const loadState = () => {
 };
 
 
-
 const saveState = (state) => {
   try {
     localStorage.setItem("loginState", JSON.stringify(state));
-  } catch {}
+  } catch {
+  }
 };
 
 // let response;
@@ -31,18 +31,27 @@ const initialState = loadState() || {
   isTokenUpdated: false,
 };
 
-function signUpApi(userData){
-  let signUp = `${baseUrl}/users/signup`;
+const signUpThunk = createAsyncThunk(
+    "users/signup",
+    async (userData, signUp) => {
+      // await signUp.post(userData)
+      let response = await axios.post(signUp, userData);
+      console.log(response.data);
+      return response.data
+    },)
+
+
+function signUpApi(state) {
+  console.log("sign up start...");
+  // let signUp = `${baseUrl}/users/signup`;
   // let userData = {}
-  createAsyncThunk("users/signup", async (userData, signUp) => {
-    // await signUp.post(userData)
-    let response = await axios.post(signUp, userData);
-    console.log(response);
-    // return response.data
-  },)
+  // const signUpResponse =
+
+  state.isLogged = true;
+  return signUpThunk();
 }
 
-function loginApi(userData){
+function loginApi(userData) {
 
 }
 
@@ -68,16 +77,22 @@ const loginSlice = createSlice({
       state.isLoged = false;
       saveState(state);
     },
+    auth(state) {
+      state.isLoged = true;
+      saveState(state);
+      signUpApi(state);
+    },
     extraReducers: (builder) => {
       // Add reducers for additional action types here, and handle loading state as needed
       builder.addCase(signUpApi.fulfilled, (state, action) => {
         // Add user to the state array
-        console.log(action.payload);
+        // console.log(action.payload);
         // state.token.push(action.payload)
+        signUpApi(state)
       })
     },
   },
 });
 
-export const { setName, setPassword, login, logout } = loginSlice.actions;
+export const {setName, setPassword, login, logout, auth} = loginSlice.actions;
 export default loginSlice.reducer;

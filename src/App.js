@@ -12,10 +12,12 @@ import BlogPage from "./pages/Blog/BlogPage"
 import ContactsPage from "./pages/ContactsPage/ContactsPage";
 import Catalog from "./pages/Catalog/Catalog"
 import Header from "./components/Header/Header.jsx";
-import Login from "./components/Header/Login.jsx";
 import Basket from "./pages/Basket/Basket.jsx"
 import AgreeTerms from "./pages/Basket/AgreeTerms/AgreeTerms.jsx";
+
 import LoginPage from "./components/Header/LoginPage.jsx";
+import AuthPage from "./components/Header/Auth.jsx";
+
 import BlogArticle from "./pages/BlogArticle/BlogArticle";
 import Hero from "./pages/ProductCard/Hero/Hero.jsx";
 import { ProductCardPage } from "./pages/ProductCard/ProductCardPage.jsx";
@@ -78,7 +80,8 @@ function App() {
           <Route path="/blog-article" element={<BlogArticle/>}/>
           <Route path="/contacts" element={<ContactsPage/>}/>
           <Route path="/catalog" element={<Catalog/>}/>
-          <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
+          {/*<Route path="/login" element={<LoginPage onLogin={handleLogin} />} />*/}
+          <Route path="/login" element={<AuthPage onLogin={handleLogin} />} />
           <Route path="/product/:id" element={<ProductCardPage/>}/>
         </Routes>
       </Suspense>

@@ -565,6 +565,7 @@ const Header = () => {
           size={24}
         />
       </div>
+
       <div className={style.loginItems}>
         {!isLoged ? (
           <div className={style.header__icon_container}>
@@ -572,6 +573,7 @@ const Header = () => {
               <FiLogIn size={24} className={style.login_icon} />
             </NavLink>
           </div>
+
         ) : (
           <>
             <div className={style.header__icon_container}>

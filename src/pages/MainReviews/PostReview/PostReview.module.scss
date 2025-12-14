@@ -1,6 +1,7 @@
 .reviews {
   &__form {
     padding-top: 60px;
+    // color: gray;
 
     @media screen and (min-width: 1200px) {
       padding-top: 88px;
@@ -78,9 +79,14 @@
     text-align: left;
   }
 
+  &__form--gray {
+    background-color: gray; 
+    color: gray;
+  }
+
   &__formForm {
     max-width: 410px;
-    background-color: white;
+    // background-color: white;
     border-radius: 8px;
     padding-bottom: 30px;
   }

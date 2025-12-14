@@ -55,7 +55,7 @@ export const PostReview = () => {
 
   return (
     <div className={style.reviews__form}>
-      <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="500" className={style.reviews__formTopBox}>
+      <div data-aos="fade-left" data-aos-duration="500" data-aos-delay="500" className={style.reviews__formTopBox}>
         <div className={style.reviews__formIconBox}>
           <svg className={style.reviews__formIcon}>
             <use href={`${sprite}#icon-logo-sofa`}></use>
@@ -79,10 +79,10 @@ export const PostReview = () => {
         </div>
       </div>
       <form id="mob-reviews" className={style.reviews__formForm} onSubmit={handleSubmit}>
-        <h4 data-aos="fade-left" data-aos-duration="1000" data-aos-delay="500" className={style.reviews__formFormTitle}>
+        <h4 data-aos="fade-left" data-aos-duration="500" data-aos-delay="500" className={style.reviews__formFormTitle}>
           Залишіть свій відгук про магазин
         </h4>
-        <ul data-aos="fade-left" data-aos-duration="1000" data-aos-delay="500" className={style.reviews__formFormList}>
+        <ul data-aos="fade-left" data-aos-duration="500" data-aos-delay="500" className={style.reviews__formFormList}>
           <li className={style.reviews__formFormItem}>
             <input
               className={style.reviews__formInput}
@@ -117,8 +117,8 @@ export const PostReview = () => {
             />
           </li>
         </ul>
-        <p data-aos="fade-left" data-aos-duration="1000" data-aos-delay="500" className={style.reviews__formFormRating}>Ваша оцінка:</p>
-        <ul data-aos="fade-left" data-aos-duration="1000" data-aos-delay="500" className={style.reviews__formList}>
+        <p data-aos="fade-left" data-aos-duration="500" data-aos-delay="500" className={style.reviews__formFormRating}>Ваша оцінка:</p>
+        <ul data-aos="fade-left" data-aos-duration="500" data-aos-delay="500" className={style.reviews__formList}>
           {[1, 2, 3, 4, 5].map((star) => (
             <li key={star} className={style.reviews__formItem}>
               <button
@@ -137,7 +137,7 @@ export const PostReview = () => {
             </li>
           ))}
         </ul>
-        <button data-aos="fade-left" data-aos-duration="1000" data-aos-delay="500" className={style.reviews__formFormButton} type="submit">
+        <button data-aos="fade-left" data-aos-duration="500" data-aos-delay="500" className={style.reviews__formFormButton} type="submit">
           Залишити відгук
         </button>
       </form>
